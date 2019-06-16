@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-06-2019 a las 20:00:19
+-- Tiempo de generación: 16-06-2019 a las 23:08:12
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -76,8 +76,9 @@ CREATE TABLE `entrada` (
   `fechaReserva` date NOT NULL,
   `hora` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `guiada` tinyint(1) UNSIGNED DEFAULT '0',
-  `precio` float NOT NULL DEFAULT '6.75',
-  `idCliente` int(10) UNSIGNED NOT NULL
+  `precio` float NOT NULL DEFAULT '6.85',
+  `idCliente` int(10) UNSIGNED NOT NULL,
+  `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -97,17 +98,15 @@ INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `preci
 
 CREATE TABLE `entrada_guiada` (
   `numeroEntrada` int(10) UNSIGNED NOT NULL,
+  `fechaReserva` date NOT NULL,
+  `hora` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `guiada` tinyint(1) NOT NULL DEFAULT '1',
+  `precio` float NOT NULL,
   `suplementoGuia` float UNSIGNED NOT NULL DEFAULT '3.55',
-  `numeroGuia` int(10) UNSIGNED NOT NULL
+  `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `numeroGuia` int(10) UNSIGNED NOT NULL,
+  `idCliente` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `entrada_guiada`
---
-
-INSERT INTO `entrada_guiada` (`numeroEntrada`, `suplementoGuia`, `numeroGuia`) VALUES
-(46, 3.55, 33),
-(47, 3.55, 13);
 
 -- --------------------------------------------------------
 
@@ -334,7 +333,8 @@ ALTER TABLE `entrada`
 ALTER TABLE `entrada_guiada`
   ADD PRIMARY KEY (`numeroEntrada`),
   ADD UNIQUE KEY `numeroEntrada` (`numeroEntrada`),
-  ADD KEY `numGuia_idx` (`numeroGuia`);
+  ADD KEY `numGuia_idx` (`numeroGuia`),
+  ADD KEY `idCliente` (`idCliente`);
 
 --
 -- Indices de la tabla `exposicion`
@@ -411,6 +411,12 @@ ALTER TABLE `entrada`
   MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
+-- AUTO_INCREMENT de la tabla `entrada_guiada`
+--
+ALTER TABLE `entrada_guiada`
+  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `exposicion`
 --
 ALTER TABLE `exposicion`
@@ -455,7 +461,7 @@ ALTER TABLE `entrada`
 -- Filtros para la tabla `entrada_guiada`
 --
 ALTER TABLE `entrada_guiada`
-  ADD CONSTRAINT `numeroEntradaGuiada_fk` FOREIGN KEY (`numeroEntrada`) REFERENCES `entrada` (`numeroentrada`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `idCliente_fk2` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `numeroGuia_fk` FOREIGN KEY (`numeroGuia`) REFERENCES `guia` (`numguia`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --

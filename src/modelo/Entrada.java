@@ -28,16 +28,6 @@ public class Entrada {
         this.idCliente = idCliente;
     }
 
-    public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, float suplemento, int idCliente) {
-        this.numEntrada = numEntrada;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.esGuiada = esGuiada;
-        this.precio = precio;
-        suplementoGuia = suplemento;
-        this.idCliente = idCliente;
-    }
-
     public Entrada(Date fecha, boolean esGuiada) {
         this.fecha = fecha;
         this.esGuiada = esGuiada;

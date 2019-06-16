@@ -20,7 +20,13 @@ public class ConexionBD {
     // Constructor --------------------------------------------------
     private ConexionBD() {
         try {
-            cnnt = DriverManager.getConnection("jdbc:mysql://remotemysql.com/2CygLOTEPa?autoReconnect=true&useSSL=false", "2CygLOTEPa", "lsVAMMqj7E");
+            String host = "jdbc:mysql://remotemysql.com/";
+            String database = "2CygLOTEPa";
+            String parameters = "?autoReconnect=true&useSSL=false";
+            String user = "2CygLOTEPa";
+            String pass = "lsVAMMqj7E";
+            
+            cnnt = DriverManager.getConnection(host + database + parameters, user, pass);
             sttm = cnnt.createStatement();
         } catch (SQLException e) {
             System.out.println("Error de conexión con la Base de Datos.");
