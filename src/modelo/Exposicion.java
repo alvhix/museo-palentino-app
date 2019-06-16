@@ -5,13 +5,13 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Victor
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public class Exposicion {
 
     // ####################### - Atributos - #######################

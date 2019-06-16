@@ -6,10 +6,7 @@
 package disenno;
 
 import java.util.List;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import modelo.Exposicion;
 import modelo.Obra;
 
 /**
@@ -19,88 +16,92 @@ import modelo.Obra;
 public class ExposicionTableModel extends AbstractTableModel {
 
     private List<Obra> obras;
+    private String[] columns = {"ID", "Titulo", "Autor", "Estilo", "Año", "Tipo", "Ruta de imagen"};
 
-    public ExposicionTableModel(Exposicion e) {
-        this.obras = e.getObras();
+    public void annadirObra(Obra o) {
+        obras.add(o);
+        fireTableDataChanged();
     }
-    
+
+    public void eliminarObra(int rowIndex) {
+        obras.remove(rowIndex);
+        fireTableDataChanged();
+    }
+
+    public Obra obtenerObra(int rowIndex) {
+        return obras.get(rowIndex);
+    }
+
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return obras.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return columns.length;
     }
 
     @Override
-    public Object getValueAt(int i, int j) {
-        // Obtenemos la obra de la fila indicada 
-        Obra o = obras.get(i);
-        switch (j) {
-            // Nos piden el id. 
+    public Object getValueAt(int rowIndex, int colIndex) {
+        Obra o = obras.get(rowIndex);
+
+        switch (colIndex) {
+            // Devuelve el id. 
             case 0:
-                return (Integer) o.getID();
-            // Nos pasan el titulo. 
+                return o.getID();
+            // Devuelve el titulo. 
             case 1:
                 return o.getTitulo();
-            // Nos pasan el autor.
+            // Devuelve el autor.
             case 2:
                 return o.getAutor();
-            // Nos pasan el estilo.
+            // Devuelve el estilo.
             case 3:
                 return o.getEstilo();
-            // Nos pasan el año.
+            // Devuelve el año.
             case 4:
                 return o.getAnno();
-            // Nos pasan el tipo. 
+            // Devuelve el tipo. 
             case 5:
                 return o.getTipo();
-            // Nos pasan la ruta.
+            // Devuelve la ruta.
             case 6:
                 return o.getRutaImagen();
+            // Devuelve la Obra
+            default:
+                return o;
         }
-        return null;
     }
 
     @Override
-    public void setValueAt(Object dato, int i, int j) {
+    public void setValueAt(Object dato, int rowIndex, int colIndex) {
         // Obtenemos la obra de la fila indicada 
-        Obra o = obras.get(i);
-        switch (j) {
-            // Nos pasan el titulo. 
+        Obra o = obras.get(rowIndex);
+        switch (colIndex) {
             case 1:
                 o.setTitulo((String) dato);
                 break;
-            // Nos pasan el autor.
             case 2:
                 o.setAutor((String) dato);
                 break;
-            // Nos pasan el estilo.
             case 3:
                 o.setEstilo((String) dato);
                 break;
-            // Nos pasan el año.
             case 4:
                 o.setAnno((String) dato);
                 break;
-            // Nos pasan el tipo. 
             case 5:
                 o.setTipo((String) dato);
                 break;
-            // Nos pasan la ruta.
             case 6:
                 o.setRutaImagen((String) dato);
                 break;
         }
-        TableModelEvent evento = new TableModelEvent(this, i, i, j);
-        
-        for (int k = 0; i < obras.size(); i++) {
-            ((TableModelListener) obras.get(i)).tableChanged(evento);
-        }
     }
-    
-    
-    
+
+    @Override
+    public String getColumnName(int colIndex) {
+        return columns[colIndex];
+    }
 }
