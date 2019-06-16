@@ -28,7 +28,7 @@ public class SistemaMuseo {
 
     // Métodos ------------------------------------------------------
     public String obtenerRol(String dni) {
-        String rol;
+        String rol = "";
 
         try {
             // Devuelve el rol que coincida con el dni recibido por parametro
