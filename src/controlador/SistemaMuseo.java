@@ -38,7 +38,6 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        System.out.println("Hola");
         return rol;
     }
 
