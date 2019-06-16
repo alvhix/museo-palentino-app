@@ -488,30 +488,16 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     public void reservarEntrada() {
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
             e = new Entrada(); // Crea nueva entrada
+            // Setea la fecha de la reserva
             e.setFecha(jDateChooser1.getDate());
+            // Setea si la entrada es guiada
             e.setEsGuiada(jCheckBox1.isSelected());
+            // Setea la hora
             int comboBox = jComboBox1.getSelectedIndex();
-            switch (comboBox) {
-                case 0:
-                    e.setHora("08:00");
-                    break;
-                case 1:
-                    e.setHora("10:00");
-                    break;
-                case 2:
-                    e.setHora("12:00");
-                    break;
-                case 3:
-                    e.setHora("14:00");
-                    break;
-                case 4:
-                    e.setHora("16:00");
-                    break;
-                case 5:
-                    e.setHora("18:00");
-                    break;
-            }
+            String[] horario = {"8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
+            e.setHora(horario[comboBox]);
 
+            // Reserva la entrada pasando como parámetros el cliente
             sm.reservarEntrada(e, c);
             actualizarTabla();
         } else {
@@ -526,8 +512,9 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     public void cancelarReserva() {
         int seleccion = jTable1.getSelectedRow();
-        if (seleccion != -1) {
-
+        int no_selected = -1;
+        if (seleccion != no_selected) {
+            
         }
     }
 
