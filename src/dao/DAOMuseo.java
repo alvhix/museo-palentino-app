@@ -392,8 +392,9 @@ public class DAOMuseo {
             String insert2 = "INSERT INTO entrada_guiada (numeroEntrada, numeroGuia) VALUES (?, ?)";
             String insert3 = "INSERT INTO guia_entrada VALUES (?, ?)";
             float precioTotal = precioEntrada + precioSuplemento;
-            int numeroGuia = elegirNumGuia();
-            int numIdentificacion = obtenerNumIdentificacionGuia(numeroGuia);
+            int numGuia = elegirNumGuia();
+            int numIdentificacion = obtenerNumIdentificacionGuia(numGuia);
+            int numEntrada = obtenerNumEntradaActual();
 
             PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
             ps1.setDate(1, new java.sql.Date(e.getFecha().getTime()));
@@ -406,15 +407,15 @@ public class DAOMuseo {
 
             // Segunda inserción en la tabla de entrada_guiada
             PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-            ps2.setInt(1, e.getNumEntrada());
-            //ps2.setInt(2,);
+            ps2.setInt(1, numEntrada);
+            ps2.setInt(2, numGuia);
+            // Se ejecuta el segundo insert
             ps2.executeUpdate();
 
             // Tercera inserción en la tabla de guia_entrada
             PreparedStatement ps3 = ConexionBD.instancia().getConnection().prepareStatement(insert3);
-            //ps3.setInt(1,);
+            ps3.setInt(1, numEntrada);
             ps3.setInt(2, numIdentificacion);
-
             // Se ejecuta el otro insert
             ps3.executeUpdate();
         }
@@ -490,7 +491,9 @@ public class DAOMuseo {
     // Obtiene el precio de la entrada en el momento de ejecución
     public float devolverPrecioEntrada() throws SQLException {
         float precioEntrada = 0;
-        String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada' AND COLUMN_NAME='precio'";
+        String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS "
+                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada' "
+                + "AND COLUMN_NAME='precio'";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
@@ -505,7 +508,9 @@ public class DAOMuseo {
     // Obtiene el precio del suplemento por el guía en el momento de ejecución
     public float devolverPrecioSuplemento() throws SQLException {
         float precioSuplemento = 0;
-        String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada_guiada' AND COLUMN_NAME='suplementoGuia'";
+        String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS "
+                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada_guiada' "
+                + "AND COLUMN_NAME='suplementoGuia'";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
@@ -515,6 +520,21 @@ public class DAOMuseo {
         }
 
         return precioSuplemento;
+    }
+
+    // Obtiene el número de la entrada en el momento de ejecución
+    private int obtenerNumEntradaActual() throws SQLException {
+        int numEntradaActual = -1;
+        String query = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES "
+                + "WHERE TABLE_SCHEMA = '2CygLOTEPa' AND TABLE_NAME = 'entrada'";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            numEntradaActual = rs.getInt("AUTO_INCREMENT");
+        }
+        return numEntradaActual;
     }
 
     // Algoritmo que escoge el número de guía basado en porcentajes equitativos
