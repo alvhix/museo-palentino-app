@@ -373,8 +373,11 @@ public class DAOMuseo {
 
     // Inserta los datos de la entrada reservada en la base de datos
     public void reservarEntrada(Entrada e, Cliente c) throws SQLException {
-        Float precioEntrada = devolverPrecioEntrada();
-        Float precioSuplemento = devolverPrecioSuplemento();
+        float precioEntrada = devolverPrecioEntrada();
+        float precioSuplemento = devolverPrecioSuplemento();
+        int numGuia = elegirNumGuia();
+        int numIdentificacion = obtenerNumIdentificacionGuia(numGuia);
+        int numEntrada = obtenerNumEntradaActual();
 
         if (!e.getEsGuiada()) {
             String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, idCliente) VALUES (?, ?, ?, ?)";
@@ -392,9 +395,6 @@ public class DAOMuseo {
             String insert2 = "INSERT INTO entrada_guiada (numeroEntrada, numeroGuia) VALUES (?, ?)";
             String insert3 = "INSERT INTO guia_entrada VALUES (?, ?)";
             float precioTotal = precioEntrada + precioSuplemento;
-            int numGuia = elegirNumGuia();
-            int numIdentificacion = obtenerNumIdentificacionGuia(numGuia);
-            int numEntrada = obtenerNumEntradaActual();
 
             PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
             ps1.setDate(1, new java.sql.Date(e.getFecha().getTime()));
