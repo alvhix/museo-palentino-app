@@ -24,7 +24,6 @@ public class SistemaMuseo {
     // Constructor ---------------------------------------------
     public SistemaMuseo() throws SQLException {
         ConexionBD.crearConexion();
-        System.out.println("Wongse");
     }
 
     // Métodos ------------------------------------------------------
