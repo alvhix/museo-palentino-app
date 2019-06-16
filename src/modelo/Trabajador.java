@@ -9,19 +9,19 @@ package modelo;
  *
  * @author Guillermo
  */
-public abstract class Empleado extends Persona {
+public abstract class Trabajador extends Persona {
 
     //Atributos -----------------------------------------------------
     private int id;
     private long nSS;
 
     //Constructor ----------------------------------------------------------
-    public Empleado(String nombre, String dni, int telefono, long nSS) {
+    public Trabajador(String nombre, String dni, int telefono, long nSS) {
         super(nombre, dni, telefono);
         this.nSS = nSS;
     }
 
-    public Empleado(String nombre, String dni, int telefono, long nSS, int id) {
+    public Trabajador(String nombre, String dni, int telefono, long nSS, int id) {
         super(nombre, dni, telefono);
         this.nSS = nSS;
         this.id = id;

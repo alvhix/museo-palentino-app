@@ -12,10 +12,10 @@ import java.util.List;
  *
  * @author Guillermo y Victor
  */
-public class Administrador extends Empleado {
+public class Administrador extends Trabajador {
 
     // ####################### - ATRIBUTOS - #######################
-    private List<Empleado> empleados;
+    private List<Guia> empleados;
     private List<Exposicion> exposiciones;
 
     // ####################### - CONSTRUCTORES - #######################
@@ -33,7 +33,7 @@ public class Administrador extends Empleado {
     }
 
     // ####################### - GETTERS - #######################
-    public List<Empleado> getEmpleados() {
+    public List<Guia> getEmpleados() {
         return empleados;
     }
 
@@ -50,11 +50,11 @@ public class Administrador extends Empleado {
         exposiciones.remove(e);
     }
 
-    public void annadirEmpleado(Empleado e) {
+    public void annadirEmpleado(Guia e) {
         empleados.add(e);
     }
 
-    public void eliminarEmpleado(Empleado e) {
+    public void eliminarEmpleado(Guia e) {
         empleados.remove(e);
     }
 }

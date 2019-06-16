@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Administrador;
-import modelo.Empleado;
 import modelo.Exposicion;
+import modelo.Guia;
 
 /**
  *
@@ -20,7 +20,7 @@ import modelo.Exposicion;
 public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private Administrador a;
-    private List<Empleado> empleados;
+    private List<Guia> empleados;
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
 
