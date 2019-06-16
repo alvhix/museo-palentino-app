@@ -200,13 +200,13 @@ public class DAOMuseo {
 
         if (rs1.next() && rs2.next()) {
             a = new Administrador(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"),
-                    rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), cargarPlantilla(), cargarExposiciones());
+                    rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), cargarEmpleados(), cargarExposiciones());
         }
         return a;
     }
 
-    private List cargarPlantilla() throws SQLException {
-        List plantilla;
+    private List cargarEmpleados() throws SQLException {
+        List empleados = new ArrayList();
         String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
                 + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
 
@@ -214,35 +214,30 @@ public class DAOMuseo {
 
         ResultSet rs = ps.executeQuery();
 
-        plantilla = new ArrayList();
-
         while (rs.next()) {
-            plantilla.add(new Guia(rs.getString("persona.nombre"), rs.getString("guia.dniGuia"),
+            empleados.add(new Guia(rs.getString("persona.nombre"), rs.getString("guia.dniGuia"),
                     rs.getInt("persona.telefono"), rs.getLong("guia.numSeguridadSocial"),
                     rs.getInt("guia.numIdentificacion"), rs.getInt("guia.numGuia")));
         }
 
-        return plantilla;
+        return empleados;
     }
 
     private List cargarExposiciones() throws SQLException {
-        List plantilla;
-        String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
-                + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
+        List exposiciones = new ArrayList();
+        String query = "SELECT idExposicion, nombre, duracion, tiempoRecorrido, imagen FROM exposicion";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
 
         ResultSet rs = ps.executeQuery();
 
-        plantilla = new ArrayList();
-
         while (rs.next()) {
-            plantilla.add(new Guia(rs.getString("persona.nombre"), rs.getString("guia.dniGuia"),
-                    rs.getInt("persona.telefono"), rs.getLong("guia.numSeguridadSocial"),
-                    rs.getInt("guia.numIdentificacion"), rs.getInt("guia.numGuia")));
+            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"), 
+                    rs.getInt("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), 
+                    cargarObrasExposicion(rs.getInt("idExposicion"))));
         }
 
-        return plantilla;
+        return exposiciones;
     }
 
     // Recoge los datos de las entradas reservados por un cliente determinado

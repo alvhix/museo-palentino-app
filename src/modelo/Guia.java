@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Álvaro y Victor
  */
-public class Guia extends Empleado {
+public class Guia extends Trabajador {
 
     private int nGuia;
 
