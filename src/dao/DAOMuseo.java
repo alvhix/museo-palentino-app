@@ -232,8 +232,8 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"), 
-                    rs.getInt("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), 
+            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
+                    rs.getInt("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
                     cargarObrasExposicion(rs.getInt("idExposicion"))));
         }
 
@@ -370,9 +370,6 @@ public class DAOMuseo {
     public void reservarEntrada(Entrada e, Cliente c) throws SQLException {
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
-        int numGuia = elegirNumGuia();
-        int numIdentificacion = obtenerNumIdentificacionGuia(numGuia);
-        int numEntrada = obtenerNumEntradaActual();
 
         if (!e.getEsGuiada()) {
             String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, idCliente) VALUES (?, ?, ?, ?)";
@@ -385,12 +382,15 @@ public class DAOMuseo {
             // Se ejecuta el insert
             ps.executeUpdate();
 
+            // FALTA POR MODIFICAR ESTA PARTE
         } else if (e.getEsGuiada()) { // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
             String insert1 = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, idCliente) VALUES (?, ?, ?, ?, ?)";
             String insert2 = "INSERT INTO entrada_guiada (numeroEntrada, numeroGuia) VALUES (?, ?)";
-            String insert3 = "INSERT INTO guia_entrada VALUES (?, ?)";
+            int numGuia = elegirNumGuia();
+            int numEntrada = obtenerNumEntradaActual();
             float precioTotal = precioEntrada + precioSuplemento;
 
+            // Primera inserción en la tabla entrada
             PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
             ps1.setDate(1, new java.sql.Date(e.getFecha().getTime()));
             ps1.setString(2, e.getHora());
@@ -406,13 +406,6 @@ public class DAOMuseo {
             ps2.setInt(2, numGuia);
             // Se ejecuta el segundo insert
             ps2.executeUpdate();
-
-            // Tercera inserción en la tabla de guia_entrada
-            PreparedStatement ps3 = ConexionBD.instancia().getConnection().prepareStatement(insert3);
-            ps3.setInt(1, numEntrada);
-            ps3.setInt(2, numIdentificacion);
-            // Se ejecuta el otro insert
-            ps3.executeUpdate();
         }
     }
 
