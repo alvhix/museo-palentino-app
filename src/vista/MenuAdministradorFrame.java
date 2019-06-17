@@ -9,6 +9,8 @@ import controlador.SistemaMuseo;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import modelo.Administrador;
 import modelo.Exposicion;
 import modelo.Guia;
@@ -23,6 +25,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private List<Guia> empleados;
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
+    private DefaultTableModel plantilla;
+    private String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
+
 
     /**
      * Creates new form MenuAdministradorFrame
@@ -33,6 +38,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         this.a = a;
         this.empleados = a.getEmpleados();
         this.exposiciones = a.getExposiciones();
+        
+        actualizarPlantilla();
         
         initComponents();
         componentesIniciales();
@@ -71,7 +78,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         btDespedir = new javax.swing.JButton();
         btContratar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         panelExposiciones = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -97,7 +103,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -189,7 +197,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -209,8 +217,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Modificar Datos");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -218,8 +224,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btDespedir, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btDespedir, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                     .addComponent(btContratar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -230,8 +235,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(btContratar)
                 .addGap(18, 18, 18)
                 .addComponent(btDespedir, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,7 +261,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -395,9 +398,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoNombreExpo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(campoNombreExpo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoDuracion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -440,9 +443,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         panelExposicionesLayout.setVerticalGroup(
             panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelExposicionesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -476,9 +478,27 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         );
 
         jMenu3.setText("Gestión de Empleados");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar2.add(jMenu3);
 
         jMenu4.setText("Gestión de Exposiciones");
+
+        jMenuItem2.setText("Ver Exposiciones");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
+
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -511,6 +531,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btDespedirActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        verPaneles(panelEmpleados);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        verPaneles(panelExposiciones);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -560,7 +588,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JTextField campoNombreExpo;
     private javax.swing.JTextField campoPrecio;
     private javax.swing.JTextField campoRuta;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -578,6 +605,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -616,20 +645,51 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             long nss = Long.parseLong(tfNSS.getText());
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
-            /*Guia g = new Guia(nombre, dni, telefono, nss, nGuia);
-            p.darAlta(g, clave);
+            Guia g = new Guia(nombre, dni, telefono, nss/*, nGuia*/);
+            a.annadirEmpleado(g);
             actualizarPlantilla();
-            datosEnBlanco();*/
+            datosEnBlanco();
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Campos incompletos o erroneos, itroduzca todos los datos", "Error", WIDTH);
+        }
+    }
+    
+    public void actualizarPlantilla(){
+        
+        if(!a.getEmpleados().isEmpty() ){
+            
+            String[][] datos = new String[a.getEmpleados().size()][4];
+            Guia g;
+            
+            for(int i = 0; i < a.getEmpleados().size(); i++){
+                
+                g = a.getEmpleados().get(i);
+                
+                datos[i][0] = String.valueOf(g.getNGuia());
+                datos[i][1] = g.getNombre();
+                datos[i][2] = g.getDNI();
+                datos[i][3] = String.valueOf(g.getTelefono());
+                
+            }
+        
+            plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
         }
     }
 
     public void addExposicion() {
 
     }
-
+    
+    public void verPaneles(JPanel jp){
+        
+        panelEmpleados.setVisible(false);
+        panelExposiciones.setVisible(false);
+        
+        jp.setVisible(true);
+        
+    }
+    
     private void conexionBD() {
         try {
             sm = new SistemaMuseo();
