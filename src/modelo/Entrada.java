@@ -19,13 +19,14 @@ public class Entrada {
     private String hora;
 
     // Constructores -----------------------------------
-    public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente) {
+    public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente, int numGuia) {
         this.numEntrada = numEntrada;
         this.fecha = fecha;
         this.hora = hora;
         this.esGuiada = esGuiada;
         this.precio = precio;
         this.idCliente = idCliente;
+        this.numGuia = numGuia;
     }
 
     public Entrada(Date fecha, boolean esGuiada) {

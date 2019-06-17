@@ -245,71 +245,39 @@ public class DAOMuseo {
         List entradas = new ArrayList();
 
         String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
-                + "idCliente FROM entrada WHERE entrada.idCliente = ?";
+                + "idCliente, numeroGuia FROM entrada WHERE entrada.idCliente = ?";
 
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         ResultSet rs = ps1.executeQuery();
 
         while (rs.next()) {
-            entradas.add(new Entrada(rs.getInt("entrada.numeroEntrada"),
-                    rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"),
-                    rs.getBoolean("entrada.guiada"), rs.getFloat("entrada.precio"),
-                    rs.getInt("entrada.idCliente")));
+            entradas.add(new Entrada(rs.getInt("numeroEntrada"),
+                    rs.getDate("fechaReserva"), rs.getString("hora"),
+                    rs.getBoolean("guiada"), rs.getFloat("precio"),
+                    rs.getInt("idCliente"), rs.getInt("numeroGuia")));
         }
 
         return entradas;
     }
 
     // FALTA RENOVAR MÉTODO
-    public String[][] cargarEntradasGuia(int nGuia) throws SQLException {
-        String[][] entradaGuia = null;
-        int limite = numeroEntradasGuia(nGuia);
+    public List cargarEntradasGuia(int numGuia) throws SQLException {
+        List entradasGuia = new ArrayList();
 
         String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora "
-                + "FROM entrada, cliente_entrada, guia_entrada, guia WHERE "
-                + "entrada.guiada = true AND guia.numIdentificacion = guia_entrada.numeroIdentificacion "
-                + "AND guia_entrada.numeroEntrada = entrada.numeroEntrada AND "
-                + "entrada.numeroEntrada = cliente_entrada.numeroEntrada AND "
-                + "cliente_entrada.numeroIdentificacion = cliente.idCliente AND "
-                + "guia.numGuia = ?";
+                + "FROM entrada, guia WHERE guia.numeroGuia = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, nGuia);
+        ps.setInt(1, numGuia);
 
         ResultSet rs = ps.executeQuery();
 
-        if (rs.next()) {
-            for (int i = 0; i < limite; i++) {
-                entradaGuia[i][0] = rs.getString("cliente.dniCliente");
-                entradaGuia[i][1] = String.valueOf(rs.getDate("entrada.fechaReserva"));
-                entradaGuia[i][2] = rs.getString("entrada.hora");
-            }
+        while (rs.next()) {
+
         }
 
-        return entradaGuia;
-    }
-
-    // ESTE MÉTODO SOBRA
-    private int numeroEntradasGuia(int nGuia) throws SQLException {
-        int count;
-
-        String query = "SELECT COUNT(entrada.numeroEntrada) "
-                + "FROM entrada, cliente_entrada, guia_entrada, guia WHERE "
-                + "entrada.guiada = true AND guia.numIdentificacion = guia_entrada.numeroIdentificacion "
-                + "AND guia_entrada.numeroEntrada = entrada.numeroEntrada AND "
-                + "entrada.numeroEntrada = cliente_entrada.numeroEntrada AND "
-                + "cliente_entrada.numeroIdentificacion = cliente.idCliente AND "
-                + "guia.numGuia = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, nGuia);
-
-        ResultSet rs = ps.executeQuery();
-
-        count = rs.getInt("COUNT(entrada.numeroEntrada)");
-
-        return count;
+        return entradasGuia;
     }
 
     public Exposicion cargarExposicion(int id) throws SQLException {
@@ -384,8 +352,8 @@ public class DAOMuseo {
         String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
-        float precioTotal = precioEntrada + precioSuplemento;
-        int numGuia= elegirNumGuia();
+        float precioTotal = precioEntrada + precioSuplemento; // Precio total de la  entrada
+        int numGuia = elegirNumGuia(); // Número de guía asignado de forma aleatoria con el algoritmo
 
         // Inserción en la tabla entrada
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
