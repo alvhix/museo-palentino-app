@@ -35,6 +35,7 @@ public class DAOMuseo {
         return instancia;
     }
 
+    // ############################# MÉTODOS #############################
     // Devuelve el rol de esa persona para que visualice el frame asignado a su rol
     public String obtenerRol(String dni) throws SQLException {
         String rol = "";
@@ -87,6 +88,7 @@ public class DAOMuseo {
         return correcto;
     }
 
+    // ############################# CLIENTE #############################
     public void nuevoCliente(Cliente c, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'cliente')";
         String insert2 = "INSERT INTO cliente (dniCliente) VALUES (?)";
@@ -99,43 +101,6 @@ public class DAOMuseo {
         // INSERT INTO cliente (dniCliente) VALUES (dni)
         PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
         ps2.setString(1, c.getDNI());
-        // Se ejecutan las updates
-        ps1.executeUpdate();
-        ps2.executeUpdate();
-    }
-
-    public void nuevoGuia(Guia g, String password) throws SQLException {
-        String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
-        String insert2 = "INSERT INTO guia (numSeguridadSocial, dniGuia, numGuia) VALUES (?, ?, ?)";
-        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'guia')
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
-        ps1.setString(1, g.getDNI());
-        ps1.setString(2, password);
-        ps1.setString(3, g.getNombre());
-        ps1.setInt(4, g.getTelefono());
-        // INSERT INTO guia (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-        ps2.setLong(1, g.getNSS());
-        ps2.setString(2, g.getDNI());
-        ps2.setInt(3, g.getNGuia());
-        // Se ejecutan las updates
-        ps1.executeUpdate();
-        ps2.executeUpdate();
-    }
-
-    public void nuevoAdministrador(Administrador a, String password) throws SQLException {
-        String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
-        String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
-        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
-        ps1.setString(1, a.getDNI());
-        ps1.setString(2, password);
-        ps1.setString(3, a.getNombre());
-        ps1.setInt(4, a.getTelefono());
-        // INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-        ps2.setLong(1, a.getNSS());
-        ps2.setString(2, a.getDNI());
         // Se ejecutan las updates
         ps1.executeUpdate();
         ps2.executeUpdate();
@@ -162,25 +127,39 @@ public class DAOMuseo {
         return c;
     }
 
-    public Guia cargarGuia(String dni) throws SQLException {
-        Guia g = null;
-        String query1 = "SELECT nombre, dni, telefono FROM persona WHERE dni = ?";
-        String query2 = "SELECT numIdentificacion, numSeguridadSocial, numGuia FROM guia WHERE dniGuia = ?";
+    // Obtiene los datos de la tarjeta de un cliente determinado (FALTA POR IMPLEMENTAR)
+    private long obtenerTarjetaCliente(long idCliente) throws SQLException {
+        long tarjeta = -1;
+        String query = "SELECT tarjeta FROM cliente WHERE idCliente = ?";
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setLong(1, idCliente);
 
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
-        ps1.setString(1, dni);
+        ResultSet rs = ps.executeQuery();
 
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
-        ps2.setString(1, dni);
-
-        ResultSet rs1 = ps1.executeQuery();
-        ResultSet rs2 = ps2.executeQuery();
-
-        if (rs1.next() && rs2.next()) {
-            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
+        if (rs.next()) {
+            tarjeta = rs.getLong("tarjeta");
         }
 
-        return g;
+        return tarjeta;
+    }
+
+    // ############################# ADMINISTRADOR #############################
+    public void nuevoAdministrador(Administrador a, String password) throws SQLException {
+        String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
+        String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
+        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        ps1.setString(1, a.getDNI());
+        ps1.setString(2, password);
+        ps1.setString(3, a.getNombre());
+        ps1.setInt(4, a.getTelefono());
+        // INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
+        ps2.setLong(1, a.getNSS());
+        ps2.setString(2, a.getDNI());
+        // Se ejecutan las updates
+        ps1.executeUpdate();
+        ps2.executeUpdate();
     }
 
     public Administrador cargarAdministrador(String dni) throws SQLException {
@@ -204,60 +183,45 @@ public class DAOMuseo {
         return a;
     }
 
-    private List cargarEmpleados() throws SQLException {
-        List empleados = new ArrayList();
-        String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
-                + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            empleados.add(new Guia(rs.getString("persona.nombre"), rs.getString("guia.dniGuia"),
-                    rs.getInt("persona.telefono"), rs.getLong("guia.numSeguridadSocial"),
-                    rs.getInt("guia.numIdentificacion"), rs.getInt("guia.numGuia")));
-        }
-
-        return empleados;
+    // ############################# GUÍA #############################
+    public void nuevoGuia(Guia g, String password) throws SQLException {
+        String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
+        String insert2 = "INSERT INTO guia (numSeguridadSocial, dniGuia, numGuia) VALUES (?, ?, ?)";
+        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'guia')
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        ps1.setString(1, g.getDNI());
+        ps1.setString(2, password);
+        ps1.setString(3, g.getNombre());
+        ps1.setInt(4, g.getTelefono());
+        // INSERT INTO guia (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
+        ps2.setLong(1, g.getNSS());
+        ps2.setString(2, g.getDNI());
+        ps2.setInt(3, g.getNGuia());
+        // Se ejecutan las updates
+        ps1.executeUpdate();
+        ps2.executeUpdate();
     }
 
-    private List cargarExposiciones() throws SQLException {
-        List exposiciones = new ArrayList();
-        String query = "SELECT idExposicion, nombre, duracion, tiempoRecorrido, imagen FROM exposicion";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
-                    rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
-                    cargarObrasExposicion(rs.getInt("idExposicion"))));
-        }
-
-        return exposiciones;
-    }
-
-    // Recoge los datos de las entradas reservados por un cliente determinado
-    public List cargarEntradasCliente(int idCliente) throws SQLException {
-        List entradas = new ArrayList();
-
-        String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
-                + "idCliente, numeroGuia FROM entrada WHERE entrada.idCliente = ?";
+    public Guia cargarGuia(String dni) throws SQLException {
+        Guia g = null;
+        String query1 = "SELECT nombre, dni, telefono FROM persona WHERE dni = ?";
+        String query2 = "SELECT numIdentificacion, numSeguridadSocial, numGuia FROM guia WHERE dniGuia = ?";
 
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
-        ps1.setInt(1, idCliente);
-        ResultSet rs = ps1.executeQuery();
+        ps1.setString(1, dni);
 
-        while (rs.next()) {
-            entradas.add(new Entrada(rs.getInt("numeroEntrada"),
-                    rs.getDate("fechaReserva"), rs.getString("hora"),
-                    rs.getBoolean("guiada"), rs.getFloat("precio"),
-                    rs.getInt("idCliente"), rs.getInt("numeroGuia")));
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
+        ps2.setString(1, dni);
+
+        ResultSet rs1 = ps1.executeQuery();
+        ResultSet rs2 = ps2.executeQuery();
+
+        if (rs1.next() && rs2.next()) {
+            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
         }
 
-        return entradas;
+        return g;
     }
 
     // FALTA RENOVAR MÉTODO
@@ -279,17 +243,90 @@ public class DAOMuseo {
         return entradasGuia;
     }
 
-    private String obtenerDni(int numId) throws SQLException {
-        String dni = "";
-        String query = "SELECT cliente.dniCliente FROM cliente, entrada WHERE entrada.idCliente = ?";
+    // Algoritmo que escoge el número de guía basado en porcentajes equitativos
+    public int elegirNumGuia() throws SQLException {
+        String query = "SELECT numGuia FROM guia";
+        int[] arrayGuias = new int[numeroGuias()];
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        int i = 0;
+
+        while (rs.next()) {
+            arrayGuias[i++] = rs.getInt("numGuia");
+        }
+
+        int random = (int) (Math.random() * numeroGuias());
+        int numGuia = arrayGuias[random];
+
+        return numGuia;
+    }
+
+    // Obtiene el número de guías registrados
+    private int numeroGuias() throws SQLException {
+        String query = "SELECT COUNT(numIdentificacion) FROM guia";
+        int numeroGuias = -1;
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            dni = rs.getString("cliente.dniCliente");
+            numeroGuias = rs.getInt("COUNT(numIdentificacion)");
         }
-        return dni;
+
+        return numeroGuias;
+    }
+
+    public void despedirGuia(Guia guiaDespedido) throws SQLException {
+
+        String delete1 = "DELETE FROM guia WHERE numGuia = ?";
+        String delete2 = "DELETE FROM persona WHERE dni = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(delete1);
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(delete2);
+        ps.setInt(1, guiaDespedido.getNGuia());
+        ps2.setString(1, guiaDespedido.getDNI());
+        ps.execute();
+        ps2.execute();
+
+    }
+
+    // ############################# EMPLEADOS #############################
+    private List cargarEmpleados() throws SQLException {
+        List empleados = new ArrayList();
+        String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
+                + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            empleados.add(new Guia(rs.getString("persona.nombre"), rs.getString("guia.dniGuia"),
+                    rs.getInt("persona.telefono"), rs.getLong("guia.numSeguridadSocial"),
+                    rs.getInt("guia.numIdentificacion"), rs.getInt("guia.numGuia")));
+        }
+
+        return empleados;
+    }
+
+    // ############################# EXPOSICIÓN #############################
+    private List cargarExposiciones() throws SQLException {
+        List exposiciones = new ArrayList();
+        String query = "SELECT idExposicion, nombre, duracion, tiempoRecorrido, imagen FROM exposicion";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
+                    rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
+                    cargarObrasExposicion(rs.getInt("idExposicion"))));
+        }
+
+        return exposiciones;
     }
 
     public Exposicion cargarExposicion(int id) throws SQLException {
@@ -308,6 +345,7 @@ public class DAOMuseo {
         return e;
     }
 
+    // ############################# OBRA #############################
     private List cargarObrasExposicion(int idExpo) throws SQLException {
         List obras;
         String query = "SELECT obra.* FROM obra, exposicion, exposicion_obra WHERE obra.idObra = exposicion_obra.idObra "
@@ -345,6 +383,7 @@ public class DAOMuseo {
         return o;
     }
 
+    // ############################# ENTRADAS #############################
     // Inserta los datos de la entrada reservada en la base de datos
     public void reservarEntradaNormal(Entrada e, Cliente c) throws SQLException {
         String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, idCliente) VALUES (?, ?, ?, ?)";
@@ -379,20 +418,25 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    // Obtiene los datos de la tarjeta de un cliente determinado (FALTA POR IMPLEMENTAR)
-    private long obtenerTarjetaCliente(long idCliente) throws SQLException {
-        long tarjeta = -1;
-        String query = "SELECT tarjeta FROM cliente WHERE idCliente = ?";
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setLong(1, idCliente);
+    // Recoge los datos de las entradas reservados por un cliente determinado
+    public List cargarEntradasCliente(int idCliente) throws SQLException {
+        List entradas = new ArrayList();
 
-        ResultSet rs = ps.executeQuery();
+        String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
+                + "idCliente, numeroGuia FROM entrada WHERE entrada.idCliente = ?";
 
-        if (rs.next()) {
-            tarjeta = rs.getLong("tarjeta");
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
+        ps1.setInt(1, idCliente);
+        ResultSet rs = ps1.executeQuery();
+
+        while (rs.next()) {
+            entradas.add(new Entrada(rs.getInt("numeroEntrada"),
+                    rs.getDate("fechaReserva"), rs.getString("hora"),
+                    rs.getBoolean("guiada"), rs.getFloat("precio"),
+                    rs.getInt("idCliente"), rs.getInt("numeroGuia")));
         }
 
-        return tarjeta;
+        return entradas;
     }
 
     // Cambia el precio general de la entrada (exclusivo para el administrador)
@@ -460,54 +504,5 @@ public class DAOMuseo {
             numEntradaActual = rs.getInt("MAX(numeroEntrada)");
         }
         return numEntradaActual;
-    }
-
-    // Algoritmo que escoge el número de guía basado en porcentajes equitativos
-    public int elegirNumGuia() throws SQLException {
-        String query = "SELECT numGuia FROM guia";
-        int[] arrayGuias = new int[numeroGuias()];
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
-
-        int i = 0;
-
-        while (rs.next()) {
-            arrayGuias[i++] = rs.getInt("numGuia");
-        }
-
-        int random = (int) (Math.random() * numeroGuias());
-        int numGuia = arrayGuias[random];
-
-        return numGuia;
-    }
-
-    // Obtiene el número de guías registrados
-    private int numeroGuias() throws SQLException {
-        String query = "SELECT COUNT(numIdentificacion) FROM guia";
-        int numeroGuias = -1;
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            numeroGuias = rs.getInt("COUNT(numIdentificacion)");
-        }
-
-        return numeroGuias;
-    }
-    
-    public void despedirGuia(Guia guiaDespedido) throws SQLException{
-        
-        String delete1 = "DELETE FROM guia WHERE numGuia = ?";
-        String delete2 = "DELETE FROM persona WHERE dni = ?";
-        
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(delete1);
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(delete2);
-        ps.setInt(1, guiaDespedido.getNGuia());
-        ps2.setString(1, guiaDespedido.getDNI());
-        ps.execute();
-        ps2.execute();
-        
     }
 }
