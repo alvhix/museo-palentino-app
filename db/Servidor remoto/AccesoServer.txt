@@ -1,0 +1,3 @@
+mysql -u 2CygLOTEPa -h remotemysql.com -plsVAMMqj7E
+
+USE 2CygLOTEPa;

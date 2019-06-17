@@ -473,10 +473,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        jMenu3.setText("File");
+        jMenu3.setText("Gestión de Empleados");
         jMenuBar2.add(jMenu3);
 
-        jMenu4.setText("Edit");
+        jMenu4.setText("Gestión de Exposiciones");
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);

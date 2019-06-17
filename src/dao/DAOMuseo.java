@@ -244,13 +244,12 @@ public class DAOMuseo {
     public List cargarEntradasCliente(int idCliente) throws SQLException {
         List entradas = new ArrayList();
 
-        String query = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
+        String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
                 + "idCliente FROM entrada WHERE entrada.idCliente = ?";
 
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, idCliente);
-
-        ResultSet rs = ps.executeQuery();
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
+        ps1.setInt(1, idCliente);
+        ResultSet rs = ps1.executeQuery();
 
         while (rs.next()) {
             entradas.add(new Entrada(rs.getInt("entrada.numeroEntrada"),
@@ -367,46 +366,38 @@ public class DAOMuseo {
     }
 
     // Inserta los datos de la entrada reservada en la base de datos
-    public void reservarEntrada(Entrada e, Cliente c) throws SQLException {
+    public void reservarEntradaNormal(Entrada e, Cliente c) throws SQLException {
+        String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, idCliente) VALUES (?, ?, ?, ?)";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
+        ps.setDate(1, new java.sql.Date(e.getFecha().getTime()));
+        ps.setString(2, e.getHora());
+        ps.setBoolean(3, e.getEsGuiada());
+        ps.setInt(4, c.getIdCliente());
+
+        // Se ejecuta el insert
+        ps.executeUpdate();
+    }
+
+    // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
+    public void reservarEntradaGuiada(Entrada e, Cliente c) throws SQLException {
+        String insert1 = "INSERT INTO entrada_guiada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
+        float precioTotal = precioEntrada + precioSuplemento;
+        int numGuia= elegirNumGuia();
 
-        if (!e.getEsGuiada()) {
-            String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, idCliente) VALUES (?, ?, ?, ?)";
-            PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
-            ps.setDate(1, new java.sql.Date(e.getFecha().getTime()));
-            ps.setString(2, e.getHora());
-            ps.setBoolean(3, e.getEsGuiada());
-            ps.setInt(4, c.getIdCliente());
 
-            // Se ejecuta el insert
-            ps.executeUpdate();
-
-            // FALTA POR MODIFICAR ESTA PARTE
-        } else if (e.getEsGuiada()) { // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
-            String insert1 = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, idCliente) VALUES (?, ?, ?, ?, ?)";
-            String insert2 = "INSERT INTO entrada_guiada (numeroEntrada, numeroGuia) VALUES (?, ?)";
-            int numGuia = elegirNumGuia();
-            int numEntrada = obtenerNumEntradaActual();
-            float precioTotal = precioEntrada + precioSuplemento;
-
-            // Primera inserción en la tabla entrada
-            PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
-            ps1.setDate(1, new java.sql.Date(e.getFecha().getTime()));
-            ps1.setString(2, e.getHora());
-            ps1.setBoolean(3, e.getEsGuiada());
-            ps1.setFloat(4, precioTotal);
-            ps1.setInt(5, c.getIdCliente());
-            // Se ejecuta el primer insert
-            ps1.executeUpdate();
-
-            // Segunda inserción en la tabla de entrada_guiada
-            PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-            ps2.setInt(1, numEntrada);
-            ps2.setInt(2, numGuia);
-            // Se ejecuta el segundo insert
-            ps2.executeUpdate();
-        }
+        // Primera inserción en la tabla entrada
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        ps.setDate(1, new java.sql.Date(e.getFecha().getTime()));
+        ps.setString(2, e.getHora());
+        ps.setBoolean(3, e.getEsGuiada());
+        ps.setFloat(4, precioTotal);
+        ps.setInt(5, numGuia);
+        ps.setInt(6, c.getIdCliente());
+        // Se ejecuta el insert
+        ps.executeUpdate();
     }
 
     public List cargarGuiaEntrada(int numIdentificacion) throws SQLException {
@@ -425,7 +416,7 @@ public class DAOMuseo {
         return guiaEntrada;
     }
 
-    // Obtiene el número de identificación de un guía asociado al número de guía
+    // Obtiene el número de identificación de un guía asociado al número de guía (Posiblemente en desuso)
     private int obtenerNumIdentificacionGuia(int numGuia) throws SQLException {
         String query = "SELECT numIdentificacion FROM guia WHERE numGuia = ?";
         int numIdentificacion = -1;
@@ -460,11 +451,15 @@ public class DAOMuseo {
 
     // Cambia el precio general de la entrada (exclusivo para el administrador)
     public void cambiarPrecioEntrada(float precioEntrada) throws SQLException {
-        String alter = "ALTER TABLE entrada ALTER precio SET DEFAULT ?";
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(alter);
-        ps.setFloat(1, precioEntrada);
+        String alter1 = "ALTER TABLE entrada ALTER precio SET DEFAULT ?";
+        String alter2 = "ALTER TABLE entrada_guiada ALTER precio SET DEFAULT ?";
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(alter1);
+        ps1.setFloat(1, precioEntrada);
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(alter2);
+
         // Se ejecuta el comando SQL para establecer el valor por defecto a la columna
-        ps.execute();
+        ps1.execute();
+        ps2.execute();
     }
 
     // Cambia el precio del suplemento del guía (exclusivo para el administrador)
@@ -513,14 +508,13 @@ public class DAOMuseo {
     // Obtiene el número de la entrada en el momento de ejecución
     private int obtenerNumEntradaActual() throws SQLException {
         int numEntradaActual = -1;
-        String query = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES "
-                + "WHERE TABLE_SCHEMA = '2CygLOTEPa' AND TABLE_NAME = 'entrada'";
+        String query = "SELECT MAX(numeroEntrada) FROM entrada";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            numEntradaActual = rs.getInt("AUTO_INCREMENT");
+            numEntradaActual = rs.getInt("MAX(numeroEntrada)");
         }
         return numEntradaActual;
     }
@@ -539,7 +533,6 @@ public class DAOMuseo {
             arrayGuias[i++] = rs.getInt("numGuia");
         }
 
-        System.out.println(numeroGuias());
         int random = (int) (Math.random() * numeroGuias());
         int numGuia = arrayGuias[random];
 
