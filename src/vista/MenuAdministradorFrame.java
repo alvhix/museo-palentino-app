@@ -9,6 +9,7 @@ import controlador.SistemaMuseo;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Administrador;
 import modelo.Exposicion;
 import modelo.Guia;
@@ -23,7 +24,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private List<Guia> empleados;
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
-
+    private DefaultTableModel plantilla;
+    private String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
     /**
      * Creates new form MenuAdministradorFrame
      *
@@ -376,7 +378,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(exposicionesJPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
         exposicionesJPLayout.setVerticalGroup(
             exposicionesJPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,10 +615,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             long nss = Long.parseLong(tfNSS.getText());
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
-            /*Guia g = new Guia(nombre, dni, telefono, nss, nGuia);
-            p.darAlta(g, clave);
+            Guia g = new Guia(nombre, dni, telefono, nss/*, nGuia*/);
+            // No añadimos el número de guía?
+            a.annadirEmpleado(g);
             actualizarPlantilla();
-            datosEnBlanco();*/
+            datosEnBlanco();
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Campos incompletos o erroneos, itroduzca todos los datos", "Error", WIDTH);
@@ -625,6 +628,28 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     public void addExposicion() {
 
+    }
+    
+    public void actualizarPlantilla(){
+        
+        if(!a.getEmpleados().isEmpty() ){
+            
+            String[][] datos = new String[a.getEmpleados().size()][4];
+            Guia g;
+            
+            for(int i = 0; i < a.getEmpleados().size(); i++){
+                
+                g = a.getEmpleados().get(i);
+                
+                datos[i][0] = String.valueOf(g.getNGuia());
+                datos[i][1] = g.getNombre();
+                datos[i][2] = g.getDNI();
+                datos[i][3] = String.valueOf(g.getTelefono());
+                
+            }
+        
+            plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
+        }
     }
 
     public void verJPanelPlantilla() {
