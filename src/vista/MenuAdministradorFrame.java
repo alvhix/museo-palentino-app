@@ -203,7 +203,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -266,7 +266,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
@@ -278,12 +278,22 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLabel9.setText("Precio entrada:");
 
         botonCambiarPrecio.setText("Cambiar Precio");
+        botonCambiarPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambiarPrecioActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Suplemento guia:");
 
         jLabel14.setText("€");
 
         botonCambiarPrecio1.setText("Cambiar Suplemento");
+        botonCambiarPrecio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambiarPrecio1ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("€");
 
@@ -558,6 +568,18 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         verPaneles(panelExposiciones);
     }//GEN-LAST:event_mostrarGestionExposicionesActionPerformed
 
+    private void botonCambiarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPrecioActionPerformed
+        // TODO add your handling code here:
+
+        cambiarPrecioEntrada();
+    }//GEN-LAST:event_botonCambiarPrecioActionPerformed
+
+    private void botonCambiarPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPrecio1ActionPerformed
+        // TODO add your handling code here:
+
+        cambiarPrecioSuplemento();
+    }//GEN-LAST:event_botonCambiarPrecio1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -737,5 +759,19 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     // ####################### - Métodos Gestión Exposiciones - #######################
     public void addExposicion() {
 
+    }
+
+    private void cambiarPrecioEntrada() {
+        if (!campoPrecio.getText().isEmpty()) {
+            float precio = Float.valueOf(campoPrecio.getText());
+            sm.cambiarPrecioEntrada(precio);
+        }
+    }
+
+    private void cambiarPrecioSuplemento() {
+        if (!campoPrecio1.getText().isEmpty()) {
+            float precio = Float.valueOf(campoPrecio1.getText());
+            sm.cambiarPrecioSuplemento(precio);
+        }
     }
 }

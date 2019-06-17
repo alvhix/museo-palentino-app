@@ -162,20 +162,20 @@ public class SistemaMuseo {
 
         return entradasClientes;
     }*/
-    // Devuelve la tabla de entradas reservadas que tiene un cliente
-    // RENOVAR MÉTODO
-    public String[][] cargarEntradasGuia(int nGuia) {
-        String[][] tabla_EntradasGuia;
+    
+    // Devuelve la tabla de entradas reservadas asociadas a un guía
+    public List cargarEntradasGuia(int numGuia) {
+        List entradasGuia;
         
         try {
-            tabla_EntradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(nGuia);
+            entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
         } catch (SQLException ex) {
-            tabla_EntradasGuia = null;
+            entradasGuia = null;
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
         
-        return tabla_EntradasGuia;
+        return entradasGuia;
     }
     
     public Exposicion cargarExposicion(int idExpo) {

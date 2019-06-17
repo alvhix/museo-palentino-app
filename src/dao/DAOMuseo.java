@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.GuiaEntrada;
 
 /**
  *
@@ -245,71 +244,52 @@ public class DAOMuseo {
         List entradas = new ArrayList();
 
         String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
-                + "idCliente FROM entrada WHERE entrada.idCliente = ?";
+                + "idCliente, numeroGuia FROM entrada WHERE entrada.idCliente = ?";
 
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         ResultSet rs = ps1.executeQuery();
 
         while (rs.next()) {
-            entradas.add(new Entrada(rs.getInt("entrada.numeroEntrada"),
-                    rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"),
-                    rs.getBoolean("entrada.guiada"), rs.getFloat("entrada.precio"),
-                    rs.getInt("entrada.idCliente")));
+            entradas.add(new Entrada(rs.getInt("numeroEntrada"),
+                    rs.getDate("fechaReserva"), rs.getString("hora"),
+                    rs.getBoolean("guiada"), rs.getFloat("precio"),
+                    rs.getInt("idCliente"), rs.getInt("numeroGuia")));
         }
 
         return entradas;
     }
 
     // FALTA RENOVAR MÉTODO
-    public String[][] cargarEntradasGuia(int nGuia) throws SQLException {
-        String[][] entradaGuia = null;
-        int limite = numeroEntradasGuia(nGuia);
+    public List cargarEntradasGuia(int numGuia) throws SQLException {
+        List entradasGuia = new ArrayList();
 
-        String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora "
-                + "FROM entrada, cliente_entrada, guia_entrada, guia WHERE "
-                + "entrada.guiada = true AND guia.numIdentificacion = guia_entrada.numeroIdentificacion "
-                + "AND guia_entrada.numeroEntrada = entrada.numeroEntrada AND "
-                + "entrada.numeroEntrada = cliente_entrada.numeroEntrada AND "
-                + "cliente_entrada.numeroIdentificacion = cliente.idCliente AND "
-                + "guia.numGuia = ?";
+        String query = "SELECT entrada.numEntrada, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion "
+                + "FROM entrada, guia WHERE guia.numeroGuia = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, nGuia);
+        ps.setInt(1, numGuia);
 
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            entradasGuia.add(new Entrada(rs.getInt("entrada.numeroEntrada"), rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"), rs.getString("entradafechaTransaccion")));
+        }
+
+        return entradasGuia;
+    }
+
+    private String obtenerDni(int numId) throws SQLException {
+        String dni = "";
+        String query = "SELECT cliente.dniCliente FROM cliente, entrada WHERE entrada.idCliente = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            for (int i = 0; i < limite; i++) {
-                entradaGuia[i][0] = rs.getString("cliente.dniCliente");
-                entradaGuia[i][1] = String.valueOf(rs.getDate("entrada.fechaReserva"));
-                entradaGuia[i][2] = rs.getString("entrada.hora");
-            }
+            dni = rs.getString("cliente.dniCliente");
         }
-
-        return entradaGuia;
-    }
-
-    // ESTE MÉTODO SOBRA
-    private int numeroEntradasGuia(int nGuia) throws SQLException {
-        int count;
-
-        String query = "SELECT COUNT(entrada.numeroEntrada) "
-                + "FROM entrada, cliente_entrada, guia_entrada, guia WHERE "
-                + "entrada.guiada = true AND guia.numIdentificacion = guia_entrada.numeroIdentificacion "
-                + "AND guia_entrada.numeroEntrada = entrada.numeroEntrada AND "
-                + "entrada.numeroEntrada = cliente_entrada.numeroEntrada AND "
-                + "cliente_entrada.numeroIdentificacion = cliente.idCliente AND "
-                + "guia.numGuia = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, nGuia);
-
-        ResultSet rs = ps.executeQuery();
-
-        count = rs.getInt("COUNT(entrada.numeroEntrada)");
-
-        return count;
+        return dni;
     }
 
     public Exposicion cargarExposicion(int id) throws SQLException {
@@ -384,8 +364,8 @@ public class DAOMuseo {
         String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
-        float precioTotal = precioEntrada + precioSuplemento;
-        int numGuia= elegirNumGuia();
+        float precioTotal = precioEntrada + precioSuplemento; // Precio total de la  entrada
+        int numGuia = elegirNumGuia(); // Número de guía asignado de forma aleatoria con el algoritmo
 
         // Inserción en la tabla entrada
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
@@ -399,40 +379,7 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    public List cargarGuiaEntrada(int numIdentificacion) throws SQLException {
-        String query = "SELECT * FROM guia_entrada WHERE numeroIdentificacion = ?";
-        List guiaEntrada = new ArrayList();
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, numIdentificacion);
-
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            guiaEntrada.add(new GuiaEntrada(rs.getInt("numeroEntrada"), rs.getInt("numeroIdentificacion")));
-        }
-
-        return guiaEntrada;
-    }
-
-    // Obtiene el número de identificación de un guía asociado al número de guía (Posiblemente en desuso)
-    private int obtenerNumIdentificacionGuia(int numGuia) throws SQLException {
-        String query = "SELECT numIdentificacion FROM guia WHERE numGuia = ?";
-        int numIdentificacion = -1;
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, numGuia);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            numIdentificacion = rs.getInt("numIdentificacion");
-        }
-
-        return numIdentificacion;
-    }
-
-    // Obtiene los datos de la tarjeta de un cliente determinado
+    // Obtiene los datos de la tarjeta de un cliente determinado (FALTA POR IMPLEMENTAR)
     private long obtenerTarjetaCliente(long idCliente) throws SQLException {
         long tarjeta = -1;
         String query = "SELECT tarjeta FROM cliente WHERE idCliente = ?";
@@ -450,20 +397,17 @@ public class DAOMuseo {
 
     // Cambia el precio general de la entrada (exclusivo para el administrador)
     public void cambiarPrecioEntrada(float precioEntrada) throws SQLException {
-        String alter1 = "ALTER TABLE entrada ALTER precio SET DEFAULT ?";
-        String alter2 = "ALTER TABLE entrada_guiada ALTER precio SET DEFAULT ?";
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(alter1);
-        ps1.setFloat(1, precioEntrada);
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(alter2);
+        String alter = "ALTER TABLE entrada ALTER precio SET DEFAULT ?";
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(alter);
+        ps.setFloat(1, precioEntrada);
 
         // Se ejecuta el comando SQL para establecer el valor por defecto a la columna
-        ps1.execute();
-        ps2.execute();
+        ps.execute();
     }
 
     // Cambia el precio del suplemento del guía (exclusivo para el administrador)
     public void cambiarPrecioSuplemento(float precioSuplemento) throws SQLException {
-        String alter = "ALTER TABLE entrada_guiada ALTER suplementoGuia SET DEFAULT ?";
+        String alter = "ALTER TABLE entrada ALTER suplementoGuia SET DEFAULT ?";
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(alter);
         ps.setFloat(1, precioSuplemento);
         // Se ejecuta el comando SQL para establecer el valor por defecto a la columna

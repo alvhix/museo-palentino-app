@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.List;
+
 /**
  *
  * @author Álvaro y Victor
@@ -12,6 +14,7 @@ package modelo;
 public class Guia extends Trabajador {
 
     private int nGuia;
+    private List<Entrada> entradasGuiadas;
 
     // Constructor ----------------------------------
     public Guia(String nombre, String dni, int telefono, long nSS) {
@@ -19,11 +22,11 @@ public class Guia extends Trabajador {
     }
 
     // Constructor para contratar guias
-    public Guia(String nombre, String dni, int telefono, long nSS, int nGuia){
+    public Guia(String nombre, String dni, int telefono, long nSS, int nGuia) {
         super(nombre, dni, telefono, nSS);
         this.nGuia = nGuia;
     }
-    
+
     // Constructor necesario para cargar un guia desde la Base de Datos ----------
     public Guia(String nombre, String dni, int telefono, long nSS, int id, int nGuia) {
         super(nombre, dni, telefono, nSS, id);
@@ -34,5 +37,5 @@ public class Guia extends Trabajador {
     public int getNGuia() {
         return nGuia;
     }
-    
+
 }
