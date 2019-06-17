@@ -36,7 +36,6 @@ public class DAOMuseo {
     }
 
     // ############################# INICIO DE SESIÓN #############################
-    
     // Devuelve el rol de esa persona para que visualice el frame asignado a su rol
     public String obtenerRol(String dni) throws SQLException {
         String rol = "";
@@ -90,7 +89,6 @@ public class DAOMuseo {
     }
 
     // ############################# CLIENTE #############################
-    
     public void nuevoCliente(Cliente c, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'cliente')";
         String insert2 = "INSERT INTO cliente (dniCliente) VALUES (?)";
@@ -146,7 +144,6 @@ public class DAOMuseo {
     }
 
     // ############################# ADMINISTRADOR #############################
-    
     public void nuevoAdministrador(Administrador a, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
         String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
@@ -187,7 +184,6 @@ public class DAOMuseo {
     }
 
     // ############################# GUÍA #############################
-    
     public void nuevoGuia(Guia g, String password) throws SQLException {
         String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
         String insert2 = "INSERT INTO guia (numSeguridadSocial, dniGuia, numGuia) VALUES (?, ?, ?)";
@@ -297,7 +293,6 @@ public class DAOMuseo {
     }
 
     // ############################# EMPLEADOS #############################
-    
     private List cargarEmpleados() throws SQLException {
         List empleados = new ArrayList();
         String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
@@ -405,40 +400,52 @@ public class DAOMuseo {
 
     // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
     public void reservarEntradaGuiada(Entrada e, Cliente c) throws SQLException {
-        String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
+        String insert1 = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, idCliente) VALUES (?, ?, ?, ?, ?)";
+        String insert2 = "INSERT INTO guia_entrada VALUES (?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
         float precioTotal = precioEntrada + precioSuplemento; // Precio total de la  entrada
         int numGuia = elegirNumGuia(); // Número de guía asignado de forma aleatoria con el algoritmo
 
         // Inserción en la tabla entrada
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
-        ps.setDate(1, new java.sql.Date(e.getFecha().getTime()));
-        ps.setString(2, e.getHora());
-        ps.setBoolean(3, e.getEsGuiada());
-        ps.setFloat(4, precioTotal);
-        ps.setInt(5, numGuia);
-        ps.setInt(6, c.getIdCliente());
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        ps1.setDate(1, new java.sql.Date(e.getFecha().getTime()));
+        ps1.setString(2, e.getHora());
+        ps1.setBoolean(3, e.getEsGuiada());
+        ps1.setFloat(4, precioTotal);
+        ps1.setInt(5, c.getIdCliente());
         // Se ejecuta el insert
-        ps.executeUpdate();
+        ps1.executeUpdate();
+
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
+        ps2.setInt(1, e.getIdCliente());
+        ps2.setInt(2, numGuia);
+        // Se ejecuta el insert
+        ps2.executeUpdate();
     }
 
     // Recoge los datos de las entradas reservados por un cliente determinado
     public List cargarEntradasCliente(int idCliente) throws SQLException {
         List entradas = new ArrayList();
 
-        String query1 = "SELECT numeroEntrada, fechaReserva, hora, guiada, precio, "
-                + "idCliente, numeroGuia FROM entrada WHERE entrada.idCliente = ?";
-
+        String query1 = "SELECT entrada.numeroEntrada, entrada.fechaReserva, entrada.hora, "
+                + "entrada.guiada, entrada.precio, entrada.idCliente guia.numeroGuia FROM entrada, "
+                + "guia, guia_cliente WHERE guia_entrada.numGuia = guia.numGuia AND "
+                + "cliente";
+        String query2 = "SELECT numEntrada, idCliente FROM guia_cliente WHERE idCliente = ?";
+        String query3 = "SELECT guia.numGuia FROM guia, guia_cliente WHERE ";
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
-        ResultSet rs = ps1.executeQuery();
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
+        ps2.setInt(1, idCliente);
 
-        while (rs.next()) {
-            entradas.add(new Entrada(rs.getInt("numeroEntrada"),
-                    rs.getDate("fechaReserva"), rs.getString("hora"),
-                    rs.getBoolean("guiada"), rs.getFloat("precio"),
-                    rs.getInt("idCliente"), rs.getInt("numeroGuia")));
+        ResultSet rs1 = ps1.executeQuery();
+        ResultSet rs2 = ps2.executeQuery();
+        while (rs1.next()) {
+            entradas.add(new Entrada(rs1.getInt("numeroEntrada"),
+                    rs1.getDate("fechaReserva"), rs1.getString("hora"),
+                    rs1.getBoolean("guiada"), rs1.getFloat("precio"),
+                    rs1.getInt("idCliente"), rs2.getInt("numeroGuia")));
         }
 
         return entradas;
