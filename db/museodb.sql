@@ -209,6 +209,8 @@ DROP TABLE IF EXISTS `guia_cliente`;
 CREATE TABLE `guia_cliente` (
   `idCliente` int(10) unsigned NOT NULL,
   `numGuia` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`idCliente`),
+  UNIQUE KEY `idCliente_UNIQUE` (`idCliente`),
   KEY `idCliente_fk2` (`idCliente`),
   KEY `numeroGuia_fk1` (`numGuia`),
   CONSTRAINT `idCliente_fk2` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -343,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-17 21:36:19
+-- Dump completed on 2019-06-17 22:28:12
