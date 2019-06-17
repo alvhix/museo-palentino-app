@@ -35,7 +35,8 @@ public class DAOMuseo {
         return instancia;
     }
 
-    // ############################# MÉTODOS #############################
+    // ############################# INICIO DE SESIÓN #############################
+    
     // Devuelve el rol de esa persona para que visualice el frame asignado a su rol
     public String obtenerRol(String dni) throws SQLException {
         String rol = "";
