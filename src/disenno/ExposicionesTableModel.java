@@ -20,12 +20,8 @@ public class ExposicionesTableModel extends AbstractTableModel {
     private List<Exposicion> exposiciones;
     private String[] columns = {"ID", "Nombre", "Disponible hasta", "Tiempo del recorrido", "Ruta de imagen"};
 
-   /* public ExposicionesTableModel(List<Exposicion> exposiciones) {
+    public ExposicionesTableModel(List<Exposicion> exposiciones) {
         this.exposiciones = exposiciones;
-    }*/
-    
-    public ExposicionesTableModel() {
-        this.exposiciones = new ArrayList();
     }
 
     public void annadirExposicion(Exposicion e) {

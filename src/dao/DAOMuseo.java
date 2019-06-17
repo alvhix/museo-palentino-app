@@ -515,6 +515,7 @@ public class DAOMuseo {
         if (rs.next()) {
             numEntradaActual = rs.getInt("MAX(numeroEntrada)");
         }
+        
         return numEntradaActual;
     }
 }
