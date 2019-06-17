@@ -38,7 +38,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     }
 
     public void muestraTabla() {
-        // modelo = new DefaultTableModel(, cabecera); // EN PROCESO
+        //modelo = new DefaultTableModel(, cabecera); // FALTA MÉTODO DE STRING[][]
     }
 
     private void conexionBD() {

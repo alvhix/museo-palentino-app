@@ -146,8 +146,8 @@ public class SistemaMuseo {
 
         return entradasClientes;
     }*/
-    // Devuelve la tabla de entradas reservadas que tiene un cliente
-    // RENOVAR MÉTODO
+    
+    // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;
         

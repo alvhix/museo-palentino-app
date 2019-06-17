@@ -58,7 +58,7 @@ public class Cliente extends Persona {
                     guia = String.valueOf(e.getNumGuia());
                 } else {
                     guiada = "No";
-                    guia = " - ";
+                    guia = " -";
                 }
 
                 array[i][2] = guiada;
