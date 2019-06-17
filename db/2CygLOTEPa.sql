@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-06-2019 a las 16:18:25
+-- Tiempo de generación: 17-06-2019 a las 19:08:50
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -79,7 +79,6 @@ CREATE TABLE `entrada` (
   `precio` float NOT NULL DEFAULT '6.85',
   `suplementoGuia` float DEFAULT '4.95',
   `idCliente` int(10) UNSIGNED NOT NULL,
-  `numeroGuia` int(11) DEFAULT NULL,
   `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -87,23 +86,23 @@ CREATE TABLE `entrada` (
 -- Volcado de datos para la tabla `entrada`
 --
 
-INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`, `numeroGuia`) VALUES
-(50, '2019-06-15', '8:00', 1, 11.8, 4.95, 3, 48),
-(51, '2019-06-23', '16:00', 1, 11.8, 4.95, 6, 13),
-(53, '2019-06-23', '16:00', 1, 11.8, 4.95, 6, 48),
-(54, '2019-06-13', '16:00', 1, 11.8, 4.95, 6, 48),
-(55, '2019-06-29', '16:00', 1, 11.8, 4.95, 6, 33),
-(56, '2019-06-22', '12:00', 1, 11.8, 4.95, 6, 33),
-(57, '2019-06-02', '16:00', 1, 11.8, 4.95, 6, 33),
-(58, '2019-06-15', '8:00', 1, 11.8, 4.95, 6, 13),
-(59, '2019-06-12', '10:00', 1, 11.8, 4.95, 6, 13),
-(60, '2019-06-16', '12:00', 1, 11.8, 4.95, 6, 48),
-(61, '2019-06-18', '14:00', 1, 11.8, 4.95, 6, 33),
-(62, '2019-06-21', '16:00', 1, 11.8, 4.95, 6, 48),
-(63, '2019-06-29', '18:00', 1, 11.8, 4.95, 6, 13),
-(64, '2019-06-30', '8:00', 1, 11.8, 4.95, 6, 13),
-(65, '2019-06-15', '8:00', 0, 6.85, 4.95, 6, NULL),
-(66, '2019-06-23', '8:00', 0, 6.85, 4.95, 6, NULL);
+INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`) VALUES
+(50, '2019-06-15', '8:00', 1, 11.8, 4.95, 3),
+(51, '2019-06-23', '16:00', 1, 11.8, 4.95, 6),
+(53, '2019-06-23', '16:00', 1, 11.8, 4.95, 6),
+(54, '2019-06-13', '16:00', 1, 11.8, 4.95, 6),
+(55, '2019-06-29', '16:00', 1, 11.8, 4.95, 6),
+(56, '2019-06-22', '12:00', 1, 11.8, 4.95, 6),
+(57, '2019-06-02', '16:00', 1, 11.8, 4.95, 6),
+(58, '2019-06-15', '8:00', 1, 11.8, 4.95, 6),
+(59, '2019-06-12', '10:00', 1, 11.8, 4.95, 6),
+(60, '2019-06-16', '12:00', 1, 11.8, 4.95, 6),
+(61, '2019-06-18', '14:00', 1, 11.8, 4.95, 6),
+(62, '2019-06-21', '16:00', 1, 11.8, 4.95, 6),
+(63, '2019-06-29', '18:00', 1, 11.8, 4.95, 6),
+(64, '2019-06-30', '8:00', 1, 11.8, 4.95, 6),
+(65, '2019-06-15', '8:00', 0, 6.85, 4.95, 6),
+(66, '2019-06-23', '8:00', 0, 6.85, 4.95, 6);
 
 -- --------------------------------------------------------
 
@@ -124,8 +123,8 @@ CREATE TABLE `exposicion` (
 --
 
 INSERT INTO `exposicion` (`idExposicion`, `nombre`, `duracion`, `tiempoRecorrido`, `imagen`) VALUES
-(1, 'Temporal', '2000-01-20', 30, 'src/recursos/imagenes/iconos/temporal.png'),
-(2, 'Permanente', NULL, 30, 'src/recursos/imagenes/iconos/permanente.png');
+(1, 'Temporal', '2000-01-20', 30, 'src/recursos/imagenes/exposiciones/temporal.png'),
+(2, 'Permanente', NULL, 30, 'src/recursos/imagenes/exposiciones/permanente.png');
 
 -- --------------------------------------------------------
 
@@ -174,10 +173,9 @@ INSERT INTO `exposicion_obra` (`idObra`, `idExposicion`) VALUES
 --
 
 CREATE TABLE `guia` (
-  `numIdentificacion` int(10) UNSIGNED NOT NULL,
   `numGuia` int(10) UNSIGNED NOT NULL,
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
-  `tipo` char(14) DEFAULT 'Guía',
+  `tipo` char(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'guia',
   `dniGuia` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -185,10 +183,21 @@ CREATE TABLE `guia` (
 -- Volcado de datos para la tabla `guia`
 --
 
-INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`, `dniGuia`) VALUES
-(1, 48, 111111111, 'guia', '44444444e'),
-(2, 33, 123456789, 'guia', '87654321A'),
-(3, 13, 1112223334, 'guia', '45612378x');
+INSERT INTO `guia` (`numGuia`, `numSeguridadSocial`, `tipo`, `dniGuia`) VALUES
+(1, 1112223334, 'guia', '45612378x'),
+(2, 123456789, 'guia', '87654321A'),
+(3, 111111111, 'guia', '44444444e');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `guia_cliente`
+--
+
+CREATE TABLE `guia_cliente` (
+  `idCliente` int(10) UNSIGNED NOT NULL,
+  `numGuia` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -342,11 +351,17 @@ ALTER TABLE `exposicion_obra`
 -- Indices de la tabla `guia`
 --
 ALTER TABLE `guia`
-  ADD PRIMARY KEY (`numIdentificacion`),
+  ADD PRIMARY KEY (`numGuia`),
   ADD UNIQUE KEY `numGuia_UNIQUE` (`numGuia`),
-  ADD UNIQUE KEY `numIdentificacion_UNIQUE` (`numIdentificacion`),
   ADD UNIQUE KEY `dniGuia_UNIQUE` (`dniGuia`),
   ADD KEY `dni_idx` (`dniGuia`);
+
+--
+-- Indices de la tabla `guia_cliente`
+--
+ALTER TABLE `guia_cliente`
+  ADD KEY `idCliente_fk2` (`idCliente`),
+  ADD KEY `numeroGuia_fk1` (`numGuia`);
 
 --
 -- Indices de la tabla `museo`
@@ -405,12 +420,6 @@ ALTER TABLE `exposicion`
   MODIFY `idExposicion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `guia`
---
-ALTER TABLE `guia`
-  MODIFY `numIdentificacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `obra`
 --
 ALTER TABLE `obra`
@@ -451,6 +460,13 @@ ALTER TABLE `exposicion_obra`
 --
 ALTER TABLE `guia`
   ADD CONSTRAINT `dniGuia_fk1` FOREIGN KEY (`dniGuia`) REFERENCES `persona` (`dni`);
+
+--
+-- Filtros para la tabla `guia_cliente`
+--
+ALTER TABLE `guia_cliente`
+  ADD CONSTRAINT `idCliente_fk2` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `numeroGuia_fk1` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `museo_exposicion`
