@@ -552,4 +552,18 @@ public class DAOMuseo {
 
         return numeroGuias;
     }
+    
+    public void despedirGuia(Guia guiaDespedido) throws SQLException{
+        
+        String delete1 = "DELETE FROM guia WHERE numGuia = ?";
+        String delete2 = "DELETE FROM persona WHERE dni = ?";
+        
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(delete1);
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(delete2);
+        ps.setInt(1, guiaDespedido.getNGuia());
+        ps2.setString(1, guiaDespedido.getDNI());
+        ps.execute();
+        ps2.execute();
+        
+    }
 }

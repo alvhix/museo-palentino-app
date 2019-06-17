@@ -38,10 +38,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         this.a = a;
         this.empleados = a.getEmpleados();
         this.exposiciones = a.getExposiciones();
-        
+
         initComponents();
         componentesIniciales();
-        
+
         actualizarPlantilla();
     }
 
@@ -543,17 +543,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContratarActionPerformed
-        //contratar();
+        contratar();
     }//GEN-LAST:event_btContratarActionPerformed
 
     private void btDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDespedirActionPerformed
-
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres despedir a este guía?");
-
-        if (opcion == JOptionPane.YES_OPTION) {
-
-        }
-
+        despedir();
     }//GEN-LAST:event_btDespedirActionPerformed
 
     private void mostrarGestionEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarGestionEmpleadosActionPerformed
@@ -660,7 +654,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     public void verPaneles(JPanel jp) {
         panelEmpleados.setVisible(false);
         panelExposiciones.setVisible(false);
-        
+
         jp.setVisible(true);
     }
 
@@ -678,7 +672,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Empleados - #######################
-    
     public void contratar() {
         try {
             String nombre = tfNombre.getText();
@@ -689,8 +682,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
             Guia g = new Guia(nombre, dni, telefono, nss, nGuia);
-            empleados.add(g);
             a.annadirEmpleado(g);
+            sm.nuevoGuia(g, clave);
+
             actualizarPlantilla();
             datosEnBlanco();
 
@@ -699,13 +693,38 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }
 
+    public void despedir() {
+
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres despedir a este guía?");
+
+        if (opcion == JOptionPane.YES_OPTION) {
+
+            int seleccionado = tablaEmpleados.getSelectedRow();
+            final int NOSELECCIONADO = -1;
+
+            if (seleccionado != NOSELECCIONADO) {
+
+                Guia aDespedir = a.getEmpleados().get(seleccionado);
+                a.eliminarEmpleado(aDespedir);
+                sm.despedirGuia(aDespedir);
+
+                actualizarPlantilla();
+            } else {
+
+                JOptionPane.showMessageDialog(rootPane, "Ningún Empleado Seleccionado. Por favor, seleccione uno para despedirlo", "Advertencia", WIDTH);
+
+            }
+        }
+
+    }
+
     public void actualizarPlantilla() {
 
-            plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
-            tablaEmpleados.setModel(plantilla);
-        
+        plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
+        tablaEmpleados.setModel(plantilla);
+
     }
-    
+
     public void datosEnBlanco() {
         tfNombre.setText("");
         tfDNI.setText("");
@@ -715,10 +734,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         tfNGuia.setText("");
     }
 
-    
     // ####################### - Métodos Gestión Exposiciones - #######################
-    
     public void addExposicion() {
-        
+
     }
 }

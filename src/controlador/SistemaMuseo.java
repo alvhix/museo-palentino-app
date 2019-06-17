@@ -132,6 +132,22 @@ public class SistemaMuseo {
         
         return guia;
     }
+    
+    public void despedirGuia(Guia g){
+        
+        try{
+            
+            DAOMuseo.instanciar().despedirGuia(g);
+            
+        }
+        catch(SQLException e){
+            
+            System.out.println(e.getSQLState());
+            e.getStackTrace();
+            System.out.println("Error al borrar");
+        }
+        
+    }
 
     /*public List cargarEntradasCliente(int id) {
         List entradasClientes;
