@@ -381,15 +381,14 @@ public class DAOMuseo {
 
     // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
     public void reservarEntradaGuiada(Entrada e, Cliente c) throws SQLException {
-        String insert1 = "INSERT INTO entrada_guiada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, numeroGuia, idCliente) VALUES (?, ?, ?, ?, ?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
         float precioTotal = precioEntrada + precioSuplemento;
         int numGuia= elegirNumGuia();
 
-
-        // Primera inserción en la tabla entrada
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        // Inserción en la tabla entrada
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
         ps.setDate(1, new java.sql.Date(e.getFecha().getTime()));
         ps.setString(2, e.getHora());
         ps.setBoolean(3, e.getEsGuiada());
