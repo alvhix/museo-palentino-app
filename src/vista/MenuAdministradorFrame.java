@@ -26,7 +26,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
     private DefaultTableModel plantilla;
-    private String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
+    private final String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
 
 
     /**
@@ -646,6 +646,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
             Guia g = new Guia(nombre, dni, telefono, nss/*, nGuia*/);
+            empleados.add(g);
             a.annadirEmpleado(g);
             actualizarPlantilla();
             datosEnBlanco();
@@ -657,28 +658,36 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     
     public void actualizarPlantilla(){
         
-        if(!a.getEmpleados().isEmpty() ){
+        if(!empleados.isEmpty() ){
             
-            String[][] datos = new String[a.getEmpleados().size()][4];
+            String[][] datos = new String[empleados.size()][4];
             Guia g;
-            
-            for(int i = 0; i < a.getEmpleados().size(); i++){
+            System.out.println(empleados.size());
+            for(int i = 0; i < empleados.size(); i++){
                 
-                g = a.getEmpleados().get(i);
+                g = empleados.get(i);
                 
                 datos[i][0] = String.valueOf(g.getNGuia());
+                System.out.println(String.valueOf(g.getNGuia()));
                 datos[i][1] = g.getNombre();
+                System.out.println(g.getNombre());
                 datos[i][2] = g.getDNI();
+                System.out.println(g.getDNI());
                 datos[i][3] = String.valueOf(g.getTelefono());
-                
+                System.out.println(String.valueOf(g.getTelefono()));
             }
-        
+            
+            System.out.println("prueba");
             plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
+            tablaPlantilla.setModel(plantilla);
+        }
+        else{
+            System.out.println("aaa");
         }
     }
 
     public void addExposicion() {
-
+        
     }
     
     public void verPaneles(JPanel jp){
