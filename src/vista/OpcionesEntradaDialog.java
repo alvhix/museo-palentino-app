@@ -494,7 +494,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         int seleccion = jTable1.getSelectedRow();
         int no_selected = -1;
         if (seleccion != no_selected) {
-            
+
         }
     }
 
@@ -557,7 +557,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     private void setPrecioEntrada() {
         float precio = sm.devolverPrecioEntrada();
 
-        jLabel12.setText(String.valueOf(precio));
+        jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
     }
 
     private void setPrecioEntradaGuiada() {
@@ -565,6 +565,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         float suplemento = sm.devolverPrecioSuplemento();
         float total = precio + suplemento;
 
-        jLabel12.setText(String.valueOf(total));
+        jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
     }
 }
