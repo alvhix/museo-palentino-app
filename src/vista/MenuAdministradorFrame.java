@@ -26,7 +26,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
     private DefaultTableModel plantilla;
-    private String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
+    private final String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
 
     /**
      * Creates new form MenuAdministradorFrame
@@ -670,6 +670,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
             Guia g = new Guia(nombre, dni, telefono, nss/*, nGuia*/);
+            empleados.add(g);
             a.annadirEmpleado(g);
             actualizarPlantilla();
             datosEnBlanco();
@@ -691,18 +692,25 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 g = a.getEmpleados().get(i);
 
                 datos[i][0] = String.valueOf(g.getNGuia());
+                System.out.println(String.valueOf(g.getNGuia()));
                 datos[i][1] = g.getNombre();
+                System.out.println(g.getNombre());
                 datos[i][2] = g.getDNI();
+                System.out.println(g.getDNI());
                 datos[i][3] = String.valueOf(g.getTelefono());
 
             }
 
             plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
+            tablaPlantilla.setModel(plantilla);
+        }
+        else{
+            System.out.println("aaa");
         }
     }
 
     public void addExposicion() {
-
+        
     }
     
     public void datosEnBlanco() {
