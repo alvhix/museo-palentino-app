@@ -228,8 +228,7 @@ public class DAOMuseo {
     public List cargarEntradasGuia(int numGuia) throws SQLException {
         List entradasGuia = new ArrayList();
 
-        String query = "SELECT entrada.numEntrada, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion "
-                + "FROM entrada, guia WHERE guia.numeroGuia = ?";
+        String query ="SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion FROM cliente, entrada, guia, guia_entrada WHERE entrada.idCliente = cliente.idCliente AND entrada.numEntrada = guia_entrada.numEntrada AND guia_entrada.numGuia = guia.numGuia AND guia.numGuia = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, numGuia);
@@ -433,7 +432,6 @@ public class DAOMuseo {
                 + "guia, guia_cliente WHERE guia_entrada.numGuia = guia.numGuia AND "
                 + "cliente";
         String query2 = "SELECT numEntrada, idCliente FROM guia_cliente WHERE idCliente = ?";
-        String query3 = "SELECT guia.numGuia FROM guia, guia_cliente WHERE ";
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
