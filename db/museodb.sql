@@ -35,8 +35,8 @@ CREATE TABLE `administrador` (
   UNIQUE KEY `dniAdministrador_UNIQUE` (`dniAdministrador`),
   KEY `dniAdministrador_fk1` (`dniAdministrador`),
   KEY `nombreMuseo_idx` (`nombreMuseo`),
-  CONSTRAINT `dniAdministrador_fk1` FOREIGN KEY (`dniAdministrador`) REFERENCES `persona` (`dni`),
-  CONSTRAINT `nombreMuseo_fk1` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`)
+  CONSTRAINT `dniAdministrador_fk1` FOREIGN KEY (`dniAdministrador`) REFERENCES `persona` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `nombreMuseo_fk1` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,7 +65,7 @@ CREATE TABLE `cliente` (
   UNIQUE KEY `idCliente_UNIQUE` (`idCliente`),
   UNIQUE KEY `dniCliente_UNIQUE` (`dniCliente`),
   KEY `dniCliente_idx` (`dniCliente`),
-  CONSTRAINT `dniCliente_fk1` FOREIGN KEY (`dniCliente`) REFERENCES `persona` (`dni`)
+  CONSTRAINT `dniCliente_fk1` FOREIGN KEY (`dniCliente`) REFERENCES `persona` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,7 +98,7 @@ CREATE TABLE `entrada` (
   PRIMARY KEY (`numeroEntrada`),
   UNIQUE KEY `numeroentrada_UNIQUE` (`numeroEntrada`),
   KEY `idCliente_idx` (`idCliente`) USING BTREE,
-  CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,8 +152,8 @@ CREATE TABLE `exposicion_obra` (
   `idExposicion` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idObra`),
   KEY `idExposicion_idx` (`idExposicion`),
-  CONSTRAINT `idExposicion_fk1` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idExposicion`),
-  CONSTRAINT `idObra_fk1` FOREIGN KEY (`idObra`) REFERENCES `obra` (`idObra`)
+  CONSTRAINT `idExposicion_fk1` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idExposicion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `idObra_fk1` FOREIGN KEY (`idObra`) REFERENCES `obra` (`idObra`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -185,7 +185,7 @@ CREATE TABLE `guia` (
   UNIQUE KEY `dniGuia_UNIQUE` (`dniGuia`),
   UNIQUE KEY `numIdentificacion_UNIQUE` (`numIdentificacion`),
   KEY `dni_idx` (`dniGuia`),
-  CONSTRAINT `dniGuia_fk1` FOREIGN KEY (`dniGuia`) REFERENCES `persona` (`dni`)
+  CONSTRAINT `dniGuia_fk1` FOREIGN KEY (`dniGuia`) REFERENCES `persona` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -200,29 +200,30 @@ INSERT INTO `guia` VALUES (1,1,1112223334,'guia','45612378x'),(2,2,123456789,'gu
 UNLOCK TABLES;
 
 --
--- Table structure for table `guia_cliente`
+-- Table structure for table `guia_entrada`
 --
 
-DROP TABLE IF EXISTS `guia_cliente`;
+DROP TABLE IF EXISTS `guia_entrada`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `guia_cliente` (
-  `idCliente` int(10) unsigned NOT NULL,
+CREATE TABLE `guia_entrada` (
+  `numEntrada` int(10) unsigned NOT NULL,
   `numGuia` int(10) unsigned NOT NULL,
-  KEY `idCliente_fk2` (`idCliente`),
+  UNIQUE KEY `idCliente_UNIQUE` (`numEntrada`),
+  KEY `idCliente_fk2` (`numEntrada`),
   KEY `numeroGuia_fk1` (`numGuia`),
-  CONSTRAINT `idCliente_fk2` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `numEntrada_fk1` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroEntrada`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `numeroGuia_fk1` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numGuia`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `guia_cliente`
+-- Dumping data for table `guia_entrada`
 --
 
-LOCK TABLES `guia_cliente` WRITE;
-/*!40000 ALTER TABLE `guia_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guia_cliente` ENABLE KEYS */;
+LOCK TABLES `guia_entrada` WRITE;
+/*!40000 ALTER TABLE `guia_entrada` DISABLE KEYS */;
+/*!40000 ALTER TABLE `guia_entrada` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -262,8 +263,8 @@ CREATE TABLE `museo_exposicion` (
   `nombreMuseo` char(50) NOT NULL,
   PRIMARY KEY (`idExposicion`),
   KEY `nombreMuseo_idx` (`nombreMuseo`),
-  CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idExposicion`),
-  CONSTRAINT `nombreMuseo_fk2` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`)
+  CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idExposicion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `nombreMuseo_fk2` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -343,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-17 21:36:19
+-- Dump completed on 2019-06-17 23:11:48
