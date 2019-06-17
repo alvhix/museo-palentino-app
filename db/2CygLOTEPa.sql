@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-06-2019 a las 23:08:12
+-- Tiempo de generación: 17-06-2019 a las 16:18:25
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -75,9 +75,11 @@ CREATE TABLE `entrada` (
   `numeroEntrada` int(10) UNSIGNED NOT NULL,
   `fechaReserva` date NOT NULL,
   `hora` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `guiada` tinyint(1) UNSIGNED DEFAULT '0',
+  `guiada` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `precio` float NOT NULL DEFAULT '6.85',
+  `suplementoGuia` float DEFAULT '4.95',
   `idCliente` int(10) UNSIGNED NOT NULL,
+  `numeroGuia` int(11) DEFAULT NULL,
   `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -85,28 +87,23 @@ CREATE TABLE `entrada` (
 -- Volcado de datos para la tabla `entrada`
 --
 
-INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `idCliente`) VALUES
-(45, '2019-06-28', '18:00', 1, 10.3, 6),
-(46, '2019-06-27', '8:00', 1, 10.3, 6),
-(47, '2019-06-26', '18:00', 1, 10.3, 6);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `entrada_guiada`
---
-
-CREATE TABLE `entrada_guiada` (
-  `numeroEntrada` int(10) UNSIGNED NOT NULL,
-  `fechaReserva` date NOT NULL,
-  `hora` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `guiada` tinyint(1) NOT NULL DEFAULT '1',
-  `precio` float NOT NULL,
-  `suplementoGuia` float UNSIGNED NOT NULL DEFAULT '3.55',
-  `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `numeroGuia` int(10) UNSIGNED NOT NULL,
-  `idCliente` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`, `numeroGuia`) VALUES
+(50, '2019-06-15', '8:00', 1, 11.8, 4.95, 3, 48),
+(51, '2019-06-23', '16:00', 1, 11.8, 4.95, 6, 13),
+(53, '2019-06-23', '16:00', 1, 11.8, 4.95, 6, 48),
+(54, '2019-06-13', '16:00', 1, 11.8, 4.95, 6, 48),
+(55, '2019-06-29', '16:00', 1, 11.8, 4.95, 6, 33),
+(56, '2019-06-22', '12:00', 1, 11.8, 4.95, 6, 33),
+(57, '2019-06-02', '16:00', 1, 11.8, 4.95, 6, 33),
+(58, '2019-06-15', '8:00', 1, 11.8, 4.95, 6, 13),
+(59, '2019-06-12', '10:00', 1, 11.8, 4.95, 6, 13),
+(60, '2019-06-16', '12:00', 1, 11.8, 4.95, 6, 48),
+(61, '2019-06-18', '14:00', 1, 11.8, 4.95, 6, 33),
+(62, '2019-06-21', '16:00', 1, 11.8, 4.95, 6, 48),
+(63, '2019-06-29', '18:00', 1, 11.8, 4.95, 6, 13),
+(64, '2019-06-30', '8:00', 1, 11.8, 4.95, 6, 13),
+(65, '2019-06-15', '8:00', 0, 6.85, 4.95, 6, NULL),
+(66, '2019-06-23', '8:00', 0, 6.85, 4.95, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -328,15 +325,6 @@ ALTER TABLE `entrada`
   ADD KEY `idCliente_idx` (`idCliente`) USING BTREE;
 
 --
--- Indices de la tabla `entrada_guiada`
---
-ALTER TABLE `entrada_guiada`
-  ADD PRIMARY KEY (`numeroEntrada`),
-  ADD UNIQUE KEY `numeroEntrada` (`numeroEntrada`),
-  ADD KEY `numGuia_idx` (`numeroGuia`),
-  ADD KEY `idCliente` (`idCliente`);
-
---
 -- Indices de la tabla `exposicion`
 --
 ALTER TABLE `exposicion`
@@ -408,13 +396,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
--- AUTO_INCREMENT de la tabla `entrada_guiada`
---
-ALTER TABLE `entrada_guiada`
-  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `exposicion`
@@ -456,13 +438,6 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `entrada`
   ADD CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Filtros para la tabla `entrada_guiada`
---
-ALTER TABLE `entrada_guiada`
-  ADD CONSTRAINT `idCliente_fk2` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `numeroGuia_fk` FOREIGN KEY (`numeroGuia`) REFERENCES `guia` (`numguia`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `exposicion_obra`
