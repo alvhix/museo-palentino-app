@@ -26,10 +26,10 @@ public class SistemaMuseo {
         ConexionBD.crearConexion();
     }
 
-    // Métodos ------------------------------------------------------
+    // ############################# INICIO DE SESIÓN #############################
     public String obtenerRol(String dni) {
         String rol;
-        
+
         try {
             // Devuelve el rol que coincida con el dni recibido por parametro
             rol = DAOMuseo.instanciar().obtenerRol(dni);
@@ -40,10 +40,10 @@ public class SistemaMuseo {
         }
         return rol;
     }
-    
+
     public boolean comprobarUsuariosRegistrados(String dni) {
         boolean comprobarUsuario;
-        
+
         try {
             // Comprobar si ya existe un usuario (cliente o empleado) con el mismo dni que la persona que se quiere registrar
             comprobarUsuario = DAOMuseo.instanciar().existeUsuario(dni);
@@ -52,13 +52,13 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
+
         return comprobarUsuario;
     }
-    
+
     public boolean comprobarCredenciales(String dni, String password) {
         boolean comprobarCredenciales;
-        
+
         try {
             // Comprobar las credenciales de un usuario que quiere iniciar sesión
             comprobarCredenciales = DAOMuseo.instanciar().comprobarCredenciales(dni, password);
@@ -67,10 +67,11 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
+
         return comprobarCredenciales;
     }
-    
+
+    // ############################# CLIENTE #############################
     public void nuevoCliente(Cliente c, String password) {
         try {
             // Registra un nuevo cliente en la Base de Datos
@@ -80,7 +81,37 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
+
+    public Cliente cargarCliente(String dniCliente) {
+        Cliente cliente;
+
+        try {
+            cliente = DAOMuseo.instanciar().cargarCliente(dniCliente);
+        } catch (SQLException ex) {
+            cliente = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return cliente;
+    }
+
+    // ############################# ADMINISTRADOR #############################
+    public Administrador cargarAdministrador(String dniAdmin) {
+        Administrador admin;
+
+        try {
+            admin = DAOMuseo.instanciar().cargarAdministrador(dniAdmin);
+        } catch (SQLException ex) {
+            admin = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return admin;
+    }
+
+    // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) {
         try {
             //Registra un nuevo guía en la base de datos
@@ -90,38 +121,10 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
-    public Cliente cargarCliente(String dniCliente) {
-        Cliente cliente;
-        
-        try {
-            cliente = DAOMuseo.instanciar().cargarCliente(dniCliente);
-        } catch (SQLException ex) {
-            cliente = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-        
-        return cliente;
-    }
-    
-    public Administrador cargarAdministrador(String dniAdmin) {
-        Administrador admin;
-        
-        try {
-            admin = DAOMuseo.instanciar().cargarAdministrador(dniAdmin);
-        } catch (SQLException ex) {
-            admin = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-        
-        return admin;
-    }
-    
+
     public Guia cargarGuia(String dniGuia) {
         Guia guia;
-        
+
         try {
             guia = DAOMuseo.instanciar().cargarGuia(dniGuia);
         } catch (SQLException ex) {
@@ -129,24 +132,68 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
+
         return guia;
     }
-    
-    public void despedirGuia(Guia g){
-        
-        try{
-            
+
+    public void despedirGuia(Guia g) {
+
+        try {
+
             DAOMuseo.instanciar().despedirGuia(g);
-            
-        }
-        catch(SQLException e){
-            
+
+        } catch (SQLException e) {
+
             System.out.println(e.getSQLState());
             e.getStackTrace();
             System.out.println("Error al borrar");
         }
-        
+
+    }
+
+    // ############################# EXPOSICIÓN #############################
+    public Exposicion cargarExposicion(int idExpo) {
+        Exposicion exposicion;
+
+        try {
+            exposicion = DAOMuseo.instanciar().cargarExposicion(idExpo);
+        } catch (SQLException ex) {
+            exposicion = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return exposicion;
+    }
+
+    // ############################# ENTRADA #############################
+    // Reserva la entrada
+    public void reservarEntrada(Entrada e, Cliente c) {
+        try {
+            // Divido el flujo dependiendo de si la entrada es normal o guiada
+            if (!e.getEsGuiada()) {
+                DAOMuseo.instanciar().reservarEntradaNormal(e, c);
+            } else if (e.getEsGuiada()) {
+                DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+    }
+
+    public List cargarEntradasCliente(int id) {
+        List entradas;
+
+        try {
+            entradas = DAOMuseo.instanciar().cargarEntradasCliente(id);
+        } catch (SQLException ex) {
+            entradas = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return entradas;
     }
 
     /*public List cargarEntradasCliente(int id) {
@@ -162,11 +209,10 @@ public class SistemaMuseo {
 
         return entradasClientes;
     }*/
-    
     // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;
-        
+
         try {
             entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
         } catch (SQLException ex) {
@@ -174,51 +220,8 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
-        return entradasGuia;
-    }
-    
-    public Exposicion cargarExposicion(int idExpo) {
-        Exposicion exposicion;
-        
-        try {
-            exposicion = DAOMuseo.instanciar().cargarExposicion(idExpo);
-        } catch (SQLException ex) {
-            exposicion = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-        
-        return exposicion;
-    }
-    
-    public List cargarEntradasCliente(int id) {
-        List entradas;
-        
-        try {
-            entradas = DAOMuseo.instanciar().cargarEntradasCliente(id);
-        } catch (SQLException ex) {
-            entradas = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-        
-        return entradas;
-    }
 
-    // Reserva la entrada
-    public void reservarEntrada(Entrada e, Cliente c) {
-        try {
-            // Divido el flujo dependiendo de si la entrada es normal o guiada
-            if (!e.getEsGuiada()) { 
-                DAOMuseo.instanciar().reservarEntradaNormal(e, c);                
-            } else if (e.getEsGuiada()) {
-                DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
+        return entradasGuia;
     }
 
     // Cambia el precio general de la entrada
@@ -244,7 +247,7 @@ public class SistemaMuseo {
     // Devuelve el precio actual de la entrada
     public float devolverPrecioEntrada() {
         float precioEntrada;
-        
+
         try {
             precioEntrada = DAOMuseo.instanciar().devolverPrecioEntrada();
         } catch (SQLException ex) {
@@ -252,14 +255,14 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
+
         return precioEntrada;
     }
 
     // Devuelve el precio actual del suplemento
     public float devolverPrecioSuplemento() {
         float precioSuplemento;
-        
+
         try {
             precioSuplemento = DAOMuseo.instanciar().devolverPrecioSuplemento();
         } catch (SQLException ex) {
@@ -267,7 +270,7 @@ public class SistemaMuseo {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        
+
         return precioSuplemento;
     }
 }

@@ -90,6 +90,7 @@ public class DAOMuseo {
     }
 
     // ############################# CLIENTE #############################
+    
     public void nuevoCliente(Cliente c, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'cliente')";
         String insert2 = "INSERT INTO cliente (dniCliente) VALUES (?)";
@@ -145,6 +146,7 @@ public class DAOMuseo {
     }
 
     // ############################# ADMINISTRADOR #############################
+    
     public void nuevoAdministrador(Administrador a, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
         String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
@@ -185,6 +187,7 @@ public class DAOMuseo {
     }
 
     // ############################# GUÍA #############################
+    
     public void nuevoGuia(Guia g, String password) throws SQLException {
         String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
         String insert2 = "INSERT INTO guia (numSeguridadSocial, dniGuia, numGuia) VALUES (?, ?, ?)";
@@ -294,6 +297,7 @@ public class DAOMuseo {
     }
 
     // ############################# EMPLEADOS #############################
+    
     private List cargarEmpleados() throws SQLException {
         List empleados = new ArrayList();
         String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
