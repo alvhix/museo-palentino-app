@@ -5,40 +5,41 @@
  */
 package disenno;
 
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import modelo.Obra;
+import modelo.Exposicion;
 
 /**
  *
  * @author Victor
  */
-public class ExposicionTableModel extends AbstractTableModel {
+public class ExposicionesTableModel extends AbstractTableModel {
 
-    private List<Obra> obras;
-    private String[] columns = {"ID", "Titulo", "Autor", "Estilo", "Año", "Tipo", "Ruta de imagen"};
+    private List<Exposicion> exposiciones;
+    private String[] columns = {"ID", "Nombre", "Disponible hasta", "Tiempo del recorrido", "Ruta de imagen"};
 
-    public ExposicionTableModel(List<Obra> obras) {
-        this.obras = obras;
+    public ExposicionesTableModel(List<Exposicion> exposiciones) {
+        this.exposiciones = exposiciones;
     }
 
-    public void annadirObra(Obra o) {
-        obras.add(o);
+    public void annadirExposicion(Exposicion e) {
+        exposiciones.add(e);
         fireTableDataChanged();
     }
 
-    public void eliminarObra(int rowIndex) {
-        obras.remove(rowIndex);
+    public void eliminarExposicion(int rowIndex) {
+        exposiciones.remove(rowIndex);
         fireTableDataChanged();
     }
 
-    public Obra obtenerObra(int rowIndex) {
-        return obras.get(rowIndex);
+    public Exposicion obtenerExposicion(int rowIndex) {
+        return exposiciones.get(rowIndex);
     }
 
     @Override
     public int getRowCount() {
-        return obras.size();
+        return exposiciones.size();
     }
 
     @Override
@@ -48,58 +49,46 @@ public class ExposicionTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int colIndex) {
-        Obra o = obras.get(rowIndex);
+        Exposicion e = exposiciones.get(rowIndex);
 
         switch (colIndex) {
             // Devuelve el id. 
             case 0:
-                return o.getID();
+                return e.getID();
             // Devuelve el titulo. 
             case 1:
-                return o.getTitulo();
+                return e.getNombre();
             // Devuelve el autor.
             case 2:
-                return o.getAutor();
+                return e.getDuracion();
             // Devuelve el estilo.
             case 3:
-                return o.getEstilo();
+                return e.getTiempoRecorrido();
             // Devuelve el año.
             case 4:
-                return o.getAnno();
-            // Devuelve el tipo. 
-            case 5:
-                return o.getTipo();
-            // Devuelve la ruta.
-            case 6:
-                return o.getRutaImagen();
-            // Devuelve la Obra
+                return e.getRutaImagen();
+            // Devuelve la Exposicion
             default:
-                return o;
+                return e;
         }
     }
 
     @Override
     public void setValueAt(Object dato, int rowIndex, int colIndex) {
         // Obtenemos la obra de la fila indicada 
-        Obra o = obras.get(rowIndex);
+        Exposicion e = exposiciones.get(rowIndex);
         switch (colIndex) {
             case 1:
-                o.setTitulo((String) dato);
+                e.setNombre((String) dato);
                 break;
             case 2:
-                o.setAutor((String) dato);
+                e.setDuracion((Date) dato);
                 break;
             case 3:
-                o.setEstilo((String) dato);
+                e.setTiempoRecorrido((Integer) dato);
                 break;
             case 4:
-                o.setAnno((String) dato);
-                break;
-            case 5:
-                o.setTipo((String) dato);
-                break;
-            case 6:
-                o.setRutaImagen((String) dato);
+                e.setRutaImagen((String) dato);
                 break;
         }
     }

@@ -28,7 +28,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private DefaultTableModel plantilla;
     private String[] cabeceraPlantilla = {"IDGuia", "Nombre", "DNI", "Teléfono"};
 
-
     /**
      * Creates new form MenuAdministradorFrame
      *
@@ -38,9 +37,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         this.a = a;
         this.empleados = a.getEmpleados();
         this.exposiciones = a.getExposiciones();
-        
+
         actualizarPlantilla();
-        
+
         initComponents();
         componentesIniciales();
     }
@@ -80,7 +79,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         btContratar = new javax.swing.JButton();
         panelExposiciones = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaExposiciones = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -101,11 +100,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         campoDuracion = new javax.swing.JTextField();
         campoRuta = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuCerrarSesion = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mostrarGestionEmpleados = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mostrarGestionExposiciones = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -224,7 +225,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btDespedir, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(btDespedir, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(btContratar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -259,12 +260,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaExposiciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -275,7 +276,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tablaExposiciones);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Entrada  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -319,7 +320,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +353,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addComponent(btAddExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btModExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btDropExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +366,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(btModExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btDropExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Datos de Exposición  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -400,7 +401,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(campoNombreExpo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoDuracion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -413,7 +414,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -422,7 +423,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelExposicionesLayout = new javax.swing.GroupLayout(panelExposiciones);
@@ -431,26 +432,27 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelExposicionesLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelExposicionesLayout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18))
         );
         panelExposicionesLayout.setVerticalGroup(
             panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelExposicionesLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addGap(29, 29, 29))
         );
 
         jLayeredPane1.setLayer(panelEmpleados, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -477,31 +479,38 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        jMenu3.setText("Gestión de Empleados");
+        jMenu1.setText("Opciones");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuCerrarSesion.setText("Cerrar sesión");
+        jMenu1.add(menuCerrarSesion);
+
+        jMenuBar.add(jMenu1);
+
+        jMenu2.setText("Gestión de Empleados");
+
+        mostrarGestionEmpleados.setText("Abrir");
+        mostrarGestionEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mostrarGestionEmpleadosActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu2.add(mostrarGestionEmpleados);
 
-        jMenuBar2.add(jMenu3);
+        jMenuBar.add(jMenu2);
 
-        jMenu4.setText("Gestión de Exposiciones");
+        jMenu3.setText("Gestión de Exposiciones");
 
-        jMenuItem2.setText("Ver Exposiciones");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mostrarGestionExposiciones.setText("Abrir");
+        mostrarGestionExposiciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mostrarGestionExposicionesActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jMenu3.add(mostrarGestionExposiciones);
 
-        jMenuBar2.add(jMenu4);
+        jMenuBar.add(jMenu3);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -532,13 +541,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btDespedirActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mostrarGestionEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarGestionEmpleadosActionPerformed
         verPaneles(panelEmpleados);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mostrarGestionEmpleadosActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mostrarGestionExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarGestionExposicionesActionPerformed
         verPaneles(panelExposiciones);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mostrarGestionExposicionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -602,11 +611,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -615,9 +623,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JMenuItem menuCerrarSesion;
+    private javax.swing.JMenuItem mostrarGestionEmpleados;
+    private javax.swing.JMenuItem mostrarGestionExposiciones;
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelExposiciones;
+    private javax.swing.JTable tablaExposiciones;
     private javax.swing.JTable tablaPlantilla;
     private javax.swing.JTextField tfClave;
     private javax.swing.JTextField tfDNI;
@@ -627,15 +638,28 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfTelf;
     // End of variables declaration//GEN-END:variables
 
-    public void datosEnBlanco() {
-        tfNombre.setText("");
-        tfDNI.setText("");
-        tfClave.setText("");
-        tfTelf.setText("");
-        tfNSS.setText("");
-        tfNGuia.setText("");
+    public void verPaneles(JPanel jp) {
+        panelEmpleados.setVisible(false);
+        panelExposiciones.setVisible(false);
+        
+        jp.setVisible(true);
     }
 
+    private void conexionBD() {
+        try {
+            sm = new SistemaMuseo();
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión con la Base de Datos.");
+        }
+    }
+
+    private void componentesIniciales() {
+        conexionBD();
+        verPaneles(panelEmpleados);
+    }
+
+    // ####################### - Métodos Gestión Empleados - #######################
+    
     public void contratar() {
         try {
             String nombre = tfNombre.getText();
@@ -649,30 +673,30 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             a.annadirEmpleado(g);
             actualizarPlantilla();
             datosEnBlanco();
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Campos incompletos o erroneos, itroduzca todos los datos", "Error", WIDTH);
         }
     }
-    
-    public void actualizarPlantilla(){
-        
-        if(!a.getEmpleados().isEmpty() ){
-            
+
+    public void actualizarPlantilla() {
+
+        if (!a.getEmpleados().isEmpty()) {
+
             String[][] datos = new String[a.getEmpleados().size()][4];
             Guia g;
-            
-            for(int i = 0; i < a.getEmpleados().size(); i++){
-                
+
+            for (int i = 0; i < a.getEmpleados().size(); i++) {
+
                 g = a.getEmpleados().get(i);
-                
+
                 datos[i][0] = String.valueOf(g.getNGuia());
                 datos[i][1] = g.getNombre();
                 datos[i][2] = g.getDNI();
                 datos[i][3] = String.valueOf(g.getTelefono());
-                
+
             }
-        
+
             plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
         }
     }
@@ -681,25 +705,16 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     }
     
-    public void verPaneles(JPanel jp){
-        
-        panelEmpleados.setVisible(false);
-        panelExposiciones.setVisible(false);
-        
-        jp.setVisible(true);
-        
+    public void datosEnBlanco() {
+        tfNombre.setText("");
+        tfDNI.setText("");
+        tfClave.setText("");
+        tfTelf.setText("");
+        tfNSS.setText("");
+        tfNGuia.setText("");
     }
     
-    private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
-    }
-
-    private void componentesIniciales() {
-        conexionBD();
-        this.panelExposiciones.setVisible(false);
-    }
+    // ####################### - Métodos Gestión Exposiciones - #######################
+    
+    
 }

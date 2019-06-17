@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class Exposicion {
     // ####################### - Atributos - #######################
     private String nombre;
     private int id;
-    private int duracion;
+    private Date duracion;
     private int tiempoRecorrido;
     private String rutaImagen;
     private List<Obra> obras;
@@ -29,7 +30,7 @@ public class Exposicion {
     }
 
     // Constructor necesario para cargar exposicion
-    public Exposicion(int id, String nombre, int duracion, int tiempoRecorrido, String rutaImagen, List obras) {
+    public Exposicion(int id, String nombre, Date duracion, int tiempoRecorrido, String rutaImagen, List obras) {
         this.nombre = nombre;
         this.id = id;
         this.duracion = duracion;
@@ -47,7 +48,7 @@ public class Exposicion {
         return id;
     }
 
-    public int getDuracion() {
+    public Date getDuracion() {
         return duracion;
     }
 
@@ -63,6 +64,27 @@ public class Exposicion {
         return obras;
     }
 
+    // ####################### - Setters - #######################
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDuracion(Date duracion) {
+        this.duracion = duracion;
+    }
+
+    public void setTiempoRecorrido(int tiempoRecorrido) {
+        this.tiempoRecorrido = tiempoRecorrido;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
     // ####################### - Métodos - #######################
     public void agregarObra(Obra o) {
         obras.add(o);

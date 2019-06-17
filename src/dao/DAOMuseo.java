@@ -233,7 +233,7 @@ public class DAOMuseo {
 
         while (rs.next()) {
             exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
-                    rs.getInt("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
+                    rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
                     cargarObrasExposicion(rs.getInt("idExposicion"))));
         }
 
@@ -322,7 +322,7 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            e = new Exposicion(id, rs.getString("nombre"), rs.getInt("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
+            e = new Exposicion(id, rs.getString("nombre"), rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
         }
 
         return e;
