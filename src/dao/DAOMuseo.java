@@ -432,7 +432,6 @@ public class DAOMuseo {
                 + "guia, guia_cliente WHERE guia_entrada.numGuia = guia.numGuia AND "
                 + "cliente";
         String query2 = "SELECT numEntrada, idCliente FROM guia_cliente WHERE idCliente = ?";
-        String query3 = "SELECT guia.numGuia FROM guia, guia_cliente WHERE ";
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
