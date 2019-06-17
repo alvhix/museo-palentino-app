@@ -40,7 +40,7 @@ public class Administrador extends Trabajador {
     public List<Exposicion> getExposiciones() {
         return exposiciones;
     }
-    
+
     // ####################### - MÉTODOS - #######################
     public void agregarExposicion(Exposicion e) {
         exposiciones.add(e);
@@ -56,5 +56,29 @@ public class Administrador extends Trabajador {
 
     public void eliminarEmpleado(Guia e) {
         empleados.remove(e);
+    }
+
+    public String[][] plantillaAString() {
+
+        String[][] datos = null;
+        
+        if (!getEmpleados().isEmpty()) {
+
+            datos = new String[getEmpleados().size()][4];
+            Guia g;
+
+            for (int i = 0; i < getEmpleados().size(); i++) {
+
+                g = getEmpleados().get(i);
+
+                datos[i][0] = String.valueOf(g.getNGuia());
+                datos[i][1] = g.getNombre();
+                datos[i][2] = g.getDNI();
+                datos[i][3] = String.valueOf(g.getTelefono());
+
+            }
+        }
+        
+        return datos;
     }
 }

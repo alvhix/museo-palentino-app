@@ -13,17 +13,24 @@ public class Guia extends Trabajador {
 
     private int nGuia;
 
-    // Constructor
+    // Constructor ----------------------------------
     public Guia(String nombre, String dni, int telefono, long nSS) {
         super(nombre, dni, telefono, nSS);
     }
 
-    // Constructor necesario para cargar un guia desde la Base de Datos
+    // Constructor para contratar guias
+    public Guia(String nombre, String dni, int telefono, long nSS, int nGuia){
+        super(nombre, dni, telefono, nSS);
+        this.nGuia = nGuia;
+    }
+    
+    // Constructor necesario para cargar un guia desde la Base de Datos ----------
     public Guia(String nombre, String dni, int telefono, long nSS, int id, int nGuia) {
         super(nombre, dni, telefono, nSS, id);
         this.nGuia = nGuia;
     }
 
+    // Getters ---------------------------------------
     public int getNGuia() {
         return nGuia;
     }
