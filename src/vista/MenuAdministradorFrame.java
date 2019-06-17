@@ -38,11 +38,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         this.a = a;
         this.empleados = a.getEmpleados();
         this.exposiciones = a.getExposiciones();
-
-        //actualizarPlantilla();
-
+        
         initComponents();
         componentesIniciales();
+        
+        actualizarPlantilla();
     }
 
     public MenuAdministradorFrame() {
@@ -678,7 +678,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Empleados - #######################
-    /*
+    
     public void contratar() {
         try {
             String nombre = tfNombre.getText();
@@ -701,34 +701,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     public void actualizarPlantilla() {
 
-        if (!a.getEmpleados().isEmpty()) {
-
-            String[][] datos = new String[a.getEmpleados().size()][4];
-            Guia g;
-
-            for (int i = 0; i < a.getEmpleados().size(); i++) {
-
-                g = a.getEmpleados().get(i);
-
-                datos[i][0] = String.valueOf(g.getNGuia());
-                System.out.println(String.valueOf(g.getNGuia()));
-                datos[i][1] = g.getNombre();
-                System.out.println(g.getNombre());
-                datos[i][2] = g.getDNI();
-                System.out.println(g.getDNI());
-                datos[i][3] = String.valueOf(g.getTelefono());
-
-            }
-
-            plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
+            plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
             tablaEmpleados.setModel(plantilla);
-        }
-        else{
-            System.out.println("aaa");
-        }
-    }
-
-    public void addExposicion() {
         
     }
     
@@ -739,10 +713,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         tfTelf.setText("");
         tfNSS.setText("");
         tfNGuia.setText("");
-    }*/
+    }
 
     
     // ####################### - Métodos Gestión Exposiciones - #######################
     
-    
+    public void addExposicion() {
+        
+    }
 }
