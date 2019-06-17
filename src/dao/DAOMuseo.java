@@ -491,7 +491,7 @@ public class DAOMuseo {
     public float devolverPrecioSuplemento() throws SQLException {
         float precioSuplemento = 0;
         String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS "
-                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada_guiada' "
+                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada' "
                 + "AND COLUMN_NAME='suplementoGuia'";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);

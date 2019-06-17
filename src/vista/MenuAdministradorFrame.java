@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.SistemaMuseo;
+import disenno.ExposicionesTableModel;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         this.empleados = a.getEmpleados();
         this.exposiciones = a.getExposiciones();
 
-        actualizarPlantilla();
+        //actualizarPlantilla();
 
         initComponents();
         componentesIniciales();
@@ -60,7 +61,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         panelEmpleados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaPlantilla = new javax.swing.JTable();
+        tablaEmpleados = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -86,6 +87,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         campoPrecio = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         botonCambiarPrecio = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        campoPrecio1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        botonCambiarPrecio1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         btAbrirExpo1 = new javax.swing.JButton();
         btAddExpo1 = new javax.swing.JButton();
@@ -111,7 +116,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        tablaPlantilla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -122,7 +127,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tablaPlantilla);
+        jScrollPane1.setViewportView(tablaEmpleados);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Datos del Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -156,7 +161,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
                                     .addComponent(tfNGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -246,7 +251,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(panelEmpleadosLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
                     .addGroup(panelEmpleadosLayout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -260,22 +265,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
-        tablaExposiciones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        tablaExposiciones.setModel(new ExposicionesTableModel());
         jScrollPane2.setViewportView(tablaExposiciones);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Entrada  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -286,20 +281,38 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         botonCambiarPrecio.setText("Cambiar Precio");
 
+        jLabel13.setText("Suplemento guia:");
+
+        jLabel14.setText("€");
+
+        botonCambiarPrecio1.setText("Cambiar Suplemento");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(botonCambiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCambiarPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCambiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +323,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(botonCambiarPrecio))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(campoPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(botonCambiarPrecio1))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -318,15 +337,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(95, 95, 95)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Exposición  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -366,7 +383,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(btModExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btDropExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Datos de Exposición  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -401,7 +418,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(campoNombreExpo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoDuracion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -423,7 +440,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelExposicionesLayout = new javax.swing.GroupLayout(panelExposiciones);
@@ -438,7 +455,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18))
         );
         panelExposicionesLayout.setVerticalGroup(
@@ -448,11 +465,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
 
         jLayeredPane1.setLayer(panelEmpleados, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -528,7 +545,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContratarActionPerformed
-        contratar();
+        //contratar();
     }//GEN-LAST:event_btContratarActionPerformed
 
     private void btDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDespedirActionPerformed
@@ -587,6 +604,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCambiarPrecio;
+    private javax.swing.JButton botonCambiarPrecio1;
     private javax.swing.JButton btAbrirExpo1;
     private javax.swing.JButton btAddExpo1;
     private javax.swing.JButton btContratar;
@@ -596,12 +614,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JTextField campoDuracion;
     private javax.swing.JTextField campoNombreExpo;
     private javax.swing.JTextField campoPrecio;
+    private javax.swing.JTextField campoPrecio1;
     private javax.swing.JTextField campoRuta;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -628,8 +649,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem mostrarGestionExposiciones;
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelExposiciones;
+    private javax.swing.JTable tablaEmpleados;
     private javax.swing.JTable tablaExposiciones;
-    private javax.swing.JTable tablaPlantilla;
     private javax.swing.JTextField tfClave;
     private javax.swing.JTextField tfDNI;
     private javax.swing.JTextField tfNGuia;
@@ -659,7 +680,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Empleados - #######################
-    
+    /*
     public void contratar() {
         try {
             String nombre = tfNombre.getText();
@@ -669,7 +690,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             long nss = Long.parseLong(tfNSS.getText());
             int nGuia = Integer.parseInt(tfNGuia.getText());
 
-            Guia g = new Guia(nombre, dni, telefono, nss/*, nGuia*/);
+            Guia g = new Guia(nombre, dni, telefono, nss, nGuia);
             empleados.add(g);
             a.annadirEmpleado(g);
             actualizarPlantilla();
@@ -702,7 +723,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
 
             plantilla = new DefaultTableModel(datos, cabeceraPlantilla);
-            tablaPlantilla.setModel(plantilla);
+            tablaEmpleados.setModel(plantilla);
         }
         else{
             System.out.println("aaa");
@@ -720,7 +741,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         tfTelf.setText("");
         tfNSS.setText("");
         tfNGuia.setText("");
-    }
+    }*/
+
     
     // ####################### - Métodos Gestión Exposiciones - #######################
     
