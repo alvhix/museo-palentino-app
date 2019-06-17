@@ -7,6 +7,7 @@ package disenno;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import modelo.Administrador;
 import modelo.Obra;
 
 /**
@@ -17,6 +18,10 @@ public class ExposicionTableModel extends AbstractTableModel {
 
     private List<Obra> obras;
     private String[] columns = {"ID", "Titulo", "Autor", "Estilo", "Año", "Tipo", "Ruta de imagen"};
+    
+    public ExposicionTableModel(Administrador a){
+        
+    }
 
     public void annadirObra(Obra o) {
         obras.add(o);
