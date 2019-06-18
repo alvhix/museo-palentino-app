@@ -48,32 +48,4 @@ public class Cliente extends Persona {
     public void cargarEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
     }
-
-    public String[][] tablaEntradas() {
-        String[][] array = new String[entradas.size()][5];
-        String guiada;
-        String numGuia;
-
-        if (!entradas.isEmpty()) {
-            for (int i = 0; i < entradas.size(); i++) {
-                Entrada e = entradas.get(i);
-                array[i][0] = String.valueOf(e.getFecha());
-                array[i][1] = e.getHora();
-
-                if (e.getEsGuiada()) {
-                    guiada = "Si";
-                    numGuia = String.valueOf(e.getNumGuia());
-                } else {
-                    guiada = "No";
-                    numGuia = " -";
-                }
-
-                array[i][2] = guiada;
-                array[i][3] = numGuia;
-                array[i][4] = String.format("%.2f €", e.getPrecio());
-            }
-        }
-
-        return array;
-    }
 }

@@ -9,6 +9,8 @@ import dao.ConexionBD;
 import dao.DAOMuseo;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Administrador;
 import modelo.Cliente;
 import modelo.Entrada;
@@ -97,6 +99,18 @@ public class SistemaMuseo {
         return cliente;
     }
 
+    public long comprobarTarjeta(int idCliente) {
+        long tarjeta;
+        try {
+            tarjeta = DAOMuseo.instanciar().obtenerTarjetaCliente(idCliente);
+        } catch (SQLException ex) {
+            tarjeta = 0;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+        return tarjeta;
+    }
+
     // ############################# ADMINISTRADOR #############################
     public Administrador cargarAdministrador(String dniAdmin) {
         Administrador admin;
@@ -176,7 +190,7 @@ public class SistemaMuseo {
         }
     }
 
-    public void eliminarExposicion(int id){
+    public void eliminarExposicion(int id) {
         try {
             DAOMuseo.instanciar().eliminarExposicion(id);
         } catch (SQLException ex) {
@@ -184,7 +198,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
+
     public Exposicion cargarExposicion(int idExpo) {
         Exposicion exposicion;
 
@@ -227,7 +241,7 @@ public class SistemaMuseo {
 
         return comprobarUsuario;
     }
-    
+
     public void nuevaObra(Obra o) {
         try {
             DAOMuseo.instanciar().nuevaObra(o);
@@ -237,7 +251,7 @@ public class SistemaMuseo {
         }
     }
 
-    public void eliminarObra(int id){
+    public void eliminarObra(int id) {
         try {
             DAOMuseo.instanciar().eliminarObra(id);
         } catch (SQLException ex) {
@@ -245,7 +259,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
+
     public Obra cargarObra(int idObra) {
         Obra obra;
 
@@ -305,7 +319,32 @@ public class SistemaMuseo {
 
         return entradasCliente;
     }
-    
+
+    public String[][] tablaEntradas(List<Entrada> entradas) {
+        String[][] array = new String[entradas.size()][4];
+        String esGuiada;
+
+        if (!entradas.isEmpty()) {
+            for (int i = 0; i < entradas.size(); i++) {
+                Entrada e = entradas.get(i);
+                array[i][0] = String.valueOf(new java.sql.Date(e.getFecha().getTime()));
+                array[i][1] = e.getHora();
+
+                if (e.getEsGuiada()) {
+                    esGuiada = "Si";
+
+                } else {
+                    esGuiada = "No";
+                }
+
+                array[i][2] = esGuiada;
+                array[i][3] = String.format("%.2f €", e.getPrecio());
+            }
+        }
+
+        return array;
+    }
+
     // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;

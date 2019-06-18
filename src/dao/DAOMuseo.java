@@ -127,8 +127,19 @@ public class DAOMuseo {
         return c;
     }
 
+    public void introducirTarjeta(long tarjeta) throws SQLException {
+        String insert = "INSERT INTO cliente (tarjeta) VALUES (?)";
+
+        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
+        ps.setLong(1, tarjeta);
+
+        // Se ejecutan las updates
+        ps.executeUpdate();
+    }
+
     // Obtiene los datos de la tarjeta de un cliente determinado (FALTA POR IMPLEMENTAR)
-    private long obtenerTarjetaCliente(long idCliente) throws SQLException {
+    public long obtenerTarjetaCliente(int idCliente) throws SQLException {
         long tarjeta = -1;
         String query = "SELECT tarjeta FROM cliente WHERE idCliente = ?";
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
@@ -342,7 +353,7 @@ public class DAOMuseo {
         // Se ejecuta el insert
         ps.executeUpdate();
     }
-    
+
     public void eliminarExposicion(int id) throws SQLException {
         String delete = "DELETE FROM exposicion WHERE idExposicion = ?";
 
@@ -436,7 +447,7 @@ public class DAOMuseo {
         // Se ejecuta el insert
         ps.executeUpdate();
     }
-    
+
     public void eliminarObra(int id) throws SQLException {
         String delete = "DELETE FROM obra WHERE idObra = ?";
 
@@ -520,11 +531,9 @@ public class DAOMuseo {
     // En el caso de que sea guiada se insertarán los datos del guía en otra tabla a mayores
     public void reservarEntradaGuiada(Entrada e, Cliente c) throws SQLException {
         String insert1 = "INSERT INTO entrada (fechaReserva, hora, guiada, precio, idCliente) VALUES (?, ?, ?, ?, ?)";
-        String insert2 = "INSERT INTO guia_entrada VALUES (?, ?)";
         float precioEntrada = devolverPrecioEntrada();
         float precioSuplemento = devolverPrecioSuplemento();
-        float precioTotal = precioEntrada + precioSuplemento; // Precio total de la  entrada
-        int numGuia = elegirNumGuia(); // Número de guía asignado de forma aleatoria con el algoritmo
+        float precioTotal = precioEntrada + precioSuplemento; // Precio total de la entrada
 
         // Inserción en la tabla entrada
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
@@ -535,12 +544,6 @@ public class DAOMuseo {
         ps1.setInt(5, c.getIdCliente());
         // Se ejecuta el insert
         ps1.executeUpdate();
-
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-        ps2.setInt(1, e.getIdCliente());
-        ps2.setInt(2, numGuia);
-        // Se ejecuta el insert
-        ps2.executeUpdate();
     }
 
     // Recoge los datos de las entradas reservados por un cliente determinado
@@ -549,23 +552,17 @@ public class DAOMuseo {
 
         String query1 = "SELECT numeroEntrada, fechaReserva, hora, "
                 + "guiada, precio, idCliente FROM entrada WHERE entrada.idCliente = ?";
-        String query2 = "SELECT guia_entrada.numGuia FROM guia_entrada, entrada "
-                + "WHERE guia_entrada.numEntrada = entrada.numeroEntrada AND "
-                + "entrada.idCliente = ?";
 
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
-        ps2.setInt(1, idCliente);
 
         ResultSet rs1 = ps1.executeQuery();
-        ResultSet rs2 = ps2.executeQuery();
 
         while (rs1.next()) {
             entradas.add(new Entrada(rs1.getInt("numeroEntrada"),
                     rs1.getDate("fechaReserva"), rs1.getString("hora"),
                     rs1.getBoolean("guiada"), rs1.getFloat("precio"),
-                    rs1.getInt("idCliente"), rs2.getInt("numeroGuia")));
+                    rs1.getInt("idCliente")));
         }
 
         return entradas;

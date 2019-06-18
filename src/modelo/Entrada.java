@@ -12,7 +12,6 @@ public class Entrada {
     private boolean esGuiada;
     private int numEntrada;
     private int idCliente;
-    private int numGuia;
     private float precio;
     private float suplementoGuia;
     private Date fecha;
@@ -20,14 +19,13 @@ public class Entrada {
     private String fechaTransaccion;
 
     // Constructores -----------------------------------
-    public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente, int numGuia) {
+    public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente) {
         this.numEntrada = numEntrada;
         this.fecha = fecha;
         this.hora = hora;
         this.esGuiada = esGuiada;
         this.precio = precio;
         this.idCliente = idCliente;
-        this.numGuia = numGuia;
     }
 
     public Entrada(int numEntrada, Date fecha, String hora, String fechaTransaccion) {
@@ -52,10 +50,6 @@ public class Entrada {
 
     public int getIdCliente() {
         return idCliente;
-    }
-
-    public int getNumGuia() {
-        return numGuia;
     }
 
     public float getPrecio() {
@@ -89,10 +83,6 @@ public class Entrada {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public void setNumGuia(int numGuia) {
-        this.numGuia = numGuia;
     }
 
     public void setPrecio(float precio) {

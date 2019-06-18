@@ -16,9 +16,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -34,7 +33,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     private SistemaMuseo sm;
 
     DefaultTableModel modelo;
-    String cabecera[] = {"Fecha", "Hora", "¿Guiada?", "Nº Guia", "Precio"};
+    String cabecera[] = {"Fecha", "Hora", "¿Guiada?", "Precio"};
 
     /**
      * Creates new form OpcionesEntradaDialog
@@ -421,6 +420,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -487,13 +492,15 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     // ############################# TABLA #############################
     // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
     public void mostrarTabla() {
-        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
+        // Carga las entradas directamente de la base de datos
+        modelo = new DefaultTableModel(sm.tablaEntradas(sm.cargarEntradasCliente(c.getIdCliente())), cabecera);
         jTable1.setModel(modelo);
     }
 
 // ############################# RESERVA DE ENTRADA #############################
     public void reservarEntrada() throws FechaException {
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
+            comprobarTarjeta();
             // Crea nueva entrada
             e = new Entrada();
             // Setea la fecha de la reserva
@@ -518,6 +525,18 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     }
 
     // ############################# DATOS RESERVA DE ENTRADA #############################
+    public void comprobarTarjeta() {
+        long tarjeta = sm.comprobarTarjeta(c.getIdCliente());
+
+        if (tarjeta == -1) {
+            int seleccion = JOptionPane.showConfirmDialog(null, "No tiene una tarjeta establecida en su cuenta. ¿Desea introducirla?", "Error al reservar", JOptionPane.YES_NO_OPTION);
+            if (seleccion == 1) {
+                JDialog jd = new TarjetaDialog(new MenuUsuarioFrame(), true, c);
+                jd.setVisible(true);
+            }
+        }
+    }
+
     // Obtiene los datos del cliente para mostrarlos en la cabecera
     private void datosReserva() {
         jLabel8.setText(c.getNombre());
