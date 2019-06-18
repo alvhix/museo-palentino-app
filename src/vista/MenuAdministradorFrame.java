@@ -7,13 +7,16 @@ package vista;
 
 import controlador.SistemaMuseo;
 import disenno.ExposicionesTableModel;
-import disenno.TextPrompt;
-import java.awt.Color;
 import java.awt.Cursor;
 import static java.awt.Frame.HAND_CURSOR;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.Administrador;
@@ -37,6 +41,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private List<Guia> empleados;
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
+    private ExposicionesTableModel etm;
     private DefaultTableModel plantilla;
     private final String[] cabeceraPlantilla = {"ID", "Nombre", "DNI", "Teléfono"};
 
@@ -47,13 +52,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
      */
     public MenuAdministradorFrame(Administrador a) {
         this.a = a;
-        this.empleados = a.getEmpleados();
-        this.exposiciones = a.getExposiciones();
+        empleados = a.getEmpleados();
+        exposiciones = a.getExposiciones();
+        etm = new ExposicionesTableModel(exposiciones);
 
-        //actualizarPlantilla();
         initComponents();
         componentesIniciales();
-        actualizarPlantilla();
     }
 
     public MenuAdministradorFrame() {
@@ -133,6 +137,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         mostrarGestionEntradas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MuseoPalentinoApp - Menú de Administrador");
+        setIconImage(getIconImage());
         setResizable(false);
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
@@ -303,7 +309,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         jLayeredPane1.add(panelEmpleados, "card2");
 
-        tablaExposiciones.setModel(new ExposicionesTableModel(exposiciones));
+        tablaExposiciones.setModel(etm);
         jScrollPane2.setViewportView(tablaExposiciones);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Exposición  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -334,7 +340,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
         });
 
-        botonDropExpo.setText("Borrar Exposición");
+        botonDropExpo.setText("Eliminar Exposición");
         botonDropExpo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botonDropExpoMouseEntered(evt);
@@ -379,9 +385,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonAddExpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonModificarExpo)
-                .addGap(18, 18, 18)
                 .addComponent(botonDropExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonModificarExpo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -394,7 +400,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLabel8.setText("Duración del recorrido:");
         jLabel8.setToolTipText("");
 
-        jLabel11.setText("Directorio de imagen (máx. 300x114 px):");
+        jLabel11.setText("Ruta de imagen (máx. 300x114 px):");
         jLabel11.setToolTipText("");
 
         selectorFecha.setOpaque(false);
@@ -723,10 +729,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void botonAbrirExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirExpoActionPerformed
         // TODO add your handling code here:
+        abrirExposicion();
     }//GEN-LAST:event_botonAbrirExpoActionPerformed
 
     private void botonAddExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddExpoActionPerformed
         // TODO add your handling code here:
+        annadirExposicion();
     }//GEN-LAST:event_botonAddExpoActionPerformed
 
     private void botonModificarExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarExpoActionPerformed
@@ -735,6 +743,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void botonDropExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDropExpoActionPerformed
         // TODO add your handling code here:
+        eliminarExposicion();
     }//GEN-LAST:event_botonDropExpoActionPerformed
 
     private void botonAbrirSelectorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseEntered
@@ -937,6 +946,114 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jp.setVisible(true);
     }
 
+    private void limiteTelefono(JTextField jtf) {
+        final int limite = 9;
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (jtf.getText().length() < limite) {
+                    if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                            || (c == KeyEvent.VK_DELETE))) {
+                        getToolkit().beep();
+                        e.consume();
+                    }
+                } else {
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    private void limiteDNI(JTextField jtf) {
+        final int limite = 8;
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (jtf.getText().length() < limite) {
+                    if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                            || (c == KeyEvent.VK_DELETE))) {
+                        getToolkit().beep();
+                        e.consume();
+                    }
+                } else if (jtf.getText().length() == limite) {
+                    if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
+                            && !(c == KeyEvent.VK_BACK_SPACE)) {
+                        getToolkit().beep();
+                        e.consume();
+                    }
+                } else {
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    private static boolean validarTelefono(String tlf) {
+        boolean correcto = false;
+        int longitud = tlf.length();
+
+        if (longitud == 9) {
+            correcto = true;
+        }
+
+        return correcto;
+    }
+
+    private static boolean validarPassword(String pw) {
+        boolean correcto = false;
+        int longitud = pw.length();
+
+        if (longitud >= 8) {
+            correcto = true;
+        }
+
+        return correcto;
+    }
+
+    private void soloLetras(JTextField jtf) {
+        final int limite = 30;
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (jtf.getText().length() < limite) {
+                    if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
+                            && !(c == KeyEvent.VK_BACK_SPACE)) {
+                        getToolkit().beep();
+                        e.consume();
+                    }
+                } else {
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    private void soloNumeros(JTextField jtf) {
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return retValue;
+    }
+
     private void conexionBD() {
         try {
             sm = new SistemaMuseo();
@@ -947,16 +1064,27 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void componentesIniciales() {
         conexionBD();
+        actualizarPlantilla();
         verPanel(panelEmpleados);
+        limiteDNI(tfDNI);
+        limiteTelefono(tfTelf);
+        soloLetras(tfNombre);
+        soloNumeros(tfNGuia);
+        soloNumeros(tfNSS);
+        soloNumeros(campoDuracion);
+        oblig1.setVisible(false);
+        oblig2.setVisible(false);
+        oblig3.setVisible(false);
+        oblig4.setVisible(false);
     }
 
     // ####################### - Métodos Sesion - #######################
-    private void cerrarSesion(){
+    private void cerrarSesion() {
         MenuPrincipalFrame mpf = new MenuPrincipalFrame();
         mpf.setVisible(true);
         dispose();
     }
-    
+
     // ####################### - Métodos Gestión Empleados - #######################
     private void contratar() {
         try {
@@ -1019,6 +1147,107 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Exposiciones - #######################
+    private void abrirExposicion() {
+        int selection = tablaExposiciones.getSelectedRow();
+        if (selection != -1) {
+            Exposicion e = etm.obtenerExposicion(selection);
+            ModificaExposicionDialog med = new ModificaExposicionDialog(this, true, e);
+            med.setVisible(true);
+        }
+    }
+
+    private void annadirExposicion() {
+        if (validarDatosExposicion()) {
+            Exposicion e = new Exposicion(campoNombreExpo.getName(), selectorFecha.getDate(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
+            //sm.nuevaExposicion(e);
+            //e = sm.cargarExposicion(e.getNombre());
+            etm.annadirExposicion(e);
+        }
+    }
+
+    private void eliminarExposicion() {
+        int selection = tablaExposiciones.getSelectedRow();
+
+        if (selection != -1) {
+            boolean salir = false;
+            Exposicion e = etm.obtenerExposicion(selection);
+
+            do {
+                int opcion = JOptionPane.showConfirmDialog(this,
+                        "¿Está seguro de que quiere eliminar\nla exposición \"id = "
+                        + e.getID() + "\"?",
+                        "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    etm.eliminarExposicion(selection);
+                    //sm.eliminarExposicion(e.getID());
+                    salir = true;
+                } else if (opcion == JOptionPane.NO_OPTION) {
+                    salir = true;
+                }
+            } while (!salir);
+        }
+    }
+
+    private void modificarExposicion() {
+
+    }
+
+    private boolean validarDatosExposicion() {
+        boolean correcto = false;
+
+        if (!campoNombreExpo.getText().isEmpty() && selectorFecha.getDate() != null
+                && !campoDuracion.getText().isEmpty() && !campoRuta.getText().isEmpty()) {
+            Date actual = new Date();
+            String nombre = campoNombreExpo.getText();
+            Date disponible = selectorFecha.getDate();
+            String ruta = campoRuta.getText();
+
+            //if (actual.before(disponible) /*&& sm.comprobarExposicion(nombre)*/) {
+                ImageIcon image = new ImageIcon(ruta);
+
+                if (!(image.getIconHeight() <= 114 && image.getIconWidth() <= 300)) {
+                    infoErrorExpo.setText("Tamaño de imagen demasiado grande.");
+                } else {
+                    correcto = true;
+                    restablecerCamposExpo();
+                    oblig1.setVisible(false);
+                    oblig2.setVisible(false);
+                    oblig3.setVisible(false);
+                    oblig4.setVisible(false);
+                }
+            //}
+
+        } else {
+            boolean campoVacio = false;
+
+            if (campoNombreExpo.getText().isEmpty()) {
+                oblig1.setVisible(true);
+            }
+
+            if (selectorFecha.getDate() != null) {
+                oblig2.setVisible(true);
+            }
+
+            if (campoDuracion.getText().isEmpty()) {
+                oblig3.setVisible(true);
+            }
+
+            if (campoRuta.getText().isEmpty()) {
+                oblig4.setVisible(true);
+            }
+        }
+
+        return correcto;
+    }
+
+    private void restablecerCamposExpo() {
+        campoNombreExpo.setText("");
+        selectorFecha.setDate(null);
+        campoDuracion.setText("");
+        campoRuta.setText("");
+    }
+
     private void abrirSelectorImagenes() throws IOException {
         //Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
@@ -1028,7 +1257,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = selectorArchivos.showOpenDialog(this);
-        
+
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = selectorArchivos.getSelectedFile();
             ImageIcon image = new ImageIcon(file.getPath());
@@ -1040,7 +1269,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 infoErrorExpo.setText("¡Tamaño de imagen demasiado grande!");
             }
         }
-
     }
 
     // ####################### - Métodos Gestión Entradas - #######################

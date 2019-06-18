@@ -16,16 +16,20 @@ import java.util.List;
 public class Exposicion {
 
     // ####################### - Atributos - #######################
-    private String nombre;
     private int id;
-    private Date duracion;
     private int tiempoRecorrido;
+    private Date duracion;
+    private String nombre;
     private String rutaImagen;
     private List<Obra> obras;
 
     // ####################### - Constructores - #######################
     // Constructor para crear exposicion
-    public Exposicion() {
+    public Exposicion(String nombre, Date duracion, int tiempoRecorrido, String rutaImagen) {
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.tiempoRecorrido = tiempoRecorrido;
+        this.rutaImagen = rutaImagen;
         this.obras = new ArrayList();
     }
 
@@ -84,7 +88,7 @@ public class Exposicion {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
-    
+
     // ####################### - Métodos - #######################
     public void agregarObra(Obra o) {
         obras.add(o);
