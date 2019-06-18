@@ -73,6 +73,22 @@ public class SistemaMuseo {
 
         return comprobarCredenciales;
     }
+    
+    // #################### CAMBIAR DE CONTRASEÑA ########################
+    
+    public boolean cambiarContraseña(String contraseñaAntigua, String contraseñaNueva, String dniUsuario){
+        boolean cambiada;
+        
+        try{
+            cambiada = DAOMuseo.instanciar().cambiarContraseña(contraseñaAntigua, contraseñaNueva, dniUsuario);
+        }
+        catch(SQLException e){
+            cambiada = false;
+            System.out.println(e.getSQLState());
+            e.getStackTrace();
+        }
+        return cambiada;
+    }
 
     // ############################# CLIENTE #############################
     public void nuevoCliente(Cliente c, String password) {
