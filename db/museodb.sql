@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2019 a las 17:38:51
+-- Tiempo de generación: 18-06-2019 a las 21:05:48
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -104,7 +104,7 @@ INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `preci
 
 CREATE TABLE `exposicion` (
   `idExposicion` int(10) UNSIGNED NOT NULL,
-  `nombre` char(50) NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `tiempoRecorrido` int(10) UNSIGNED NOT NULL,
   `imagen` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -189,7 +189,7 @@ INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`
 
 CREATE TABLE `guia_entrada` (
   `numEntrada` int(10) UNSIGNED NOT NULL,
-  `numGuia` int(10) UNSIGNED DEFAULT NULL
+  `numIdGuia` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -360,7 +360,7 @@ ALTER TABLE `guia`
 ALTER TABLE `guia_entrada`
   ADD PRIMARY KEY (`numEntrada`),
   ADD UNIQUE KEY `numEntrada` (`numEntrada`),
-  ADD KEY `numGuia_fk` (`numGuia`);
+  ADD KEY `numIdGuia_fk` (`numIdGuia`) USING BTREE;
 
 --
 -- Indices de la tabla `museo`
@@ -471,7 +471,7 @@ ALTER TABLE `guia`
 --
 ALTER TABLE `guia_entrada`
   ADD CONSTRAINT `numEntrada_fk` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroentrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `numGuia_fk` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `numIdGuia` FOREIGN KEY (`numIdGuia`) REFERENCES `guia` (`numidentificacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `museo_exposicion`
