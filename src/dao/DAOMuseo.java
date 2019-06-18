@@ -121,7 +121,7 @@ public class DAOMuseo {
         ResultSet rs2 = ps2.executeQuery();
 
         if (rs1.next() && rs2.next()) {
-            c = new Cliente(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getInt("idCliente"), cargarEntradasCliente(rs2.getInt("idCliente")));
+            c = new Cliente(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getInt("idCliente"));
         }
 
         return c;
@@ -218,17 +218,21 @@ public class DAOMuseo {
         ResultSet rs2 = ps2.executeQuery();
 
         if (rs1.next() && rs2.next()) {
-            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
+            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"),
+                    rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
         }
 
         return g;
     }
 
-    // FALTA RENOVAR MÉTODO
+    // Implementa las entradas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) throws SQLException {
         List entradasGuia = new ArrayList();
 
-        String query ="SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion FROM cliente, entrada, guia, guia_entrada WHERE entrada.idCliente = cliente.idCliente AND entrada.numEntrada = guia_entrada.numEntrada AND guia_entrada.numGuia = guia.numGuia AND guia.numGuia = ?";
+        String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, "
+                + "entrada.fechaTransaccion FROM cliente, entrada, guia, guia_entrada WHERE "
+                + "entrada.idCliente = cliente.idCliente AND entrada.numEntrada = guia_entrada.numEntrada "
+                + "AND guia_entrada.numGuia = guia.numGuia AND guia.numGuia = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, numGuia);
@@ -313,7 +317,7 @@ public class DAOMuseo {
     // ############################# EXPOSICIÓN #############################
     private List cargarExposiciones() throws SQLException {
         List exposiciones = new ArrayList();
-        String query = "SELECT idExposicion, nombre, duracion, tiempoRecorrido, imagen FROM exposicion";
+        String query = "SELECT idExposicion, nombre, tiempoRecorrido, imagen FROM exposicion";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
 
@@ -321,7 +325,7 @@ public class DAOMuseo {
 
         while (rs.next()) {
             exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
-                    rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
+                    rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
                     cargarObrasExposicion(rs.getInt("idExposicion"))));
         }
 
@@ -338,7 +342,7 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            e = new Exposicion(id, rs.getString("nombre"), rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
+            e = new Exposicion(id, rs.getString("nombre"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
         }
 
         return e;
@@ -427,11 +431,12 @@ public class DAOMuseo {
     public List cargarEntradasCliente(int idCliente) throws SQLException {
         List entradas = new ArrayList();
 
-        String query1 = "SELECT entrada.numeroEntrada, entrada.fechaReserva, entrada.hora, "
-                + "entrada.guiada, entrada.precio, entrada.idCliente guia.numeroGuia FROM entrada, "
-                + "guia, guia_cliente WHERE guia_entrada.numGuia = guia.numGuia AND "
-                + "cliente";
-        String query2 = "SELECT numEntrada, idCliente FROM guia_cliente WHERE idCliente = ?";
+        String query1 = "SELECT numeroEntrada, fechaReserva, hora, "
+                + "guiada, precio, idCliente FROM entrada WHERE entrada.idCliente = ?";
+        String query2 = "SELECT guia_entrada.numGuia FROM guia_entrada, entrada "
+                + "WHERE guia_entrada.numEntrada = entrada.numeroEntrada AND "
+                + "entrada.idCliente = ?";
+
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
@@ -439,6 +444,7 @@ public class DAOMuseo {
 
         ResultSet rs1 = ps1.executeQuery();
         ResultSet rs2 = ps2.executeQuery();
+
         while (rs1.next()) {
             entradas.add(new Entrada(rs1.getInt("numeroEntrada"),
                     rs1.getDate("fechaReserva"), rs1.getString("hora"),
@@ -513,7 +519,7 @@ public class DAOMuseo {
         if (rs.next()) {
             numEntradaActual = rs.getInt("MAX(numeroEntrada)");
         }
-        
+
         return numEntradaActual;
     }
 }

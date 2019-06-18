@@ -7,7 +7,15 @@ package vista;
 
 import modelo.Guia;
 import controlador.SistemaMuseo;
+import disenno.ImagenFondo;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,15 +40,42 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     public MenuGuiaFrame() {
     }
 
-    public void componentesIniciales() {
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
         conexionBD();
+        imagenFondo();
+        cargarEntradasGuia();
         muestraTabla();
     }
 
-    public void muestraTabla() {
-        //modelo = new DefaultTableModel(, cabecera); // FALTA MÉTODO DE STRING[][]
+    // ############################# IMÁGENES #############################
+    private void imagenFondo() {
+        try {
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            JPanel panel = (JPanel) this.getContentPane();
+            panel.setBorder(fondo);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return retValue;
+    }
+
+    // ############################# CARGA DE ENTRADAS DEL GUÍA #############################
+    public void cargarEntradasGuia() {
+        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getID()));
+    }
+
+    // ############################# TABLA #############################
+    public void muestraTabla() {
+        modelo = new DefaultTableModel(g.tablaEntradasGuia(), cabecera); // FALTA MÉTODO DE STRING[][]
+    }
+
+    // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
         try {
             sm = new SistemaMuseo();
@@ -100,7 +135,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Opciones");
@@ -135,7 +170,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

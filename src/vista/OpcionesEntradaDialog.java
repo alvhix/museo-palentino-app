@@ -16,6 +16,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -380,8 +382,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void btReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReservarActionPerformed
-        // TODO add your handling code here:
-        reservarEntrada();
+        try {
+            // TODO add your handling code here:
+            reservarEntrada();
+        } catch (FechaException ex) {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btReservarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -464,10 +470,32 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    // ********* Métodos *********
-    public void reservarEntrada() {
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        conexionBD();
+        imagenFondo();
+        datosReserva();
+        cargarEntradas();
+        mostrarTabla();
+    }
+
+    // ############################# CARGA DE ENTRADAS #############################
+    public void cargarEntradas() {
+        c.cargarEntradas(sm.cargarEntradasCliente(c.getIdCliente()));
+    }
+
+    // ############################# TABLA #############################
+    // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
+    public void mostrarTabla() {
+        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
+        jTable1.setModel(modelo);
+    }
+
+// ############################# RESERVA DE ENTRADA #############################
+    public void reservarEntrada() throws FechaException {
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
-            e = new Entrada(); // Crea nueva entrada
+            // Crea nueva entrada
+            e = new Entrada();
             // Setea la fecha de la reserva
             e.setFecha(jDateChooser1.getDate());
             // Setea si la entrada es guiada
@@ -479,30 +507,38 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
             // Reserva la entrada pasando como parámetros el cliente
             sm.reservarEntrada(e, c);
-            actualizarTabla();
+            mostrarTabla();
         } else {
-            try {
-                throw new FechaException();
-            } catch (FechaException ex) {
-                System.out.println(ex.getMessage());
-            }
+
+            throw new FechaException();
+
         }
         jDateChooser1.setDate(null); // Restablece el calendario
+        jComboBox1.setSelectedIndex(0); // Restablece el selector de hora a la default
     }
 
-    public void cancelarReserva() {
-        int seleccion = jTable1.getSelectedRow();
-        int no_selected = -1;
-        if (seleccion != no_selected) {
-
-        }
+    // ############################# DATOS RESERVA DE ENTRADA #############################
+    // Obtiene los datos del cliente para mostrarlos en la cabecera
+    private void datosReserva() {
+        jLabel8.setText(c.getNombre());
+        jLabel9.setText(c.getDNI());
+        jLabel10.setText(String.valueOf(c.getTelefono()));
+        setPrecioEntrada();
     }
 
-    // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
-    public void actualizarTabla() {
-        c.obtenerEntradas(sm.cargarEntradasCliente(c.getIdCliente()));
-        modelo = new DefaultTableModel(c.consultarEntradas(), cabecera);
-        jTable1.setModel(modelo);
+    // ############################# PRECIO ENTRADA #############################
+    private void setPrecioEntrada() {
+        float precio = sm.devolverPrecioEntrada();
+
+        jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
+    }
+
+    private void setPrecioEntradaGuiada() {
+        float precio = sm.devolverPrecioEntrada();
+        float suplemento = sm.devolverPrecioSuplemento();
+        float total = precio + suplemento;
+
+        jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
     }
 
     private void siGuiada() {
@@ -515,14 +551,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         setPrecioEntrada();
     }
 
-    private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
-    }
-
+    // ############################# IMÁGENES #############################
     private void imagenFondo() {
         try {
             ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
@@ -538,33 +567,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         return retValue;
     }
 
-    private void componentesIniciales() {
-        conexionBD();
-        imagenFondo();
-        datosReserva();
-        modelo = new DefaultTableModel(c.consultarEntradas(), cabecera);
-        jTable1.setModel(modelo);
-    }
-
-    // Obtiene los datos del cliente para mostrarlos en la cabecera
-    private void datosReserva() {
-        jLabel8.setText(c.getNombre());
-        jLabel9.setText(c.getDNI());
-        jLabel10.setText(String.valueOf(c.getTelefono()));
-        setPrecioEntrada();
-    }
-
-    private void setPrecioEntrada() {
-        float precio = sm.devolverPrecioEntrada();
-
-        jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
-    }
-
-    private void setPrecioEntradaGuiada() {
-        float precio = sm.devolverPrecioEntrada();
-        float suplemento = sm.devolverPrecioSuplemento();
-        float total = precio + suplemento;
-
-        jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
+    // ############################# CONEXIÓN BASE DE DATOS #############################
+    private void conexionBD() {
+        try {
+            sm = new SistemaMuseo();
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión con la Base de Datos.");
+        }
     }
 }

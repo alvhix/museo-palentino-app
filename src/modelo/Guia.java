@@ -38,4 +38,25 @@ public class Guia extends Trabajador {
         return nGuia;
     }
 
+    public void cargarEntradasGuia(List entradasGuiadas) {
+        this.entradasGuiadas = entradasGuiadas;
+    }
+
+    public String[][] tablaEntradasGuia() {
+        String[][] array = new String[entradasGuiadas.size()][5];
+
+        if (!entradasGuiadas.isEmpty()) {
+            for (int i = 0; i < entradasGuiadas.size(); i++) {
+                Entrada e = entradasGuiadas.get(i);
+                array[i][0] = String.valueOf(e.getNumEntrada());
+                array[i][1] = String.valueOf(e.getFecha());
+                array[i][2] = e.getHora();
+                array[i][3] = String.valueOf(e.getFechaTransaccion());
+                array[i][4] = String.format("%.2f €", e.getPrecio());
+            }
+        }
+
+        return array;
+    }
+
 }

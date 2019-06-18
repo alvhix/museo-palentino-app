@@ -37,14 +37,25 @@ public class Entrada {
         this.fechaTransaccion = fechaTransaccion;
     }
 
-
     public Entrada() {
 
     }
 
     // Getters -----------------------------------
+    public boolean getEsGuiada() {
+        return esGuiada;
+    }
+
     public int getNumEntrada() {
         return numEntrada;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public int getNumGuia() {
+        return numGuia;
     }
 
     public float getPrecio() {
@@ -63,21 +74,25 @@ public class Entrada {
         return hora;
     }
 
-    public boolean getEsGuiada() {
-        return esGuiada;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public int getNumGuia() {
-        return numGuia;
+    public String getFechaTransaccion() {
+        return fechaTransaccion;
     }
 
     // Setters -----------------------------------
+    public void setEsGuiada(boolean esGuiada) {
+        this.esGuiada = esGuiada;
+    }
+
     public void setNumEntrada(int numEntrada) {
         this.numEntrada = numEntrada;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public void setNumGuia(int numGuia) {
+        this.numGuia = numGuia;
     }
 
     public void setPrecio(float precio) {
@@ -96,16 +111,8 @@ public class Entrada {
         this.hora = hora;
     }
 
-    public void setEsGuiada(boolean esGuiada) {
-        this.esGuiada = esGuiada;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public void setNumGuia(int numGuia) {
-        this.numGuia = numGuia;
+    public void setFechaTransaccion(String fechaTransaccion) {
+        this.fechaTransaccion = fechaTransaccion;
     }
 
 }

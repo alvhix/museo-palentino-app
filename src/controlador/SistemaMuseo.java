@@ -172,8 +172,10 @@ public class SistemaMuseo {
         try {
             // Divido el flujo dependiendo de si la entrada es normal o guiada
             if (!e.getEsGuiada()) {
+                c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaNormal(e, c);
             } else if (e.getEsGuiada()) {
+                c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
             }
         } catch (SQLException ex) {
@@ -183,32 +185,19 @@ public class SistemaMuseo {
     }
 
     public List cargarEntradasCliente(int id) {
-        List entradas;
+        List entradasCliente;
 
         try {
-            entradas = DAOMuseo.instanciar().cargarEntradasCliente(id);
+            entradasCliente = DAOMuseo.instanciar().cargarEntradasCliente(id);
         } catch (SQLException ex) {
-            entradas = null;
+            entradasCliente = null;
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
 
-        return entradas;
+        return entradasCliente;
     }
-
-    /*public List cargarEntradasCliente(int id) {
-        List entradasClientes;
-
-        try {
-            entradasClientes = DAOMuseo.instanciar().cargarEntradasCliente(id);
-        } catch (SQLException ex) {
-            entradasClientes = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-
-        return entradasClientes;
-    }*/
+    
     // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;
