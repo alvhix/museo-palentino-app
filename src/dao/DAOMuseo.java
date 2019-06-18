@@ -87,6 +87,35 @@ public class DAOMuseo {
 
         return correcto;
     }
+    
+    
+    // ########################## CAMBIAR CONTRASEÑA ######################
+    
+    public boolean cambiarContraseña(String passAntigua, String passNueva, String dniUsuario) throws SQLException{
+        boolean cambiada = false;
+        
+        String query = "SELECT * FROM persona WHERE dni = ? and clave = SHA(?) ";
+        String update = "UPDATE clave FROM persona VALUES ?";
+        
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setString(1, dniUsuario);
+        ps.setString(2, passAntigua);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            
+            PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(update);
+            ps.setString(1, passNueva);
+            ResultSet rs2 = ps2.executeQuery();
+            cambiada = true;
+        }
+        
+        
+        return cambiada;
+    }
+    
+    
 
     // ############################# CLIENTE #############################
     public void nuevoCliente(Cliente c, String password) throws SQLException {

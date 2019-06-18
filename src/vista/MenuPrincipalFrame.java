@@ -479,11 +479,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         expo1 = sm.cargarExposicion(1);
         labelNombre1.setText("Exposición " + expo1.getNombre());
         labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
+        System.out.println(expo1.getRutaImagen());
         imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
         // Exposición permanente
         expo2 = sm.cargarExposicion(2);
         labelNombre2.setText("Exposición " + expo2.getNombre());
         labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
+        System.out.println(expo2.getRutaImagen());
         imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
     }
 
