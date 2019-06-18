@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Exposicion;
 import modelo.Obra;
@@ -509,11 +508,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     }
 
     private void componentesIniciales() {
-        oblig1.setVisible(false);
-        oblig2.setVisible(false);
-        oblig3.setVisible(false);
-        oblig4.setVisible(false);
-        oblig5.setVisible(false);
-        oblig6.setVisible(false);
+        oblig1.setText(" ");
+        oblig2.setText(" ");
+        oblig3.setText(" ");
+        oblig4.setText(" ");
+        oblig5.setText(" ");
+        oblig6.setText(" ");
     }
 }

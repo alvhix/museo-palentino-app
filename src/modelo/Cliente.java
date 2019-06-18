@@ -23,12 +23,11 @@ public class Cliente extends Persona {
     }
 
     // Constructor necesario para cargar cliente
-    public Cliente(String nombre, String dni, int telefono, int id, List entradas) {
+    public Cliente(String nombre, String dni, int telefono, int id) {
         super(nombre, dni, telefono);
         this.id = id;
-        this.entradas = entradas;
     }
-    
+
     // Getter
     public int getIdCliente() {
         return id;
@@ -37,15 +36,23 @@ public class Cliente extends Persona {
     public long getTarjeta() {
         return tarjeta;
     }
-    
-    public void obtenerEntradas(List e){
+
+    public void obtenerEntradas(List e) {
         entradas = e;
     }
     
-    public String[][] consultarEntradas() {
+    public void addEntrada(Entrada e){
+        entradas.add(e);
+    }
+
+    public void cargarEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
+    }
+
+    public String[][] tablaEntradas() {
         String[][] array = new String[entradas.size()][5];
         String guiada;
-        String guia;
+        String numGuia;
 
         if (!entradas.isEmpty()) {
             for (int i = 0; i < entradas.size(); i++) {
@@ -55,15 +62,15 @@ public class Cliente extends Persona {
 
                 if (e.getEsGuiada()) {
                     guiada = "Si";
-                    guia = String.valueOf(e.getNumGuia());
+                    numGuia = String.valueOf(e.getNumGuia());
                 } else {
                     guiada = "No";
-                    guia = " -";
+                    numGuia = " -";
                 }
 
                 array[i][2] = guiada;
-                array[i][3] = guia;
-                array[i][4] = String.format("%.2f €",e.getPrecio());
+                array[i][3] = numGuia;
+                array[i][4] = String.format("%.2f €", e.getPrecio());
             }
         }
 

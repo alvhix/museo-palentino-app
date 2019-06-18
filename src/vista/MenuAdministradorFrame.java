@@ -16,7 +16,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -105,18 +104,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         campoNombreExpo = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         campoDuracion = new javax.swing.JTextField();
         campoRuta = new javax.swing.JTextField();
-        selectorFecha = new com.toedter.calendar.JDateChooser();
         botonAbrirSelector = new javax.swing.JLabel();
         infoErrorExpo = new javax.swing.JLabel();
         oblig1 = new javax.swing.JLabel();
         oblig2 = new javax.swing.JLabel();
         oblig3 = new javax.swing.JLabel();
-        oblig4 = new javax.swing.JLabel();
         panelEntradas = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -182,24 +178,22 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
                                     .addComponent(tfNGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(tfNSS))))
+                            .addComponent(tfNSS)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfClave)
                             .addComponent(tfNombre))))
@@ -208,29 +202,31 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -301,10 +297,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLayeredPane1.add(panelEmpleados, "card2");
@@ -395,15 +391,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre de la exposición:");
 
-        jLabel7.setText("Disponible hasta (dd/mm/aaaa):");
-
         jLabel8.setText("Duración del recorrido:");
         jLabel8.setToolTipText("");
 
         jLabel11.setText("Ruta de imagen (máx. 300x114 px):");
         jLabel11.setToolTipText("");
-
-        selectorFecha.setOpaque(false);
 
         botonAbrirSelector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/carpeta.png"))); // NOI18N
         botonAbrirSelector.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,10 +431,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         oblig3.setForeground(new java.awt.Color(255, 0, 102));
         oblig3.setText(" ");
 
-        oblig4.setBackground(new java.awt.Color(255, 255, 255));
-        oblig4.setForeground(new java.awt.Color(255, 0, 102));
-        oblig4.setText(" ");
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -452,33 +440,26 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(oblig1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(oblig3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(oblig2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoNombreExpo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(selectorFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(campoDuracion)))
+                        .addComponent(oblig1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(campoNombreExpo, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(campoRuta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAbrirSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(oblig2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(campoDuracion))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(oblig4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(oblig3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(campoRuta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonAbrirSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -489,31 +470,23 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(campoNombreExpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(oblig1))
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(selectorFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(oblig2))
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oblig3))
-                .addGap(14, 14, 14)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(oblig2)
+                        .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(oblig4))
+                    .addComponent(oblig3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonAbrirSelector))
-                .addGap(11, 11, 11)
-                .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout panelExposicionesLayout = new javax.swing.GroupLayout(panelExposiciones);
@@ -523,7 +496,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(panelExposicionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                     .addGroup(panelExposicionesLayout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -536,10 +509,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(panelExposiciones, "card3");
@@ -647,9 +620,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         panelEntradasLayout.setVerticalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
+                .addContainerGap(253, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addGap(89, 89, 89))
         );
 
         jLayeredPane1.add(panelEntradas, "card4");
@@ -900,7 +873,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
@@ -921,12 +893,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel oblig1;
     private javax.swing.JLabel oblig2;
     private javax.swing.JLabel oblig3;
-    private javax.swing.JLabel oblig4;
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelEntradas;
     private javax.swing.JPanel panelExposiciones;
     private javax.swing.JFileChooser selectorArchivos;
-    private com.toedter.calendar.JDateChooser selectorFecha;
     private javax.swing.JTable tablaEmpleados;
     private javax.swing.JTable tablaExposiciones;
     private javax.swing.JTextField tfClave;
@@ -942,6 +912,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         panelEmpleados.setVisible(false);
         panelExposiciones.setVisible(false);
         panelEntradas.setVisible(false);
+        datosEnBlanco();
+        restablecerCamposExpo();
 
         jp.setVisible(true);
     }
@@ -1072,10 +1044,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         soloNumeros(tfNGuia);
         soloNumeros(tfNSS);
         soloNumeros(campoDuracion);
-        oblig1.setVisible(false);
-        oblig2.setVisible(false);
-        oblig3.setVisible(false);
-        oblig4.setVisible(false);
+        oblig1.setText(" ");
+        oblig2.setText(" ");
+        oblig2.setText(" ");
+        oblig3.setText(" ");
     }
 
     // ####################### - Métodos Sesion - #######################
@@ -1158,9 +1130,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void annadirExposicion() {
         if (validarDatosExposicion()) {
-            Exposicion e = new Exposicion(campoNombreExpo.getName(), selectorFecha.getDate(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
-            //sm.nuevaExposicion(e);
-            //e = sm.cargarExposicion(e.getNombre());
+            Exposicion e = new Exposicion(campoNombreExpo.getName(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
+            sm.nuevaExposicion(e);
+            e = sm.cargarExposicion(e.getNombre());
             etm.annadirExposicion(e);
         }
     }
@@ -1180,7 +1152,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
                 if (opcion == JOptionPane.YES_OPTION) {
                     etm.eliminarExposicion(selection);
-                    //sm.eliminarExposicion(e.getID());
+                    sm.eliminarExposicion(e.getID());
                     salir = true;
                 } else if (opcion == JOptionPane.NO_OPTION) {
                     salir = true;
@@ -1196,14 +1168,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private boolean validarDatosExposicion() {
         boolean correcto = false;
 
-        if (!campoNombreExpo.getText().isEmpty() && selectorFecha.getDate() != null
-                && !campoDuracion.getText().isEmpty() && !campoRuta.getText().isEmpty()) {
-            Date actual = new Date();
+        if (!campoNombreExpo.getText().isEmpty() && !campoDuracion.getText().isEmpty() && !campoRuta.getText().isEmpty()) {
             String nombre = campoNombreExpo.getText();
-            Date disponible = selectorFecha.getDate();
             String ruta = campoRuta.getText();
 
-            //if (actual.before(disponible) /*&& sm.comprobarExposicion(nombre)*/) {
+            if (!sm.comprobarSiExisteExposicion(nombre)) {
                 ImageIcon image = new ImageIcon(ruta);
 
                 if (!(image.getIconHeight() <= 114 && image.getIconWidth() <= 300)) {
@@ -1211,30 +1180,23 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 } else {
                     correcto = true;
                     restablecerCamposExpo();
-                    oblig1.setVisible(false);
-                    oblig2.setVisible(false);
-                    oblig3.setVisible(false);
-                    oblig4.setVisible(false);
+                    oblig1.setText(" ");
+                    oblig2.setText(" ");
+                    oblig2.setText(" ");
+                    oblig3.setText(" ");
                 }
-            //}
-
-        } else {
-            boolean campoVacio = false;
-
-            if (campoNombreExpo.getText().isEmpty()) {
-                oblig1.setVisible(true);
             }
-
-            if (selectorFecha.getDate() != null) {
-                oblig2.setVisible(true);
+        } else {
+            if (campoNombreExpo.getText().isEmpty()) {
+                oblig1.setText("*");
             }
 
             if (campoDuracion.getText().isEmpty()) {
-                oblig3.setVisible(true);
+                oblig2.setText("*");
             }
 
             if (campoRuta.getText().isEmpty()) {
-                oblig4.setVisible(true);
+                oblig3.setText("*");
             }
         }
 
@@ -1243,7 +1205,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void restablecerCamposExpo() {
         campoNombreExpo.setText("");
-        selectorFecha.setDate(null);
         campoDuracion.setText("");
         campoRuta.setText("");
     }

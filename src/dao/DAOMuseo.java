@@ -150,7 +150,7 @@ public class DAOMuseo {
         ResultSet rs2 = ps2.executeQuery();
 
         if (rs1.next() && rs2.next()) {
-            c = new Cliente(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getInt("idCliente"), cargarEntradasCliente(rs2.getInt("idCliente")));
+            c = new Cliente(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getInt("idCliente"));
         }
 
         return c;
@@ -247,17 +247,21 @@ public class DAOMuseo {
         ResultSet rs2 = ps2.executeQuery();
 
         if (rs1.next() && rs2.next()) {
-            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"), rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
+            g = new Guia(rs1.getString("nombre"), rs1.getString("dni"), rs1.getInt("telefono"),
+                    rs2.getLong("numSeguridadSocial"), rs2.getInt("numIdentificacion"), rs2.getInt("numGuia"));
         }
 
         return g;
     }
 
-    // FALTA RENOVAR MÉTODO
+    // Implementa las entradas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) throws SQLException {
         List entradasGuia = new ArrayList();
 
-        String query ="SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion FROM cliente, entrada, guia, guia_entrada WHERE entrada.idCliente = cliente.idCliente AND entrada.numEntrada = guia_entrada.numEntrada AND guia_entrada.numGuia = guia.numGuia AND guia.numGuia = ?";
+        String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, "
+                + "entrada.fechaTransaccion FROM cliente, entrada, guia, guia_entrada WHERE "
+                + "entrada.idCliente = cliente.idCliente AND entrada.numEntrada = guia_entrada.numEntrada "
+                + "AND guia_entrada.numGuia = guia.numGuia AND guia.numGuia = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, numGuia);
@@ -340,26 +344,47 @@ public class DAOMuseo {
     }
 
     // ############################# EXPOSICIÓN #############################
-    private List cargarExposiciones() throws SQLException {
-        List exposiciones = new ArrayList();
-        String query = "SELECT idExposicion, nombre, duracion, tiempoRecorrido, imagen FROM exposicion";
+    public boolean existeExposicion(String nombre) throws SQLException {
+        boolean existe = false;
+        String query = "SELECT * FROM exposicion WHERE nombre = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setString(1, nombre);
 
         ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
-                    rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"),
-                    cargarObrasExposicion(rs.getInt("idExposicion"))));
+        // Si hay siguiente es que existe al menos una entrada en la tabla
+        if (rs.next()) {
+            existe = true;
         }
 
-        return exposiciones;
+        return existe;
+    }
+
+    public void nuevaExposicion(Exposicion e) throws SQLException {
+        String insert = "INSERT INTO exposicion (nombre, tiempoRecorrido, imagen) VALUES (?, ?, ?)";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
+        ps.setString(1, e.getNombre());
+        ps.setInt(2, e.getTiempoRecorrido());
+        ps.setString(3, e.getRutaImagen());
+
+        // Se ejecuta el insert
+        ps.executeUpdate();
+    }
+    
+    public void eliminarExposicion(int id) throws SQLException {
+        String delete = "DELETE FROM exposicion WHERE idExposicion = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(delete);
+        ps.setInt(1, id);
+
+        // Se ejecuta el delete
+        ps.executeUpdate();
     }
 
     public Exposicion cargarExposicion(int id) throws SQLException {
         Exposicion e = null;
-        String query = "SELECT nombre, duracion, tiempoRecorrido, imagen FROM exposicion WHERE idExposicion = ?";
+        String query = "SELECT nombre, tiempoRecorrido, imagen FROM exposicion WHERE idExposicion = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -367,13 +392,125 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            e = new Exposicion(id, rs.getString("nombre"), rs.getDate("duracion"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
+            e = new Exposicion(id, rs.getString("nombre"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
         }
 
         return e;
     }
 
+    public Exposicion cargarExposicion(String nombre) throws SQLException {
+        Exposicion e = null;
+        String query = "SELECT * FROM exposicion WHERE nombre = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setString(1, nombre);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            e = new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"), rs.getInt("tiempoRecorrido"),
+                    rs.getString("imagen"), cargarObrasExposicion(rs.getInt("idExposicion")));
+        }
+
+        return e;
+    }
+
+    private List cargarExposiciones() throws SQLException {
+        List exposiciones = new ArrayList();
+        String query = "SELECT idExposicion, nombre, tiempoRecorrido, imagen FROM exposicion";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
+                    rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(rs.getInt("idExposicion"))));
+        }
+
+        return exposiciones;
+    }
+
     // ############################# OBRA #############################
+    public boolean existeObra(String titulo, String autor, String anno, String tipo) throws SQLException {
+        boolean existe = false;
+        String query = "SELECT * FROM obra WHERE titulo = ? AND autor = ? AND año = ? AND tipo = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setString(1, titulo);
+        ps.setString(2, autor);
+        ps.setString(3, anno);
+        ps.setString(4, tipo);
+
+        ResultSet rs = ps.executeQuery();
+        // Si hay siguiente es que existe al menos una entrada en la tabla
+        if (rs.next()) {
+            existe = true;
+        }
+
+        return existe;
+    }
+
+    public void nuevaObra(Obra o) throws SQLException {
+        String insert = "INSERT INTO obra (titulo, autor, estilo, año, tipo, imagen) VALUES (?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
+        ps.setString(1, o.getTitulo());
+        ps.setString(2, o.getAutor());
+        ps.setString(3, o.getEstilo());
+        ps.setString(4, o.getAnno());
+        ps.setString(5, o.getTipo());
+        ps.setString(6, o.getRutaImagen());
+
+        // Se ejecuta el insert
+        ps.executeUpdate();
+    }
+    
+    public void eliminarObra(int id) throws SQLException {
+        String delete = "DELETE FROM obra WHERE idObra = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(delete);
+        ps.setInt(1, id);
+
+        // Se ejecuta el delete
+        ps.executeUpdate();
+    }
+
+    public Obra cargarObra(int id) throws SQLException {
+        Obra o = null;
+        String query = "SELECT titulo, autor, estilo, año, tipo, imagen FROM obra WHERE idObra = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            o = new Obra(id, rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"));
+        }
+
+        return o;
+    }
+
+    public Obra cargarObra(String titulo, String autor) throws SQLException {
+        Obra o = null;
+        String query = "SELECT idObra, titulo, autor, estilo, año, tipo, imagen FROM obra WHERE titulo = ? AND autor = ?";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setString(1, titulo);
+        ps.setString(2, autor);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            o = new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"));
+        }
+
+        return o;
+    }
+
     private List cargarObrasExposicion(int idExpo) throws SQLException {
         List obras;
         String query = "SELECT obra.* FROM obra, exposicion, exposicion_obra WHERE obra.idObra = exposicion_obra.idObra "
@@ -387,28 +524,11 @@ public class DAOMuseo {
         obras = new ArrayList();
 
         while (rs.next()) {
-            obras.add(new Obra(idExpo, rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
+            obras.add(new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
                     rs.getString("año"), rs.getString("tipo"), rs.getString("imagen")));
         }
 
         return obras;
-    }
-
-    private Obra cargarObra(int id) throws SQLException {
-        Obra o = null;
-        String query = "SELECT titulo, autor, estilo, aÃ±o, tipo, imagen FROM obra WHERE idObra = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, id);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            o = new Obra(id, rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"));
-        }
-
-        return o;
     }
 
     // ############################# ENTRADAS #############################
@@ -456,11 +576,12 @@ public class DAOMuseo {
     public List cargarEntradasCliente(int idCliente) throws SQLException {
         List entradas = new ArrayList();
 
-        String query1 = "SELECT entrada.numeroEntrada, entrada.fechaReserva, entrada.hora, "
-                + "entrada.guiada, entrada.precio, entrada.idCliente guia.numeroGuia FROM entrada, "
-                + "guia, guia_cliente WHERE guia_entrada.numGuia = guia.numGuia AND "
-                + "cliente";
-        String query2 = "SELECT numEntrada, idCliente FROM guia_cliente WHERE idCliente = ?";
+        String query1 = "SELECT numeroEntrada, fechaReserva, hora, "
+                + "guiada, precio, idCliente FROM entrada WHERE entrada.idCliente = ?";
+        String query2 = "SELECT guia_entrada.numGuia FROM guia_entrada, entrada "
+                + "WHERE guia_entrada.numEntrada = entrada.numeroEntrada AND "
+                + "entrada.idCliente = ?";
+
         PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(query1);
         ps1.setInt(1, idCliente);
         PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(query2);
@@ -468,6 +589,7 @@ public class DAOMuseo {
 
         ResultSet rs1 = ps1.executeQuery();
         ResultSet rs2 = ps2.executeQuery();
+
         while (rs1.next()) {
             entradas.add(new Entrada(rs1.getInt("numeroEntrada"),
                     rs1.getDate("fechaReserva"), rs1.getString("hora"),
@@ -542,7 +664,7 @@ public class DAOMuseo {
         if (rs.next()) {
             numEntradaActual = rs.getInt("MAX(numeroEntrada)");
         }
-        
+
         return numEntradaActual;
     }
 }
