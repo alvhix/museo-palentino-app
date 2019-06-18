@@ -5,7 +5,6 @@
  */
 package disenno;
 
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import modelo.Exposicion;
@@ -17,7 +16,7 @@ import modelo.Exposicion;
 public class ExposicionesTableModel extends AbstractTableModel {
 
     private List<Exposicion> exposiciones;
-    private String[] columns = {"ID", "Nombre", "Disponible hasta", "Tiempo del recorrido", "Ruta de imagen"};
+    private String[] columns = {"ID", "Nombre", "Tiempo del recorrido", "Ruta de imagen"};
 
     public ExposicionesTableModel(List<Exposicion> exposiciones) {
         this.exposiciones = exposiciones;
@@ -52,20 +51,17 @@ public class ExposicionesTableModel extends AbstractTableModel {
         Exposicion e = exposiciones.get(rowIndex);
 
         switch (colIndex) {
-            // Devuelve el id. 
+            // Devuelve el id de la exposicion. 
             case 0:
                 return e.getID();
-            // Devuelve el titulo. 
+            // Devuelve el nombre de la exposicion. 
             case 1:
                 return e.getNombre();
-            // Devuelve el autor.
+            // Devuelve el tiempo del recorrido.
             case 2:
-                return e.getDuracion();
-            // Devuelve el estilo.
-            case 3:
                 return e.getTiempoRecorrido();
-            // Devuelve el año.
-            case 4:
+            // Devuelve la ruta de la imagen.
+            case 3:
                 return e.getRutaImagen();
             // Devuelve la Exposicion
             default:
@@ -82,12 +78,9 @@ public class ExposicionesTableModel extends AbstractTableModel {
                 e.setNombre((String) dato);
                 break;
             case 2:
-                e.setDuracion((Date) dato);
-                break;
-            case 3:
                 e.setTiempoRecorrido((Integer) dato);
                 break;
-            case 4:
+            case 3:
                 e.setRutaImagen((String) dato);
                 break;
         }

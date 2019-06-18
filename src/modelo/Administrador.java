@@ -42,14 +42,6 @@ public class Administrador extends Trabajador {
     }
 
     // ####################### - MÉTODOS - #######################
-    public void agregarExposicion(Exposicion e) {
-        exposiciones.add(e);
-    }
-
-    public void borrarExposicion(Exposicion e) {
-        exposiciones.remove(e);
-    }
-
     public void annadirEmpleado(Guia e) {
         empleados.add(e);
     }

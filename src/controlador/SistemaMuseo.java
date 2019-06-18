@@ -14,6 +14,7 @@ import modelo.Cliente;
 import modelo.Entrada;
 import modelo.Exposicion;
 import modelo.Guia;
+import modelo.Obra;
 
 /**
  *
@@ -152,6 +153,38 @@ public class SistemaMuseo {
     }
 
     // ############################# EXPOSICIÓN #############################
+    public boolean comprobarSiExisteExposicion(String nombre) {
+        boolean comprobarUsuario;
+
+        try {
+            comprobarUsuario = DAOMuseo.instanciar().existeUsuario(nombre);
+        } catch (SQLException ex) {
+            comprobarUsuario = false;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return comprobarUsuario;
+    }
+
+    public void nuevaExposicion(Exposicion e) {
+        try {
+            DAOMuseo.instanciar().nuevaExposicion(e);
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+    }
+
+    public void eliminarExposicion(int id){
+        try {
+            DAOMuseo.instanciar().eliminarExposicion(id);
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+    }
+    
     public Exposicion cargarExposicion(int idExpo) {
         Exposicion exposicion;
 
@@ -164,6 +197,81 @@ public class SistemaMuseo {
         }
 
         return exposicion;
+    }
+
+    public Exposicion cargarExposicion(String nombre) {
+        Exposicion exposicion;
+
+        try {
+            exposicion = DAOMuseo.instanciar().cargarExposicion(nombre);
+        } catch (SQLException ex) {
+            exposicion = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return exposicion;
+    }
+
+    // ############################# OBRA #############################
+    public boolean comprobarSiExisteObra(String titulo, String autor, String anno, String tipo) {
+        boolean comprobarUsuario;
+
+        try {
+            comprobarUsuario = DAOMuseo.instanciar().existeObra(titulo, autor, anno, tipo);
+        } catch (SQLException ex) {
+            comprobarUsuario = false;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return comprobarUsuario;
+    }
+    
+    public void nuevaObra(Obra o) {
+        try {
+            DAOMuseo.instanciar().nuevaObra(o);
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+    }
+
+    public void eliminarObra(int id){
+        try {
+            DAOMuseo.instanciar().eliminarObra(id);
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+    }
+    
+    public Obra cargarObra(int idObra) {
+        Obra obra;
+
+        try {
+            obra = DAOMuseo.instanciar().cargarObra(idObra);
+        } catch (SQLException ex) {
+            obra = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return obra;
+    }
+
+    public Obra cargarObra(String titulo, String autor) {
+        Obra obra;
+
+        try {
+            obra = DAOMuseo.instanciar().cargarObra(titulo, autor);
+        } catch (SQLException ex) {
+            obra = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return obra;
     }
 
     // ############################# ENTRADA #############################
@@ -273,4 +381,5 @@ public class SistemaMuseo {
 
         return precioSuplemento;
     }
+
 }
