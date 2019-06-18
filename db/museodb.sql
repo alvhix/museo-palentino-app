@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2019 a las 13:20:27
+-- Tiempo de generación: 18-06-2019 a las 17:38:51
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -87,9 +87,14 @@ CREATE TABLE `entrada` (
 --
 
 INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`) VALUES
-(72, '2019-06-09', '14:00', 1, 11.8, 4.95, 6),
-(73, '2019-06-01', '14:00', 0, 6.85, 4.95, 6),
-(74, '2019-06-01', '8:00', 0, 6.85, 4.95, 6);
+(86, '2019-06-02', '8:00', 0, 6.85, 4.95, 6),
+(87, '2019-06-16', '12:00', 1, 11.8, 4.95, 6),
+(88, '2019-06-29', '16:00', 1, 11.8, 4.95, 6),
+(89, '2019-06-30', '8:00', 1, 11.8, 4.95, 6),
+(90, '2019-06-23', '8:00', 1, 11.8, 4.95, 6),
+(91, '2019-06-23', '16:00', 1, 11.8, 4.95, 6),
+(92, '2019-06-23', '8:00', 1, 11.8, 4.95, 6),
+(93, '2019-06-15', '8:00', 0, 6.85, 4.95, 6);
 
 -- --------------------------------------------------------
 
@@ -173,7 +178,8 @@ CREATE TABLE `guia` (
 INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`, `dniGuia`) VALUES
 (1, 48, 111111111, 'guia', '44444444e'),
 (2, 33, 123456789, 'guia', '87654321A'),
-(3, 13, 1112223334, 'guia', '45612378x');
+(3, 13, 1112223334, 'guia', '45612378x'),
+(7, 5, 444444444444, 'Guía', '44444444f');
 
 -- --------------------------------------------------------
 
@@ -183,7 +189,7 @@ INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`
 
 CREATE TABLE `guia_entrada` (
   `numEntrada` int(10) UNSIGNED NOT NULL,
-  `numGuia` int(10) UNSIGNED NOT NULL
+  `numGuia` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -284,6 +290,7 @@ INSERT INTO `persona` (`dni`, `clave`, `nombre`, `telefono`, `rol`) VALUES
 ('12345678g', '7c222fb2927d828af22f592134e8932480637c0d', 'Guillermio', 989000000, 'administrador'),
 ('4323g', 'f37be93b674e3dcd988cba4a7cf66879468c3b35', 'fdsfsdf', 3425355, 'guia'),
 ('44444444e', '7c222fb2927d828af22f592134e8932480637c0d', 'Sergio', 555555555, 'guia'),
+('44444444f', '8949eb0b6a2ef0595f9ef639e167d6209c3ccc60', 'grsgfdg', 444444444, 'guia'),
 ('45612378x', 'dfa094c6585106137a4e3aa979017d150abaa0b2', 'aaaaaaaa', 987654321, 'guia'),
 ('45678912x', 'dfa094c6585106137a4e3aa979017d150abaa0b2', 'wonse', 987654321, 'guia'),
 ('523525', '49fb42e0fd0c5fa4d47df2bdb954e3c2dcca08f3', '32432523', 53253, 'guia'),
@@ -353,7 +360,7 @@ ALTER TABLE `guia`
 ALTER TABLE `guia_entrada`
   ADD PRIMARY KEY (`numEntrada`),
   ADD UNIQUE KEY `numEntrada` (`numEntrada`),
-  ADD KEY `numGuia` (`numGuia`);
+  ADD KEY `numGuia_fk` (`numGuia`);
 
 --
 -- Indices de la tabla `museo`
@@ -403,7 +410,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `exposicion`
@@ -415,7 +422,7 @@ ALTER TABLE `exposicion`
 -- AUTO_INCREMENT de la tabla `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `numIdentificacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `numIdentificacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `obra`
@@ -464,7 +471,7 @@ ALTER TABLE `guia`
 --
 ALTER TABLE `guia_entrada`
   ADD CONSTRAINT `numEntrada_fk` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroentrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `numGuia` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `numGuia_fk` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `museo_exposicion`
