@@ -19,19 +19,18 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
     /**
      * Creates new form CambiarContraseñaDialog
      */
-    
     SistemaMuseo sm;
     Persona user;
-    
+
     public CambiarContraseñaDialog(java.awt.Frame parent, boolean modal, Persona p) {
         super(parent, modal);
         initComponents();
         user = p;
         iniciarComponentes();
     }
-    
-    public CambiarContraseñaDialog(java.awt.Frame parent, boolean modal){
-        
+
+    public CambiarContraseñaDialog(java.awt.Frame parent, boolean modal) {
+
     }
 
     /**
@@ -57,9 +56,15 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
         jLabel1.setText("Introduce la contraseña antigua");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cambiar de Contraseña");
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Aceptar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,29 +85,29 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel1)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(alertaLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(claveAntiguatf)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ClaveNuevatf)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(alertaLabel)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addComponent(ClaveNuevatf, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(claveAntiguatf, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,9 +122,9 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(ClaveNuevatf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(alertaLabel)
                 .addGap(18, 18, 18)
+                .addComponent(alertaLabel)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -127,11 +132,18 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        cambiarContraseña();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        cancelar();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,39 +198,39 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
-    private void cambiarContraseña(){
-        
+    private void cancelar() {
+        dispose();
+    }
+
+    private void cambiarContraseña() {
+
         char[] claveAntigua = claveAntiguatf.getPassword();
         char[] claveNueva = ClaveNuevatf.getPassword();
-        
+
         String claveAntiguaString = new String(claveAntigua);
         String claveNuevaString = new String(claveNueva);
-        
+
         boolean cambiada;
-        
+
         cambiada = sm.cambiarContraseña(claveAntiguaString, claveNuevaString, user.getDNI());
-        
-        if(cambiada == true){
-            
-            JOptionPane.showMessageDialog(rootPane, "Has cambiado tu contraseña", "Contraseña cambiada", WIDTH);
+        if (cambiada == true) {
+
+            JOptionPane.showMessageDialog(rootPane, "Has cambiado tu contraseña", "Contraseña cambiada", JOptionPane.OK_OPTION);
             this.setVisible(false);
-            
-        }
-        else{
+
+        } else {
             alertaLabel.setVisible(true);
         }
-        
+
     }
-    
-    
+
     // --------------------- Método de conexión a la base de datos -----------------
-    
-    private void iniciarComponentes(){
-        
+    private void iniciarComponentes() {
+
         conexionBD();
         alertaLabel.setVisible(false);
     }
-    
+
     private void conexionBD() {
         try {
             sm = new SistemaMuseo();
@@ -226,5 +238,5 @@ public class CambiarContraseñaDialog extends javax.swing.JDialog {
             System.out.println("Error de conexión con la Base de Datos.");
         }
     }
-    
+
 }

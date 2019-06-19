@@ -88,9 +88,10 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         menuDatos = new javax.swing.JMenuItem();
-        menuCerrarSesion = new javax.swing.JMenuItem();
         cambiarContraseñaMenu = new javax.swing.JMenuItem();
+        menuCerrarSesion = new javax.swing.JMenuItem();
         menuReserva = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Museo Palentino - Menú de Usuario");
@@ -106,7 +107,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
             }
         });
 
-        botonEntrada.setText("Entrada");
+        botonEntrada.setText("Reserva de entradas");
         botonEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEntradaActionPerformed(evt);
@@ -118,20 +119,20 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         panelSesion1Layout.setHorizontalGroup(
             panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSesion1Layout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
-                .addGroup(panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addContainerGap(124, Short.MAX_VALUE)
+                .addComponent(botonEntrada)
+                .addGap(18, 18, 18)
+                .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelSesion1Layout.setVerticalGroup(
             panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSesion1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(botonCerrarSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(botonEntrada)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCerrarSesion)
+                    .addComponent(botonEntrada))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jPanel.setOpaque(false);
@@ -425,9 +426,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         menuDatos.setText("Mis datos");
         jMenu2.add(menuDatos);
 
-        menuCerrarSesion.setText("Cerrar sesión");
-        jMenu2.add(menuCerrarSesion);
-
         cambiarContraseñaMenu.setText("Cambiar Contraseña");
         cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,14 +434,26 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         });
         jMenu2.add(cambiarContraseñaMenu);
 
+        menuCerrarSesion.setText("Cerrar sesión");
+        menuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCerrarSesionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuCerrarSesion);
+
         jMenuBar1.add(jMenu2);
 
         menuReserva.setText("Opciones de compra");
-        menuReserva.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenuItem1.setText("Reserva de entradas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuReservaActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        menuReserva.add(jMenuItem1);
+
         jMenuBar1.add(menuReserva);
 
         setJMenuBar(jMenuBar1);
@@ -476,11 +486,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         cerrarSesion();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
-
-    private void menuReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservaActionPerformed
-        // TODO add your handling code here:
-        opcionesCompra();
-    }//GEN-LAST:event_menuReservaActionPerformed
 
     private void botonEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntradaActionPerformed
         // TODO add your handling code here:
@@ -576,6 +581,16 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         ccd.setVisible(true);
     }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        opcionesCompra();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        cerrarSesion();
+    }//GEN-LAST:event_menuCerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +635,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel infoUsuario;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -713,7 +729,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
         mod.setVisible(true);
     }
-    
+
     private void conexionBD() {
         try {
             sm = new SistemaMuseo();
@@ -721,7 +737,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
             System.out.println("Error de conexión con la Base de Datos.");
         }
     }
-    
+
     private void imagenFondo() {
         try {
             ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoPrincipal.png")));
