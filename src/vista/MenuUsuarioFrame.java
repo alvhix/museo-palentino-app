@@ -89,6 +89,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         menuDatos = new javax.swing.JMenuItem();
         menuCerrarSesion = new javax.swing.JMenuItem();
+        cambiarContraseñaMenu = new javax.swing.JMenuItem();
         menuReserva = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -427,6 +428,14 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         menuCerrarSesion.setText("Cerrar sesión");
         jMenu2.add(menuCerrarSesion);
 
+        cambiarContraseñaMenu.setText("Cambiar Contraseña");
+        cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarContraseñaMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cambiarContraseñaMenu);
+
         jMenuBar1.add(jMenu2);
 
         menuReserva.setText("Opciones de compra");
@@ -562,6 +571,11 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         anterior();
     }//GEN-LAST:event_botonAnteriorMouseReleased
 
+    private void cambiarContraseñaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
+        CambiarContraseñaDialog ccd = new CambiarContraseñaDialog(this, rootPaneCheckingEnabled, c);
+        ccd.setVisible(true);
+    }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -599,6 +613,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonEntrada;
     private javax.swing.JLabel botonSiguiente;
+    private javax.swing.JMenuItem cambiarContraseñaMenu;
     private javax.swing.JLabel imagen1;
     private javax.swing.JLabel imagen2;
     private javax.swing.JLabel infoSesion;

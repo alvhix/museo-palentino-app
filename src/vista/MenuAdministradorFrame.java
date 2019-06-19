@@ -124,9 +124,16 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         botonCambiarSuplemento = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        precioLabel = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        suplementolabel = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuCerrarSesion = new javax.swing.JMenuItem();
+        cambiarContraseñaMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mostrarGestionEmpleados = new javax.swing.JMenuItem();
         mostrarGestionExposiciones = new javax.swing.JMenuItem();
@@ -263,7 +270,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btEliminarGuia, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btEliminarGuia, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(btAnnadirGuia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -298,7 +305,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -567,7 +574,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonCambiarSuplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                        .addComponent(botonCambiarSuplemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(campoPrecioEntrada)
                         .addGap(10, 10, 10)
@@ -608,19 +615,82 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel7.setText("Precio de la Entrada");
+
+        precioLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(precioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(precioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel9.setText("Precio Suplemento del Guía");
+
+        suplementolabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(suplementolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(suplementolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelEntradasLayout = new javax.swing.GroupLayout(panelEntradas);
         panelEntradas.setLayout(panelEntradasLayout);
         panelEntradasLayout.setHorizontalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
+            .addGroup(panelEntradasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEntradasLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelEntradasLayout.setVerticalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89))
         );
@@ -636,6 +706,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuCerrarSesion);
+
+        cambiarContraseñaMenu.setText("Cambiar Contraseña");
+        cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarContraseñaMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cambiarContraseñaMenu);
 
         jMenuBar.add(jMenu1);
 
@@ -809,6 +887,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         cerrarSesion();
     }//GEN-LAST:event_menuCerrarSesionActionPerformed
 
+    private void cambiarContraseñaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
+        CambiarContraseñaDialog ccd = new CambiarContraseñaDialog(this, rootPaneCheckingEnabled, a);
+        ccd.setVisible(true);
+    }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -855,6 +938,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton botonModificarExpo;
     private javax.swing.JButton btAnnadirGuia;
     private javax.swing.JButton btEliminarGuia;
+    private javax.swing.JMenuItem cambiarContraseñaMenu;
     private javax.swing.JTextField campoDuracion;
     private javax.swing.JTextField campoNombreExpo;
     private javax.swing.JTextField campoPrecioEntrada;
@@ -873,13 +957,17 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
@@ -896,7 +984,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelEntradas;
     private javax.swing.JPanel panelExposiciones;
+    private javax.swing.JLabel precioLabel;
     private javax.swing.JFileChooser selectorArchivos;
+    private javax.swing.JLabel suplementolabel;
     private javax.swing.JTable tablaEmpleados;
     private javax.swing.JTable tablaExposiciones;
     private javax.swing.JTextField tfClave;
@@ -1048,6 +1138,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         oblig2.setText(" ");
         oblig2.setText(" ");
         oblig3.setText(" ");
+        setPrecioEntradaGuiada();
     }
 
     // ####################### - Métodos Sesion - #######################
@@ -1237,6 +1328,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         if (!campoPrecioEntrada.getText().isEmpty()) {
             float precio = Float.valueOf(campoPrecioEntrada.getText());
             sm.cambiarPrecioEntrada(precio);
+            setPrecioEntradaGuiada();
         }
     }
 
@@ -1244,6 +1336,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         if (!campoPrecioSuplemento.getText().isEmpty()) {
             float precio = Float.valueOf(campoPrecioSuplemento.getText());
             sm.cambiarPrecioSuplemento(precio);
+            setPrecioEntradaGuiada();
         }
+    }
+    
+    private void setPrecioEntradaGuiada() {
+        float precio = sm.devolverPrecioEntrada();
+        float suplemento = sm.devolverPrecioSuplemento();
+
+        precioLabel.setText(String.valueOf(String.format("%.2f €", precio)));
+        suplementolabel.setText(String.valueOf(String.format("%.2f €", suplemento)));
     }
 }
