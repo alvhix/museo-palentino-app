@@ -500,7 +500,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 // ############################# RESERVA DE ENTRADA #############################
     public void reservarEntrada() throws FechaException {
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
-            comprobarTarjeta();
             // Crea nueva entrada
             e = new Entrada();
             // Setea la fecha de la reserva
@@ -525,18 +524,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     }
 
     // ############################# DATOS RESERVA DE ENTRADA #############################
-    public void comprobarTarjeta() {
-        long tarjeta = sm.comprobarTarjeta(c.getIdCliente());
-
-        if (tarjeta == -1) {
-            int seleccion = JOptionPane.showConfirmDialog(null, "No tiene una tarjeta establecida en su cuenta. ¿Desea introducirla?", "Error al reservar", JOptionPane.YES_NO_OPTION);
-            if (seleccion == 1) {
-                JDialog jd = new TarjetaDialog(new MenuUsuarioFrame(), true, c);
-                jd.setVisible(true);
-            }
-        }
-    }
-
     // Obtiene los datos del cliente para mostrarlos en la cabecera
     private void datosReserva() {
         jLabel8.setText(c.getNombre());
