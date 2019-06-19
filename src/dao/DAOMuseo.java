@@ -249,9 +249,9 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
         
         while (rs.next()) {
-            entradasGuia.add(new Entrada(rs.getString("dniCliente"),
-                    rs.getDate("fechaReserva"), rs.getString("hora"),
-                    String.valueOf(rs.getDate("fechaTransaccion")), rs.getFloat("precio")));
+            entradasGuia.add(new Entrada(rs.getString("cliente.dniCliente"),
+                    rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"),
+                    String.valueOf(rs.getDate("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
         }
 
         return entradasGuia;

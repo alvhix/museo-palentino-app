@@ -29,13 +29,6 @@ public class Entrada {
         this.idCliente = idCliente;
     }
 
-    public Entrada(int numEntrada, Date fecha, String hora, String fechaTransaccion) {
-        this.numEntrada = numEntrada;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.fechaTransaccion = fechaTransaccion;
-    }
-
     public Entrada(String dniCliente, Date fecha, String hora, String fechaTransaccion, float precio) {
         this.dniCliente = dniCliente;
         this.fecha = fecha;
