@@ -48,7 +48,7 @@ public class Guia extends Trabajador {
         if (!entradasGuiadas.isEmpty()) {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
                 Entrada e = entradasGuiadas.get(i);
-                array[i][0] = String.valueOf(e.getNumEntrada());
+                array[i][0] = e.getDniCliente();
                 array[i][1] = String.valueOf(e.getFecha());
                 array[i][2] = e.getHora();
                 array[i][3] = String.valueOf(e.getFechaTransaccion());

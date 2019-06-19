@@ -99,7 +99,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Nombre: ");
         jPanel1.add(jLabel1);
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -108,7 +108,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("DNI:");
+        jLabel2.setText("DNI: ");
         jPanel1.add(jLabel2);
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -117,7 +117,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Teléfono:");
+        jLabel3.setText("Teléfono: ");
         jPanel1.add(jLabel3);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -509,6 +509,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             int comboBox = jComboBox1.getSelectedIndex();
             String[] horario = {"8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
             e.setHora(horario[comboBox]);
+            e.setPrecio(getPrecioEntrada());
 
             // Reserva la entrada pasando como parámetros el cliente
             sm.reservarEntrada(e, c);
@@ -528,13 +529,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         jLabel8.setText(c.getNombre());
         jLabel9.setText(c.getDNI());
         jLabel10.setText(String.valueOf(c.getTelefono()));
-        setPrecioEntrada();
+        setPrecioEntradaNormal();
     }
 
     // ############################# PRECIO ENTRADA #############################
-    private void setPrecioEntrada() {
+    private void setPrecioEntradaNormal() {
         float precio = sm.devolverPrecioEntrada();
-
         jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
     }
 
@@ -542,8 +542,17 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         float precio = sm.devolverPrecioEntrada();
         float suplemento = sm.devolverPrecioSuplemento();
         float total = precio + suplemento;
-
         jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
+    }
+
+    private float getPrecioEntrada() {
+        float precioEntrada;
+        if (e.getEsGuiada()) {
+            precioEntrada = sm.devolverPrecioEntrada() + sm.devolverPrecioSuplemento();
+        } else {
+            precioEntrada = sm.devolverPrecioEntrada();
+        }
+        return precioEntrada;
     }
 
     private void siGuiada() {
@@ -553,7 +562,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     }
 
     private void noGuiada() {
-        setPrecioEntrada();
+        setPrecioEntradaNormal();
     }
 
     // ############################# IMÁGENES #############################

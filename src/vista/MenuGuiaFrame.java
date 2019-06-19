@@ -110,7 +110,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jButton1.setText("Cerrar sesión");
@@ -122,16 +122,31 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
         jPanel3.setOpaque(false);
 
-        jLabel2.setText("Número de guía:");
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Número de guía: ");
         jPanel3.add(jLabel2);
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jLabel3);
 
-        jLabel4.setText("DNI:");
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("DNI: ");
         jPanel3.add(jLabel4);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jLabel5);
 
-        jLabel6.setText("Número de la seguridadsocial:");
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Número de la seguridad social: ");
         jPanel3.add(jLabel6);
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jLabel7);
 
         jMenu1.setText("Opciones");
@@ -280,9 +295,9 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         return retValue;
     }
 
-    // ############################# CARGA DE ENTRADAS DEL GUÍA #############################
+    // ############################# CARGA DE DATOS DEL GUÍA #############################
     public void cargarEntradasGuia() {
-        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getID()));
+        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getNGuia()));
     }
 
     public void datosGuia() {
