@@ -15,6 +15,7 @@ public class Entrada {
     private float precio;
     private float suplementoGuia;
     private Date fecha;
+    private String dniCliente;
     private String hora;
     private String fechaTransaccion;
 
@@ -33,6 +34,14 @@ public class Entrada {
         this.fecha = fecha;
         this.hora = hora;
         this.fechaTransaccion = fechaTransaccion;
+    }
+
+    public Entrada(String dniCliente, Date fecha, String hora, String fechaTransaccion, float precio) {
+        this.dniCliente = dniCliente;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.fechaTransaccion = fechaTransaccion;
+        this.precio = precio;
     }
 
     public Entrada() {
