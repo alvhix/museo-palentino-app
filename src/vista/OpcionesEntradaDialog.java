@@ -493,7 +493,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
     public void mostrarTabla() {
         // Carga las entradas directamente de la base de datos
-        modelo = new DefaultTableModel(sm.tablaEntradas(sm.cargarEntradasCliente(c.getIdCliente())), cabecera);
+        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
         jTable1.setModel(modelo);
     }
 

@@ -9,8 +9,7 @@ import dao.ConexionBD;
 import dao.DAOMuseo;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Administrador;
 import modelo.Cliente;
 import modelo.Entrada;
@@ -73,16 +72,14 @@ public class SistemaMuseo {
 
         return comprobarCredenciales;
     }
-    
+
     // #################### CAMBIAR DE CONTRASEÑA ########################
-    
-    public boolean cambiarContraseña(String contraseñaAntigua, String contraseñaNueva, String dniUsuario){
+    public boolean cambiarContraseña(String contraseñaAntigua, String contraseñaNueva, String dniUsuario) {
         boolean cambiada;
-        
-        try{
+
+        try {
             cambiada = DAOMuseo.instanciar().cambiarContraseña(contraseñaAntigua, contraseñaNueva, dniUsuario);
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             cambiada = false;
             System.out.println(e.getSQLState());
             e.getStackTrace();
@@ -312,6 +309,7 @@ public class SistemaMuseo {
             if (!e.getEsGuiada()) {
                 c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaNormal(e, c);
+                JOptionPane.showMessageDialog(null, "Entrada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
             } else if (e.getEsGuiada()) {
                 c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
@@ -334,31 +332,6 @@ public class SistemaMuseo {
         }
 
         return entradasCliente;
-    }
-
-    public String[][] tablaEntradas(List<Entrada> entradas) {
-        String[][] array = new String[entradas.size()][4];
-        String esGuiada;
-
-        if (!entradas.isEmpty()) {
-            for (int i = 0; i < entradas.size(); i++) {
-                Entrada e = entradas.get(i);
-                array[i][0] = String.valueOf(new java.sql.Date(e.getFecha().getTime()));
-                array[i][1] = e.getHora();
-
-                if (e.getEsGuiada()) {
-                    esGuiada = "Si";
-
-                } else {
-                    esGuiada = "No";
-                }
-
-                array[i][2] = esGuiada;
-                array[i][3] = String.format("%.2f €", e.getPrecio());
-            }
-        }
-
-        return array;
     }
 
     // Devuelve la tabla de entradas reservadas asociadas a un guía
