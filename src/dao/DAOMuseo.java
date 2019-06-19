@@ -156,33 +156,6 @@ public class DAOMuseo {
         return c;
     }
 
-    public void introducirTarjeta(long tarjeta) throws SQLException {
-        String insert = "INSERT INTO cliente (tarjeta) VALUES (?)";
-
-        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
-        ps.setLong(1, tarjeta);
-
-        // Se ejecutan las updates
-        ps.executeUpdate();
-    }
-
-    // Obtiene los datos de la tarjeta de un cliente determinado (FALTA POR IMPLEMENTAR)
-    public long obtenerTarjetaCliente(int idCliente) throws SQLException {
-        long tarjeta = -1;
-        String query = "SELECT tarjeta FROM cliente WHERE idCliente = ?";
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setLong(1, idCliente);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            tarjeta = rs.getLong("tarjeta");
-        }
-
-        return tarjeta;
-    }
-
     // ############################# ADMINISTRADOR #############################
     public void nuevoAdministrador(Administrador a, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";

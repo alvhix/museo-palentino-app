@@ -112,18 +112,6 @@ public class SistemaMuseo {
         return cliente;
     }
 
-    public long comprobarTarjeta(int idCliente) {
-        long tarjeta;
-        try {
-            tarjeta = DAOMuseo.instanciar().obtenerTarjetaCliente(idCliente);
-        } catch (SQLException ex) {
-            tarjeta = 0;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-        return tarjeta;
-    }
-
     // ############################# ADMINISTRADOR #############################
     public Administrador cargarAdministrador(String dniAdmin) {
         Administrador admin;
