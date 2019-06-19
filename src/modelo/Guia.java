@@ -42,7 +42,7 @@ public class Guia extends Trabajador {
         this.entradasGuiadas = entradasGuiadas;
     }
 
-    public String[][] tablaEntradasGuia() {
+    public String[][] tabla_EntradasGuia() {
         String[][] array = new String[entradasGuiadas.size()][5];
 
         if (!entradasGuiadas.isEmpty()) {

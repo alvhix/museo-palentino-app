@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2019 a las 21:05:48
+-- Tiempo de generación: 19-06-2019 a las 19:00:32
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -32,16 +32,15 @@ CREATE TABLE `administrador` (
   `numIdentificacion` int(10) UNSIGNED NOT NULL,
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
   `tipo` char(14) DEFAULT 'Administrador',
-  `dniAdministrador` varchar(9) NOT NULL,
-  `nombreMuseo` char(50) NOT NULL
+  `dniAdministrador` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`numIdentificacion`, `numSeguridadSocial`, `tipo`, `dniAdministrador`, `nombreMuseo`) VALUES
-(2, 1111111, 'Administrador', '12345678g', 'Museo Palentino');
+INSERT INTO `administrador` (`numIdentificacion`, `numSeguridadSocial`, `tipo`, `dniAdministrador`) VALUES
+(2, 1111111, 'Administrador', '12345678g');
 
 -- --------------------------------------------------------
 
@@ -51,7 +50,6 @@ INSERT INTO `administrador` (`numIdentificacion`, `numSeguridadSocial`, `tipo`, 
 
 CREATE TABLE `cliente` (
   `idCliente` int(10) UNSIGNED NOT NULL,
-  `tarjeta` bigint(20) UNSIGNED DEFAULT NULL,
   `dniCliente` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -59,11 +57,11 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `tarjeta`, `dniCliente`) VALUES
-(3, NULL, '71970430a'),
-(4, NULL, '11111111I'),
-(5, NULL, '71955241v'),
-(6, NULL, '01010300W');
+INSERT INTO `cliente` (`idCliente`, `dniCliente`) VALUES
+(6, '01010300W'),
+(4, '11111111I'),
+(5, '71955241v'),
+(3, '71970430a');
 
 -- --------------------------------------------------------
 
@@ -120,46 +118,6 @@ INSERT INTO `exposicion` (`idExposicion`, `nombre`, `tiempoRecorrido`, `imagen`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `exposicion_obra`
---
-
-CREATE TABLE `exposicion_obra` (
-  `idObra` int(10) UNSIGNED NOT NULL,
-  `idExposicion` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `exposicion_obra`
---
-
-INSERT INTO `exposicion_obra` (`idObra`, `idExposicion`) VALUES
-(24, 1),
-(25, 1),
-(27, 1),
-(28, 1),
-(30, 1),
-(33, 1),
-(35, 1),
-(44, 1),
-(46, 1),
-(26, 2),
-(29, 2),
-(31, 2),
-(32, 2),
-(34, 2),
-(36, 2),
-(37, 2),
-(38, 2),
-(39, 2),
-(40, 2),
-(41, 2),
-(42, 2),
-(43, 2),
-(45, 2);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `guia`
 --
 
@@ -189,37 +147,8 @@ INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`
 
 CREATE TABLE `guia_entrada` (
   `numEntrada` int(10) UNSIGNED NOT NULL,
-  `numIdGuia` int(10) UNSIGNED DEFAULT NULL
+  `numGuia` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `museo`
---
-
-CREATE TABLE `museo` (
-  `nombre` char(50) NOT NULL,
-  `direccion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `museo`
---
-
-INSERT INTO `museo` (`nombre`, `direccion`) VALUES
-('Museo Palentino', 'calle guillermina');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `museo_exposicion`
---
-
-CREATE TABLE `museo_exposicion` (
-  `idExposicion` int(10) UNSIGNED NOT NULL,
-  `nombreMuseo` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -229,42 +158,43 @@ CREATE TABLE `museo_exposicion` (
 
 CREATE TABLE `obra` (
   `idObra` int(10) UNSIGNED NOT NULL,
-  `titulo` char(45) NOT NULL,
-  `estilo` char(45) DEFAULT NULL,
-  `autor` char(45) NOT NULL,
+  `titulo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `estilo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `autor` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `año` varchar(20) NOT NULL,
-  `tipo` char(45) DEFAULT 'cuadro',
-  `imagen` varchar(200) DEFAULT NULL
+  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'cuadro',
+  `imagen` varchar(200) DEFAULT NULL,
+  `idExposicion` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `obra`
 --
 
-INSERT INTO `obra` (`idObra`, `titulo`, `estilo`, `autor`, `año`, `tipo`, `imagen`) VALUES
-(24, 'El Grito', 'Expresionismo', 'Edvard Munch', '1893', 'Cuadro', 'src/recursos/imagenes/obras/elgrito.jpg'),
-(25, 'La Gioconda', 'Renacimiento', 'Leonardo da Vinci', '1503', 'Cuadro', 'src/recursos/imagenes/obras/gioconda.jpg'),
-(26, 'Guernica', 'Cubismo', 'Pablo Picasso', '1937', 'Cuadro', 'src/recursos/imagenes/obras/guernica.jpg'),
-(27, 'La ultima cena', 'Renacimiento', 'Leonardo da Vinci', '1495', 'Cuadro', 'src/recursos/imagenes/obras/ultimacena.jpg'),
-(28, 'La noche estrellada', 'Impresionismo', 'Vincent van Gogh', '1889', 'Cuadro', 'src/recursos/imagenes/obras/nocheestrellada.jpg'),
-(29, 'La persistencia de la memoria', 'Surrealismo', 'Salvador Dali', '1931', 'Cuadro', 'src/recursos/imagenes/obras/memoria.jpg'),
-(30, 'La ronda de noche', 'Barroco', 'Rembrandt', '1642', 'Cuadro', 'src/recursos/imagenes/obras/rondanoche.jpg'),
-(31, 'Las meninas', 'Barroco', 'Diego Velazquez', '1656', 'Cuadro', 'src/recursos/imagenes/obras/meninas.jpg'),
-(32, 'El jardin de las delicias', 'Pintura flamenca', 'El Bosco', '1505', 'Cuadro', 'src/recursos/imagenes/obras/jardindelicias.jpg'),
-(33, 'La joven de la perla', 'Barroco', 'Johannes Vermeer', '1667', 'Cuadro', 'src/recursos/imagenes/obras/jovenperla.jpg'),
-(34, 'El nacimiento de Venus', 'Renacimiento', 'Sandro Botticelli', '1486', 'Cuadro', 'src/recursos/imagenes/obras/nacimientovenus.jpg'),
-(35, 'El beso', 'Simbolismo', 'Gustav Klimt', '1908', 'Cuadro', 'src/recursos/imagenes/obras/elbesoKlimt.jpg'),
-(36, 'Discobolo', 'Griego Clasico', 'Miron', '460 a.C. - 450 a.C.', 'Escultura', 'src/recursos/imagenes/obras/discobolo.jpg'),
-(37, 'El pensador', 'Impresionismo', 'Auguste Rodin', '1904', 'Escultura', 'src/recursos/imagenes/obras/pensador.jpg'),
-(38, 'Venus de Milo', 'Helenista', 'Alejandro de Antioquia', '130 a.C. - 100 a.C.', 'Escultura', 'src/recursos/imagenes/obras/venusmilo.jpg'),
-(39, 'El David', 'Renacimiento italiano', 'Miguel Angel', '1504', 'Escultura', 'src/recursos/imagenes/obras/david.jpg'),
-(40, 'Extasis de la beata Ludovica', 'Barroco', 'Gian Lorenzo Bernini', '1674', 'Escultura', 'src/recursos/imagenes/obras/extasisludovica.jpg'),
-(41, 'Apolo y Dafne', 'Barroco', 'Gian Lorenzo Bernini', '1625', 'Escultura', 'src/recursos/imagenes/obras/apolodafne.jpg'),
-(42, 'El rapto de Proserpina', 'Barroco', 'Gian Lorenzo Bernini', '1622', 'Escultura', 'src/recursos/imagenes/obras/proserpina.jpg'),
-(43, 'Moises', 'Renacimiento', 'Miguel Angel', '1515', 'Escultura', 'src/recursos/imagenes/obras/moises.jpg'),
-(44, 'Cristo Velado', 'Barroco', 'Giuseppe Sanmartino', '1753', 'Escultura', 'src/recursos/imagenes/obras/cristovelado.jpg'),
-(45, 'El beso', 'Realismo', 'Auguste Rodin', '1889', 'Escultura', 'src/recursos/imagenes/obras/elbesoRodin.jpg'),
-(46, 'Perseo con la cabeza de Medusa', 'Manierismo', 'Benvenuto Cellini', '1554', 'Escultura', 'src/recursos/imagenes/obras/perseomedusa.jpg');
+INSERT INTO `obra` (`idObra`, `titulo`, `estilo`, `autor`, `año`, `tipo`, `imagen`, `idExposicion`) VALUES
+(24, 'El Grito', 'Expresionismo', 'Edvard Munch', '1893', 'Cuadro', 'src/recursos/imagenes/obras/elgrito.jpg', 1),
+(25, 'La Gioconda', 'Renacimiento', 'Leonardo da Vinci', '1503', 'Cuadro', 'src/recursos/imagenes/obras/gioconda.jpg', 1),
+(26, 'Guernica', 'Cubismo', 'Pablo Picasso', '1937', 'Cuadro', 'src/recursos/imagenes/obras/guernica.jpg', 2),
+(27, 'La ultima cena', 'Renacimiento', 'Leonardo da Vinci', '1495', 'Cuadro', 'src/recursos/imagenes/obras/ultimacena.jpg', 1),
+(28, 'La noche estrellada', 'Impresionismo', 'Vincent van Gogh', '1889', 'Cuadro', 'src/recursos/imagenes/obras/nocheestrellada.jpg', 1),
+(29, 'La persistencia de la memoria', 'Surrealismo', 'Salvador Dali', '1931', 'Cuadro', 'src/recursos/imagenes/obras/memoria.jpg', 2),
+(30, 'La ronda de noche', 'Barroco', 'Rembrandt', '1642', 'Cuadro', 'src/recursos/imagenes/obras/rondanoche.jpg', 1),
+(31, 'Las meninas', 'Barroco', 'Diego Velazquez', '1656', 'Cuadro', 'src/recursos/imagenes/obras/meninas.jpg', 2),
+(32, 'El jardin de las delicias', 'Pintura flamenca', 'El Bosco', '1505', 'Cuadro', 'src/recursos/imagenes/obras/jardindelicias.jpg', 2),
+(33, 'La joven de la perla', 'Barroco', 'Johannes Vermeer', '1667', 'Cuadro', 'src/recursos/imagenes/obras/jovenperla.jpg', 1),
+(34, 'El nacimiento de Venus', 'Renacimiento', 'Sandro Botticelli', '1486', 'Cuadro', 'src/recursos/imagenes/obras/nacimientovenus.jpg', 2),
+(35, 'El beso', 'Simbolismo', 'Gustav Klimt', '1908', 'Cuadro', 'src/recursos/imagenes/obras/elbesoKlimt.jpg', 1),
+(36, 'Discobolo', 'Griego Clasico', 'Miron', '460 a.C. - 450 a.C.', 'Escultura', 'src/recursos/imagenes/obras/discobolo.jpg', 2),
+(37, 'El pensador', 'Impresionismo', 'Auguste Rodin', '1904', 'Escultura', 'src/recursos/imagenes/obras/pensador.jpg', 2),
+(38, 'Venus de Milo', 'Helenista', 'Alejandro de Antioquia', '130 a.C. - 100 a.C.', 'Escultura', 'src/recursos/imagenes/obras/venusmilo.jpg', 2),
+(39, 'El David', 'Renacimiento italiano', 'Miguel Angel', '1504', 'Escultura', 'src/recursos/imagenes/obras/david.jpg', 2),
+(40, 'Extasis de la beata Ludovica', 'Barroco', 'Gian Lorenzo Bernini', '1674', 'Escultura', 'src/recursos/imagenes/obras/extasisludovica.jpg', 2),
+(41, 'Apolo y Dafne', 'Barroco', 'Gian Lorenzo Bernini', '1625', 'Escultura', 'src/recursos/imagenes/obras/apolodafne.jpg', 2),
+(42, 'El rapto de Proserpina', 'Barroco', 'Gian Lorenzo Bernini', '1622', 'Escultura', 'src/recursos/imagenes/obras/proserpina.jpg', 2),
+(43, 'Moises', 'Renacimiento', 'Miguel Angel', '1515', 'Escultura', 'src/recursos/imagenes/obras/moises.jpg', 2),
+(44, 'Cristo Velado', 'Barroco', 'Giuseppe Sanmartino', '1753', 'Escultura', 'src/recursos/imagenes/obras/cristovelado.jpg', 1),
+(45, 'El beso', 'Realismo', 'Auguste Rodin', '1889', 'Escultura', 'src/recursos/imagenes/obras/elbesoRodin.jpg', 2),
+(46, 'Perseo con la cabeza de Medusa', 'Manierismo', 'Benvenuto Cellini', '1554', 'Escultura', 'src/recursos/imagenes/obras/perseomedusa.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -309,8 +239,7 @@ ALTER TABLE `administrador`
   ADD PRIMARY KEY (`numIdentificacion`),
   ADD UNIQUE KEY `numIdentificacion_UNIQUE` (`numIdentificacion`),
   ADD UNIQUE KEY `dniAdministrador_UNIQUE` (`dniAdministrador`),
-  ADD KEY `dniAdministrador_fk1` (`dniAdministrador`),
-  ADD KEY `nombreMuseo_idx` (`nombreMuseo`);
+  ADD KEY `dniAdministrador_fk1` (`dniAdministrador`);
 
 --
 -- Indices de la tabla `cliente`
@@ -334,15 +263,7 @@ ALTER TABLE `entrada`
 --
 ALTER TABLE `exposicion`
   ADD PRIMARY KEY (`idExposicion`),
-  ADD UNIQUE KEY `idExposicion_UNIQUE` (`idExposicion`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
-
---
--- Indices de la tabla `exposicion_obra`
---
-ALTER TABLE `exposicion_obra`
-  ADD PRIMARY KEY (`idObra`),
-  ADD KEY `idExposicion_idx` (`idExposicion`);
+  ADD UNIQUE KEY `idExposicion_UNIQUE` (`idExposicion`);
 
 --
 -- Indices de la tabla `guia`
@@ -360,28 +281,15 @@ ALTER TABLE `guia`
 ALTER TABLE `guia_entrada`
   ADD PRIMARY KEY (`numEntrada`),
   ADD UNIQUE KEY `numEntrada` (`numEntrada`),
-  ADD KEY `numIdGuia_fk` (`numIdGuia`) USING BTREE;
-
---
--- Indices de la tabla `museo`
---
-ALTER TABLE `museo`
-  ADD PRIMARY KEY (`nombre`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
-
---
--- Indices de la tabla `museo_exposicion`
---
-ALTER TABLE `museo_exposicion`
-  ADD PRIMARY KEY (`idExposicion`),
-  ADD KEY `nombreMuseo_idx` (`nombreMuseo`);
+  ADD KEY `numIdGuia_fk` (`numGuia`) USING BTREE;
 
 --
 -- Indices de la tabla `obra`
 --
 ALTER TABLE `obra`
   ADD PRIMARY KEY (`idObra`),
-  ADD UNIQUE KEY `idObra_UNIQUE` (`idObra`);
+  ADD UNIQUE KEY `idObra_UNIQUE` (`idObra`),
+  ADD KEY `idExposicion_fk2` (`idExposicion`);
 
 --
 -- Indices de la tabla `persona`
@@ -438,8 +346,7 @@ ALTER TABLE `obra`
 -- Filtros para la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  ADD CONSTRAINT `dniAdministrador_fk1` FOREIGN KEY (`dniAdministrador`) REFERENCES `persona` (`dni`),
-  ADD CONSTRAINT `nombreMuseo_fk1` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`);
+  ADD CONSTRAINT `dniAdministrador_fk1` FOREIGN KEY (`dniAdministrador`) REFERENCES `persona` (`dni`);
 
 --
 -- Filtros para la tabla `cliente`
@@ -454,13 +361,6 @@ ALTER TABLE `entrada`
   ADD CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Filtros para la tabla `exposicion_obra`
---
-ALTER TABLE `exposicion_obra`
-  ADD CONSTRAINT `idExposicion_fk1` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idexposicion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `idObra_fk1` FOREIGN KEY (`idObra`) REFERENCES `obra` (`idobra`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `guia`
 --
 ALTER TABLE `guia`
@@ -471,14 +371,13 @@ ALTER TABLE `guia`
 --
 ALTER TABLE `guia_entrada`
   ADD CONSTRAINT `numEntrada_fk` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroentrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `numIdGuia` FOREIGN KEY (`numIdGuia`) REFERENCES `guia` (`numidentificacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `numGuia_fk` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `museo_exposicion`
+-- Filtros para la tabla `obra`
 --
-ALTER TABLE `museo_exposicion`
-  ADD CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idexposicion`),
-  ADD CONSTRAINT `nombreMuseo_fk2` FOREIGN KEY (`nombreMuseo`) REFERENCES `museo` (`nombre`);
+ALTER TABLE `obra`
+  ADD CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idexposicion`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

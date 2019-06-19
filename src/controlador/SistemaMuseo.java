@@ -112,16 +112,37 @@ public class SistemaMuseo {
         return cliente;
     }
 
-    public long comprobarTarjeta(int idCliente) {
-        long tarjeta;
+    // Reserva la entrada
+    public void reservarEntrada(Entrada e, Cliente c) {
         try {
-            tarjeta = DAOMuseo.instanciar().obtenerTarjetaCliente(idCliente);
+            // Divido el flujo dependiendo de si la entrada es normal o guiada
+            if (!e.getEsGuiada()) {
+                c.addEntrada(e);
+                DAOMuseo.instanciar().reservarEntradaNormal(e, c);
+                JOptionPane.showMessageDialog(null, "Entrada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
+            } else if (e.getEsGuiada()) {
+                c.addEntrada(e);
+                DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
+                JOptionPane.showMessageDialog(null, "Entrada guiada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
+            }
         } catch (SQLException ex) {
-            tarjeta = 0;
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
-        return tarjeta;
+    }
+
+    public List cargarEntradasCliente(int id) {
+        List entradasCliente;
+
+        try {
+            entradasCliente = DAOMuseo.instanciar().cargarEntradasCliente(id);
+        } catch (SQLException ex) {
+            entradasCliente = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return entradasCliente;
     }
 
     // ############################# ADMINISTRADOR #############################
@@ -167,16 +188,28 @@ public class SistemaMuseo {
     public void despedirGuia(Guia g) {
 
         try {
-
             DAOMuseo.instanciar().despedirGuia(g);
-
         } catch (SQLException e) {
 
             System.out.println(e.getSQLState());
             e.getStackTrace();
             System.out.println("Error al borrar");
         }
+    }
 
+    // Devuelve la tabla de entradas reservadas asociadas a un guía
+    public List cargarEntradasGuia(int numGuia) {
+        List entradasGuia;
+
+        try {
+            entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
+        } catch (SQLException ex) {
+            entradasGuia = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return entradasGuia;
     }
 
     // ############################# EXPOSICIÓN #############################
@@ -316,53 +349,6 @@ public class SistemaMuseo {
     }
 
     // ############################# ENTRADA #############################
-    // Reserva la entrada
-    public void reservarEntrada(Entrada e, Cliente c) {
-        try {
-            // Divido el flujo dependiendo de si la entrada es normal o guiada
-            if (!e.getEsGuiada()) {
-                c.addEntrada(e);
-                DAOMuseo.instanciar().reservarEntradaNormal(e, c);
-                JOptionPane.showMessageDialog(null, "Entrada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
-            } else if (e.getEsGuiada()) {
-                c.addEntrada(e);
-                DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-    }
-
-    public List cargarEntradasCliente(int id) {
-        List entradasCliente;
-
-        try {
-            entradasCliente = DAOMuseo.instanciar().cargarEntradasCliente(id);
-        } catch (SQLException ex) {
-            entradasCliente = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-
-        return entradasCliente;
-    }
-
-    // Devuelve la tabla de entradas reservadas asociadas a un guía
-    public List cargarEntradasGuia(int numGuia) {
-        List entradasGuia;
-
-        try {
-            entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
-        } catch (SQLException ex) {
-            entradasGuia = null;
-            System.out.println(ex.getSQLState());
-            ex.getStackTrace();
-        }
-
-        return entradasGuia;
-    }
-
     // Cambia el precio general de la entrada
     public void cambiarPrecioEntrada(float precioEntrada) {
         try {
