@@ -53,7 +53,7 @@ public class ExposicionTableModel extends AbstractTableModel {
         switch (colIndex) {
             // Devuelve el id. 
             case 0:
-                return o.getID();
+                return o.getId();
             // Devuelve el titulo. 
             case 1:
                 return o.getTitulo();

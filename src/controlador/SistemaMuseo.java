@@ -203,7 +203,7 @@ public class SistemaMuseo {
         }
     }
 
-    public void eliminarExposicion(int id) {
+    public void eliminarExposicion(int id){
         try {
             DAOMuseo.instanciar().eliminarExposicion(id);
         } catch (SQLException ex) {
@@ -211,7 +211,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-
+    
     public Exposicion cargarExposicion(int idExpo) {
         Exposicion exposicion;
 
@@ -240,6 +240,20 @@ public class SistemaMuseo {
         return exposicion;
     }
 
+    public List<Exposicion> cargarExposiciones(){
+        List<Exposicion> exposiciones;
+
+        try {
+            exposiciones = DAOMuseo.instanciar().cargarExposiciones();
+        } catch (SQLException ex) {
+            exposiciones = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return exposiciones;
+    }
+    
     // ############################# OBRA #############################
     public boolean comprobarSiExisteObra(String titulo, String autor, String anno, String tipo) {
         boolean comprobarUsuario;
@@ -254,17 +268,17 @@ public class SistemaMuseo {
 
         return comprobarUsuario;
     }
-
-    public void nuevaObra(Obra o) {
+    
+    public void nuevaObra(Exposicion e, Obra o) {
         try {
-            DAOMuseo.instanciar().nuevaObra(o);
+            DAOMuseo.instanciar().nuevaObra(e, o);
         } catch (SQLException ex) {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
         }
     }
 
-    public void eliminarObra(int id) {
+    public void eliminarObra(int id){
         try {
             DAOMuseo.instanciar().eliminarObra(id);
         } catch (SQLException ex) {
@@ -272,7 +286,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-
+    
     public Obra cargarObra(int idObra) {
         Obra obra;
 
@@ -287,11 +301,11 @@ public class SistemaMuseo {
         return obra;
     }
 
-    public Obra cargarObra(String titulo, String autor) {
+    public Obra cargarObra(String titulo, String autor, String estilo, String anno, String tipo, int idObra) {
         Obra obra;
 
         try {
-            obra = DAOMuseo.instanciar().cargarObra(titulo, autor);
+            obra = DAOMuseo.instanciar().cargarObra(titulo, autor, estilo, anno, tipo, idObra);
         } catch (SQLException ex) {
             obra = null;
             System.out.println(ex.getSQLState());

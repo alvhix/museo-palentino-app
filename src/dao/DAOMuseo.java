@@ -426,9 +426,9 @@ public class DAOMuseo {
         return e;
     }
 
-    private List cargarExposiciones() throws SQLException {
+    public List cargarExposiciones() throws SQLException {
         List exposiciones = new ArrayList();
-        String query = "SELECT idExposicion, nombre, tiempoRecorrido, imagen FROM exposicion";
+        String query = "SELECT * FROM exposicion";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
 
@@ -462,9 +462,8 @@ public class DAOMuseo {
         return existe;
     }
 
-    public void nuevaObra(Obra o) throws SQLException {
-        String insert = "INSERT INTO obra (titulo, autor, estilo, año, tipo, imagen) VALUES (?, ?, ?, ?, ?, ?)";
-
+    public void nuevaObra(Exposicion e, Obra o) throws SQLException {
+        String insert = "INSERT INTO obra (titulo, autor, estilo, año, tipo, imagen, idExposicion) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
         ps.setString(1, o.getTitulo());
         ps.setString(2, o.getAutor());
@@ -472,7 +471,7 @@ public class DAOMuseo {
         ps.setString(4, o.getAnno());
         ps.setString(5, o.getTipo());
         ps.setString(6, o.getRutaImagen());
-
+        ps.setInt(7, e.getID());
         // Se ejecuta el insert
         ps.executeUpdate();
     }
@@ -489,7 +488,7 @@ public class DAOMuseo {
 
     public Obra cargarObra(int id) throws SQLException {
         Obra o = null;
-        String query = "SELECT titulo, autor, estilo, año, tipo, imagen FROM obra WHERE idObra = ?";
+        String query = "SELECT * FROM obra WHERE idObra = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -498,25 +497,29 @@ public class DAOMuseo {
 
         if (rs.next()) {
             o = new Obra(id, rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"));
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), rs.getInt("idExposicion"));
         }
 
         return o;
     }
 
-    public Obra cargarObra(String titulo, String autor) throws SQLException {
+    public Obra cargarObra(String titulo, String autor, String estilo, String anno, String tipo, int idExposicion) throws SQLException {
         Obra o = null;
-        String query = "SELECT idObra, titulo, autor, estilo, año, tipo, imagen FROM obra WHERE titulo = ? AND autor = ?";
-
+        String query = "SELECT * FROM obra WHERE titulo = ? AND autor = ? AND estilo = ? AND año = ? AND tipo = ? AND idExposicion = ?";
+        
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setString(1, titulo);
         ps.setString(2, autor);
+        ps.setString(3, estilo);
+        ps.setString(4, anno);
+        ps.setString(5, tipo);
+        ps.setInt(6, idExposicion);
 
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
             o = new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"));
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), rs.getInt("idExposicion"));
         }
 
         return o;
@@ -524,8 +527,7 @@ public class DAOMuseo {
 
     private List cargarObrasExposicion(int idExpo) throws SQLException {
         List obras;
-        String query = "SELECT obra.* FROM obra, exposicion, exposicion_obra WHERE obra.idObra = exposicion_obra.idObra "
-                + "AND exposicion.idExposicion = exposicion_obra.idExposicion AND exposicion.idExposicion = ?";
+        String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setInt(1, idExpo);
@@ -536,7 +538,7 @@ public class DAOMuseo {
 
         while (rs.next()) {
             obras.add(new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen")));
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), idExpo));
         }
 
         return obras;

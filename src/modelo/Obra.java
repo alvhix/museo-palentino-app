@@ -12,6 +12,7 @@ package modelo;
 public class Obra {
 
     private int id;
+    private int idExposicion;
     private String titulo;
     private String estilo;
     private String autor;
@@ -19,11 +20,18 @@ public class Obra {
     private String anno;
     private String rutaImagen;
 
-    public Obra(int id) {
-
+    // Constructor para nueva obra
+    public Obra(String titulo, String autor, String estilo, String anno, String tipo, String rutaImagen, int idExposicion) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.estilo = estilo;
+        this.anno = anno;
+        this.tipo = tipo;
+        this.rutaImagen = rutaImagen;
+        this.idExposicion = idExposicion;
     }
     // Constructor necesario para cargar obra
-    public Obra(int id, String titulo, String autor, String estilo, String anno, String tipo, String rutaImagen) {
+    public Obra(int id, String titulo, String autor, String estilo, String anno, String tipo, String rutaImagen, int idExposicion) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -31,9 +39,10 @@ public class Obra {
         this.anno = anno;
         this.tipo = tipo;
         this.rutaImagen = rutaImagen;
+        this.idExposicion = idExposicion;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
     
@@ -60,9 +69,9 @@ public class Obra {
     public String getRutaImagen() {
         return rutaImagen;
     }
-    
-    public void setId(int id) {
-        this.id = id;
+
+    public int getIdExposicion() {
+        return idExposicion;
     }
 
     public void setTitulo(String titulo) {

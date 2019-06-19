@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,15 +26,21 @@ import javax.swing.JPanel;
  */
 public class MenuPrincipalFrame extends javax.swing.JFrame {
 
-    private boolean sesionIniciada;
+    private List<Exposicion> exposiciones;
     private Exposicion expo1;
     private Exposicion expo2;
+    private int posicion1;
+    private int posicion2;
     private SistemaMuseo sm;
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipalFrame() {
+        conexionBD();
+        exposiciones = sm.cargarExposiciones();
+        posicion1 = 0;
+        posicion2 = posicion1 + 1;
         initComponents();
         componentesIniciales();
     }
@@ -51,20 +58,22 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         botonRegistrarUsuario = new javax.swing.JButton();
         botonIniciarSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelMuestra = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        panelImagen5 = new javax.swing.JPanel();
+        panelExpo1 = new javax.swing.JPanel();
         panelExposicion1 = new javax.swing.JPanel();
         labelNumeroObras1 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         imagen1 = new javax.swing.JLabel();
         labelNombre1 = new javax.swing.JLabel();
-        panelImagen6 = new javax.swing.JPanel();
+        panelExpo2 = new javax.swing.JPanel();
         panelExposicion2 = new javax.swing.JPanel();
         labelNumeroObras2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         imagen2 = new javax.swing.JLabel();
         labelNombre2 = new javax.swing.JLabel();
+        botonSiguiente = new javax.swing.JLabel();
+        botonAnterior = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Museo Palentino");
@@ -124,11 +133,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             .addGap(0, 140, Short.MAX_VALUE)
         );
 
-        jPanel3.setOpaque(false);
+        panelMuestra.setOpaque(false);
 
+        jPanel6.setMaximumSize(new java.awt.Dimension(690, 227));
+        jPanel6.setMinimumSize(new java.awt.Dimension(690, 227));
         jPanel6.setOpaque(false);
 
-        panelImagen5.setOpaque(false);
+        panelExpo1.setOpaque(false);
 
         panelExposicion1.setOpaque(false);
         panelExposicion1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,29 +200,29 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout panelImagen5Layout = new javax.swing.GroupLayout(panelImagen5);
-        panelImagen5.setLayout(panelImagen5Layout);
-        panelImagen5Layout.setHorizontalGroup(
-            panelImagen5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelExpo1Layout = new javax.swing.GroupLayout(panelExpo1);
+        panelExpo1.setLayout(panelExpo1Layout);
+        panelExpo1Layout.setHorizontalGroup(
+            panelExpo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 320, Short.MAX_VALUE)
-            .addGroup(panelImagen5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelImagen5Layout.createSequentialGroup()
+            .addGroup(panelExpo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelExpo1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelExposicion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        panelImagen5Layout.setVerticalGroup(
-            panelImagen5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelExpo1Layout.setVerticalGroup(
+            panelExpo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 205, Short.MAX_VALUE)
-            .addGroup(panelImagen5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelImagen5Layout.createSequentialGroup()
+            .addGroup(panelExpo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelExpo1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelExposicion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        panelImagen6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelImagen6.setOpaque(false);
+        panelExpo2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelExpo2.setOpaque(false);
 
         panelExposicion2.setOpaque(false);
         panelExposicion2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,22 +283,22 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout panelImagen6Layout = new javax.swing.GroupLayout(panelImagen6);
-        panelImagen6.setLayout(panelImagen6Layout);
-        panelImagen6Layout.setHorizontalGroup(
-            panelImagen6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelExpo2Layout = new javax.swing.GroupLayout(panelExpo2);
+        panelExpo2.setLayout(panelExpo2Layout);
+        panelExpo2Layout.setHorizontalGroup(
+            panelExpo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 320, Short.MAX_VALUE)
-            .addGroup(panelImagen6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelImagen6Layout.createSequentialGroup()
+            .addGroup(panelExpo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelExpo2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelExposicion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        panelImagen6Layout.setVerticalGroup(
-            panelImagen6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelExpo2Layout.setVerticalGroup(
+            panelExpo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 205, Short.MAX_VALUE)
-            .addGroup(panelImagen6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelImagen6Layout.createSequentialGroup()
+            .addGroup(panelExpo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelExpo2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelExposicion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
@@ -299,9 +310,9 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelImagen5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(panelImagen6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelExpo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -309,25 +320,75 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelImagen5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelImagen6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelExpo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelExpo2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+        botonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/flechader.png"))); // NOI18N
+        botonSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSiguienteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonSiguienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonSiguienteMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonSiguienteMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonSiguienteMouseReleased(evt);
+            }
+        });
+
+        botonAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/flechaizq.png"))); // NOI18N
+        botonAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAnteriorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonAnteriorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonAnteriorMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAnteriorMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonAnteriorMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMuestraLayout = new javax.swing.GroupLayout(panelMuestra);
+        panelMuestra.setLayout(panelMuestraLayout);
+        panelMuestraLayout.setHorizontalGroup(
+            panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMuestraLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(botonAnterior)
+                .addGap(54, 54, 54)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(botonSiguiente)
+                .addGap(38, 38, 38))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        panelMuestraLayout.setVerticalGroup(
+            panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMuestraLayout.createSequentialGroup()
+                .addGroup(panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMuestraLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMuestraLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(botonAnterior))
+                    .addGroup(panelMuestraLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(botonSiguiente)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -338,7 +399,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             .addComponent(panelSesion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -349,7 +410,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -398,6 +459,58 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         mostrarExposicion(expo2);
     }//GEN-LAST:event_panelExposicion2MouseClicked
 
+    private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
+        // TODO add your handling code here:
+        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderhover.png"));
+    }//GEN-LAST:event_botonSiguienteMouseClicked
+
+    private void botonSiguienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseEntered
+        // TODO add your handling code here:
+        botonSiguiente.setCursor(new Cursor(HAND_CURSOR));
+        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderhover.png"));
+    }//GEN-LAST:event_botonSiguienteMouseEntered
+
+    private void botonSiguienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseExited
+        // TODO add your handling code here:
+        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechader.png"));
+    }//GEN-LAST:event_botonSiguienteMouseExited
+
+    private void botonSiguienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMousePressed
+        // TODO add your handling code here:
+        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderpressed.png"));
+    }//GEN-LAST:event_botonSiguienteMousePressed
+
+    private void botonSiguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseReleased
+        // TODO add your handling code here:
+        siguiente();
+    }//GEN-LAST:event_botonSiguienteMouseReleased
+
+    private void botonAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseClicked
+        // TODO add your handling code here:
+        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqhover.png"));
+    }//GEN-LAST:event_botonAnteriorMouseClicked
+
+    private void botonAnteriorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseEntered
+        // TODO add your handling code here:
+        botonAnterior.setCursor(new Cursor(HAND_CURSOR));
+        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqhover.png"));
+    }//GEN-LAST:event_botonAnteriorMouseEntered
+
+    private void botonAnteriorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseExited
+        // TODO add your handling code here:
+        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizq.png"));
+    }//GEN-LAST:event_botonAnteriorMouseExited
+
+    private void botonAnteriorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMousePressed
+        // TODO add your handling code here:
+        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqpressed.png"));
+    }//GEN-LAST:event_botonAnteriorMousePressed
+
+    private void botonAnteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseReleased
+        // TODO add your handling code here:
+        anterior();
+    }//GEN-LAST:event_botonAnteriorMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -418,6 +531,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuPrincipalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -429,12 +543,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botonAnterior;
     private javax.swing.JButton botonIniciarSesion;
     private javax.swing.JButton botonRegistrarUsuario;
+    private javax.swing.JLabel botonSiguiente;
     private javax.swing.JLabel imagen1;
     private javax.swing.JLabel imagen2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
@@ -442,10 +557,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelNombre2;
     private javax.swing.JLabel labelNumeroObras1;
     private javax.swing.JLabel labelNumeroObras2;
+    private javax.swing.JPanel panelExpo1;
+    private javax.swing.JPanel panelExpo2;
     private javax.swing.JPanel panelExposicion1;
     private javax.swing.JPanel panelExposicion2;
-    private javax.swing.JPanel panelImagen5;
-    private javax.swing.JPanel panelImagen6;
+    private javax.swing.JPanel panelMuestra;
     private javax.swing.JPanel panelSesion1;
     // End of variables declaration//GEN-END:variables
 
@@ -459,9 +575,83 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         rsd.setVisible(true);
     }
 
+    private void cargarExposiciones() {
+        if (exposiciones.isEmpty()) {
+            // Exposicion 1
+            panelExpo1.setVisible(false);
+            // Exposicion 2
+            panelExpo2.setVisible(false);
+        } else if (exposiciones.size() == 1) {
+            // Exposicion 1
+            expo1 = exposiciones.get(0);
+            labelNombre1.setText("Exposición " + expo1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
+            imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
+            // Exposicion 2
+            panelExpo2.setVisible(false);
+        } else {
+            // Exposicion 1
+            expo1 = exposiciones.get(posicion1);
+            labelNombre1.setText("Exposición " + expo1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
+            imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
+            // Exposicion 2
+            expo2 = exposiciones.get(posicion2);
+            labelNombre2.setText("Exposición " + expo2.getNombre());
+            labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
+            imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
+        }
+
+    }
+
+    private void siguiente() {
+        if (exposiciones.size() > 2) {
+            posicion1++;
+            posicion2++;
+            if (posicion1 == exposiciones.size()) {
+                posicion1 = 0;
+                posicion2 = posicion1 + 1;
+            }
+            if (posicion2 == exposiciones.size()) {
+                posicion2 = 0;
+            }
+            cargarExposiciones();
+        }
+    }
+
+    private void anterior() {
+        if (exposiciones.size() > 2) {
+            posicion1--;
+            posicion2--;
+            if (posicion1 < 0) {
+                posicion1 = exposiciones.size() - 1;
+                posicion2 = 0;
+            }
+            if (posicion2 < 0) {
+                posicion2 = exposiciones.size() - 1;
+            }
+            cargarExposiciones();
+        }
+    }
+
     private void mostrarExposicion(Exposicion e) {
-        MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
-        mod.setVisible(true);
+        if (!(e.getObras().isEmpty())) {
+            MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
+            mod.setVisible(true);
+        } else {
+            JOptionPane jop = new JOptionPane();
+            jop.setIcon(new ImageIcon("src/recursos/imagenes/fondos/fondoPrincipal.png"));
+            JOptionPane.showMessageDialog(jop, "La exposición está vacía.", "Exposición " + e.getNombre(),
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void conexionBD() {
+        try {
+            sm = new SistemaMuseo();
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión con la Base de Datos.");
+        }
     }
 
     private void imagenFondo() {
@@ -474,29 +664,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         }
     }
 
-    private void cargarExposiciones() {
-        // Exposición temporal
-        expo1 = sm.cargarExposicion(1);
-        labelNombre1.setText("Exposición " + expo1.getNombre());
-        labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
-        System.out.println(expo1.getRutaImagen());
-        imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
-        // Exposición permanente
-        expo2 = sm.cargarExposicion(2);
-        labelNombre2.setText("Exposición " + expo2.getNombre());
-        labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
-        System.out.println(expo2.getRutaImagen());
-        imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
-    }
-
-    private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
-    }
-
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
@@ -504,7 +671,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }
 
     private void componentesIniciales() {
-        conexionBD();
         imagenFondo();
         cargarExposiciones();
     }

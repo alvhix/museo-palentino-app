@@ -22,7 +22,7 @@ public class Exposicion {
     private List<Obra> obras;
 
     // ####################### - Constructores - #######################
-    // Constructor para crear exposicion
+    // Constructor para nueva exposicion
     public Exposicion(String nombre, int tiempoRecorrido, String rutaImagen) {
         this.nombre = nombre;
         this.tiempoRecorrido = tiempoRecorrido;
