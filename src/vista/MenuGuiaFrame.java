@@ -40,50 +40,6 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     public MenuGuiaFrame() {
     }
 
-    // ############################# COMPONENTES INICIALES #############################
-    private void componentesIniciales() {
-        conexionBD();
-        imagenFondo();
-        cargarEntradasGuia();
-        muestraTabla();
-    }
-
-    // ############################# IMÁGENES #############################
-    private void imagenFondo() {
-        try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
-            JPanel panel = (JPanel) this.getContentPane();
-            panel.setBorder(fondo);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
-    }
-
-    // ############################# CARGA DE ENTRADAS DEL GUÍA #############################
-    public void cargarEntradasGuia() {
-        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getID()));
-    }
-
-    // ############################# TABLA #############################
-    public void muestraTabla() {
-        modelo = new DefaultTableModel(g.tablaEntradasGuia(), cabecera); // FALTA MÉTODO DE STRING[][]
-    }
-
-    // ############################# CONEXIÓN BASE DE DATOS #############################
-    private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,6 +54,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -122,9 +79,17 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DNI cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -137,6 +102,13 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
         );
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Opciones");
 
@@ -156,11 +128,12 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -170,7 +143,9 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,6 +159,11 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         componentesIniciales();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        volver();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +201,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -230,4 +211,53 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void volver() {
+        dispose();
+    }
+
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        conexionBD();
+        imagenFondo();
+        cargarEntradasGuia();
+        muestraTabla();
+    }
+
+    // ############################# IMÁGENES #############################
+    private void imagenFondo() {
+        try {
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            JPanel panel = (JPanel) this.getContentPane();
+            panel.setBorder(fondo);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return retValue;
+    }
+
+    // ############################# CARGA DE ENTRADAS DEL GUÍA #############################
+    public void cargarEntradasGuia() {
+        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getID()));
+    }
+
+    // ############################# TABLA #############################
+    public void muestraTabla() {
+        modelo = new DefaultTableModel(g.tabla_EntradasGuia(), cabecera);
+        jTable1.setModel(modelo);
+    }
+
+    // ############################# CONEXIÓN BASE DE DATOS #############################
+    private void conexionBD() {
+        try {
+            sm = new SistemaMuseo();
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión con la Base de Datos.");
+        }
+    }
 }
