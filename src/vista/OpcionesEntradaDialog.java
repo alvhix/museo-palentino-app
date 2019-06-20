@@ -517,9 +517,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             sm.reservarEntrada(e, c);
             mostrarTabla();
         } else {
-
             throw new FechaException();
-
         }
         jDateChooser1.setDate(null); // Restablece el calendario
         jComboBox1.setSelectedIndex(0); // Restablece el selector de hora a la default

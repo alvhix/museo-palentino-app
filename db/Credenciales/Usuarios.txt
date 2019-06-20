@@ -19,11 +19,11 @@ Rol: Cliente
 DNI: 53114937W
 Pass: 53114937
 ------------------
-Rol: Guía
+Rol: Guï¿½a
 Dni 50164674H
 Clave: ivan1999
 ------------------
-Rol: Guía
+Rol: Guï¿½a
 Dni 66552361K
 Clave: elena2077
 ------------------
