@@ -200,7 +200,7 @@ public class SistemaMuseo {
     // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;
-
+        
         try {
             entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
         } catch (SQLException ex) {

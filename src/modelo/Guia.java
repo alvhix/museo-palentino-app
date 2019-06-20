@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
  * @author Álvaro y Victor
  */
 public class Guia extends Trabajador {
-
+    
     private int nGuia;
     private List<Entrada> entradasGuiadas;
 
@@ -37,26 +39,60 @@ public class Guia extends Trabajador {
     public int getNGuia() {
         return nGuia;
     }
-
+    
     public void cargarEntradasGuia(List entradasGuiadas) {
         this.entradasGuiadas = entradasGuiadas;
     }
-
+    
+    public void ordenarFechaReserva() {
+        Collections.sort(entradasGuiadas, new comparatorFechaReserva());
+    }
+    
+    public void ordenarFechaTransaccion() {
+        Collections.sort(entradasGuiadas, new comparatorFechaTransaccion());
+    }
+    
     public String[][] tabla_EntradasGuia() {
         String[][] array = new String[entradasGuiadas.size()][5];
-
+        
         if (!entradasGuiadas.isEmpty()) {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
                 Entrada e = entradasGuiadas.get(i);
-                array[i][0] = String.valueOf(e.getNumEntrada());
+                array[i][0] = e.getDniCliente();
                 array[i][1] = String.valueOf(e.getFecha());
                 array[i][2] = e.getHora();
                 array[i][3] = String.valueOf(e.getFechaTransaccion());
                 array[i][4] = String.format("%.2f €", e.getPrecio());
             }
         }
-
+        
         return array;
     }
+    
+}
 
+class comparatorFechaReserva implements Comparator<Entrada> {
+    
+    @Override
+    public int compare(Entrada e1, Entrada e2) {
+        int resultado = e1.getFecha().compareTo(e2.getFecha());
+        if (resultado == 0) {
+            resultado = e1.getHora().compareToIgnoreCase(e2.getHora());
+        }
+        return resultado;
+    }
+    
+}
+
+class comparatorFechaTransaccion implements Comparator<Entrada> {
+    
+    @Override
+    public int compare(Entrada e1, Entrada e2) {
+        int resultado = e1.getFechaTransaccion().compareToIgnoreCase(e2.getFechaTransaccion());
+        if (resultado == 0) {
+            resultado = e1.getHora().compareToIgnoreCase(e2.getHora());
+        }
+        return resultado;
+    }
+    
 }

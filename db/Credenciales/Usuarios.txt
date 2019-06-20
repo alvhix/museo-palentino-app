@@ -1,23 +1,23 @@
 ------------------
+Rol: Cliente
 DNI: 01010300W
 Pass: pedrito123
+------------------
 Rol: Cliente
+DNI: 55647074T
+Pass: victor666
 ------------------
-
-
-
+Rol: Cliente
+DNI: 05930011J
+Pass: 45sdgj97
 ------------------
-
-
-
+Rol: Guía
+Dni 50164674H
+Clave: ivan1999
 ------------------
-
-
-
-------------------
-
-
-
+Rol: Guía
+Dni 66552361K
+Clave: elena2077
 ------------------
 
 

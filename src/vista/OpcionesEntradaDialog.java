@@ -72,6 +72,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         btReservar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -85,13 +86,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
-        setTitle("Entrada");
+        setTitle("Opciones de Entradas");
         setIconImage(getIconImage());
         setResizable(false);
 
@@ -99,7 +99,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Nombre: ");
         jPanel1.add(jLabel1);
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -108,7 +108,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("DNI:");
+        jLabel2.setText("DNI: ");
         jPanel1.add(jLabel2);
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -117,7 +117,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Teléfono:");
+        jLabel3.setText("Teléfono: ");
         jPanel1.add(jLabel3);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -126,6 +126,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
         jPanel2.setOpaque(false);
 
+        btReservar.setBackground(new java.awt.Color(255, 255, 255));
         btReservar.setText("Reservar");
         btReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,22 +144,34 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Volver");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btReservar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(btReservar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -278,13 +291,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         jLabel7.setText("RESERVA DE ENTRADAS");
         jPanel8.add(jLabel7, new java.awt.GridBagConstraints());
 
-        jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jPanel9.setOpaque(false);
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
@@ -328,10 +334,8 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -349,15 +353,13 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119))
+                        .addGap(153, 153, 153))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton3)
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -509,6 +511,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             int comboBox = jComboBox1.getSelectedIndex();
             String[] horario = {"8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
             e.setHora(horario[comboBox]);
+            e.setPrecio(getPrecioEntrada());
 
             // Reserva la entrada pasando como parámetros el cliente
             sm.reservarEntrada(e, c);
@@ -528,13 +531,12 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         jLabel8.setText(c.getNombre());
         jLabel9.setText(c.getDNI());
         jLabel10.setText(String.valueOf(c.getTelefono()));
-        setPrecioEntrada();
+        setPrecioEntradaNormal();
     }
 
     // ############################# PRECIO ENTRADA #############################
-    private void setPrecioEntrada() {
+    private void setPrecioEntradaNormal() {
         float precio = sm.devolverPrecioEntrada();
-
         jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
     }
 
@@ -542,8 +544,17 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         float precio = sm.devolverPrecioEntrada();
         float suplemento = sm.devolverPrecioSuplemento();
         float total = precio + suplemento;
-
         jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
+    }
+
+    private float getPrecioEntrada() {
+        float precioEntrada;
+        if (e.getEsGuiada()) {
+            precioEntrada = sm.devolverPrecioEntrada() + sm.devolverPrecioSuplemento();
+        } else {
+            precioEntrada = sm.devolverPrecioEntrada();
+        }
+        return precioEntrada;
     }
 
     private void siGuiada() {
@@ -553,7 +564,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     }
 
     private void noGuiada() {
-        setPrecioEntrada();
+        setPrecioEntradaNormal();
     }
 
     // ############################# IMÁGENES #############################

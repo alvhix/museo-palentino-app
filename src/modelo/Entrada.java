@@ -29,13 +29,6 @@ public class Entrada {
         this.idCliente = idCliente;
     }
 
-    public Entrada(int numEntrada, Date fecha, String hora, String fechaTransaccion) {
-        this.numEntrada = numEntrada;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.fechaTransaccion = fechaTransaccion;
-    }
-
     public Entrada(String dniCliente, Date fecha, String hora, String fechaTransaccion, float precio) {
         this.dniCliente = dniCliente;
         this.fecha = fecha;
@@ -81,6 +74,10 @@ public class Entrada {
         return fechaTransaccion;
     }
 
+    public String getDniCliente() {
+        return dniCliente;
+    }
+
     // Setters -----------------------------------
     public void setEsGuiada(boolean esGuiada) {
         this.esGuiada = esGuiada;
@@ -112,6 +109,10 @@ public class Entrada {
 
     public void setFechaTransaccion(String fechaTransaccion) {
         this.fechaTransaccion = fechaTransaccion;
+    }
+
+    public void setDniCliente(String dniCliente) {
+        this.dniCliente = dniCliente;
     }
 
 }

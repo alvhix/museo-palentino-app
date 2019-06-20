@@ -92,7 +92,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         oblig6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("MuseoPalentinoApp - Menu de Administrador/Exposición "+e.getNombre());
+        setTitle("Museo Palentino - Menu de Administrador/Exposición "+e.getNombre());
         setIconImage(getIconImage());
         setResizable(false);
 
@@ -159,10 +159,10 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         jLabel11.setText("Ruta de imagen (máx. 230x165 px):");
         jLabel11.setToolTipText("");
 
-        campoRuta.setMaximumSize(new java.awt.Dimension(302, 25));
-        campoRuta.setMinimumSize(new java.awt.Dimension(302, 25));
+        campoRuta.setMaximumSize(new java.awt.Dimension(302, 28));
+        campoRuta.setMinimumSize(new java.awt.Dimension(302, 28));
         campoRuta.setName(""); // NOI18N
-        campoRuta.setPreferredSize(new java.awt.Dimension(302, 25));
+        campoRuta.setPreferredSize(new java.awt.Dimension(302, 28));
 
         botonAbrirSelector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/carpeta.png"))); // NOI18N
         botonAbrirSelector.addMouseListener(new java.awt.event.MouseAdapter() {

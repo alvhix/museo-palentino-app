@@ -64,8 +64,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         panelSesion1 = new javax.swing.JPanel();
-        botonCerrarSesion = new javax.swing.JButton();
-        botonEntrada = new javax.swing.JButton();
+        botonEntradas = new javax.swing.JButton();
         jPanel = new javax.swing.JPanel();
         infoSesion = new javax.swing.JLabel();
         infoUsuario = new javax.swing.JLabel();
@@ -88,8 +87,10 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         menuDatos = new javax.swing.JMenuItem();
+        cambiarContraseñaMenu = new javax.swing.JMenuItem();
         menuCerrarSesion = new javax.swing.JMenuItem();
         menuReserva = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Museo Palentino - Menú de Usuario");
@@ -98,17 +99,11 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
         panelSesion1.setOpaque(false);
 
-        botonCerrarSesion.setText("Cerrar sesión");
-        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        botonEntradas.setBackground(new java.awt.Color(255, 255, 255));
+        botonEntradas.setText("Reserva de Entradas");
+        botonEntradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCerrarSesionActionPerformed(evt);
-            }
-        });
-
-        botonEntrada.setText("Entrada");
-        botonEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEntradaActionPerformed(evt);
+                botonEntradasActionPerformed(evt);
             }
         });
 
@@ -117,20 +112,16 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         panelSesion1Layout.setHorizontalGroup(
             panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSesion1Layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
-                .addGroup(panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addContainerGap(204, Short.MAX_VALUE)
+                .addComponent(botonEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         panelSesion1Layout.setVerticalGroup(
             panelSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSesion1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(botonCerrarSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(botonEntrada)
-                .addContainerGap())
+                .addGap(15, 15, 15)
+                .addComponent(botonEntradas)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel.setOpaque(false);
@@ -400,17 +391,34 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         menuDatos.setText("Mis datos");
         jMenu2.add(menuDatos);
 
+        cambiarContraseñaMenu.setText("Cambiar contraseña");
+        cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarContraseñaMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cambiarContraseñaMenu);
+
         menuCerrarSesion.setText("Cerrar sesión");
+        menuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCerrarSesionActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuCerrarSesion);
 
         jMenuBar1.add(jMenu2);
 
         menuReserva.setText("Opciones de compra");
-        menuReserva.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenuItem1.setText("Reserva de entradas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuReservaActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        menuReserva.add(jMenuItem1);
+
         jMenuBar1.add(menuReserva);
 
         setJMenuBar(jMenuBar1);
@@ -432,28 +440,13 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-        // TODO add your handling code here:
-        cerrarSesion();
-    }//GEN-LAST:event_botonCerrarSesionActionPerformed
-
-    private void menuReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservaActionPerformed
-        // TODO add your handling code here:
-        opcionesCompra();
-    }//GEN-LAST:event_menuReservaActionPerformed
-
-    private void botonEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntradaActionPerformed
-        // TODO add your handling code here:
-        opcionesCompra();
-    }//GEN-LAST:event_botonEntradaActionPerformed
 
     private void panelExposicion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion1MouseClicked
         // TODO add your handling code here:
@@ -539,6 +532,26 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         anterior();
     }//GEN-LAST:event_botonAnteriorMouseReleased
 
+    private void cambiarContraseñaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
+        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, c);
+        ccd.setVisible(true);
+    }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        opcionesCompra();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        cerrarSesion();
+    }//GEN-LAST:event_menuCerrarSesionActionPerformed
+
+    private void botonEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntradasActionPerformed
+        // TODO add your handling code here:
+        opcionesCompra();
+    }//GEN-LAST:event_botonEntradasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -573,15 +586,16 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAnterior;
-    private javax.swing.JButton botonCerrarSesion;
-    private javax.swing.JButton botonEntrada;
+    private javax.swing.JButton botonEntradas;
     private javax.swing.JLabel botonSiguiente;
+    private javax.swing.JMenuItem cambiarContraseñaMenu;
     private javax.swing.JLabel imagen1;
     private javax.swing.JLabel imagen2;
     private javax.swing.JLabel infoSesion;
     private javax.swing.JLabel infoUsuario;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

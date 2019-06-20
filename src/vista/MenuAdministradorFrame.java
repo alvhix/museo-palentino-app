@@ -126,13 +126,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuCerrarSesion = new javax.swing.JMenuItem();
+        menuCambiarContraseña = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mostrarGestionEmpleados = new javax.swing.JMenuItem();
         mostrarGestionExposiciones = new javax.swing.JMenuItem();
         mostrarGestionEntradas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MuseoPalentinoApp - Menú de Administrador");
+        setTitle("Museo Palentino - Menú de Administrador");
         setIconImage(getIconImage());
         setResizable(false);
 
@@ -225,7 +226,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -297,7 +298,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -381,9 +382,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLabel11.setText("Ruta de imagen (máx. 300x114 px):");
         jLabel11.setToolTipText("");
 
-        campoRuta.setMaximumSize(new java.awt.Dimension(340, 25));
-        campoRuta.setMinimumSize(new java.awt.Dimension(340, 25));
-        campoRuta.setPreferredSize(new java.awt.Dimension(340, 25));
+        campoRuta.setMaximumSize(new java.awt.Dimension(340, 28));
+        campoRuta.setMinimumSize(new java.awt.Dimension(340, 28));
+        campoRuta.setPreferredSize(new java.awt.Dimension(340, 28));
 
         botonAbrirSelector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/carpeta.png"))); // NOI18N
         botonAbrirSelector.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -608,7 +609,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         panelEntradasLayout.setVerticalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
-                .addContainerGap(296, Short.MAX_VALUE)
+                .addContainerGap(299, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89))
         );
@@ -624,6 +625,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuCerrarSesion);
+
+        menuCambiarContraseña.setText("Cambiar contraseña");
+        menuCambiarContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCambiarContraseñaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuCambiarContraseña);
 
         jMenuBar.add(jMenu1);
 
@@ -788,6 +797,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         cerrarSesion();
     }//GEN-LAST:event_menuCerrarSesionActionPerformed
 
+    private void menuCambiarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCambiarContraseñaActionPerformed
+        // TODO add your handling code here:
+        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, true, a);
+        ccd.setVisible(true);
+    }//GEN-LAST:event_menuCambiarContraseñaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -864,6 +879,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem menuCambiarContraseña;
     private javax.swing.JMenuItem menuCerrarSesion;
     private javax.swing.JMenuItem mostrarGestionEmpleados;
     private javax.swing.JMenuItem mostrarGestionEntradas;
