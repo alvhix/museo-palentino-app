@@ -515,9 +515,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             sm.reservarEntrada(e, c);
             mostrarTabla();
         } else {
-
             throw new FechaException();
-
         }
         jDateChooser1.setDate(null); // Restablece el calendario
         jComboBox1.setSelectedIndex(0); // Restablece el selector de hora a la default
@@ -557,7 +555,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     private void siGuiada() {
         float suplemento = sm.devolverPrecioSuplemento();
-        JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento de " + suplemento, "Atención", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento de " + suplemento + "€", "Atención", JOptionPane.INFORMATION_MESSAGE);
         setPrecioEntradaGuiada();
     }
 
