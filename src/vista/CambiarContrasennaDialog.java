@@ -234,7 +234,7 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
         cambiada = sm.cambiarContraseña(claveAntiguaString, claveNuevaString, user.getDNI());
         if (cambiada == true) {
 
-            JOptionPane.showMessageDialog(rootPane, "Has cambiado tu contraseña", "Contraseña cambiada", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this, "Has cambiado tu contraseña", "Contraseña cambiada", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
 
         } else {

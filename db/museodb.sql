@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2019 a las 19:00:32
+-- Tiempo de generación: 20-06-2019 a las 07:04:04
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -59,9 +59,9 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`idCliente`, `dniCliente`) VALUES
 (6, '01010300W'),
-(4, '11111111I'),
-(5, '71955241v'),
-(3, '71970430a');
+(9, '05930011J'),
+(7, '53114937W'),
+(8, '55647074T');
 
 -- --------------------------------------------------------
 
@@ -85,14 +85,11 @@ CREATE TABLE `entrada` (
 --
 
 INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`) VALUES
-(86, '2019-06-02', '8:00', 0, 6.85, 4.95, 6),
-(87, '2019-06-16', '12:00', 1, 11.8, 4.95, 6),
-(88, '2019-06-29', '16:00', 1, 11.8, 4.95, 6),
-(89, '2019-06-30', '8:00', 1, 11.8, 4.95, 6),
-(90, '2019-06-23', '8:00', 1, 11.8, 4.95, 6),
-(91, '2019-06-23', '16:00', 1, 11.8, 4.95, 6),
-(92, '2019-06-23', '8:00', 1, 11.8, 4.95, 6),
-(93, '2019-06-15', '8:00', 0, 6.85, 4.95, 6);
+(98, '2019-06-21', '12:00', 0, 6.85, 4.95, 7),
+(99, '2019-06-23', '8:00', 1, 11.8, 4.95, 8),
+(100, '2019-10-23', '8:00', 0, 6.85, 4.95, 8),
+(101, '2019-06-22', '18:00', 0, 6.85, 4.95, 7),
+(102, '2019-06-21', '12:00', 1, 11.8, 4.95, 7);
 
 -- --------------------------------------------------------
 
@@ -134,10 +131,8 @@ CREATE TABLE `guia` (
 --
 
 INSERT INTO `guia` (`numIdentificacion`, `numGuia`, `numSeguridadSocial`, `tipo`, `dniGuia`) VALUES
-(1, 48, 111111111, 'guia', '44444444e'),
-(2, 33, 123456789, 'guia', '87654321A'),
-(3, 13, 1112223334, 'guia', '45612378x'),
-(7, 5, 444444444444, 'Guía', '44444444f');
+(8, 1, 231245535388, 'Guía', '50164674H'),
+(9, 2, 535367755511, 'Guía', '66552361K');
 
 -- --------------------------------------------------------
 
@@ -149,6 +144,14 @@ CREATE TABLE `guia_entrada` (
   `numEntrada` int(10) UNSIGNED NOT NULL,
   `numGuia` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `guia_entrada`
+--
+
+INSERT INTO `guia_entrada` (`numEntrada`, `numGuia`) VALUES
+(99, 1),
+(102, 1);
 
 -- --------------------------------------------------------
 
@@ -216,17 +219,12 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`dni`, `clave`, `nombre`, `telefono`, `rol`) VALUES
 ('01010300W', 'cefd62a6a14f4ad5feb65a471e646c7171a44cb8', 'Pedro Antonio', 678543256, 'cliente'),
-('11111111I', '7c222fb2927d828af22f592134e8932480637c0d', 'Ivan', 444444444, 'cliente'),
+('05930011J', '04ca87e04fe9fe188e4605db6f777ef4ddb47bb5', 'María López', 967443662, 'cliente'),
 ('12345678g', '7c222fb2927d828af22f592134e8932480637c0d', 'Guillermio', 989000000, 'administrador'),
-('4323g', 'f37be93b674e3dcd988cba4a7cf66879468c3b35', 'fdsfsdf', 3425355, 'guia'),
-('44444444e', '7c222fb2927d828af22f592134e8932480637c0d', 'Sergio', 555555555, 'guia'),
-('44444444f', '8949eb0b6a2ef0595f9ef639e167d6209c3ccc60', 'grsgfdg', 444444444, 'guia'),
-('45612378x', 'dfa094c6585106137a4e3aa979017d150abaa0b2', 'aaaaaaaa', 987654321, 'guia'),
-('45678912x', 'dfa094c6585106137a4e3aa979017d150abaa0b2', 'wonse', 987654321, 'guia'),
-('523525', '49fb42e0fd0c5fa4d47df2bdb954e3c2dcca08f3', '32432523', 53253, 'guia'),
-('71955241v', 'dfa094c6585106137a4e3aa979017d150abaa0b2', 'caracol', 965865123, 'cliente'),
-('71970430a', '7c222fb2927d828af22f592134e8932480637c0d', 'Victor', 999999999, 'cliente'),
-('87654321A', '7c222fb2927d828af22f592134e8932480637c0d', 'Alvaro', 333333, 'guia');
+('50164674H', '9c520b31899b14dff49f25fbe90e8c2136ef0da9', 'Iván Gonzalez', 979332032, 'guia'),
+('53114937W', '929469a83455ec76fc403907f519f7afe0d1033a', 'Jon', 623459848, 'cliente'),
+('55647074T', '01b677f8b34e8078dba20f446b7c646bb0bf14c5', 'Victor', 979889333, 'cliente'),
+('66552361K', '0148d48cdfb71b2ec7101d02dd6e99710decb9ab', 'Elena Martinez', 978432266, 'guia');
 
 --
 -- Índices para tablas volcadas
@@ -312,31 +310,31 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `numeroEntrada` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de la tabla `exposicion`
 --
 ALTER TABLE `exposicion`
-  MODIFY `idExposicion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idExposicion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `numIdentificacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `numIdentificacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `obra`
 --
 ALTER TABLE `obra`
-  MODIFY `idObra` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `idObra` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Restricciones para tablas volcadas

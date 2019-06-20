@@ -1,4 +1,8 @@
 ------------------
+Rol: Administrador
+Dni 12345678G
+Clave: 12345678
+------------------
 Rol: Cliente
 DNI: 01010300W
 Pass: pedrito123
@@ -10,6 +14,10 @@ Pass: victor666
 Rol: Cliente
 DNI: 05930011J
 Pass: 45sdgj97
+------------------
+Rol: Cliente
+DNI: 53114937W
+Pass: 53114937
 ------------------
 Rol: Guía
 Dni 50164674H

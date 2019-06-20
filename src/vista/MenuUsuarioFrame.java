@@ -66,7 +66,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         panelSesion1 = new javax.swing.JPanel();
         botonEntradas = new javax.swing.JButton();
         jPanel = new javax.swing.JPanel();
-        infoSesion = new javax.swing.JLabel();
         infoUsuario = new javax.swing.JLabel();
         panelMuestra = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -126,10 +125,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
         jPanel.setOpaque(false);
 
-        infoSesion.setForeground(new java.awt.Color(255, 255, 255));
-        infoSesion.setText("Sesión inciada como: ");
-
-        infoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        infoUsuario.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         infoUsuario.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
@@ -137,20 +133,16 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(infoSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(infoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addGap(27, 27, 27))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(infoSesion))
-                .addContainerGap())
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(infoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         panelMuestra.setOpaque(false);
@@ -438,8 +430,8 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -591,7 +583,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem cambiarContraseñaMenu;
     private javax.swing.JLabel imagen1;
     private javax.swing.JLabel imagen2;
-    private javax.swing.JLabel infoSesion;
     private javax.swing.JLabel infoUsuario;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -731,7 +722,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void componentesIniciales() {
         imagenFondo();
-        infoUsuario.setText(c.getNombre());
+        infoUsuario.setText("¡Bienvenid@ " + c.getNombre() + "!");
         cargarExposiciones();
     }
 }

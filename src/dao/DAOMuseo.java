@@ -93,7 +93,7 @@ public class DAOMuseo {
         boolean cambiada = false;
 
         String query = "SELECT * FROM persona WHERE dni = ? and clave = SHA(?) ";
-        String update = "UPDATE clave FROM persona VALUES ?";
+        String update = "UPDATE persona SET clave = sha(?) WHERE dni = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ps.setString(1, dniUsuario);
@@ -102,9 +102,9 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-
             PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(update);
-            ps.setString(1, passNueva);
+            ps2.setString(1, passNueva);
+            ps2.setString(2, dniUsuario);
             ps2.executeUpdate();
             cambiada = true;
         }

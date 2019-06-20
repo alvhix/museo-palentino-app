@@ -559,7 +559,8 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     private void siGuiada() {
         float suplemento = sm.devolverPrecioSuplemento();
-        JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento de " + suplemento, "Atención", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento "
+                + "de " + suplemento + "€", "Atención", JOptionPane.INFORMATION_MESSAGE);
         setPrecioEntradaGuiada();
     }
 

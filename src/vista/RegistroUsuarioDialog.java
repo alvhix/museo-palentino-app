@@ -321,7 +321,7 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
             Cliente c = new Cliente(campoNombre.getText(), campoDNI.getText(), Integer.parseInt(campoTelefono.getText()));
             sm.nuevoCliente(c, campoPassword1.getText());
             // Se instancia el menú de usuario y se hace visible
-            MenuUsuarioFrame muf = new MenuUsuarioFrame(c);
+            MenuUsuarioFrame muf = new MenuUsuarioFrame(sm.cargarCliente(c.getDNI()));
             muf.setVisible(true);
             // Se cierra la vista actual y se hace invisible el menú principal
             dispose();

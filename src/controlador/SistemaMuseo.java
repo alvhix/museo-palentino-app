@@ -119,11 +119,11 @@ public class SistemaMuseo {
             if (!e.getEsGuiada()) {
                 c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaNormal(e, c);
-                JOptionPane.showMessageDialog(null, "Entrada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
+                JOptionPane.showMessageDialog(null, "Entrada reservada con éxito", "Reserva de entradas", JOptionPane.INFORMATION_MESSAGE);
             } else if (e.getEsGuiada()) {
                 c.addEntrada(e);
                 DAOMuseo.instanciar().reservarEntradaGuiada(e, c);
-                JOptionPane.showMessageDialog(null, "Entrada guiada reservada con éxito", "Reserva de entradas", JOptionPane.DEFAULT_OPTION);
+                JOptionPane.showMessageDialog(null, "Entrada guiada reservada con éxito", "Reserva de entradas", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getSQLState());
