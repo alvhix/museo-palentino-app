@@ -130,8 +130,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        suplementoActual = new javax.swing.JLabel();
+        precioActual = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -660,7 +660,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios actuales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios actuales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("SansSerif", 0, 12))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel7.setText("Precio de la entrada actual:");
@@ -668,11 +668,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel9.setText("Suplemento por el guía actual:");
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 204, 0));
+        suplementoActual.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        suplementoActual.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel13.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 204, 0));
+        precioActual.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        precioActual.setForeground(new java.awt.Color(0, 204, 0));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -685,8 +685,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(83, 83, 83)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(precioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(suplementoActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         jPanel7Layout.setVerticalGroup(
@@ -695,12 +695,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(precioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(suplementoActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -994,8 +994,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1036,7 +1034,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelEntradas;
     private javax.swing.JPanel panelExposiciones;
+    private javax.swing.JLabel precioActual;
     private javax.swing.JFileChooser selectorArchivos;
+    private javax.swing.JLabel suplementoActual;
     private javax.swing.JTable tablaEmpleados;
     private javax.swing.JTable tablaExposiciones;
     private javax.swing.JTextField tfClave;
@@ -1187,6 +1187,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         oblig1.setText(" ");
         oblig2.setText(" ");
         oblig3.setText(" ");
+        obtenerPrecios();
     }
 
     // ####################### - Métodos Sesion - #######################
@@ -1374,6 +1375,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Entradas - #######################
+    private void obtenerPrecios() {
+        float precio = sm.devolverPrecioEntrada();
+        float suplemento = sm.devolverPrecioSuplemento();
+        // Obtiene el precio de la entrada actual
+        precioActual.setText(String.valueOf(String.format("%.2f €", precio)));
+        // Obtiene el suplemento actual
+        suplementoActual.setText(String.valueOf(String.format("%.2f €", suplemento)));
+    }
+
     private void cambiarPrecioEntrada() {
         if (!campoPrecioEntrada.getText().isEmpty()) {
             float precio = Float.valueOf(campoPrecioEntrada.getText());

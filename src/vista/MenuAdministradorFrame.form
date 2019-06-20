@@ -200,7 +200,7 @@
                                               <Component id="tfDNI" min="-2" pref="80" max="-2" attributes="0"/>
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                                          <EmptySpace pref="222" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                               <Component id="tfNGuia" min="-2" pref="80" max="-2" attributes="0"/>
@@ -950,7 +950,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder justification="2" title="Precios actuales">
+                    <TitledBorder justification="2" position="2" title="Precios actuales">
                       <Font PropertyName="font" name="SansSerif" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
@@ -990,8 +990,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel13" pref="86" max="32767" attributes="0"/>
-                                  <Component id="jLabel14" max="32767" attributes="0"/>
+                                  <Component id="precioActual" pref="86" max="32767" attributes="0"/>
+                                  <Component id="suplementoActual" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
@@ -1003,14 +1003,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel7" max="32767" attributes="0"/>
-                                  <Component id="jLabel13" max="32767" attributes="0"/>
+                                  <Component id="precioActual" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="36" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel9" max="32767" attributes="0"/>
-                                  <Component id="jLabel14" max="32767" attributes="0"/>
+                                  <Component id="suplementoActual" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1032,7 +1032,7 @@
                         <Property name="text" type="java.lang.String" value="Suplemento por el gu&#xed;a actual:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel14">
+                    <Component class="javax.swing.JLabel" name="suplementoActual">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="18" style="1"/>
@@ -1042,7 +1042,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel13">
+                    <Component class="javax.swing.JLabel" name="precioActual">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="18" style="1"/>
