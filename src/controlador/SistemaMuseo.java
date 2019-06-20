@@ -74,16 +74,16 @@ public class SistemaMuseo {
     }
 
     // #################### CAMBIAR DE CONTRASEÑA ########################
-    public boolean cambiarContraseña(String contraseñaAntigua, String contraseñaNueva, String dniUsuario) {
-        boolean cambiada;
+    public boolean cambiarContraseña(String contraseñaAntigua, String contraseñaNueva, String dniUsuario) throws SQLException {
+        boolean cambiada = false;
 
-        try {
+        //try {
             cambiada = DAOMuseo.instanciar().cambiarContraseña(contraseñaAntigua, contraseñaNueva, dniUsuario);
-        } catch (SQLException e) {
+        /*} catch (SQLException e) {
             cambiada = false;
             System.out.println(e.getSQLState());
             e.getStackTrace();
-        }
+        }*/
         return cambiada;
     }
 
