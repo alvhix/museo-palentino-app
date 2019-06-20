@@ -79,32 +79,6 @@ public class ExposicionTableModel extends AbstractTableModel {
     }
 
     @Override
-    public void setValueAt(Object dato, int rowIndex, int colIndex) {
-        // Obtenemos la obra de la fila indicada 
-        Obra o = obras.get(rowIndex);
-        switch (colIndex) {
-            case 1:
-                o.setTitulo((String) dato);
-                break;
-            case 2:
-                o.setAutor((String) dato);
-                break;
-            case 3:
-                o.setEstilo((String) dato);
-                break;
-            case 4:
-                o.setAnno((String) dato);
-                break;
-            case 5:
-                o.setTipo((String) dato);
-                break;
-            case 6:
-                o.setRutaImagen((String) dato);
-                break;
-        }
-    }
-
-    @Override
     public String getColumnName(int colIndex) {
         return columns[colIndex];
     }

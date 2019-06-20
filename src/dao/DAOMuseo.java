@@ -431,7 +431,7 @@ public class DAOMuseo {
         return existe;
     }
 
-    public void nuevaObra(Exposicion e, Obra o) throws SQLException {
+    public void nuevaObra(Obra o) throws SQLException {
         String insert = "INSERT INTO obra (titulo, autor, estilo, año, tipo, imagen, idExposicion) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(insert);
         ps.setString(1, o.getTitulo());
@@ -440,7 +440,7 @@ public class DAOMuseo {
         ps.setString(4, o.getAnno());
         ps.setString(5, o.getTipo());
         ps.setString(6, o.getRutaImagen());
-        ps.setInt(7, e.getID());
+        ps.setInt(7, o.getIdExposicion());
         // Se ejecuta el insert
         ps.executeUpdate();
     }
@@ -494,7 +494,7 @@ public class DAOMuseo {
         return o;
     }
     
-    private List cargarObrasExposicion(int idExpo) throws SQLException {
+    public List cargarObrasExposicion(int idExpo) throws SQLException {
         List obras;
         String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
 

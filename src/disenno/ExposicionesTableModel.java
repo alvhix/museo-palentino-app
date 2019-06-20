@@ -70,23 +70,6 @@ public class ExposicionesTableModel extends AbstractTableModel {
     }
 
     @Override
-    public void setValueAt(Object dato, int rowIndex, int colIndex) {
-        // Obtenemos la obra de la fila indicada 
-        Exposicion e = exposiciones.get(rowIndex);
-        switch (colIndex) {
-            case 1:
-                e.setNombre((String) dato);
-                break;
-            case 2:
-                e.setTiempoRecorrido((Integer) dato);
-                break;
-            case 3:
-                e.setRutaImagen((String) dato);
-                break;
-        }
-    }
-
-    @Override
     public String getColumnName(int colIndex) {
         return columns[colIndex];
     }

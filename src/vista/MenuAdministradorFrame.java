@@ -100,7 +100,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         botonAbrirExpo = new javax.swing.JButton();
         botonAddExpo = new javax.swing.JButton();
         botonDropExpo = new javax.swing.JButton();
-        botonModificarExpo = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         campoNombreExpo = new javax.swing.JTextField();
@@ -226,7 +225,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Empleado  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -298,7 +297,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -348,18 +347,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             }
         });
 
-        botonModificarExpo.setText("Modificar Exposición");
-        botonModificarExpo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonModificarExpoMouseEntered(evt);
-            }
-        });
-        botonModificarExpo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarExpoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -369,8 +356,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonAbrirExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonAddExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonDropExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonModificarExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonDropExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -382,8 +368,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(botonAddExpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonDropExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonModificarExpo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -396,6 +380,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         jLabel11.setText("Ruta de imagen (máx. 300x114 px):");
         jLabel11.setToolTipText("");
+
+        campoRuta.setMaximumSize(new java.awt.Dimension(340, 25));
+        campoRuta.setMinimumSize(new java.awt.Dimension(340, 25));
+        campoRuta.setPreferredSize(new java.awt.Dimension(340, 25));
 
         botonAbrirSelector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/carpeta.png"))); // NOI18N
         botonAbrirSelector.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,27 +427,28 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(oblig1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(campoNombreExpo, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(oblig2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(campoDuracion))
+                        .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonAbrirSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(oblig3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(oblig3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(campoRuta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAbrirSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(oblig2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(oblig1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoNombreExpo)
+                            .addComponent(campoDuracion))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -471,21 +460,20 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                     .addComponent(campoNombreExpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(oblig1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(oblig2)
-                        .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(oblig2)
+                    .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(oblig3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAbrirSelector))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAbrirSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoErrorExpo, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
 
@@ -496,7 +484,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             .addGroup(panelExposicionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(panelExposicionesLayout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,10 +497,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelExposicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLayeredPane1.add(panelExposiciones, "card3");
@@ -620,7 +608,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         panelEntradasLayout.setVerticalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
+                .addContainerGap(296, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89))
         );
@@ -710,10 +698,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         annadirExposicion();
     }//GEN-LAST:event_botonAddExpoActionPerformed
 
-    private void botonModificarExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarExpoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonModificarExpoActionPerformed
-
     private void botonDropExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDropExpoActionPerformed
         // TODO add your handling code here:
         eliminarExposicion();
@@ -759,11 +743,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         botonAddExpo.setCursor(new Cursor(HAND_CURSOR));
     }//GEN-LAST:event_botonAddExpoMouseEntered
-
-    private void botonModificarExpoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarExpoMouseEntered
-        // TODO add your handling code here:
-        botonModificarExpo.setCursor(new Cursor(HAND_CURSOR));
-    }//GEN-LAST:event_botonModificarExpoMouseEntered
 
     private void botonDropExpoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDropExpoMouseEntered
         // TODO add your handling code here:
@@ -852,7 +831,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JButton botonCambiarPrecioEntrada;
     private javax.swing.JButton botonCambiarSuplemento;
     private javax.swing.JButton botonDropExpo;
-    private javax.swing.JToggleButton botonModificarExpo;
     private javax.swing.JButton btAnnadirGuia;
     private javax.swing.JButton btEliminarGuia;
     private javax.swing.JTextField campoDuracion;
@@ -1046,7 +1024,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         soloNumeros(campoDuracion);
         oblig1.setText(" ");
         oblig2.setText(" ");
-        oblig2.setText(" ");
         oblig3.setText(" ");
     }
 
@@ -1125,15 +1102,20 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             Exposicion e = etm.obtenerExposicion(selection);
             ModificaExposicionDialog med = new ModificaExposicionDialog(this, true, e);
             med.setVisible(true);
+            exposiciones = sm.cargarExposiciones();
+            etm = new ExposicionesTableModel(exposiciones);
+            tablaExposiciones.setModel(etm);
         }
     }
 
     private void annadirExposicion() {
         if (validarDatosExposicion()) {
-            Exposicion e = new Exposicion(campoNombreExpo.getName(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
+            Exposicion e = new Exposicion(campoNombreExpo.getText(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
             sm.nuevaExposicion(e);
-            e = sm.cargarExposicion(e.getNombre());
-            etm.annadirExposicion(e);
+            exposiciones = sm.cargarExposiciones();
+            etm = new ExposicionesTableModel(exposiciones);
+            tablaExposiciones.setModel(etm);
+            restablecerCamposExpo();
         }
     }
 
@@ -1146,8 +1128,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
             do {
                 int opcion = JOptionPane.showConfirmDialog(this,
-                        "¿Está seguro de que quiere eliminar\nla exposición \"id = "
-                        + e.getID() + "\"?",
+                        "¿Está seguro de que quiere eliminar\nla \"Exposición "
+                        + e.getNombre() + "\"?",
                         "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
                 if (opcion == JOptionPane.YES_OPTION) {
@@ -1161,10 +1143,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }
 
-    private void modificarExposicion() {
-
-    }
-
     private boolean validarDatosExposicion() {
         boolean correcto = false;
 
@@ -1173,18 +1151,19 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             String ruta = campoRuta.getText();
 
             if (!sm.comprobarSiExisteExposicion(nombre)) {
-                ImageIcon image = new ImageIcon(ruta);
+                File file = new File(ruta);
 
-                if (!(image.getIconHeight() <= 114 && image.getIconWidth() <= 300)) {
-                    infoErrorExpo.setText("Tamaño de imagen demasiado grande.");
+                if (!file.exists()) {
+                    infoErrorExpo.setText("¡La imagen seleccionada no existe!");
                 } else {
                     correcto = true;
-                    restablecerCamposExpo();
                     oblig1.setText(" ");
-                    oblig2.setText(" ");
                     oblig2.setText(" ");
                     oblig3.setText(" ");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe una exposición \ncon ese nombre en el Museo.", "Error al añadir exposición",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
             if (campoNombreExpo.getText().isEmpty()) {
@@ -1204,9 +1183,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     private void restablecerCamposExpo() {
-        campoNombreExpo.setText("");
-        campoDuracion.setText("");
-        campoRuta.setText("");
+        campoNombreExpo.setText(null);
+        campoDuracion.setText(null);
+        campoRuta.setText(null);
     }
 
     private void abrirSelectorImagenes() throws IOException {

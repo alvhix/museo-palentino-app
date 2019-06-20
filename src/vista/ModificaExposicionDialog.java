@@ -5,14 +5,19 @@
  */
 package vista;
 
+import controlador.SistemaMuseo;
 import disenno.ExposicionTableModel;
 import java.awt.Cursor;
 import static java.awt.Frame.HAND_CURSOR;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Exposicion;
 import modelo.Obra;
@@ -26,6 +31,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     private Exposicion e;
     private List<Obra> obras;
     private ExposicionTableModel etm;
+    private SistemaMuseo sm;
 
     /**
      * Creates new form ModExposicionesJD
@@ -62,8 +68,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         tablaObras = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         botonAddObra = new javax.swing.JButton();
-        botonDropObra = new javax.swing.JButton();
-        botonModificarObra = new javax.swing.JToggleButton();
+        botonEliminarObra = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         campoTitulo = new javax.swing.JTextField();
@@ -87,6 +92,8 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         oblig6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("MuseoPalentinoApp - Menu de Administrador/Exposición "+e.getNombre());
+        setIconImage(getIconImage());
         setResizable(false);
 
         tablaObras.setModel(etm);
@@ -107,27 +114,15 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             }
         });
 
-        botonDropObra.setText("Eliminar Exposición");
-        botonDropObra.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonEliminarObra.setText("Eliminar Obra");
+        botonEliminarObra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonDropObraMouseEntered(evt);
+                botonEliminarObraMouseEntered(evt);
             }
         });
-        botonDropObra.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminarObra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonDropObraActionPerformed(evt);
-            }
-        });
-
-        botonModificarObra.setText("Modificar Exposición");
-        botonModificarObra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonModificarObraMouseEntered(evt);
-            }
-        });
-        botonModificarObra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarObraActionPerformed(evt);
+                botonEliminarObraActionPerformed(evt);
             }
         });
 
@@ -139,8 +134,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonAddObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonDropObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonModificarObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonEliminarObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -149,9 +143,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(botonAddObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonDropObra, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonModificarObra)
+                .addComponent(botonEliminarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -166,6 +158,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
 
         jLabel11.setText("Ruta de imagen (máx. 230x165 px):");
         jLabel11.setToolTipText("");
+
+        campoRuta.setMaximumSize(new java.awt.Dimension(302, 25));
+        campoRuta.setMinimumSize(new java.awt.Dimension(302, 25));
+        campoRuta.setName(""); // NOI18N
+        campoRuta.setPreferredSize(new java.awt.Dimension(302, 25));
 
         botonAbrirSelector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/carpeta.png"))); // NOI18N
         botonAbrirSelector.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,10 +255,9 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(oblig6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(campoRuta)
+                        .addComponent(oblig6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonAbrirSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -299,9 +295,9 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
                     .addComponent(jLabel11)
                     .addComponent(oblig6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAbrirSelector))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAbrirSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(infoErrorObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -347,24 +343,15 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         annadirObra();
     }//GEN-LAST:event_botonAddObraActionPerformed
 
-    private void botonDropObraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDropObraMouseEntered
+    private void botonEliminarObraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarObraMouseEntered
         // TODO add your handling code here:
-        botonDropObra.setCursor(new Cursor(HAND_CURSOR));
-    }//GEN-LAST:event_botonDropObraMouseEntered
+        botonEliminarObra.setCursor(new Cursor(HAND_CURSOR));
+    }//GEN-LAST:event_botonEliminarObraMouseEntered
 
-    private void botonDropObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDropObraActionPerformed
+    private void botonEliminarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarObraActionPerformed
         // TODO add your handling code here:
         eliminarObra();
-    }//GEN-LAST:event_botonDropObraActionPerformed
-
-    private void botonModificarObraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarObraMouseEntered
-        // TODO add your handling code here:
-        botonModificarObra.setCursor(new Cursor(HAND_CURSOR));
-    }//GEN-LAST:event_botonModificarObraMouseEntered
-
-    private void botonModificarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarObraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonModificarObraActionPerformed
+    }//GEN-LAST:event_botonEliminarObraActionPerformed
 
     private void botonAbrirSelectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseClicked
         // TODO add your handling code here:
@@ -443,8 +430,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAbrirSelector;
     private javax.swing.JButton botonAddObra;
-    private javax.swing.JButton botonDropObra;
-    private javax.swing.JToggleButton botonModificarObra;
+    private javax.swing.JButton botonEliminarObra;
     private javax.swing.JTextField campoAnno;
     private javax.swing.JTextField campoAutor;
     private javax.swing.JTextField campoEstilo;
@@ -472,16 +458,38 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void annadirObra() {
-
+        if (validarDatosExposicion()) {
+            Obra o = new Obra(campoTitulo.getText(), campoAutor.getText(), campoEstilo.getText(), campoAnno.getText(), campoTipo.getText(), campoRuta.getText(), e.getID());
+            sm.nuevaObra(o);
+            obras = sm.cargarObrasExposicion(e.getID());
+            etm = new ExposicionTableModel(obras);
+            tablaObras.setModel(etm);
+            restablecerCamposObra();
+        }
     }
 
     private void eliminarObra() {
         int selection = tablaObras.getSelectedRow();
-        
-    }
 
-    private void modificarObra() {
+        if (selection != -1) {
+            boolean salir = false;
+            Obra o = etm.obtenerObra(selection);
 
+            do {
+                int opcion = JOptionPane.showConfirmDialog(this,
+                        "¿Está seguro de que quiere eliminar\nla obra cuyo ID es  \""
+                        + o.getId() + "\"?",
+                        "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    etm.eliminarObra(selection);
+                    sm.eliminarObra(o.getId());
+                    salir = true;
+                } else if (opcion == JOptionPane.NO_OPTION) {
+                    salir = true;
+                }
+            } while (!salir);
+        }
     }
 
     private void abrirSelectorImagenes() throws IOException {
@@ -499,7 +507,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             ImageIcon image = new ImageIcon(file.getPath());
 
             if (image.getIconHeight() <= 165 && image.getIconWidth() <= 230) {
-                campoRuta.setText("src/recursos/imagenes/exposiciones/" + file.getName());
+                campoRuta.setText("src/recursos/imagenes/obras/" + file.getName());
                 infoErrorObra.setText(" ");
             } else {
                 infoErrorObra.setText("¡Tamaño de imagen demasiado grande!");
@@ -507,7 +515,88 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         }
     }
 
+    private boolean validarDatosExposicion() {
+        boolean correcto = false;
+
+        if (!campoTitulo.getText().isEmpty() && !campoAutor.getText().isEmpty() && !campoEstilo.getText().isEmpty()
+                && !campoAnno.getText().isEmpty() && !campoTipo.getText().isEmpty() && !campoRuta.getText().isEmpty()) {
+            String titulo = campoTitulo.getText();
+            String autor = campoAutor.getText();
+            String anno = campoAnno.getText();
+            String tipo = campoTipo.getText();
+            String ruta = campoRuta.getText();
+
+            if (!sm.comprobarSiExisteObra(titulo, autor, anno, tipo)) {
+                File file = new File(ruta);
+
+                if (!file.exists()) {
+                    infoErrorObra.setText("¡La imagen seleccionada no existe!");
+                } else {
+                    correcto = true;
+                    oblig1.setText(" ");
+                    oblig2.setText(" ");
+                    oblig3.setText(" ");
+                    oblig4.setText(" ");
+                    oblig5.setText(" ");
+                    oblig6.setText(" ");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe una obra con \nesos datos en el Museo.", "Error al añadir obra",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            if (campoTitulo.getText().isEmpty()) {
+                oblig1.setText("*");
+            }
+
+            if (campoAutor.getText().isEmpty()) {
+                oblig2.setText("*");
+            }
+
+            if (campoEstilo.getText().isEmpty()) {
+                oblig3.setText("*");
+            }
+
+            if (campoAnno.getText().isEmpty()) {
+                oblig4.setText("*");
+            }
+
+            if (campoTipo.getText().isEmpty()) {
+                oblig5.setText("*");
+            }
+
+            if (campoRuta.getText().isEmpty()) {
+                oblig6.setText("*");
+            }
+        }
+
+        return correcto;
+    }
+
+    private void restablecerCamposObra() {
+        campoTitulo.setText(null);
+        campoAutor.setText(null);
+        campoEstilo.setText(null);
+        campoAnno.setText(null);
+        campoTipo.setText(null);
+        campoRuta.setText(null);
+    }
+
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return retValue;
+    }
+    
+    private void conexionBD() {
+        try {
+            sm = new SistemaMuseo();
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión con la Base de Datos.");
+        }
+    }
+
     private void componentesIniciales() {
+        conexionBD();
         oblig1.setText(" ");
         oblig2.setText(" ");
         oblig3.setText(" ");

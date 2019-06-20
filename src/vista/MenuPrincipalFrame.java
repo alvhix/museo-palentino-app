@@ -126,14 +126,15 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 888, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+            .addGap(0, 113, Short.MAX_VALUE)
         );
 
         panelMuestra.setOpaque(false);
+        panelMuestra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setMaximumSize(new java.awt.Dimension(690, 227));
         jPanel6.setMinimumSize(new java.awt.Dimension(690, 227));
@@ -308,22 +309,22 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addComponent(panelExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(panelExpo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(panelExpo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelExpo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelExpo2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(panelExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelExpo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        panelMuestra.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 51, -1, -1));
 
         botonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/flechader.png"))); // NOI18N
         botonSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,6 +344,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 botonSiguienteMouseReleased(evt);
             }
         });
+        panelMuestra.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 155, -1, -1));
 
         botonAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/flechaizq.png"))); // NOI18N
         botonAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -362,35 +364,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 botonAnteriorMouseReleased(evt);
             }
         });
-
-        javax.swing.GroupLayout panelMuestraLayout = new javax.swing.GroupLayout(panelMuestra);
-        panelMuestra.setLayout(panelMuestraLayout);
-        panelMuestraLayout.setHorizontalGroup(
-            panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMuestraLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(botonAnterior)
-                .addGap(54, 54, 54)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(botonSiguiente)
-                .addGap(38, 38, 38))
-        );
-        panelMuestraLayout.setVerticalGroup(
-            panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMuestraLayout.createSequentialGroup()
-                .addGroup(panelMuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelMuestraLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelMuestraLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(botonAnterior))
-                    .addGroup(panelMuestraLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(botonSiguiente)))
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
+        panelMuestra.add(botonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 155, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -398,19 +372,19 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(panelSesion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMuestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -577,19 +551,33 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void cargarExposiciones() {
         if (exposiciones.isEmpty()) {
+            botonSiguiente.setVisible(false);
+            botonAnterior.setVisible(false);
             // Exposicion 1
             panelExpo1.setVisible(false);
             // Exposicion 2
             panelExpo2.setVisible(false);
-        } else if (exposiciones.size() == 1) {
+        } else if (exposiciones.size() == 1 || exposiciones.size() == 2) {
+            botonSiguiente.setVisible(false);
+            botonAnterior.setVisible(false);
             // Exposicion 1
             expo1 = exposiciones.get(0);
             labelNombre1.setText("Exposición " + expo1.getNombre());
             labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
             imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
-            // Exposicion 2
-            panelExpo2.setVisible(false);
+            if (exposiciones.size() == 2) {
+                // Exposicion 2
+                expo2 = exposiciones.get(1);
+                labelNombre2.setText("Exposición " + expo2.getNombre());
+                labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
+                imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
+            } else {
+                // Exposicion 2
+                panelExpo2.setVisible(false);
+            }
         } else {
+            botonSiguiente.setVisible(true);
+            botonAnterior.setVisible(true);
             // Exposicion 1
             expo1 = exposiciones.get(posicion1);
             labelNombre1.setText("Exposición " + expo1.getNombre());
@@ -601,7 +589,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
             imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
         }
-
     }
 
     private void siguiente() {
@@ -638,11 +625,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         if (!(e.getObras().isEmpty())) {
             MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
             mod.setVisible(true);
-        } else {
-            JOptionPane jop = new JOptionPane();
-            jop.setIcon(new ImageIcon("src/recursos/imagenes/fondos/fondoPrincipal.png"));
-            JOptionPane.showMessageDialog(jop, "La exposición está vacía.", "Exposición " + e.getNombre(),
-                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

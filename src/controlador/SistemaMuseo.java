@@ -217,7 +217,7 @@ public class SistemaMuseo {
         boolean comprobarUsuario;
 
         try {
-            comprobarUsuario = DAOMuseo.instanciar().existeUsuario(nombre);
+            comprobarUsuario = DAOMuseo.instanciar().existeExposicion(nombre);
         } catch (SQLException ex) {
             comprobarUsuario = false;
             System.out.println(ex.getSQLState());
@@ -302,9 +302,9 @@ public class SistemaMuseo {
         return comprobarUsuario;
     }
     
-    public void nuevaObra(Exposicion e, Obra o) {
+    public void nuevaObra(Obra o) {
         try {
-            DAOMuseo.instanciar().nuevaObra(e, o);
+            DAOMuseo.instanciar().nuevaObra(o);
         } catch (SQLException ex) {
             System.out.println(ex.getSQLState());
             ex.getStackTrace();
@@ -346,6 +346,20 @@ public class SistemaMuseo {
         }
 
         return obra;
+    }
+    
+    public List<Obra> cargarObrasExposicion(int idExpo){
+        List<Obra> obras;
+
+        try {
+            obras = DAOMuseo.instanciar().cargarObrasExposicion(idExpo);
+        } catch (SQLException ex) {
+            obras = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+
+        return obras;
     }
 
     // ############################# ENTRADA #############################
