@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2019 a las 19:00:32
+-- Tiempo de generación: 20-06-2019 a las 00:02:26
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -60,8 +60,7 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` (`idCliente`, `dniCliente`) VALUES
 (6, '01010300W'),
 (4, '11111111I'),
-(5, '71955241v'),
-(3, '71970430a');
+(5, '71955241v');
 
 -- --------------------------------------------------------
 
