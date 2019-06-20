@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -372,6 +373,13 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     public void muestraTabla() {
         modelo = new DefaultTableModel(g.tabla_EntradasGuia(), cabecera);
         jTable1.setModel(modelo);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
+
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
     }
 
     // ############################# CONEXIÓN BASE DE DATOS #############################

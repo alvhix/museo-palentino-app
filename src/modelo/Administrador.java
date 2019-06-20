@@ -151,11 +151,7 @@ class ComparatorFecha implements Comparator<Entrada> {
 
     @Override
     public int compare(Entrada e1, Entrada e2) {
-        int resultado = e1.getNombreCliente().compareToIgnoreCase(e2.getNombreCliente());
-        if (resultado == 0) {
-            resultado = e1.getDniCliente().compareToIgnoreCase(e2.getDniCliente());
-        }
-        return resultado;
+        return e2.getFechaTransaccion().compareToIgnoreCase(e1.getFechaTransaccion());
     }
 
 }

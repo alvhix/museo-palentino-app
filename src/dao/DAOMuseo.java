@@ -203,7 +203,7 @@ public class DAOMuseo {
         while (rs.next()) {
             entradas.add(new Entrada(rs.getString("persona.nombre"), rs.getString("persona.dni"),
                     rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"), rs.getBoolean("entrada.guiada"),
-                    String.valueOf(rs.getDate("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
+                    String.valueOf(rs.getTimestamp("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
         }
         return entradas;
     }
@@ -268,7 +268,7 @@ public class DAOMuseo {
         while (rs.next()) {
             entradasGuia.add(new Entrada(rs.getString("cliente.dniCliente"),
                     rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"),
-                    String.valueOf(rs.getDate("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
+                    String.valueOf(rs.getTimestamp("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
         }
 
         return entradasGuia;
