@@ -15,11 +15,16 @@ public class Entrada {
     private float precio;
     private float suplementoGuia;
     private Date fecha;
-    private String dniCliente;
+    private String nombreCliente, dniCliente;
     private String hora;
     private String fechaTransaccion;
 
     // Constructores -----------------------------------
+    public Entrada() {
+
+    }
+
+    //Constructor reserva de entradas (Cliente)
     public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente) {
         this.numEntrada = numEntrada;
         this.fecha = fecha;
@@ -29,6 +34,7 @@ public class Entrada {
         this.idCliente = idCliente;
     }
 
+    // Constructor carga de entradas asociadas a un guía (Guía)
     public Entrada(String dniCliente, Date fecha, String hora, String fechaTransaccion, float precio) {
         this.dniCliente = dniCliente;
         this.fecha = fecha;
@@ -37,8 +43,15 @@ public class Entrada {
         this.precio = precio;
     }
 
-    public Entrada() {
-
+    // Constructor que carga todas las entradas (Administrador)
+    public Entrada(String nombreCliente, String dniCliente, Date fecha, String hora, boolean esGuiada, String fechaTransaccion, float precio) {
+        this.nombreCliente = nombreCliente;
+        this.dniCliente = dniCliente;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.esGuiada = esGuiada;
+        this.fechaTransaccion = fechaTransaccion;
+        this.precio = precio;
     }
 
     // Getters -----------------------------------
@@ -78,6 +91,10 @@ public class Entrada {
         return dniCliente;
     }
 
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
     // Setters -----------------------------------
     public void setEsGuiada(boolean esGuiada) {
         this.esGuiada = esGuiada;
@@ -113,6 +130,10 @@ public class Entrada {
 
     public void setDniCliente(String dniCliente) {
         this.dniCliente = dniCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
 }

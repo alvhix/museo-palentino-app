@@ -191,6 +191,23 @@ public class DAOMuseo {
         return a;
     }
 
+    public List cargarTodasEntradas() throws SQLException {
+        List entradas = new ArrayList();
+        String query = "SELECT persona.nombre, persona.dni, entrada.fechaReserva, entrada.hora, entrada.guiada, "
+                + "entrada.fechaTransaccion, entrada.precio FROM persona, cliente, entrada "
+                + "WHERE persona.dni = cliente.dniCliente AND cliente.idCliente = entrada.idCliente";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            entradas.add(new Entrada(rs.getString("persona.nombre"), rs.getString("persona.dni"),
+                    rs.getDate("entrada.fechaReserva"), rs.getString("entrada.hora"), rs.getBoolean("entrada.guiada"),
+                    String.valueOf(rs.getDate("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
+        }
+        return entradas;
+    }
+
     // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) throws SQLException {
         String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
@@ -495,7 +512,7 @@ public class DAOMuseo {
 
         return o;
     }
-    
+
     public List cargarObrasExposicion(int idExpo) throws SQLException {
         List obras;
         String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";

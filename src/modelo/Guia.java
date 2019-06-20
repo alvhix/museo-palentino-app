@@ -45,11 +45,11 @@ public class Guia extends Trabajador {
     }
     
     public void ordenarFechaReserva() {
-        Collections.sort(entradasGuiadas, new comparatorFechaReserva());
+        Collections.sort(entradasGuiadas, new ComparatorFechaReserva());
     }
     
     public void ordenarFechaTransaccion() {
-        Collections.sort(entradasGuiadas, new comparatorFechaTransaccion());
+        Collections.sort(entradasGuiadas, new ComparatorFechaTransaccion());
     }
     
     public String[][] tabla_EntradasGuia() {
@@ -59,9 +59,9 @@ public class Guia extends Trabajador {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
                 Entrada e = entradasGuiadas.get(i);
                 array[i][0] = e.getDniCliente();
-                array[i][1] = String.valueOf(e.getFecha());
+                array[i][1] = String.valueOf(new java.sql.Date(e.getFecha().getTime()));
                 array[i][2] = e.getHora();
-                array[i][3] = String.valueOf(e.getFechaTransaccion());
+                array[i][3] = e.getFechaTransaccion();
                 array[i][4] = String.format("%.2f €", e.getPrecio());
             }
         }
@@ -71,7 +71,7 @@ public class Guia extends Trabajador {
     
 }
 
-class comparatorFechaReserva implements Comparator<Entrada> {
+class ComparatorFechaReserva implements Comparator<Entrada> {
     
     @Override
     public int compare(Entrada e1, Entrada e2) {
@@ -84,7 +84,7 @@ class comparatorFechaReserva implements Comparator<Entrada> {
     
 }
 
-class comparatorFechaTransaccion implements Comparator<Entrada> {
+class ComparatorFechaTransaccion implements Comparator<Entrada> {
     
     @Override
     public int compare(Entrada e1, Entrada e2) {

@@ -126,6 +126,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        ordenarcb = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -623,7 +624,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre cliente", "DNI cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Número guía"
+                "Nombre cliente", "DNI cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"
             }
         ) {
             Class[] types = new Class [] {
@@ -643,19 +644,31 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
+        ordenarcb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por nombre", "Ordenar por DNI", "Ordenar por fecha de transacción" }));
+        ordenarcb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenarcbActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ordenarcb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ordenarcb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -751,7 +764,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(panelEntradas, "card4");
@@ -946,6 +959,26 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         ccd.setVisible(true);
     }//GEN-LAST:event_menuCambiarContraseñaActionPerformed
 
+    private void ordenarcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenarcbActionPerformed
+        // TODO add your handling code here:
+        switch (ordenarcb.getSelectedIndex()) {
+            case 0:
+                a.ordenarNombre();
+                mostrarTabla();
+                break;
+            case 1:
+                a.ordenarDni();
+                mostrarTabla();
+                break;
+            case 2:
+                a.ordenarFechaTransaccion();
+                mostrarTabla();
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_ordenarcbActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1038,6 +1071,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel oblig1;
     private javax.swing.JLabel oblig2;
     private javax.swing.JLabel oblig3;
+    private javax.swing.JComboBox<String> ordenarcb;
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelEntradas;
     private javax.swing.JPanel panelExposiciones;
@@ -1194,6 +1228,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         oblig1.setText(" ");
         oblig2.setText(" ");
         oblig3.setText(" ");
+        // Gestión de entradas
+        cargarEntradas();
+        mostrarTabla();
         obtenerPrecios();
     }
 
@@ -1382,6 +1419,18 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Entradas - #######################
+    DefaultTableModel modelo;
+
+    private void cargarEntradas() {
+        a.cargarTodasEntradas(sm.cargarTodasEntradas());
+    }
+
+    private void mostrarTabla() {
+        String cabecera[] = {"Nombre cliente", "Dni cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"};
+        modelo = new DefaultTableModel(a.tabla_todasEntradas(), cabecera);
+        jTable1.setModel(modelo);
+    }
+
     private void obtenerPrecios() {
         float precio = sm.devolverPrecioEntrada();
         float suplemento = sm.devolverPrecioSuplemento();

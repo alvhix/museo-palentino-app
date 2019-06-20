@@ -9,6 +9,8 @@ import dao.ConexionBD;
 import dao.DAOMuseo;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Administrador;
 import modelo.Cliente;
@@ -160,6 +162,19 @@ public class SistemaMuseo {
         return admin;
     }
 
+    public List cargarTodasEntradas() {
+        List entradas;
+        
+        try {
+            entradas = DAOMuseo.instanciar().cargarTodasEntradas();
+        } catch (SQLException ex) {
+            entradas = null;
+            System.out.println(ex.getSQLState());
+            ex.getStackTrace();
+        }
+        return entradas;
+    }
+
     // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) {
         try {
@@ -200,7 +215,7 @@ public class SistemaMuseo {
     // Devuelve la tabla de entradas reservadas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) {
         List entradasGuia;
-        
+
         try {
             entradasGuia = DAOMuseo.instanciar().cargarEntradasGuia(numGuia);
         } catch (SQLException ex) {
@@ -236,7 +251,7 @@ public class SistemaMuseo {
         }
     }
 
-    public void eliminarExposicion(int id){
+    public void eliminarExposicion(int id) {
         try {
             DAOMuseo.instanciar().eliminarExposicion(id);
         } catch (SQLException ex) {
@@ -244,7 +259,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
+
     public Exposicion cargarExposicion(int idExpo) {
         Exposicion exposicion;
 
@@ -273,7 +288,7 @@ public class SistemaMuseo {
         return exposicion;
     }
 
-    public List<Exposicion> cargarExposiciones(){
+    public List<Exposicion> cargarExposiciones() {
         List<Exposicion> exposiciones;
 
         try {
@@ -286,7 +301,7 @@ public class SistemaMuseo {
 
         return exposiciones;
     }
-    
+
     // ############################# OBRA #############################
     public boolean comprobarSiExisteObra(String titulo, String autor, String anno, String tipo) {
         boolean comprobarUsuario;
@@ -301,7 +316,7 @@ public class SistemaMuseo {
 
         return comprobarUsuario;
     }
-    
+
     public void nuevaObra(Obra o) {
         try {
             DAOMuseo.instanciar().nuevaObra(o);
@@ -311,7 +326,7 @@ public class SistemaMuseo {
         }
     }
 
-    public void eliminarObra(int id){
+    public void eliminarObra(int id) {
         try {
             DAOMuseo.instanciar().eliminarObra(id);
         } catch (SQLException ex) {
@@ -319,7 +334,7 @@ public class SistemaMuseo {
             ex.getStackTrace();
         }
     }
-    
+
     public Obra cargarObra(int idObra) {
         Obra obra;
 
@@ -347,8 +362,8 @@ public class SistemaMuseo {
 
         return obra;
     }
-    
-    public List<Obra> cargarObrasExposicion(int idExpo){
+
+    public List<Obra> cargarObrasExposicion(int idExpo) {
         List<Obra> obras;
 
         try {
