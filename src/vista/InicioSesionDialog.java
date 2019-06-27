@@ -222,7 +222,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
         String dni, password;
 
         dni = campoDNI.getText();
-        password = campoPassword.getText();
+        password = new String(campoPassword.getPassword());
 
         if ((!dni.equals("") || !password.equals("")) && sm.comprobarCredenciales(dni, password)) {
             String rol = sm.obtenerRol(dni);

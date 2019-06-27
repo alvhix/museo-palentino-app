@@ -15,7 +15,7 @@ public class ConexionBD {
     Se crea una instancia estática de la clase para que haya
     una única conexión a la base de datos
      */
-    static ConexionBD instancia = null;
+    private static ConexionBD instancia = null;
 
     // Constructor --------------------------------------------------
     private ConexionBD() {

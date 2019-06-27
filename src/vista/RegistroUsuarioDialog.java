@@ -319,7 +319,7 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
     private void registrarUsuario() {
         if (validarDatos()) {
             Cliente c = new Cliente(campoNombre.getText(), campoDNI.getText(), Integer.parseInt(campoTelefono.getText()));
-            sm.nuevoCliente(c, campoPassword1.getText());
+            sm.nuevoCliente(c, new String(campoPassword1.getPassword()));
             // Se instancia el menú de usuario y se hace visible
             MenuUsuarioFrame muf = new MenuUsuarioFrame(sm.cargarCliente(c.getDNI()));
             muf.setVisible(true);
@@ -334,8 +334,8 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         String dni = campoDNI.getText();
         String nombre = campoNombre.getText();
         String telefono = campoTelefono.getText();
-        String password = campoPassword1.getText();
-        String passwordConfirmar = campoPassword2.getText();
+        String password = new String(campoPassword1.getPassword());
+        String passwordConfirmar = new String(campoPassword2.getPassword());
         String texto = "";
 
         oblig1.setText(" ");

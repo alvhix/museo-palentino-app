@@ -19,7 +19,7 @@ import java.util.List;
 public class DAOMuseo {
 
     // Atributos --------------------------------------------
-    static DAOMuseo instancia = null;
+    private static DAOMuseo instancia = null;
 
     // Constructor ---------------------------------------------
     private DAOMuseo() {
@@ -152,24 +152,6 @@ public class DAOMuseo {
     }
 
     // ############################# ADMINISTRADOR #############################
-    public void nuevoAdministrador(Administrador a, String password) throws SQLException {
-        String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
-        String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
-        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
-        ps1.setString(1, a.getDNI());
-        ps1.setString(2, password);
-        ps1.setString(3, a.getNombre());
-        ps1.setInt(4, a.getTelefono());
-        // INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-        ps2.setLong(1, a.getNSS());
-        ps2.setString(2, a.getDNI());
-        // Se ejecutan las updates
-        ps1.executeUpdate();
-        ps2.executeUpdate();
-    }
-
     public Administrador cargarAdministrador(String dni) throws SQLException {
         Administrador a = null;
         String query1 = "SELECT nombre, dni, telefono FROM persona WHERE dni = ?";
@@ -206,6 +188,24 @@ public class DAOMuseo {
                     String.valueOf(rs.getTimestamp("entrada.fechaTransaccion")), rs.getFloat("entrada.precio")));
         }
         return entradas;
+    }
+
+    public void nuevoAdministrador(Administrador a, String password) throws SQLException {
+        String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
+        String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
+        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
+        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
+        ps1.setString(1, a.getDNI());
+        ps1.setString(2, password);
+        ps1.setString(3, a.getNombre());
+        ps1.setInt(4, a.getTelefono());
+        // INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
+        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
+        ps2.setLong(1, a.getNSS());
+        ps2.setString(2, a.getDNI());
+        // Se ejecutan las updates
+        ps1.executeUpdate();
+        ps2.executeUpdate();
     }
 
     // ############################# GUÍA #############################
