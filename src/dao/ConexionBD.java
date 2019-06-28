@@ -28,7 +28,7 @@ public class ConexionBD {
 
             cnnt = DriverManager.getConnection(host + database + parameters, user, pass);
             sttm = cnnt.createStatement();
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             System.out.println("Error de conexión con la Base de Datos.");
         }
     }

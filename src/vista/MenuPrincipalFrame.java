@@ -76,6 +76,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         setTitle("Museo Palentino");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panelSesion1.setOpaque(false);
 
@@ -481,6 +486,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         anterior();
     }//GEN-LAST:event_botonAnteriorMouseReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        sm.desconectar();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

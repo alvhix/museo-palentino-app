@@ -124,13 +124,16 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        cambiarContraseñaMenu = new javax.swing.JMenuItem();
+        cambiarClaveMenu = new javax.swing.JMenuItem();
         menuCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Museo Palentino - Menú de Guía [¡Bienvenid@ "+g.getNombre()+"!]");
         setIconImage(getIconImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -246,13 +249,13 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
         jMenu1.setText("Opciones");
 
-        cambiarContraseñaMenu.setText("Cambiar Contraseña");
-        cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
+        cambiarClaveMenu.setText("Cambiar Contraseña");
+        cambiarClaveMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cambiarClaveMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(cambiarContraseñaMenu);
+        jMenu1.add(cambiarClaveMenu);
 
         menuCerrarSesion.setText("Cerrar sesión");
         menuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -299,12 +302,19 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cambiarClaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
+    private void cambiarClaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveMenuActionPerformed
+        // TODO add your handling code here:
         CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, g);
-        ccd.setVisible(true);    }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
+        ccd.setVisible(true);
+    }//GEN-LAST:event_cambiarClaveMenuActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        sm.desconectar();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem cambiarContraseñaMenu;
+    private javax.swing.JMenuItem cambiarClaveMenu;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

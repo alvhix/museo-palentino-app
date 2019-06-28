@@ -134,6 +134,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         setTitle("Museo Palentino - Menú de Administrador");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
@@ -978,6 +983,11 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         abrirSelectorImagenes();
     }//GEN-LAST:event_botonAbrirSelectorMouseReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        sm.desconectar();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAbrirExpo;

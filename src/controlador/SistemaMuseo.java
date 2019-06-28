@@ -22,6 +22,10 @@ public class SistemaMuseo {
     public SistemaMuseo() throws SQLException {
         ConexionBD.crearConexion();
     }
+    
+    public void desconectar(){
+        ConexionBD.desconectar();
+    }
 
     // ############################# INICIO DE SESIÓN #############################
     public String obtenerRol(String dni) {
