@@ -1,15 +1,15 @@
 package dao;
 
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexionBD {
 
     // Atributos -----------------------------------------------
-    Connection cnnt;
-    Statement sttm;
+    private Connection cnnt;
+    private Statement sttm;
 
     /*
     Se crea una instancia estática de la clase para que haya
@@ -25,7 +25,7 @@ public class ConexionBD {
             String parameters = "?autoReconnect=true&useSSL=false";
             String user = "2CygLOTEPa";
             String pass = "lsVAMMqj7E";
-            
+
             cnnt = DriverManager.getConnection(host + database + parameters, user, pass);
             sttm = cnnt.createStatement();
         } catch (SQLException e) {
@@ -42,13 +42,13 @@ public class ConexionBD {
         return sttm;
     }
 
-    public static void crearConexion() throws SQLException {
+    public static void crearConexion() {
         if (instancia == null) {
             instancia = new ConexionBD();
         }
     }
 
-    public static ConexionBD instancia() {
+    static ConexionBD instancia() {
         return instancia;
     }
 
@@ -58,7 +58,9 @@ public class ConexionBD {
                 instancia.sttm.close();
                 instancia.cnnt.close();
                 instancia = null;
-            } catch (SQLException e) {
+            } catch (SQLException ex) {
+                System.out.println(ex.getSQLState());
+                ex.getStackTrace();
             }
         }
     }
