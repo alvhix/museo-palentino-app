@@ -1,11 +1,7 @@
 package dao;
 
-import modelo.Cliente;
-import modelo.Entrada;
-import modelo.Exposicion;
-import modelo.Guia;
-import modelo.Obra;
-import modelo.Administrador;
+import modelo.*;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Todos
  */
 public class DAOMuseo {
@@ -174,7 +169,7 @@ public class DAOMuseo {
     }
 
     public List cargarTodasEntradas() throws SQLException {
-        List entradas = new ArrayList();
+        List<Entrada> entradas = new ArrayList<>();
         String query = "SELECT persona.nombre, persona.dni, entrada.fechaReserva, entrada.hora, entrada.guiada, "
                 + "entrada.fechaTransaccion, entrada.precio FROM persona, cliente, entrada "
                 + "WHERE persona.dni = cliente.dniCliente AND cliente.idCliente = entrada.idCliente";
@@ -190,7 +185,7 @@ public class DAOMuseo {
         return entradas;
     }
 
-    public void nuevoAdministrador(Administrador a, String password) throws SQLException {
+    /*public void nuevoAdministrador(Administrador a, String password) throws SQLException {
         String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
         String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
         // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
@@ -206,7 +201,7 @@ public class DAOMuseo {
         // Se ejecutan las updates
         ps1.executeUpdate();
         ps2.executeUpdate();
-    }
+    }*/
 
     // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) throws SQLException {
@@ -252,7 +247,7 @@ public class DAOMuseo {
 
     // Implementa las entradas asociadas a un guía
     public List cargarEntradasGuia(int numGuia) throws SQLException {
-        List entradasGuia = new ArrayList();
+        List<Entrada> entradasGuia = new ArrayList<>();
 
         String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion, "
                 + "entrada.precio FROM cliente, entrada, guia_entrada, guia WHERE entrada.idCliente = cliente.idCliente "
@@ -275,9 +270,11 @@ public class DAOMuseo {
     }
 
     // Algoritmo que escoge el número de guía basado en porcentajes equitativos
-    public int elegirNumGuia() throws SQLException {
+    private int elegirNumGuia() throws SQLException {
         String query = "SELECT numGuia FROM guia";
-        int[] arrayGuias = new int[numeroGuias()];
+        int numeroGuias = numeroGuias();
+        int[] arrayGuias = new int[numeroGuias];
+        int random = (int) (Math.random() * numeroGuias);
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
@@ -288,10 +285,7 @@ public class DAOMuseo {
             arrayGuias[i++] = rs.getInt("numGuia");
         }
 
-        int random = (int) (Math.random() * numeroGuias());
-        int numGuia = arrayGuias[random];
-
-        return numGuia;
+        return arrayGuias[random];
     }
 
     // Obtiene el número de guías registrados
@@ -325,7 +319,7 @@ public class DAOMuseo {
 
     // ############################# EMPLEADOS #############################
     private List cargarEmpleados() throws SQLException {
-        List empleados = new ArrayList();
+        List<Guia> empleados = new ArrayList<>();
         String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
                 + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
 
@@ -415,7 +409,7 @@ public class DAOMuseo {
     }
 
     public List cargarExposiciones() throws SQLException {
-        List exposiciones = new ArrayList();
+        List<Exposicion> exposiciones = new ArrayList<>();
         String query = "SELECT * FROM exposicion";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
@@ -514,7 +508,7 @@ public class DAOMuseo {
     }
 
     public List cargarObrasExposicion(int idExpo) throws SQLException {
-        List obras;
+        List<Obra> obras = new ArrayList<>();
         String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
@@ -522,7 +516,6 @@ public class DAOMuseo {
 
         // Se ejecuta la query
         ResultSet rs = ps.executeQuery();
-        obras = new ArrayList();
 
         while (rs.next()) {
             obras.add(new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
@@ -575,7 +568,7 @@ public class DAOMuseo {
 
     // Recoge los datos de las entradas reservados por un cliente determinado
     public List cargarEntradasCliente(int idCliente) throws SQLException {
-        List entradas = new ArrayList();
+        List<Entrada> entradas = new ArrayList<>();
 
         String query1 = "SELECT numeroEntrada, fechaReserva, hora, "
                 + "guiada, precio, idCliente FROM entrada WHERE entrada.idCliente = ?";
