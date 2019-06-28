@@ -5,20 +5,18 @@
  */
 package vista;
 
+import disenno.ImagenFondo;
 import modelo.Exposicion;
 import modelo.Obra;
-import disenno.ImagenFondo;
-import java.awt.Cursor;
-import static java.awt.Frame.HAND_CURSOR;
-import java.awt.Image;
-import java.awt.Toolkit;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import static java.awt.Frame.HAND_CURSOR;
 
 /**
  *
@@ -37,7 +35,7 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
      * @param modal
      * @param e
      */
-    public MenuExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
+    MenuExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
         super(parent, modal);
         this.e = e;
         obras = e.getObras();
@@ -46,7 +44,7 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
         componentesIniciales();
     }
 
-    public MenuExposicionDialog() {
+    private MenuExposicionDialog() {
 
     }
 
@@ -337,7 +335,7 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -420,8 +418,7 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
     }
 
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
     
     private void componentesIniciales() {

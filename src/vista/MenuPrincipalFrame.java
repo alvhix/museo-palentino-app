@@ -5,20 +5,17 @@
  */
 package vista;
 
-import modelo.Exposicion;
 import controlador.SistemaMuseo;
 import disenno.ImagenFondo;
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Toolkit;
+import modelo.Exposicion;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -36,7 +33,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipalFrame() {
+    MenuPrincipalFrame() {
         conexionBD();
         exposiciones = sm.cargarExposiciones();
         posicion1 = 0;
@@ -488,7 +485,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -563,13 +560,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             // Exposicion 1
             expo1 = exposiciones.get(0);
             labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
+            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
             imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
             if (exposiciones.size() == 2) {
                 // Exposicion 2
                 expo2 = exposiciones.get(1);
                 labelNombre2.setText("Exposición " + expo2.getNombre());
-                labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
+                labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
                 imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
             } else {
                 // Exposicion 2
@@ -581,12 +578,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             // Exposicion 1
             expo1 = exposiciones.get(posicion1);
             labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + String.valueOf(expo1.getObras().size()));
+            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
             imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
             // Exposicion 2
             expo2 = exposiciones.get(posicion2);
             labelNombre2.setText("Exposición " + expo2.getNombre());
-            labelNumeroObras2.setText("Nº Obras: " + String.valueOf(expo2.getObras().size()));
+            labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
             imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
         }
     }
@@ -648,8 +645,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     private void componentesIniciales() {

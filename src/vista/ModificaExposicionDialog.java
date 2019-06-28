@@ -7,20 +7,17 @@ package vista;
 
 import controlador.SistemaMuseo;
 import disenno.ExposicionTableModel;
-import java.awt.Cursor;
-import static java.awt.Frame.HAND_CURSOR;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Exposicion;
 import modelo.Obra;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.List;
+
+import static java.awt.Frame.HAND_CURSOR;
 
 /**
  *
@@ -40,7 +37,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
      * @param modal
      * @param e
      */
-    public ModificaExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
+    ModificaExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
         super(parent, modal);
         this.e = e;
         obras = e.getObras();
@@ -50,8 +47,8 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         componentesIniciales();
     }
 
-    public ModificaExposicionDialog(java.awt.Frame parent, boolean modal) {
-
+    private ModificaExposicionDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
     }
 
     /**
@@ -374,23 +371,14 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpetahp.png"));
     }//GEN-LAST:event_botonAbrirSelectorMousePressed
 
-    private void botonAbrirSelectorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseReleased
-        // TODO add your handling code here:
-        try {
-            abrirSelectorImagenes();
-        } catch (IOException ex) {
-
-        }
-    }//GEN-LAST:event_botonAbrirSelectorMouseReleased
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -426,6 +414,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             }
         });
     }
+
+    private void botonAbrirSelectorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseReleased
+        // TODO add your handling code here:
+        abrirSelectorImagenes();
+    }//GEN-LAST:event_botonAbrirSelectorMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAbrirSelector;
@@ -492,7 +485,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         }
     }
 
-    private void abrirSelectorImagenes() throws IOException {
+    private void abrirSelectorImagenes() {
         //Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
@@ -583,8 +576,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     }
 
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
     
     private void conexionBD() {

@@ -27,11 +27,11 @@ public class Exposicion {
         this.nombre = nombre;
         this.tiempoRecorrido = tiempoRecorrido;
         this.rutaImagen = rutaImagen;
-        this.obras = new ArrayList();
+        this.obras = new ArrayList<>();
     }
 
     // Constructor necesario para cargar exposicion
-    public Exposicion(int id, String nombre, int tiempoRecorrido, String rutaImagen, List obras) {
+    public Exposicion(int id, String nombre, int tiempoRecorrido, String rutaImagen, List<Obra> obras) {
         this.nombre = nombre;
         this.id = id;
         this.tiempoRecorrido = tiempoRecorrido;

@@ -16,12 +16,12 @@ public abstract class Trabajador extends Persona {
     private long nSS;
 
     //Constructor ----------------------------------------------------------
-    public Trabajador(String nombre, String dni, int telefono, long nSS) {
+    Trabajador(String nombre, String dni, int telefono, long nSS) {
         super(nombre, dni, telefono);
         this.nSS = nSS;
     }
 
-    public Trabajador(String nombre, String dni, int telefono, long nSS, int id) {
+    Trabajador(String nombre, String dni, int telefono, long nSS, int id) {
         super(nombre, dni, telefono);
         this.nSS = nSS;
         this.id = id;

@@ -15,11 +15,7 @@ public class Persona {
     private String dni;
     private int telefono;
 
-    public Persona(String dni) {
-        this.dni = dni;
-    }
-
-    public Persona(String nombre, String dni, int telefono) {
+    Persona(String nombre, String dni, int telefono) {
         this.nombre = nombre;
         this.dni = dni;
         this.telefono = telefono;

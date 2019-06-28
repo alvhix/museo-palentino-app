@@ -84,7 +84,7 @@ public class DAOMuseo {
     }
 
     // ########################## CAMBIAR CONTRASEÑA ######################
-    public boolean cambiarContraseña(String passAntigua, String passNueva, String dniUsuario) throws SQLException {
+    public boolean cambiarClave(String passAntigua, String passNueva, String dniUsuario) throws SQLException {
         boolean cambiada = false;
 
         String query = "SELECT * FROM persona WHERE dni = ? and clave = SHA(?) ";
@@ -168,7 +168,7 @@ public class DAOMuseo {
         return a;
     }
 
-    public List cargarTodasEntradas() throws SQLException {
+    public List<Entrada> cargarTodasEntradas() throws SQLException {
         List<Entrada> entradas = new ArrayList<>();
         String query = "SELECT persona.nombre, persona.dni, entrada.fechaReserva, entrada.hora, entrada.guiada, "
                 + "entrada.fechaTransaccion, entrada.precio FROM persona, cliente, entrada "
@@ -246,7 +246,7 @@ public class DAOMuseo {
     }
 
     // Implementa las entradas asociadas a un guía
-    public List cargarEntradasGuia(int numGuia) throws SQLException {
+    public List<Entrada> cargarEntradasGuia(int numGuia) throws SQLException {
         List<Entrada> entradasGuia = new ArrayList<>();
 
         String query = "SELECT cliente.dniCliente, entrada.fechaReserva, entrada.hora, entrada.fechaTransaccion, "
@@ -318,7 +318,7 @@ public class DAOMuseo {
     }
 
     // ############################# EMPLEADOS #############################
-    private List cargarEmpleados() throws SQLException {
+    private List<Guia> cargarEmpleados() throws SQLException {
         List<Guia> empleados = new ArrayList<>();
         String query = "SELECT persona.nombre, guia.dniGuia, persona.telefono, guia.numSeguridadSocial, guia.numIdentificacion, guia.numGuia "
                 + "FROM persona, guia WHERE guia.dniGuia = persona.dni";
@@ -337,6 +337,23 @@ public class DAOMuseo {
     }
 
     // ############################# EXPOSICIÓN #############################
+
+    public List<Exposicion> cargarExposiciones() throws SQLException {
+        List<Exposicion> exposiciones = new ArrayList<>();
+        String query = "SELECT * FROM exposicion";
+
+        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
+                    rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(rs.getInt("idExposicion"))));
+        }
+
+        return exposiciones;
+    }
+
     public boolean existeExposicion(String nombre) throws SQLException {
         boolean existe = false;
         String query = "SELECT * FROM exposicion WHERE nombre = ?";
@@ -375,7 +392,7 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    public Exposicion cargarExposicion(int id) throws SQLException {
+    /*public Exposicion cargarExposicion(int id) throws SQLException {
         Exposicion e = null;
         String query = "SELECT nombre, tiempoRecorrido, imagen FROM exposicion WHERE idExposicion = ?";
 
@@ -406,25 +423,28 @@ public class DAOMuseo {
         }
 
         return e;
-    }
+    }*/
 
-    public List cargarExposiciones() throws SQLException {
-        List<Exposicion> exposiciones = new ArrayList<>();
-        String query = "SELECT * FROM exposicion";
+    // ############################# OBRA #############################
+
+    public List<Obra> cargarObrasExposicion(int idExpo) throws SQLException {
+        List<Obra> obras = new ArrayList<>();
+        String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
+        ps.setInt(1, idExpo);
 
+        // Se ejecuta la query
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            exposiciones.add(new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"),
-                    rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(rs.getInt("idExposicion"))));
+            obras.add(new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
+                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), idExpo));
         }
 
-        return exposiciones;
+        return obras;
     }
 
-    // ############################# OBRA #############################
     public boolean existeObra(String titulo, String autor, String anno, String tipo) throws SQLException {
         boolean existe = false;
         String query = "SELECT * FROM obra WHERE titulo = ? AND autor = ? AND año = ? AND tipo = ?";
@@ -468,7 +488,7 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    public Obra cargarObra(int id) throws SQLException {
+    /*public Obra cargarObra(int id) throws SQLException {
         Obra o = null;
         String query = "SELECT * FROM obra WHERE idObra = ?";
 
@@ -505,25 +525,7 @@ public class DAOMuseo {
         }
 
         return o;
-    }
-
-    public List cargarObrasExposicion(int idExpo) throws SQLException {
-        List<Obra> obras = new ArrayList<>();
-        String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, idExpo);
-
-        // Se ejecuta la query
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            obras.add(new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), idExpo));
-        }
-
-        return obras;
-    }
+    }*/
 
     // ############################# ENTRADAS #############################
     // Inserta los datos de la entrada reservada en la base de datos
@@ -567,7 +569,7 @@ public class DAOMuseo {
     }
 
     // Recoge los datos de las entradas reservados por un cliente determinado
-    public List cargarEntradasCliente(int idCliente) throws SQLException {
+    public List<Entrada> cargarEntradasCliente(int idCliente) throws SQLException {
         List<Entrada> entradas = new ArrayList<>();
 
         String query1 = "SELECT numeroEntrada, fechaReserva, hora, "

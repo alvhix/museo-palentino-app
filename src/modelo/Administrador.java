@@ -6,7 +6,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,12 +23,12 @@ public class Administrador extends Trabajador {
     // ####################### - CONSTRUCTORES - #######################
     public Administrador(String nombre, String dni, int telefono, long nSS) {
         super(nombre, dni, telefono, nSS);
-        empleados = new ArrayList();
-        exposiciones = new ArrayList();
+        empleados = new ArrayList<>();
+        exposiciones = new ArrayList<>();
     }
 
     // Constructor necesario para cargar un administrador desde la Base de Datos
-    public Administrador(String nombre, String dni, int telefono, long nSS, int id, List empleados, List exposiciones) {
+    public Administrador(String nombre, String dni, int telefono, long nSS, int id, List<Guia> empleados, List<Exposicion> exposiciones) {
         super(nombre, dni, telefono, nSS, id);
         this.empleados = empleados;
         this.exposiciones = exposiciones;
@@ -82,15 +81,15 @@ public class Administrador extends Trabajador {
     }
 
     public void ordenarNombre() {
-        Collections.sort(entradas, new ComparatorNombre());
+        entradas.sort(new ComparatorNombre());
     }
 
     public void ordenarDni() {
-        Collections.sort(entradas, new ComparatorDni());
+        entradas.sort(new ComparatorDni());
     }
 
     public void ordenarFechaTransaccion() {
-        Collections.sort(entradas, new ComparatorFecha());
+        entradas.sort(new ComparatorFecha());
     }
 
     public String[][] tabla_todasEntradas() {

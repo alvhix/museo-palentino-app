@@ -5,23 +5,21 @@
  */
 package vista;
 
+import controlador.SistemaMuseo;
+import disenno.ImagenFondo;
+import disenno.TextPrompt;
 import modelo.Administrador;
 import modelo.Cliente;
 import modelo.Guia;
-import disenno.ImagenFondo;
-import controlador.SistemaMuseo;
-import disenno.TextPrompt;
-import java.awt.Image;
-import java.awt.Toolkit;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -168,7 +166,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -218,7 +216,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void iniciarSesion() {
+    private void iniciarSesion() {
         String dni, password;
 
         dni = campoDNI.getText();
@@ -312,8 +310,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
     }
 
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     private void componentesIniciales() {

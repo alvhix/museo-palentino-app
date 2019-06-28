@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class Cliente extends Persona {
 
-    private long tarjeta;
     private int id;
     private List<Entrada> entradas;
 
@@ -33,14 +32,6 @@ public class Cliente extends Persona {
         return id;
     }
 
-    public long getTarjeta() {
-        return tarjeta;
-    }
-
-    public void obtenerEntradas(List e) {
-        entradas = e;
-    }
-    
     public void addEntrada(Entrada e){
         entradas.add(e);
     }

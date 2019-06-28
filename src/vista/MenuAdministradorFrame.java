@@ -7,29 +7,19 @@ package vista;
 
 import controlador.SistemaMuseo;
 import disenno.ExposicionesTableModel;
-import java.awt.Cursor;
-import static java.awt.Frame.HAND_CURSOR;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
 import modelo.Administrador;
 import modelo.Exposicion;
 import modelo.Guia;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -38,11 +28,9 @@ import modelo.Guia;
 public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private Administrador a;
-    private List<Guia> empleados;
     private List<Exposicion> exposiciones;
     private SistemaMuseo sm;
     private ExposicionesTableModel etm;
-    private DefaultTableModel plantilla;
     private final String[] cabeceraPlantilla = {"ID", "Nombre", "DNI", "Teléfono"};
 
     /**
@@ -50,9 +38,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
      *
      * @param a
      */
-    public MenuAdministradorFrame(Administrador a) {
+    MenuAdministradorFrame(Administrador a) {
         this.a = a;
-        empleados = a.getEmpleados();
         exposiciones = a.getExposiciones();
         etm = new ExposicionesTableModel(exposiciones);
 
@@ -60,7 +47,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         componentesIniciales();
     }
 
-    public MenuAdministradorFrame() {
+    private MenuAdministradorFrame() {
 
     }
 
@@ -866,14 +853,41 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpetahp.png"));
     }//GEN-LAST:event_botonAbrirSelectorMousePressed
 
-    private void botonAbrirSelectorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseReleased
-        // TODO add your handling code here:
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
         try {
-            abrirSelectorImagenes();
-        } catch (IOException ex) {
-            Logger.getLogger(MenuAdministradorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonAbrirSelectorMouseReleased
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MenuAdministradorFrame().setVisible(true);
+            }
+        });
+    }
 
     private void botonAbrirSelectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseClicked
         // TODO add your handling code here:
@@ -960,41 +974,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ordenarcbActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministradorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MenuAdministradorFrame().setVisible(true);
-            }
-        });
-    }
+    private void botonAbrirSelectorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseReleased
+        // TODO add your handling code here:
+        abrirSelectorImagenes();
+    }//GEN-LAST:event_botonAbrirSelectorMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAbrirExpo;
@@ -1125,7 +1108,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         });
     }
 
-    private static boolean validarTelefono(String tlf) {
+    /*private static boolean validarTelefono(String tlf) {
         boolean correcto = false;
         int longitud = tlf.length();
 
@@ -1145,7 +1128,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
 
         return correcto;
-    }
+    }*/
 
     private void soloLetras(JTextField jtf) {
         final int limite = 30;
@@ -1183,8 +1166,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     private void conexionBD() {
@@ -1239,7 +1221,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             datosEnBlanco();
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Campos incompletos o erroneos, itroduzca todos los datos", "Error", WIDTH);
+            JOptionPane.showMessageDialog(this, "Campos incompletos o erroneos, itroduzca todos los datos", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -1261,19 +1243,19 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 actualizarPlantilla();
             } else {
 
-                JOptionPane.showMessageDialog(rootPane, "Ningún Empleado Seleccionado. Por favor, seleccione uno para despedirlo", "Advertencia", WIDTH);
+                JOptionPane.showMessageDialog(rootPane, "Ningún Empleado Seleccionado. Por favor, seleccione uno para despedirlo", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
 
             }
         }
 
     }
 
-    public void actualizarPlantilla() {
-        plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
+    private void actualizarPlantilla() {
+        DefaultTableModel plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
         tablaEmpleados.setModel(plantilla);
     }
 
-    public void datosEnBlanco() {
+    private void datosEnBlanco() {
         tfNombre.setText("");
         tfDNI.setText("");
         tfClave.setText("");
@@ -1375,7 +1357,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         campoRuta.setText(null);
     }
 
-    private void abrirSelectorImagenes() throws IOException {
+    private void abrirSelectorImagenes() {
         //Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
@@ -1404,7 +1386,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     private void mostrarTabla() {
-        String cabecera[] = {"Nombre cliente", "Dni cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"};
+        String[] cabecera = {"Nombre cliente", "Dni cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"};
         DefaultTableModel modeloEntradas = new DefaultTableModel(a.tabla_todasEntradas(), cabecera);
         jTable1.setModel(modeloEntradas);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);

@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -39,17 +38,17 @@ public class Guia extends Trabajador {
     public int getNGuia() {
         return nGuia;
     }
-    
-    public void cargarEntradasGuia(List entradasGuiadas) {
+
+    public void cargarEntradasGuia(List<Entrada> entradasGuiadas) {
         this.entradasGuiadas = entradasGuiadas;
     }
     
     public void ordenarFechaReserva() {
-        Collections.sort(entradasGuiadas, new ComparatorFechaReserva());
+        entradasGuiadas.sort(new ComparatorFechaReserva());
     }
     
     public void ordenarFechaTransaccion() {
-        Collections.sort(entradasGuiadas, new ComparatorFechaTransaccion());
+        entradasGuiadas.sort(new ComparatorFechaTransaccion());
     }
     
     public String[][] tabla_EntradasGuia() {

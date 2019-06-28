@@ -5,19 +5,17 @@
  */
 package vista;
 
-import modelo.Guia;
 import controlador.SistemaMuseo;
 import disenno.ImagenFondo;
-import java.awt.Image;
-import java.awt.Toolkit;
+import modelo.Guia;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,10 +25,8 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
     private Guia g;
     private SistemaMuseo sm;
-    DefaultTableModel modelo;
-    String[] cabecera = {"Dni cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"};
 
-    public MenuGuiaFrame(Guia g) {
+    MenuGuiaFrame(Guia g) {
         this.g = g;
         initComponents();
         componentesIniciales();
@@ -39,8 +35,70 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     /**
      * Creates new form MenuGuiaFrame
      */
-    public MenuGuiaFrame() {
+    private MenuGuiaFrame() {
+
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MenuGuiaFrame().setVisible(true);
+            }
+        });
+    }
+
+    private void menuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        cerrarSesion();
+    }//GEN-LAST:event_menuCerrarSesionActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        componentesIniciales();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        switch (jComboBox1.getSelectedIndex()) {
+            case 0:
+                g.ordenarFechaReserva();
+                muestraTabla();
+                break;
+            case 1:
+                g.ordenarFechaTransaccion();
+                muestraTabla();
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -191,7 +249,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         cambiarContraseñaMenu.setText("Cambiar Contraseña");
         cambiarContraseñaMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cambiarContraseñaMenuActionPerformed(evt);
+                cambiarClaveMenuActionPerformed(evt);
             }
         });
         jMenu1.add(cambiarContraseñaMenu);
@@ -241,70 +299,9 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarSesionActionPerformed
-        // TODO add your handling code here:
-        cerrarSesion();
-    }//GEN-LAST:event_menuCerrarSesionActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        componentesIniciales();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        switch (jComboBox1.getSelectedIndex()) {
-            case 0:
-                g.ordenarFechaReserva();
-                muestraTabla();
-                break;
-            case 1:
-                g.ordenarFechaTransaccion();
-                muestraTabla();
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void cambiarContraseñaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
+    private void cambiarClaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
         CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, g);
         ccd.setVisible(true);    }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuGuiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuGuiaFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem cambiarContraseñaMenu;
@@ -354,23 +351,25 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     // ############################# CARGA DE DATOS DEL GUÍA #############################
-    public void cargarEntradasGuia() {
+    private void cargarEntradasGuia() {
         g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getNGuia()));
     }
 
-    public void datosGuia() {
+    private void datosGuia() {
         jLabel3.setText(String.valueOf(g.getNGuia()));
         jLabel5.setText(String.valueOf(g.getDNI()));
         jLabel7.setText(String.valueOf(g.getNSS()));
     }
 
     // ############################# TABLA #############################
-    public void muestraTabla() {
+    private void muestraTabla() {
+        DefaultTableModel modelo;
+        String[] cabecera = {"Dni cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"};
+
         modelo = new DefaultTableModel(g.tabla_EntradasGuia(), cabecera);
         jTable1.setModel(modelo);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
