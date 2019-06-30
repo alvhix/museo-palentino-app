@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/excepciones/ConexionBDException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/META-INF/MuseoPalentinoApp.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/excepciones/ConexionBDException.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/controlador/SistemaMuseo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/controlador/SistemaMuseo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/dao/ConexionBD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/dao/ConexionBD.class" afterDir="false" />
@@ -15,17 +16,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/ModificaExposicionDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/ModificaExposicionDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/OpcionesEntradaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/OpcionesEntradaDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/RegistroUsuarioDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/RegistroUsuarioDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ConexionBD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="347">
-              <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+              <caret line="260" column="32" selection-start-line="260" selection-start-column="32" selection-end-line="260" selection-end-column="32" />
               <folding>
                 <element signature="e#903#904#0" expanded="true" />
                 <element signature="e#939#940#0" expanded="true" />
@@ -63,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="446">
-              <caret line="304" column="32" selection-start-line="304" selection-start-column="32" selection-end-line="304" selection-end-column="32" />
+              <caret line="303" column="32" selection-start-line="303" selection-start-column="32" selection-end-line="303" selection-end-column="32" />
               <folding>
                 <element signature="e#14003#14004#0" expanded="true" />
                 <element signature="e#14042#14043#0" expanded="true" />
@@ -76,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="151">
-              <caret line="497" column="32" selection-start-line="497" selection-start-column="32" selection-end-line="497" selection-end-column="32" />
+              <caret line="496" column="32" selection-start-line="496" selection-start-column="32" selection-end-line="496" selection-end-column="32" />
               <folding>
                 <element signature="e#21869#21870#0" expanded="true" />
                 <element signature="e#21908#21909#0" expanded="true" />
@@ -89,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
-              <caret line="582" column="32" selection-start-line="582" selection-start-column="32" selection-end-line="582" selection-end-column="32" />
+              <caret line="581" column="32" selection-start-line="581" selection-start-column="32" selection-end-line="581" selection-end-column="32" />
               <folding>
                 <element signature="e#29777#29778#0" expanded="true" />
                 <element signature="e#29816#29817#0" expanded="true" />
@@ -102,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="638" column="32" selection-start-line="638" selection-start-column="32" selection-end-line="638" selection-end-column="32" />
+              <caret line="637" column="32" selection-start-line="637" selection-start-column="32" selection-end-line="637" selection-end-column="32" />
               <folding>
                 <element signature="e#32061#32062#0" expanded="true" />
                 <element signature="e#32100#32101#0" expanded="true" />
@@ -115,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
-              <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
+              <caret line="394" column="32" selection-start-line="394" selection-start-column="32" selection-end-line="394" selection-end-column="32" />
               <folding>
                 <element signature="e#3840#3929#0" expanded="true" />
                 <element signature="e#5093#5094#0" expanded="true" />
@@ -166,7 +156,7 @@
         <entry file="file://$PROJECT_DIR$/src/excepciones/ConexionBDException.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+              <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -377,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561742428580</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Excepción si no hay conexión con la BD">
+      <created>1561899644124</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1561899644124</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -391,9 +388,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.25799572" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" sideWeight="0.5124594" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -405,7 +401,7 @@
       <window_info id="Job Explorer" order="9" show_stripe_button="false" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -469,7 +465,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="IntelliJ corrections" />
-    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ corrections" />
+    <MESSAGE value="Excepción si no hay conexión con la BD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Excepción si no hay conexión con la BD" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -643,7 +640,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
-          <caret line="304" column="32" selection-start-line="304" selection-start-column="32" selection-end-line="304" selection-end-column="32" />
+          <caret line="303" column="32" selection-start-line="303" selection-start-column="32" selection-end-line="303" selection-end-column="32" />
           <folding>
             <element signature="e#14003#14004#0" expanded="true" />
             <element signature="e#14042#14043#0" expanded="true" />
@@ -654,7 +651,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
-          <caret line="497" column="32" selection-start-line="497" selection-start-column="32" selection-end-line="497" selection-end-column="32" />
+          <caret line="496" column="32" selection-start-line="496" selection-start-column="32" selection-end-line="496" selection-end-column="32" />
           <folding>
             <element signature="e#21869#21870#0" expanded="true" />
             <element signature="e#21908#21909#0" expanded="true" />
@@ -665,7 +662,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
-          <caret line="582" column="32" selection-start-line="582" selection-start-column="32" selection-end-line="582" selection-end-column="32" />
+          <caret line="581" column="32" selection-start-line="581" selection-start-column="32" selection-end-line="581" selection-end-column="32" />
           <folding>
             <element signature="e#29777#29778#0" expanded="true" />
             <element signature="e#29816#29817#0" expanded="true" />
@@ -676,7 +673,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="638" column="32" selection-start-line="638" selection-start-column="32" selection-end-line="638" selection-end-column="32" />
+          <caret line="637" column="32" selection-start-line="637" selection-start-column="32" selection-end-line="637" selection-end-column="32" />
           <folding>
             <element signature="e#32061#32062#0" expanded="true" />
             <element signature="e#32100#32101#0" expanded="true" />
@@ -687,7 +684,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
+          <caret line="394" column="32" selection-start-line="394" selection-start-column="32" selection-end-line="394" selection-end-column="32" />
           <folding>
             <element signature="e#3840#3929#0" expanded="true" />
             <element signature="e#5093#5094#0" expanded="true" />
@@ -712,7 +709,7 @@
     <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
-          <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+          <caret line="260" column="32" selection-start-line="260" selection-start-column="32" selection-end-line="260" selection-end-column="32" />
           <folding>
             <element signature="e#903#904#0" expanded="true" />
             <element signature="e#939#940#0" expanded="true" />
@@ -727,7 +724,7 @@
     <entry file="file://$PROJECT_DIR$/src/excepciones/ConexionBDException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
         </state>
       </provider>
     </entry>
