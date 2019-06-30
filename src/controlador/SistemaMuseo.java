@@ -7,6 +7,7 @@ package controlador;
 
 import dao.ConexionBD;
 import dao.DAOMuseo;
+import excepciones.ConexionBDException;
 import modelo.*;
 
 import javax.swing.*;
@@ -19,11 +20,15 @@ import java.util.List;
 public class SistemaMuseo {
 
     // Constructor ---------------------------------------------
-    public SistemaMuseo() throws SQLException {
-        ConexionBD.crearConexion();
+    public SistemaMuseo() {
+        try {
+            ConexionBD.crearConexion();
+        } catch (ConexionBDException ignored) {
+        }
     }
-    
-    public void desconectar(){
+
+    // ############################# DESCONEXIÓN #############################
+    public void desconectar() {
         ConexionBD.desconectar();
     }
 

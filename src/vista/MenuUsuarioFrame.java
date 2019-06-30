@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -703,11 +702,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     }
 
     private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
+        sm = new SistemaMuseo();
     }
 
     private void imagenFondo() {

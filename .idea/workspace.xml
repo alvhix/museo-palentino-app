@@ -2,63 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$28.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$10.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/excepciones/ConexionBDException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/controlador/SistemaMuseo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/controlador/SistemaMuseo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/dao/ConexionBD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/dao/ConexionBD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$17.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$18.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$19.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$20.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$21.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$22.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$23.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$24.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$25.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$26.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$27.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/CambiarContrasennaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/CambiarContrasennaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/InicioSesionDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/InicioSesionDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuAdministradorFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuGuiaFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuPrincipalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame$9.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/ModificaExposicionDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/ModificaExposicionDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/OpcionesEntradaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/OpcionesEntradaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/RegistroUsuarioDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/RegistroUsuarioDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ConexionBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ConexionBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,10 +43,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
+        <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5943">
-              <caret line="297" column="9" selection-start-line="297" selection-start-column="9" selection-end-line="297" selection-end-column="9" />
+            <state relative-caret-position="347">
+              <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+              <folding>
+                <element signature="e#903#904#0" expanded="true" />
+                <element signature="e#939#940#0" expanded="true" />
+                <element signature="e#1100#1187#0" expanded="true" />
+                <element signature="e#3373#3462#0" expanded="true" />
+                <element signature="e#12766#12767#0" expanded="true" />
+                <element signature="e#12805#12806#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="304" column="32" selection-start-line="304" selection-start-column="32" selection-end-line="304" selection-end-column="32" />
+              <folding>
+                <element signature="e#14003#14004#0" expanded="true" />
+                <element signature="e#14042#14043#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="497" column="32" selection-start-line="497" selection-start-column="32" selection-end-line="497" selection-end-column="32" />
+              <folding>
+                <element signature="e#21869#21870#0" expanded="true" />
+                <element signature="e#21908#21909#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="582" column="32" selection-start-line="582" selection-start-column="32" selection-end-line="582" selection-end-column="32" />
+              <folding>
+                <element signature="e#29777#29778#0" expanded="true" />
+                <element signature="e#29816#29817#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,47 +101,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/DAOMuseo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="207">
+              <caret line="638" column="32" selection-start-line="638" selection-start-column="32" selection-end-line="638" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#32061#32062#0" expanded="true" />
+                <element signature="e#32100#32101#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionesTableModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
-              <caret line="306" column="102" selection-start-line="306" selection-start-column="102" selection-end-line="306" selection-end-column="102" />
+            <state relative-caret-position="368">
+              <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
               <folding>
                 <element signature="e#3840#3929#0" expanded="true" />
                 <element signature="e#5093#5094#0" expanded="true" />
@@ -136,39 +124,61 @@
                 <element signature="e#5271#5272#0" expanded="true" />
                 <element signature="e#6160#6161#0" expanded="true" />
                 <element signature="e#6218#6219#0" expanded="true" />
-                <element signature="e#11329#11330#0" expanded="true" />
-                <element signature="e#11391#11392#0" expanded="true" />
-                <element signature="e#11652#11653#0" expanded="true" />
-                <element signature="e#11720#11721#0" expanded="true" />
-                <element signature="e#11977#11978#0" expanded="true" />
-                <element signature="e#12045#12046#0" expanded="true" />
+                <element signature="e#18502#18503#0" expanded="true" />
+                <element signature="e#18541#18542#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Administrador.java">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+              <folding>
+                <element signature="e#1254#1255#0" expanded="true" />
+                <element signature="e#1281#1282#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/excepciones/ConexionBDException.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2730">
-              <caret line="170" selection-start-line="170" selection-end-line="170" />
+              <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -178,6 +188,7 @@
       <find>cargarT</find>
       <find>cargarEntradasC</find>
       <find>List</find>
+      <find>sttm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,17 +204,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/dao/DAOMuseo.java" />
-        <option value="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" />
-        <option value="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" />
         <option value="$PROJECT_DIR$/src/vista/MenuExposicionDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" />
         <option value="$PROJECT_DIR$/src/modelo/Administrador.java" />
         <option value="$PROJECT_DIR$/src/modelo/Cliente.java" />
         <option value="$PROJECT_DIR$/src/modelo/Entrada.java" />
@@ -211,6 +212,17 @@
         <option value="$PROJECT_DIR$/src/modelo/Guia.java" />
         <option value="$PROJECT_DIR$/src/modelo/Persona.java" />
         <option value="$PROJECT_DIR$/src/modelo/Trabajador.java" />
+        <option value="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" />
+        <option value="$PROJECT_DIR$/src/excepciones/ConexionBDException.java" />
+        <option value="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" />
         <option value="$PROJECT_DIR$/src/dao/ConexionBD.java" />
       </list>
     </option>
@@ -232,6 +244,26 @@
             <path>
               <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
               <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="controlador" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="dao" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="excepciones" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="vista" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -359,8 +391,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.24733475" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" sideWeight="0.5124594" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,7 +405,7 @@
       <window_info id="Job Explorer" order="9" show_stripe_button="false" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -462,52 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2046#2135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="43" column="29" lean-forward="true" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-          <folding>
-            <element signature="e#1380#1381#0" expanded="true" />
-            <element signature="e#1416#1417#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Trabajador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
@@ -561,20 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="513" column="38" selection-start-line="513" selection-start-column="38" selection-end-line="513" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/javax/swing/table/AbstractTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1125">
@@ -600,20 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5943">
-          <caret line="297" column="9" selection-start-line="297" selection-start-column="9" selection-end-line="297" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/DAOMuseo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -621,13 +580,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -648,17 +600,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        <state relative-caret-position="382">
+          <caret line="585" column="32" selection-start-line="585" selection-start-column="32" selection-end-line="585" selection-end-column="32" />
+          <folding>
+            <element signature="e#28586#28587#0" expanded="true" />
+            <element signature="e#28625#28626#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="1182" column="32" selection-start-line="1182" selection-start-column="32" selection-end-line="1182" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#63649#63650#0" expanded="true" />
+            <element signature="e#63688#63689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="705" column="32" selection-start-line="705" selection-start-column="32" selection-end-line="705" selection-end-column="32" />
+          <folding>
+            <element signature="e#34327#34328#0" expanded="true" />
+            <element signature="e#34366#34367#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="304" column="32" selection-start-line="304" selection-start-column="32" selection-end-line="304" selection-end-column="32" />
+          <folding>
+            <element signature="e#14003#14004#0" expanded="true" />
+            <element signature="e#14042#14043#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="497" column="32" selection-start-line="497" selection-start-column="32" selection-end-line="497" selection-end-column="32" />
+          <folding>
+            <element signature="e#21869#21870#0" expanded="true" />
+            <element signature="e#21908#21909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="582" column="32" selection-start-line="582" selection-start-column="32" selection-end-line="582" selection-end-column="32" />
+          <folding>
+            <element signature="e#29777#29778#0" expanded="true" />
+            <element signature="e#29816#29817#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="638" column="32" selection-start-line="638" selection-start-column="32" selection-end-line="638" selection-end-column="32" />
+          <folding>
+            <element signature="e#32061#32062#0" expanded="true" />
+            <element signature="e#32100#32101#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
-          <caret line="306" column="102" selection-start-line="306" selection-start-column="102" selection-end-line="306" selection-end-column="102" />
+        <state relative-caret-position="368">
+          <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
           <folding>
             <element signature="e#3840#3929#0" expanded="true" />
             <element signature="e#5093#5094#0" expanded="true" />
@@ -667,13 +696,56 @@
             <element signature="e#5271#5272#0" expanded="true" />
             <element signature="e#6160#6161#0" expanded="true" />
             <element signature="e#6218#6219#0" expanded="true" />
-            <element signature="e#11329#11330#0" expanded="true" />
-            <element signature="e#11391#11392#0" expanded="true" />
-            <element signature="e#11652#11653#0" expanded="true" />
-            <element signature="e#11720#11721#0" expanded="true" />
-            <element signature="e#11977#11978#0" expanded="true" />
-            <element signature="e#12045#12046#0" expanded="true" />
+            <element signature="e#18502#18503#0" expanded="true" />
+            <element signature="e#18541#18542#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+          <folding>
+            <element signature="e#903#904#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
+            <element signature="e#1100#1187#0" expanded="true" />
+            <element signature="e#3373#3462#0" expanded="true" />
+            <element signature="e#12766#12767#0" expanded="true" />
+            <element signature="e#12805#12806#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/excepciones/ConexionBDException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+          <folding>
+            <element signature="e#1254#1255#0" expanded="true" />
+            <element signature="e#1281#1282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,7 @@
 package dao;
 
+import excepciones.ConexionBDException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,8 +10,8 @@ import java.sql.Statement;
 public class ConexionBD {
 
     // Atributos -----------------------------------------------
-    private Connection cnnt;
-    private Statement sttm;
+    private Connection cntn;
+    private Statement stmt;
 
     /*
     Se crea una instancia estática de la clase para que haya
@@ -18,7 +20,7 @@ public class ConexionBD {
     private static ConexionBD instancia = null;
 
     // Constructor --------------------------------------------------
-    private ConexionBD() {
+    private ConexionBD() throws ConexionBDException {
         try {
             String host = "jdbc:mysql://remotemysql.com/";
             String database = "2CygLOTEPa";
@@ -26,43 +28,44 @@ public class ConexionBD {
             String user = "2CygLOTEPa";
             String pass = "lsVAMMqj7E";
 
-            cnnt = DriverManager.getConnection(host + database + parameters, user, pass);
-            sttm = cnnt.createStatement();
+            cntn = DriverManager.getConnection(host + database + parameters, user, pass);
+            stmt = cntn.createStatement();
         } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
+            System.out.println(ex.getSQLState());
+            throw new ConexionBDException();
         }
     }
 
-    // Métodos --------------------------------------------------------------
-    public Connection getConnection() {
-        return cnnt;
-    }
-
-    public Statement getStatement() {
-        return sttm;
-    }
-
-    public static void crearConexion() {
+    public static void crearConexion() throws ConexionBDException {
         if (instancia == null) {
             instancia = new ConexionBD();
         }
     }
 
-    static ConexionBD instancia() {
-        return instancia;
-    }
-
     public static void desconectar() {
         if (instancia != null) {
             try {
-                instancia.sttm.close();
-                instancia.cnnt.close();
+                instancia.stmt.close();
+                instancia.cntn.close();
                 instancia = null;
             } catch (SQLException ex) {
                 System.out.println(ex.getSQLState());
                 ex.getStackTrace();
             }
         }
+    }
+
+    // Métodos --------------------------------------------------------------
+    public Connection getConnection() {
+        return cntn;
+    }
+
+    static ConexionBD instancia() {
+        return instancia;
+    }
+
+    public Statement getStatement() {
+        return stmt;
     }
 
 }

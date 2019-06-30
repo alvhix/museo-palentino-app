@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @author Álvaro
@@ -583,10 +582,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
+        sm = new SistemaMuseo();
     }
 }

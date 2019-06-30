@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @author Guillermo
@@ -259,11 +258,7 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
     }
 
     private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
+        sm = new SistemaMuseo();
     }
 
 }

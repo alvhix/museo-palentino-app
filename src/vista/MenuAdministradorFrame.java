@@ -18,7 +18,6 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -1180,11 +1179,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     private void conexionBD() {
-        try {
-            sm = new SistemaMuseo();
-        } catch (SQLException ex) {
-            System.out.println("Error de conexión con la Base de Datos.");
-        }
+        sm = new SistemaMuseo();
     }
 
     private void componentesIniciales() {
