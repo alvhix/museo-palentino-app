@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/modelo/Entrada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/modelo/Entrada.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DAOMuseo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DAOMuseo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Administrador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Entrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Entrada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Guia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Guia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/vista/MenuUsuarioFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,37 +22,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Entrada.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1298">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1766#1767#0" expanded="true" />
-                <element signature="e#1797#1798#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="1389" column="20" selection-start-line="1389" selection-start-column="10" selection-end-line="1389" selection-end-column="29" />
+            <state relative-caret-position="480">
+              <caret line="1066" column="41" lean-forward="true" selection-start-line="1066" selection-start-column="41" selection-end-line="1066" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#76815#76816#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-217">
+              <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="263" column="43" selection-start-line="263" selection-start-column="34" selection-end-line="263" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -63,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/DAOMuseo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="266" column="9" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+            <state relative-caret-position="963">
+              <caret line="377" column="45" lean-forward="true" selection-start-line="377" selection-start-column="45" selection-end-line="377" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,17 +65,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Guia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
+            <state relative-caret-position="1365">
               <caret line="81" column="65" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="65" />
               <folding>
-                <element signature="e#1294#1295#0" expanded="true" />
-                <element signature="e#1360#1361#0" expanded="true" />
                 <element signature="e#2771#2772#0" expanded="true" />
-                <element signature="e#2794#2795#0" expanded="true" />
+                <element signature="e#2854#2855#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1326">
+              <caret line="125" column="47" lean-forward="true" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Cliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
+            <state relative-caret-position="231">
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,14 +102,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Administrador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="1617">
+              <caret line="100" selection-start-line="100" selection-end-line="100" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2265#2266#0" expanded="true" />
-                <element signature="e#2305#2306#0" expanded="true" />
-                <element signature="e#4468#4469#0" expanded="true" />
-                <element signature="e#4491#4492#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,17 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionesTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="560">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -161,6 +148,7 @@
       <find>List</find>
       <find>sttm</find>
       <find>sdf</find>
+      <find>desconectar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,8 +168,6 @@
         <option value="$PROJECT_DIR$/src/modelo/Persona.java" />
         <option value="$PROJECT_DIR$/src/modelo/Trabajador.java" />
         <option value="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
         <option value="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" />
         <option value="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" />
         <option value="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" />
@@ -191,11 +177,13 @@
         <option value="$PROJECT_DIR$/src/excepciones/ConexionBDException.java" />
         <option value="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" />
         <option value="$PROJECT_DIR$/src/dao/ConexionBD.java" />
-        <option value="$PROJECT_DIR$/src/modelo/Entrada.java" />
         <option value="$PROJECT_DIR$/src/dao/DAOMuseo.java" />
         <option value="$PROJECT_DIR$/src/modelo/Administrador.java" />
-        <option value="$PROJECT_DIR$/src/modelo/Cliente.java" />
         <option value="$PROJECT_DIR$/src/modelo/Guia.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Entrada.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Cliente.java" />
+        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
       </list>
     </option>
   </component>
@@ -210,6 +198,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,7 +210,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -232,19 +220,27 @@
             <path>
               <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
               <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
-              <item name="modelo" type="1f31426a:PackageElementNode" />
+              <item name="controlador" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="dao" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
+              <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
+              <item name="disenno" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
               <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
               <item name="modelo" type="1f31426a:PackageElementNode" />
-              <item name="Administrador.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
               <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
-              <item name="modelo" type="1f31426a:PackageElementNode" />
-              <item name="Guia.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="vista" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -367,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561987171464</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Cambios:&#10;* Fechas en formato dd-MM-yyyy HH:mm:ss&#10;* Solucionado ordenar por fechas&#10;* Cambiada la hora 8:00 por 08:00 para que se pueda ordenar correctamente">
+      <created>1561989790635</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561989790635</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -383,7 +386,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.26865673" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.2771855" />
       <window_info id="Structure" order="1" sideWeight="0.5124594" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -395,7 +398,7 @@
       <window_info id="Job Explorer" order="9" show_stripe_button="false" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -461,7 +464,8 @@
     <MESSAGE value="IntelliJ corrections" />
     <MESSAGE value="Excepción si no hay conexión con la BD" />
     <MESSAGE value="Correcciones" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correcciones" />
+    <MESSAGE value="Cambios:&#10;* Fechas en formato dd-MM-yyyy HH:mm:ss&#10;* Solucionado ordenar por fechas&#10;* Cambiada la hora 8:00 por 08:00 para que se pueda ordenar correctamente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios:&#10;* Fechas en formato dd-MM-yyyy HH:mm:ss&#10;* Solucionado ordenar por fechas&#10;* Cambiada la hora 8:00 por 08:00 para que se pueda ordenar correctamente" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -539,17 +543,6 @@
     <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="585" column="32" selection-start-line="585" selection-start-column="32" selection-end-line="585" selection-end-column="32" />
-          <folding>
-            <element signature="e#28586#28587#0" expanded="true" />
-            <element signature="e#28625#28626#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -603,24 +596,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Entrada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Guia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="81" column="65" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="65" />
+          <folding>
+            <element signature="e#2771#2772#0" expanded="true" />
+            <element signature="e#2854#2855#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Cliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Administrador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -631,85 +658,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionesTableModel.java">
+    <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="1389" column="20" selection-start-line="1389" selection-start-column="10" selection-end-line="1389" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="588">
+          <caret line="263" column="43" selection-start-line="263" selection-start-column="34" selection-end-line="263" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/DAOMuseo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="266" column="9" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+        <state relative-caret-position="963">
+          <caret line="377" column="45" lean-forward="true" selection-start-line="377" selection-start-column="45" selection-end-line="377" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+        <state relative-caret-position="-217">
+          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Cliente.java">
+    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
+        <state relative-caret-position="-1326">
+          <caret line="125" column="47" lean-forward="true" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/disenno/ExposicionesTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="1066" column="41" lean-forward="true" selection-start-line="1066" selection-start-column="41" selection-end-line="1066" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Administrador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2265#2266#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
-            <element signature="e#4468#4469#0" expanded="true" />
-            <element signature="e#4491#4492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Entrada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1298">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1766#1767#0" expanded="true" />
-            <element signature="e#1797#1798#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Guia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="81" column="65" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="65" />
-          <folding>
-            <element signature="e#1294#1295#0" expanded="true" />
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#2771#2772#0" expanded="true" />
-            <element signature="e#2794#2795#0" expanded="true" />
+            <element signature="e#76815#76816#0" expanded="true" />
           </folding>
         </state>
       </provider>

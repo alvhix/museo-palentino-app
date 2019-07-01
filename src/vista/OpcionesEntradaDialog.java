@@ -511,9 +511,9 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             String[] horario = {"08:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
             e.setHora(horario[comboBox]);
             e.setPrecio(getPrecioEntrada());
-
-            // Reserva la entrada pasando como parámetros el cliente
+            // Reserva la entrada pasando como parámetros la entrada y el cliente
             sm.reservarEntrada(e, c);
+            // Muestra la tabla
             mostrarTabla();
         } else {
             throw new FechaException();
