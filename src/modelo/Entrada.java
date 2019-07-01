@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class Entrada {
     private Date fecha;
     private String nombreCliente, dniCliente;
     private String hora;
-    private String fechaTransaccion;
+    private Timestamp fechaTransaccion;
 
     // Constructores -----------------------------------
     public Entrada() {
@@ -35,7 +36,7 @@ public class Entrada {
     }
 
     // Constructor carga de entradas asociadas a un guía (Guía)
-    public Entrada(String dniCliente, Date fecha, String hora, String fechaTransaccion, float precio) {
+    public Entrada(String dniCliente, Date fecha, String hora, Timestamp fechaTransaccion, float precio) {
         this.dniCliente = dniCliente;
         this.fecha = fecha;
         this.hora = hora;
@@ -44,7 +45,7 @@ public class Entrada {
     }
 
     // Constructor que carga todas las entradas (Administrador)
-    public Entrada(String nombreCliente, String dniCliente, Date fecha, String hora, boolean esGuiada, String fechaTransaccion, float precio) {
+    public Entrada(String nombreCliente, String dniCliente, Date fecha, String hora, boolean esGuiada, Timestamp fechaTransaccion, float precio) {
         this.nombreCliente = nombreCliente;
         this.dniCliente = dniCliente;
         this.fecha = fecha;
@@ -83,7 +84,7 @@ public class Entrada {
         return hora;
     }
 
-    public String getFechaTransaccion() {
+    public Timestamp getFechaTransaccion() {
         return fechaTransaccion;
     }
 
@@ -124,7 +125,7 @@ public class Entrada {
         this.hora = hora;
     }
 
-    public void setFechaTransaccion(String fechaTransaccion) {
+    public void setFechaTransaccion(Timestamp fechaTransaccion) {
         this.fechaTransaccion = fechaTransaccion;
     }
 

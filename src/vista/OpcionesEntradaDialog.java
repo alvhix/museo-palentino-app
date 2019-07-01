@@ -508,7 +508,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
             e.setEsGuiada(jCheckBox1.isSelected());
             // Setea la hora
             int comboBox = jComboBox1.getSelectedIndex();
-            String[] horario = {"8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
+            String[] horario = {"08:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
             e.setHora(horario[comboBox]);
             e.setPrecio(getPrecioEntrada());
 

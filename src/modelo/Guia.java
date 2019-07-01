@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.List;
 
@@ -52,14 +53,17 @@ public class Guia extends Trabajador {
 
     public String[][] tabla_EntradasGuia() {
         String[][] array = new String[entradasGuiadas.size()][5];
+        // Formateadores de fecha
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         if (!entradasGuiadas.isEmpty()) {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
                 Entrada e = entradasGuiadas.get(i);
                 array[i][0] = e.getDniCliente();
-                array[i][1] = String.valueOf(new java.sql.Date(e.getFecha().getTime()));
+                array[i][1] = sdf1.format(e.getFecha());
                 array[i][2] = e.getHora();
-                array[i][3] = e.getFechaTransaccion();
+                array[i][3] = sdf2.format(e.getFechaTransaccion());
                 array[i][4] = String.format("%.2f €", e.getPrecio());
             }
         }
@@ -73,7 +77,7 @@ class ComparatorFechaReserva implements Comparator<Entrada> {
 
     @Override
     public int compare(Entrada e1, Entrada e2) {
-        int resultado = e1.getFecha().compareTo(e2.getFecha());
+        int resultado = e2.getFecha().compareTo(e1.getFecha());
         if (resultado == 0) {
             resultado = e1.getHora().compareToIgnoreCase(e2.getHora());
         }
@@ -86,7 +90,7 @@ class ComparatorFechaTransaccion implements Comparator<Entrada> {
 
     @Override
     public int compare(Entrada e1, Entrada e2) {
-        return e2.getFechaTransaccion().compareToIgnoreCase(e1.getFechaTransaccion());
+        return e2.getFechaTransaccion().compareTo(e1.getFechaTransaccion());
     }
 
 }

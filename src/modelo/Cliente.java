@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -43,11 +44,13 @@ public class Cliente extends Persona {
     public String[][] tablaEntradas() {
         String[][] array = new String[entradas.size()][4];
         String esGuiada;
+        // Formateadores de fecha
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
 
         if (!entradas.isEmpty()) {
             for (int i = 0; i < entradas.size(); i++) {
                 Entrada e = entradas.get(i);
-                array[i][0] = String.valueOf(new java.sql.Date(e.getFecha().getTime()));
+                array[i][0] = sdf1.format(e.getFecha());
                 array[i][1] = e.getHora();
 
                 if (e.getEsGuiada()) {
