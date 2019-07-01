@@ -82,7 +82,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
               <Component id="jPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelSesion1" min="-2" max="-2" attributes="0"/>
@@ -488,7 +488,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="850" y="150" width="-1" height="-1"/>
+              <AbsoluteConstraints x="820" y="150" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -507,7 +507,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="155" width="-1" height="-1"/>
+              <AbsoluteConstraints x="40" y="160" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

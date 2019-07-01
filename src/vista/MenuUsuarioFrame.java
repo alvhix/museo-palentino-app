@@ -492,7 +492,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
                 botonSiguienteMouseReleased(evt);
             }
         });
-        panelMuestra.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, -1, -1));
+        panelMuestra.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, -1, -1));
 
         botonAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imagenes/iconos/flechaizq.png"))); // NOI18N
         botonAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -512,7 +512,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
                 botonAnteriorMouseReleased(evt);
             }
         });
-        panelMuestra.add(botonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 155, -1, -1));
+        panelMuestra.add(botonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         jMenu2.setText("Mi perfil");
 
@@ -556,7 +556,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 38, Short.MAX_VALUE)
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
