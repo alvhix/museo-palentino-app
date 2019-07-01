@@ -9,11 +9,10 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- *
  * @author Álvaro y Victor
  */
 public class Guia extends Trabajador {
-    
+
     private int nGuia;
     private List<Entrada> entradasGuiadas;
 
@@ -42,18 +41,18 @@ public class Guia extends Trabajador {
     public void cargarEntradasGuia(List<Entrada> entradasGuiadas) {
         this.entradasGuiadas = entradasGuiadas;
     }
-    
+
     public void ordenarFechaReserva() {
         entradasGuiadas.sort(new ComparatorFechaReserva());
     }
-    
+
     public void ordenarFechaTransaccion() {
         entradasGuiadas.sort(new ComparatorFechaTransaccion());
     }
-    
+
     public String[][] tabla_EntradasGuia() {
         String[][] array = new String[entradasGuiadas.size()][5];
-        
+
         if (!entradasGuiadas.isEmpty()) {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
                 Entrada e = entradasGuiadas.get(i);
@@ -64,14 +63,14 @@ public class Guia extends Trabajador {
                 array[i][4] = String.format("%.2f €", e.getPrecio());
             }
         }
-        
+
         return array;
     }
-    
+
 }
 
 class ComparatorFechaReserva implements Comparator<Entrada> {
-    
+
     @Override
     public int compare(Entrada e1, Entrada e2) {
         int resultado = e1.getFecha().compareTo(e2.getFecha());
@@ -80,18 +79,14 @@ class ComparatorFechaReserva implements Comparator<Entrada> {
         }
         return resultado;
     }
-    
+
 }
 
 class ComparatorFechaTransaccion implements Comparator<Entrada> {
-    
+
     @Override
     public int compare(Entrada e1, Entrada e2) {
-        int resultado = e1.getFechaTransaccion().compareToIgnoreCase(e2.getFechaTransaccion());
-        if (resultado == 0) {
-            resultado = e1.getHora().compareToIgnoreCase(e2.getHora());
-        }
-        return resultado;
+        return e2.getFechaTransaccion().compareToIgnoreCase(e1.getFechaTransaccion());
     }
-    
+
 }
