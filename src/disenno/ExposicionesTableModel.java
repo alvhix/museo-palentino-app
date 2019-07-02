@@ -5,12 +5,12 @@
  */
 package disenno;
 
-import java.util.List;
-import javax.swing.table.AbstractTableModel;
 import modelo.Exposicion;
 
+import javax.swing.table.AbstractTableModel;
+import java.util.List;
+
 /**
- *
  * @author Victor
  */
 public class ExposicionesTableModel extends AbstractTableModel {

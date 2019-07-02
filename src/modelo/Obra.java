@@ -6,7 +6,6 @@
 package modelo;
 
 /**
- *
  * @author Victor, Mario y Alberto
  */
 public class Obra {
@@ -30,6 +29,7 @@ public class Obra {
         this.rutaImagen = rutaImagen;
         this.idExposicion = idExposicion;
     }
+
     // Constructor necesario para cargar obra
     public Obra(int id, String titulo, String autor, String estilo, String anno, String tipo, String rutaImagen, int idExposicion) {
         this.id = id;
@@ -45,7 +45,7 @@ public class Obra {
     public int getId() {
         return id;
     }
-    
+
     public String getTitulo() {
         return titulo;
     }

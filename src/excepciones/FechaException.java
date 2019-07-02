@@ -5,10 +5,9 @@
  */
 package excepciones;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
- *
  * @author Álvaro
  */
 public class FechaException extends Exception {

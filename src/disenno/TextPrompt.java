@@ -1,18 +1,21 @@
 package disenno;
 
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * The TextPrompt class will display a prompt over top of a text component when
  * the Document of the text field is empty. The Show property is used to
  * determine the visibility of the prompt.
- *
+ * <p>
  * The Font and foreground Color of the prompt will default to those properties
  * of the parent text component. You are free to change the properties after
  * class construction.
@@ -20,10 +23,19 @@ import javax.swing.text.*;
 public class TextPrompt extends JLabel
         implements FocusListener, DocumentListener {
 
-    public enum Show {
-        ALWAYS,
-        FOCUS_GAINED,
-        FOCUS_LOST;
+    /**
+     * Set the prompt Show property to control when the promt is shown. Valid
+     * values are:
+     * <p>
+     * Show.AWLAYS (default) - always show the prompt Show.Focus_GAINED - show
+     * the prompt when the component gains focus (and hide the prompt when focus
+     * is lost) Show.Focus_LOST - show the prompt when the component loses focus
+     * (and hide the prompt when focus is gained)
+     *
+     * @param show a valid Show enum
+     */
+    public void setShow(Show show) {
+        this.show = show;
     }
 
     private JTextComponent component;
@@ -105,18 +117,14 @@ public class TextPrompt extends JLabel
     }
 
     /**
-     * Set the prompt Show property to control when the promt is shown. Valid
-     * values are:
+     * Show the prompt once. Once the component has gained/lost focus once, the
+     * prompt will not be shown again.
      *
-     * Show.AWLAYS (default) - always show the prompt Show.Focus_GAINED - show
-     * the prompt when the component gains focus (and hide the prompt when focus
-     * is lost) Show.Focus_LOST - show the prompt when the component loses focus
-     * (and hide the prompt when focus is gained)
-     *
-     * @param show a valid Show enum
+     * @param showPromptOnce when true the prompt will only be shown once,
+     *                       otherwise it will be shown repeatedly.
      */
-    public void setShow(Show show) {
-        this.show = show;
+    public void setShowPromptOnce(boolean showPromptOnce) {
+        this.showPromptOnce = showPromptOnce;
     }
 
     /**
@@ -128,15 +136,10 @@ public class TextPrompt extends JLabel
         return showPromptOnce;
     }
 
-    /**
-     * Show the prompt once. Once the component has gained/lost focus once, the
-     * prompt will not be shown again.
-     *
-     * @param showPromptOnce when true the prompt will only be shown once,
-     * otherwise it will be shown repeatedly.
-     */
-    public void setShowPromptOnce(boolean showPromptOnce) {
-        this.showPromptOnce = showPromptOnce;
+    //  Implement FocusListener
+    @Override
+    public void focusGained(FocusEvent e) {
+        checkForPrompt();
     }
 
     /**
@@ -176,9 +179,9 @@ public class TextPrompt extends JLabel
         }
     }
 
-//  Implement FocusListener
+    //  Implement DocumentListener
     @Override
-    public void focusGained(FocusEvent e) {
+    public void insertUpdate(DocumentEvent e) {
         checkForPrompt();
     }
 
@@ -188,10 +191,10 @@ public class TextPrompt extends JLabel
         checkForPrompt();
     }
 
-//  Implement DocumentListener
-    @Override
-    public void insertUpdate(DocumentEvent e) {
-        checkForPrompt();
+    public enum Show {
+        ALWAYS,
+        FOCUS_GAINED,
+        FOCUS_LOST
     }
 
     @Override

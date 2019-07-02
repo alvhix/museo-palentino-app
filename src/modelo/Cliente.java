@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- *
  * @author Álvaro y Victor
  */
 public class Cliente extends Persona {
@@ -33,14 +32,14 @@ public class Cliente extends Persona {
         return id;
     }
 
-    public void addEntrada(Entrada e){
+    public void addEntrada(Entrada e) {
         entradas.add(e);
     }
 
     public void cargarEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
     }
-    
+
     public String[][] tablaEntradas() {
         String[][] array = new String[entradas.size()][4];
         String esGuiada;

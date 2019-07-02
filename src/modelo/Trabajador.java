@@ -6,7 +6,6 @@
 package modelo;
 
 /**
- *
  * @author Guillermo
  */
 public abstract class Trabajador extends Persona {
@@ -26,7 +25,7 @@ public abstract class Trabajador extends Persona {
         this.nSS = nSS;
         this.id = id;
     }
-    
+
     //Getters ------------------------------------------------------
     public long getNSS() {
         return nSS;

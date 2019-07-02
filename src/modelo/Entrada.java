@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- *
  * @author Álvaro
  */
 public class Entrada {
