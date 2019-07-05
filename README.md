@@ -22,7 +22,7 @@ El proyecto incluye 3 librerías para poder funcionar correctamente que son desc
 * JCalendar
 * AbsoluteLayout
 
-El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta src/lib y añádelas a tu proyecto local.
+El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local.
 
 ## Autores
 
