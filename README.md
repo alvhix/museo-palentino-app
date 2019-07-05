@@ -16,11 +16,13 @@ IntelliJ + JDK 12
 
 ### Instalación
 
-Clonamos el repositorio desde GitHub a nuestra carpeta local
-El proyecto incluye 3 librerías para poder funcionar correctamente:
+Clonamos el repositorio desde GitHub a nuestra carpeta local.
+El proyecto incluye 3 librerías para poder funcionar correctamente que son descargadas al clonar el repositorio.
 * MYSQLDriver
 * JCalendar
 * AbsoluteLayout
+
+El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta src/lib y añádelas a tu proyecto local.
 
 ## Autores
 
@@ -37,5 +39,6 @@ Este proyecto no tiene una licencia específica por el momento (futuro añadido)
 * Ocultar los datos para la conexión con la base de datos
 * Mejorar la plataforma de pago de las entradas
 * Mejorar visualmente el menú del administrador
+* Asignar una licencia al proyecto
 * etc...
 
