@@ -6,9 +6,9 @@ Programa de un museo realizado como proyecto final de 1º DAW
 
 La descarga del proyecto está destinada únicamente a los desarrolladores y terceros autorizados por los mismos, ya que el proyecto contiene datos sensibles sin ocultar para poder acceder a la base de datos del programa
 
-### Prerequisitos
+### Prerrequisitos
 
-Para poder ejecutar el programa debes usar el IDE NetBeans o el IntelliJ y como JDK el Java SE 8 o versiones superiores. 
+Para poder ejecutar el programa debes usar el IDE NetBeans o el IntelliJ y como JDK el Java SE 8 o versiones superiores
 ```
 NetBeans + JDK 8
 IntelliJ + JDK 12
