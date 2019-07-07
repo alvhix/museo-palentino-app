@@ -6,8 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="Actualizando JAR">
+    <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/MuseoPalentinoApp/recursos/imagenes/IMPORTANT.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/MuseoPalentinoApp_jar/MuseoPalentinoApp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MuseoPalentinoApp_jar/MuseoPalentinoApp.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="551" column="48" lean-forward="true" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="48" />
+            <state relative-caret-position="476">
+              <caret line="553" column="44" lean-forward="true" selection-start-line="553" selection-start-column="44" selection-end-line="553" selection-end-column="44" />
               <folding>
                 <element signature="e#8234#8323#0" expanded="true" />
               </folding>
@@ -115,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5754">
+            <state relative-caret-position="6069">
               <caret line="517" column="77" selection-start-line="517" selection-start-column="77" selection-end-line="517" selection-end-column="77" />
             </state>
           </provider>
@@ -124,7 +126,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6615">
+            <state relative-caret-position="6678">
               <caret line="744" column="5" selection-start-line="744" selection-start-column="5" selection-end-line="744" selection-end-column="5" />
             </state>
           </provider>
@@ -204,8 +206,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,6 +217,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -376,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562541187014</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Actualizando JAR">
+      <created>1562543504433</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1562543504433</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -391,7 +400,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.18496802" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.18710022" />
       <window_info id="Structure" order="1" sideWeight="0.5124594" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -753,22 +762,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5754">
+        <state relative-caret-position="6069">
           <caret line="517" column="77" selection-start-line="517" selection-start-column="77" selection-end-line="517" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6615">
+        <state relative-caret-position="6678">
           <caret line="744" column="5" selection-start-line="744" selection-start-column="5" selection-end-line="744" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="551" column="48" lean-forward="true" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="48" />
+        <state relative-caret-position="476">
+          <caret line="553" column="44" lean-forward="true" selection-start-line="553" selection-start-column="44" selection-end-line="553" selection-end-column="44" />
           <folding>
             <element signature="e#8234#8323#0" expanded="true" />
           </folding>
