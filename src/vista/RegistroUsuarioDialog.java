@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -312,6 +311,28 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
     private javax.swing.JLabel oblig5;
     // End of variables declaration//GEN-END:variables
 
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        conexionBD();
+        imagenFondo();
+        limiteDNI(campoDNI);
+        soloLetras(campoNombre);
+        limiteTelefono(campoTelefono);
+
+        botonRegistrar.requestFocus();
+        TextPrompt holder1 = new TextPrompt("DNI (Ej. 12345678X)", campoDNI);
+        holder1.changeAlpha(0.5f);
+        TextPrompt holder2 = new TextPrompt("Nombre", campoNombre);
+        holder2.changeAlpha(0.5f);
+        TextPrompt holder3 = new TextPrompt("Teléfono", campoTelefono);
+        holder3.changeAlpha(0.5f);
+        TextPrompt holder4 = new TextPrompt("Contraseña", campoPassword1);
+        holder4.changeAlpha(0.5f);
+        TextPrompt holder5 = new TextPrompt("Repita la contraseña", campoPassword2);
+        holder5.changeAlpha(0.5f);
+    }
+
+    // ############################# MÉTODOS REGISTRO DE USUARIO #############################
     private void registrarUsuario() {
         if (validarDatos()) {
             Cliente c = new Cliente(campoNombre.getText(), campoDNI.getText(), Integer.parseInt(campoTelefono.getText()));
@@ -325,6 +346,7 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         }
     }
 
+    // ***************************** Validación de datos *****************************
     private boolean validarDatos() {
         boolean correcto = false;
         String dni = campoDNI.getText();
@@ -482,41 +504,23 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         });
     }
 
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    private void conexionBD() {
-        sm = new SistemaMuseo();
-    }
-
     public Image getIconImage() {
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
-    private void componentesIniciales() {
-        conexionBD();
-        imagenFondo();
-        limiteDNI(campoDNI);
-        soloLetras(campoNombre);
-        limiteTelefono(campoTelefono);
-
-        botonRegistrar.requestFocus();
-        TextPrompt holder1 = new TextPrompt("DNI (Ej. 12345678X)", campoDNI);
-        holder1.changeAlpha(0.5f);
-        TextPrompt holder2 = new TextPrompt("Nombre", campoNombre);
-        holder2.changeAlpha(0.5f);
-        TextPrompt holder3 = new TextPrompt("Teléfono", campoTelefono);
-        holder3.changeAlpha(0.5f);
-        TextPrompt holder4 = new TextPrompt("Contraseña", campoPassword1);
-        holder4.changeAlpha(0.5f);
-        TextPrompt holder5 = new TextPrompt("Repita la contraseña", campoPassword2);
-        holder5.changeAlpha(0.5f);
+    // ############################# CONEXIÓN BASE DE DATOS #############################
+    private void conexionBD() {
+        sm = new SistemaMuseo();
     }
+
 }

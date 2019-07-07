@@ -11,7 +11,7 @@ import modelo.Persona;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -29,7 +29,7 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
         super(parent, modal);
         user = p;
         initComponents();
-        iniciarComponentes();
+        componentesIniciales();
     }
 
     private CambiarContrasennaDialog(java.awt.Frame parent, boolean modal) {
@@ -215,10 +215,14 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
-    private void cancelar() {
-        dispose();
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        imagenFondo();
+        conexionBD();
+        alertaLabel.setVisible(false);
     }
 
+    // ############################# MÉTODOS CAMBIAR CONTRASEÑA #############################
     private void cambiarClave() {
 
         char[] claveAntigua = claveAntiguatf.getPassword();
@@ -240,9 +244,15 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
 
     }
 
+    // ***************************** Cancelar cambio de contraseña *****************************
+    private void cancelar() {
+        dispose();
+    }
+
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
@@ -250,13 +260,11 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
         }
     }
 
-    // --------------------- Método de conexión a la base de datos -----------------
-    private void iniciarComponentes() {
-        imagenFondo();
-        conexionBD();
-        alertaLabel.setVisible(false);
+    public Image getIconImage() {
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
+    // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
         sm = new SistemaMuseo();
     }

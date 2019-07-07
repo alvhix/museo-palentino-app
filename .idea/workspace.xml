@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="" />
+    <list default="true" id="82d716a0-e973-455b-a2b0-e9ed86fc0cb9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuExposicionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuExposicionDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,95 +27,17 @@
     <favorites_list name="MuseoPalentinoApp" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Cliente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Entrada.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Exposicion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Guia.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
-              <folding>
-                <element signature="e#2771#2772#0" expanded="true" />
-                <element signature="e#2854#2855#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="266" column="60" selection-start-line="266" selection-start-column="60" selection-end-line="266" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Obra.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Persona.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Trabajador.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1806">
-              <caret line="236" selection-start-line="236" selection-end-line="236" />
+            <state relative-caret-position="378">
+              <caret line="289" column="86" selection-start-line="289" selection-start-column="86" selection-end-line="289" selection-end-column="86" />
               <folding>
+                <element signature="e#2845#3069#0" expanded="true" />
+                <element signature="e#3068#3069#0" expanded="true" />
+                <element signature="e#7759#7760#0" expanded="true" />
+                <element signature="e#7829#7830#0" expanded="true" />
                 <element signature="e#15324#15325#0" expanded="true" />
                 <element signature="e#15363#15364#0" expanded="true" />
               </folding>
@@ -112,11 +45,153 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="987">
-              <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+            <state relative-caret-position="1197">
+              <caret line="1432" lean-forward="true" selection-start-line="1432" selection-end-line="1432" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#76752#76753#0" expanded="true" />
+                <element signature="e#76815#76816#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="938">
+              <caret line="432" column="32" lean-forward="true" selection-start-line="432" selection-start-column="32" selection-end-line="432" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2455#2679#0" expanded="true" />
+                <element signature="e#2678#2679#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="623">
+              <caret line="361" column="72" selection-start-line="361" selection-start-column="72" selection-end-line="361" selection-end-column="72" />
+              <folding>
+                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2505#2506#0" expanded="true" />
+                <element signature="e#11915#11916#0" expanded="true" />
+                <element signature="e#11977#11978#0" expanded="true" />
+                <element signature="e#12238#12239#0" expanded="true" />
+                <element signature="e#12306#12307#0" expanded="true" />
+                <element signature="e#12563#12564#0" expanded="true" />
+                <element signature="e#12631#12632#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="861">
+              <caret line="665" column="5" lean-forward="true" selection-start-line="665" selection-start-column="5" selection-end-line="665" selection-end-column="5" />
+              <folding>
+                <element signature="e#2247#2248#0" expanded="true" />
+                <element signature="e#2320#2321#0" expanded="true" />
+                <element signature="e#8255#8344#0" expanded="true" />
+                <element signature="e#10082#10083#0" expanded="true" />
+                <element signature="e#10155#10156#0" expanded="true" />
+                <element signature="e#10456#10457#0" expanded="true" />
+                <element signature="e#10526#10527#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="245" column="66" selection-start-line="245" selection-start-column="66" selection-end-line="245" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2808#3032#0" expanded="true" />
+                <element signature="e#3031#3032#0" expanded="true" />
+                <element signature="e#4687#4688#0" expanded="true" />
+                <element signature="e#4747#4748#0" expanded="true" />
+                <element signature="e#5011#5012#0" expanded="true" />
+                <element signature="e#5071#5072#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="741" lean-forward="true" selection-start-line="741" selection-end-line="741" />
+              <folding>
+                <element signature="e#2378#2379#0" expanded="true" />
+                <element signature="e#2449#2450#0" expanded="true" />
+                <element signature="e#10875#10876#0" expanded="true" />
+                <element signature="e#10940#10941#0" expanded="true" />
+                <element signature="e#28215#28216#0" expanded="true" />
+                <element signature="e#28288#28289#0" expanded="true" />
+                <element signature="e#28550#28551#0" expanded="true" />
+                <element signature="e#28618#28619#0" expanded="true" />
+                <element signature="e#28953#28954#0" expanded="true" />
+                <element signature="e#29015#29016#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="576" column="32" selection-start-line="576" selection-start-column="32" selection-end-line="576" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="515" column="72" selection-start-line="515" selection-start-column="4" selection-end-line="515" selection-end-column="72" />
+              <folding>
+                <element signature="e#3187#3411#0" expanded="true" />
+                <element signature="e#3410#3411#0" expanded="true" />
+                <element signature="e#7987#7988#0" expanded="true" />
+                <element signature="e#8049#8050#0" expanded="true" />
+                <element signature="e#8611#8612#0" expanded="true" />
+                <element signature="e#8671#8672#0" expanded="true" />
+                <element signature="e#12085#12086#0" expanded="true" />
+                <element signature="e#12147#12148#0" expanded="true" />
+                <element signature="e#14058#14059#0" expanded="true" />
+                <element signature="e#14120#14121#0" expanded="true" />
+                <element signature="e#28028#28029#0" expanded="true" />
+                <element signature="e#28132#28133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2485">
+              <caret line="349" column="86" lean-forward="true" selection-start-line="349" selection-start-column="86" selection-end-line="349" selection-end-column="86" />
+              <folding>
+                <element signature="e#2373#2597#0" expanded="true" />
+                <element signature="e#2596#2597#0" expanded="true" />
+                <element signature="e#12791#12792#0" expanded="true" />
+                <element signature="e#12857#12858#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,21 +230,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" />
         <option value="$PROJECT_DIR$/src/controlador/SistemaMuseo.java" />
         <option value="$PROJECT_DIR$/src/dao/ConexionBD.java" />
         <option value="$PROJECT_DIR$/src/dao/DAOMuseo.java" />
         <option value="$PROJECT_DIR$/src/modelo/Administrador.java" />
         <option value="$PROJECT_DIR$/src/modelo/Guia.java" />
-        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuExposicionDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" />
-        <option value="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" />
         <option value="$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" />
-        <option value="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" />
         <option value="$PROJECT_DIR$/src/disenno/ExposicionesTableModel.java" />
         <option value="$PROJECT_DIR$/src/disenno/ExposicionTableModel.java" />
         <option value="$PROJECT_DIR$/src/disenno/TextPrompt.java" />
@@ -181,6 +247,15 @@
         <option value="$PROJECT_DIR$/src/modelo/Obra.java" />
         <option value="$PROJECT_DIR$/src/modelo/Persona.java" />
         <option value="$PROJECT_DIR$/src/modelo/Trabajador.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuExposicionDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuGuiaFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java" />
+        <option value="$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/InicioSesionDialog.java" />
+        <option value="$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java" />
       </list>
     </option>
   </component>
@@ -205,13 +280,12 @@
             <path>
               <item name="MuseoPalentinoApp" type="58d84e3e:PackageViewProjectNode" />
               <item name="MuseoPalentinoApp" type="616d4139:PackageViewModuleNode" />
-              <item name="controlador" type="1f31426a:PackageElementNode" />
+              <item name="vista" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -223,6 +297,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562077030516</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Eliminada librería que sobra">
+      <created>1562344915087</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1562344915087</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -375,8 +457,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.29957357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48754063" visible="true" weight="0.31236672" />
       <window_info id="Structure" order="1" sideWeight="0.5124594" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -457,7 +540,8 @@
     <MESSAGE value="Correcciones" />
     <MESSAGE value="Optimización" />
     <MESSAGE value="Optimización programa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimización programa" />
+    <MESSAGE value="Eliminada librería que sobra" />
+    <option name="LAST_COMMIT_MESSAGE" value="Eliminada librería que sobra" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -511,96 +595,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="241" selection-start-line="241" selection-end-line="241" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="979" column="9" selection-start-line="979" selection-start-column="9" selection-end-line="979" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#76752#76753#0" expanded="true" />
-            <element signature="e#76815#76816#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="730">
-          <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="611" column="44" selection-start-line="611" selection-start-column="44" selection-end-line="611" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="576" column="32" selection-start-line="576" selection-start-column="32" selection-end-line="576" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="730">
-          <caret line="119" column="48" selection-start-line="119" selection-start-column="48" selection-end-line="119" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="476" column="21" lean-forward="true" selection-start-line="476" selection-start-column="21" selection-end-line="476" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="266" column="60" selection-start-line="266" selection-start-column="60" selection-end-line="266" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1806">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
-          <folding>
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15363#15364#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controlador/SistemaMuseo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -625,13 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/disenno/ImagenFondo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -695,7 +686,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Guia.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
+        <state relative-caret-position="861">
           <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
           <folding>
             <element signature="e#2771#2772#0" expanded="true" />
@@ -722,6 +713,189 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
           <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/ConexionBD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="987">
+          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="1399" column="18" selection-start-line="1399" selection-start-column="18" selection-end-line="1399" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/disenno/ImagenFondo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/ModificaExposicionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="576" column="32" selection-start-line="576" selection-start-column="32" selection-end-line="576" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/lang/Override.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/java/awt/Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="543" column="17" selection-start-line="543" selection-start-column="17" selection-end-line="543" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuPrincipalFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="665" column="5" lean-forward="true" selection-start-line="665" selection-start-column="5" selection-end-line="665" selection-end-column="5" />
+          <folding>
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2320#2321#0" expanded="true" />
+            <element signature="e#8255#8344#0" expanded="true" />
+            <element signature="e#10082#10083#0" expanded="true" />
+            <element signature="e#10155#10156#0" expanded="true" />
+            <element signature="e#10456#10457#0" expanded="true" />
+            <element signature="e#10526#10527#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuGuiaFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="361" column="72" selection-start-line="361" selection-start-column="72" selection-end-line="361" selection-end-column="72" />
+          <folding>
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2505#2506#0" expanded="true" />
+            <element signature="e#11915#11916#0" expanded="true" />
+            <element signature="e#11977#11978#0" expanded="true" />
+            <element signature="e#12238#12239#0" expanded="true" />
+            <element signature="e#12306#12307#0" expanded="true" />
+            <element signature="e#12563#12564#0" expanded="true" />
+            <element signature="e#12631#12632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuExposicionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="938">
+          <caret line="432" column="32" lean-forward="true" selection-start-line="432" selection-start-column="32" selection-end-line="432" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2455#2679#0" expanded="true" />
+            <element signature="e#2678#2679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuUsuarioFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="741" lean-forward="true" selection-start-line="741" selection-end-line="741" />
+          <folding>
+            <element signature="e#2378#2379#0" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#10875#10876#0" expanded="true" />
+            <element signature="e#10940#10941#0" expanded="true" />
+            <element signature="e#28215#28216#0" expanded="true" />
+            <element signature="e#28288#28289#0" expanded="true" />
+            <element signature="e#28550#28551#0" expanded="true" />
+            <element signature="e#28618#28619#0" expanded="true" />
+            <element signature="e#28953#28954#0" expanded="true" />
+            <element signature="e#29015#29016#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/OpcionesEntradaDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="515" column="72" selection-start-line="515" selection-start-column="4" selection-end-line="515" selection-end-column="72" />
+          <folding>
+            <element signature="e#3187#3411#0" expanded="true" />
+            <element signature="e#3410#3411#0" expanded="true" />
+            <element signature="e#7987#7988#0" expanded="true" />
+            <element signature="e#8049#8050#0" expanded="true" />
+            <element signature="e#8611#8612#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+            <element signature="e#12085#12086#0" expanded="true" />
+            <element signature="e#12147#12148#0" expanded="true" />
+            <element signature="e#14058#14059#0" expanded="true" />
+            <element signature="e#14120#14121#0" expanded="true" />
+            <element signature="e#28028#28029#0" expanded="true" />
+            <element signature="e#28132#28133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/RegistroUsuarioDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2485">
+          <caret line="349" column="86" lean-forward="true" selection-start-line="349" selection-start-column="86" selection-end-line="349" selection-end-column="86" />
+          <folding>
+            <element signature="e#2373#2597#0" expanded="true" />
+            <element signature="e#2596#2597#0" expanded="true" />
+            <element signature="e#12791#12792#0" expanded="true" />
+            <element signature="e#12857#12858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/CambiarContrasennaDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="245" column="66" selection-start-line="245" selection-start-column="66" selection-end-line="245" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2808#3032#0" expanded="true" />
+            <element signature="e#3031#3032#0" expanded="true" />
+            <element signature="e#4687#4688#0" expanded="true" />
+            <element signature="e#4747#4748#0" expanded="true" />
+            <element signature="e#5011#5012#0" expanded="true" />
+            <element signature="e#5071#5072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/InicioSesionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="289" column="86" selection-start-line="289" selection-start-column="86" selection-end-line="289" selection-end-column="86" />
+          <folding>
+            <element signature="e#2845#3069#0" expanded="true" />
+            <element signature="e#3068#3069#0" expanded="true" />
+            <element signature="e#7759#7760#0" expanded="true" />
+            <element signature="e#7829#7830#0" expanded="true" />
+            <element signature="e#15324#15325#0" expanded="true" />
+            <element signature="e#15363#15364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/MenuAdministradorFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="1432" lean-forward="true" selection-start-line="1432" selection-end-line="1432" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#76752#76753#0" expanded="true" />
+            <element signature="e#76815#76816#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -799,7 +973,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>MYSQLDriver</last-edited>
+          <last-edited>AbsoluteLayout</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

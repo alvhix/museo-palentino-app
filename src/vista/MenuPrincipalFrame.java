@@ -12,7 +12,6 @@ import modelo.Exposicion;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -556,6 +555,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelSesion1;
     // End of variables declaration//GEN-END:variables
 
+    // ############################# COMPONENTES INCIALES #############################
+
+    private void componentesIniciales() {
+        imagenFondo();
+        cargarExposiciones();
+    }
+
+    // ############################# MÉTODOS USUARIOS #############################
     private void iniciarSesion() {
         InicioSesionDialog isd = new InicioSesionDialog(this, true);
         isd.setVisible(true);
@@ -566,6 +573,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         rsd.setVisible(true);
     }
 
+    // ############################# MÉTODOS EXPOSICIONES #############################
     private void cargarExposiciones() {
         if (exposiciones.isEmpty()) {
             botonSiguiente.setVisible(false);
@@ -645,13 +653,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         }
     }
 
-    private void conexionBD() {
-        sm = new SistemaMuseo();
-    }
-
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoPrincipal.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoPrincipal.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
@@ -664,8 +669,8 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
-    private void componentesIniciales() {
-        imagenFondo();
-        cargarExposiciones();
+    // ############################# CONEXIÓN BASE DE DATOS #############################
+    private void conexionBD() {
+        sm = new SistemaMuseo();
     }
 }

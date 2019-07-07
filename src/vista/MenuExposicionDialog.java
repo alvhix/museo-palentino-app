@@ -12,7 +12,6 @@ import modelo.Obra;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -398,6 +397,23 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        actualizarCampos();
+        imagenFondo();
+    }
+
+    // ############################# MÉTODOS EXPOSICIÓN #############################
+    // ***************************** Actualizar exposiciones *****************************
+    private void actualizarCampos() {
+        imagen.setIcon(new ImageIcon(obras.get(posicion).getRutaImagen()));
+        campoTitulo.setText(obras.get(posicion).getTitulo());
+        campoAutor.setText(obras.get(posicion).getAutor());
+        campoEstilo.setText(obras.get(posicion).getEstilo());
+        campoAnno.setText(String.valueOf(obras.get(posicion).getAnno()));
+        campoTipo.setText(obras.get(posicion).getTipo());
+    }
+
     private void siguiente() {
         posicion++;
         if (posicion == obras.size()) {
@@ -414,9 +430,10 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
         actualizarCampos();
     }
 
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
@@ -426,20 +443,6 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
 
     public Image getIconImage() {
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-    }
-
-    private void componentesIniciales() {
-        actualizarCampos();
-        imagenFondo();
-    }
-
-    private void actualizarCampos() {
-        imagen.setIcon(new ImageIcon(obras.get(posicion).getRutaImagen()));
-        campoTitulo.setText(obras.get(posicion).getTitulo());
-        campoAutor.setText(obras.get(posicion).getAutor());
-        campoEstilo.setText(obras.get(posicion).getEstilo());
-        campoAnno.setText(String.valueOf(obras.get(posicion).getAnno()));
-        campoTipo.setText(obras.get(posicion).getTipo());
     }
 
 }

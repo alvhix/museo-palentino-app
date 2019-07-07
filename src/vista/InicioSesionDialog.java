@@ -17,7 +17,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -214,6 +213,20 @@ public class InicioSesionDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        botonIniciarSesion.requestFocus();
+        TextPrompt holder1 = new TextPrompt("DNI (Ej. 12345678X)", campoDNI);
+        holder1.changeAlpha(0.5f);
+        TextPrompt holder2 = new TextPrompt("Contraseña", campoPassword);
+        holder2.changeAlpha(0.5f);
+        conexionBD();
+        imagenFondo();
+
+        limiteDNI(campoDNI);
+    }
+
+    // ############################# INICIO DE SESIÓN #############################
     private void iniciarSesion() {
         String dni = campoDNI.getText();
         String password = new String(campoPassword.getPassword());
@@ -273,6 +286,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
         }
     }
 
+    // ***************************** Validación de datos *****************************
     private void limiteDNI(JTextField jtf) {
         final int limite = 8;
         jtf.addKeyListener(new KeyAdapter() {
@@ -299,9 +313,10 @@ public class InicioSesionDialog extends javax.swing.JDialog {
         });
     }
 
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
@@ -309,23 +324,13 @@ public class InicioSesionDialog extends javax.swing.JDialog {
         }
     }
 
-    private void conexionBD() {
-        sm = new SistemaMuseo();
-    }
-
     public Image getIconImage() {
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
-    private void componentesIniciales() {
-        botonIniciarSesion.requestFocus();
-        TextPrompt holder1 = new TextPrompt("DNI (Ej. 12345678X)", campoDNI);
-        holder1.changeAlpha(0.5f);
-        TextPrompt holder2 = new TextPrompt("Contraseña", campoPassword);
-        holder2.changeAlpha(0.5f);
-        conexionBD();
-        imagenFondo();
-
-        limiteDNI(campoDNI);
+    // ############################# CONEXIÓN BASE DE DATOS #############################
+    private void conexionBD() {
+        sm = new SistemaMuseo();
     }
+
 }

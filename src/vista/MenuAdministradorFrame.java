@@ -1392,13 +1392,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     // ####################### - Métodos Gestión Entradas - #######################
-    // Carga todas las entradas reservadas hasta el momento
-    private void cargarEntradas() {
+    // ***************************** Carga de todas las entradas *****************************
+    private void cargarEntradas() { // Carga todas las entradas reservadas hasta el momento
         a.cargarTodasEntradas(sm.cargarTodasEntradas());
     }
 
-    // Muestra la tabla de todas las entradas reservadas
-    private void mostrarTabla() {
+    // ***************************** Tabla *****************************
+    private void mostrarTabla() { // Muestra la tabla de todas las entradas reservadas
         String[] cabecera = {"Nombre cliente", "Dni cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"};
         DefaultTableModel modeloEntradas = new DefaultTableModel(a.tabla_todasEntradas(), cabecera);
         jTable1.setModel(modeloEntradas);
@@ -1414,8 +1414,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     }
 
-    // Obtiene los precios de la entrada y el suplemento actuales
-    private void obtenerPrecios() {
+    // ***************************** Precios de la entrada y suplemento guía *****************************
+    private void obtenerPrecios() { // Obtiene los precios de la entrada y el suplemento actuales
         float precio = sm.devolverPrecioEntrada();
         float suplemento = sm.devolverPrecioSuplemento();
         // Obtiene el precio de la entrada actual
@@ -1424,16 +1424,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         suplementoActual.setText(String.valueOf(String.format("%.2f €", suplemento)));
     }
 
-    // Cambia el precio de la entrada
-    private void cambiarPrecioEntrada() {
+    private void cambiarPrecioEntrada() { // Cambia el precio de la entrada
         if (!campoPrecioEntrada.getText().isEmpty()) {
             float precio = Float.valueOf(campoPrecioEntrada.getText());
             sm.cambiarPrecioEntrada(precio);
         }
     }
 
-    // Cambia el precio del suplemento
-    private void cambiarPrecioSuplemento() {
+    private void cambiarPrecioSuplemento() { // Cambia el precio del suplemento
         if (!campoPrecioSuplemento.getText().isEmpty()) {
             float precio = Float.valueOf(campoPrecioSuplemento.getText());
             sm.cambiarPrecioSuplemento(precio);

@@ -15,7 +15,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -481,22 +480,13 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         mostrarTabla();
     }
 
-    // ############################# CARGA DE ENTRADAS #############################
+    // ############################# MÉTODOS RESERVA ENTRADA #############################
+    // ***************************** Carga de entradas del cliente *****************************
     private void cargarEntradas() {
         c.cargarEntradas(sm.cargarEntradasCliente(c.getIdCliente()));
     }
 
-    // ############################# TABLA #############################
-    // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
-    private void mostrarTabla() {
-        DefaultTableModel modelo;
-        String[] cabecera = {"Fecha", "Hora", "¿Guiada?", "Precio"};
-
-        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
-        jTable1.setModel(modelo);
-    }
-
-    // ############################# RESERVA DE ENTRADA #############################
+    // ***************************** Reserva de entrada *****************************
     private void reservarEntrada() throws FechaException {
         final int DEFAULT = 0;
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
@@ -522,16 +512,25 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         jComboBox1.setSelectedIndex(DEFAULT); // Restablece el selector de hora a la default
     }
 
-    // ############################# DATOS RESERVA DE ENTRADA #############################
-    // Obtiene los datos del cliente para mostrarlos en la cabecera
-    private void datosReserva() {
+    // ***************************** Tabla *****************************
+    private void mostrarTabla() { // Muestra las reservas hechas por el usuario (en blanco si no ha hecho reservas)
+        DefaultTableModel modelo;
+        String[] cabecera = {"Fecha", "Hora", "¿Guiada?", "Precio"};
+
+        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
+        jTable1.setModel(modelo);
+    }
+
+    // ############################# CARGA DE DATOS #############################
+    // ***************************** Datos de la cabecera *****************************
+    private void datosReserva() { // Obtiene los datos del cliente para mostrarlos en la cabecera
         jLabel8.setText(c.getNombre());
         jLabel9.setText(c.getDNI());
         jLabel10.setText(String.valueOf(c.getTelefono()));
         setPrecioEntradaNormal();
     }
 
-    // ############################# PRECIO ENTRADA #############################
+    // ***************************** Precio entrada y suplemento *****************************
     private void setPrecioEntradaNormal() {
         float precio = sm.devolverPrecioEntrada();
         jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
@@ -554,21 +553,22 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         return precioEntrada;
     }
 
-    private void siGuiada() {
+    // ***************************** Entrada normal o entrada guiada *****************************
+    private void siGuiada() { // Si la entrada es marcada como guiada, muestra su precio correspondiente
         float suplemento = sm.devolverPrecioSuplemento();
         JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento "
                 + "de " + suplemento + "€", "Atención", JOptionPane.INFORMATION_MESSAGE);
         setPrecioEntradaGuiada();
     }
 
-    private void noGuiada() {
+    private void noGuiada() { // Si la entrada es no guiada, muestra su precio correspondiente
         setPrecioEntradaNormal();
     }
 
-    // ############################# IMÁGENES #############################
+    // ############################# RECURSOS #############################
     private void imagenFondo() {
         try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {

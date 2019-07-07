@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -332,12 +331,6 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCerrarSesion;
     // End of variables declaration//GEN-END:variables
 
-    private void cerrarSesion() {
-        MenuPrincipalFrame mpf = new MenuPrincipalFrame();
-        mpf.setVisible(true);
-        dispose();
-    }
-
     // ############################# COMPONENTES INICIALES #############################
     private void componentesIniciales() {
         imagenFondo();
@@ -347,23 +340,14 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         muestraTabla();
     }
 
-    // ############################# IMÁGENES #############################
-    private void imagenFondo() {
-        try {
-            ImagenFondo fondo = new ImagenFondo(ImageIO.read(new File("src/recursos/imagenes/fondos/fondoSecundario.png")));
-            JPanel panel = (JPanel) this.getContentPane();
-            panel.setBorder(fondo);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    // ############################# MÉTODOS GUÍA #############################
+    private void cerrarSesion() {
+        MenuPrincipalFrame mpf = new MenuPrincipalFrame();
+        mpf.setVisible(true);
+        dispose();
     }
 
-    @Override
-    public Image getIconImage() {
-        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
-    }
-
-    // ############################# CARGA DE DATOS DEL GUÍA #############################
+    // ***************************** Carga de entradas guiadas *****************************
     private void cargarEntradasGuia() {
         g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getNGuia()));
     }
@@ -374,7 +358,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         jLabel7.setText(String.valueOf(g.getNSS()));
     }
 
-    // ############################# TABLA #############################
+    // ***************************** Tabla *****************************
     private void muestraTabla() {
         DefaultTableModel modelo;
         String[] cabecera = {"Dni cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"};
@@ -388,6 +372,23 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
 
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+    }
+
+
+    // ############################# RECURSOS #############################
+    private void imagenFondo() {
+        try {
+            ImagenFondo fondo = new ImagenFondo(ImageIO.read(getClass().getResource("/recursos/imagenes/fondos/fondoSecundario.png")));
+            JPanel panel = (JPanel) this.getContentPane();
+            panel.setBorder(fondo);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    @Override
+    public Image getIconImage() {
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
