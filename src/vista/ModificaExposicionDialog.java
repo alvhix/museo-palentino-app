@@ -14,7 +14,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import static java.awt.Frame.HAND_CURSOR;
 
@@ -452,6 +455,18 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     private javax.swing.JTable tablaObras;
     // End of variables declaration//GEN-END:variables
 
+    // ############################# COMPONENTES INICIALES #############################
+    private void componentesIniciales() {
+        conexionBD();
+        oblig1.setText(" ");
+        oblig2.setText(" ");
+        oblig3.setText(" ");
+        oblig4.setText(" ");
+        oblig5.setText(" ");
+        oblig6.setText(" ");
+    }
+
+    // ############################# MÉTODOS MODIFICAR EXPOSICIÓN #############################
     private void annadirObra() {
         if (validarDatosExposicion()) {
             Obra o = new Obra(campoTitulo.getText(), campoAutor.getText(), campoEstilo.getText(), campoAnno.getText(), campoTipo.getText(), campoRuta.getText(), e.getID());
@@ -488,7 +503,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     }
 
     private void abrirSelectorImagenes() {
-        //Filtro para archivos con extension .png y .jpg
+        // Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
         selectorArchivos.setDialogTitle("Selector de archivos");
@@ -522,19 +537,26 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             String ruta = campoRuta.getText();
 
             if (!sm.comprobarSiExisteObra(titulo, autor, anno, tipo)) {
-                File file = new File(ruta);
 
-                if (!file.exists()) {
-                    infoErrorObra.setText("¡La imagen seleccionada no existe!");
-                } else {
-                    correcto = true;
-                    oblig1.setText(" ");
-                    oblig2.setText(" ");
-                    oblig3.setText(" ");
-                    oblig4.setText(" ");
-                    oblig5.setText(" ");
-                    oblig6.setText(" ");
+                try {
+                    JarFile file = new JarFile("MuseoPalentinoApp.jar");
+                    JarEntry entry = file.getJarEntry(ruta);
+                    if (entry == null) { // Si no existe la ruta
+                        infoErrorObra.setText("¡La imagen seleccionada no existe!");
+                    } else {
+                        correcto = true;
+                        oblig1.setText(" ");
+                        oblig2.setText(" ");
+                        oblig3.setText(" ");
+                        oblig4.setText(" ");
+                        oblig5.setText(" ");
+                        oblig6.setText(" ");
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
+
+
             } else {
                 JOptionPane.showMessageDialog(this, "Ya existe una obra con \nesos datos en el Museo.", "Error al añadir obra",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -578,20 +600,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     }
 
     public Image getIconImage() {
-        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
+    // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
         sm = new SistemaMuseo();
-    }
-
-    private void componentesIniciales() {
-        conexionBD();
-        oblig1.setText(" ");
-        oblig2.setText(" ");
-        oblig3.setText(" ");
-        oblig4.setText(" ");
-        oblig5.setText(" ");
-        oblig6.setText(" ");
     }
 }

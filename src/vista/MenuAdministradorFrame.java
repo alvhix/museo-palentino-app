@@ -1177,7 +1177,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     private void conexionBD() {
@@ -1323,6 +1323,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }
 
+    // ACTUALIZAR MÉTODO (EN PROCESO)
     private boolean validarDatosExposicion() {
         boolean correcto = false;
 
@@ -1368,6 +1369,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         campoRuta.setText(null);
     }
 
+    // ACTUALIZAR MÉTODO (EN PROCESO)
     private void abrirSelectorImagenes() {
         //Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");

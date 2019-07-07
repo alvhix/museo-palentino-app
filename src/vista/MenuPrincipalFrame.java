@@ -589,13 +589,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             expo1 = exposiciones.get(0);
             labelNombre1.setText("Exposición " + expo1.getNombre());
             labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
+            imagen1.setIcon(new ImageIcon(getClass().getResource(expo1.getRutaImagen())));
             if (exposiciones.size() == 2) {
                 // Exposicion 2
                 expo2 = exposiciones.get(1);
                 labelNombre2.setText("Exposición " + expo2.getNombre());
                 labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-                imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
+                imagen2.setIcon(new ImageIcon(getClass().getResource(expo2.getRutaImagen())));
             } else {
                 // Exposicion 2
                 panelExpo2.setVisible(false);
@@ -607,12 +607,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             expo1 = exposiciones.get(posicion1);
             labelNombre1.setText("Exposición " + expo1.getNombre());
             labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(expo1.getRutaImagen()));
+            imagen1.setIcon(new ImageIcon(getClass().getResource(expo1.getRutaImagen())));
             // Exposicion 2
             expo2 = exposiciones.get(posicion2);
             labelNombre2.setText("Exposición " + expo2.getNombre());
             labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-            imagen2.setIcon(new ImageIcon(expo2.getRutaImagen()));
+            imagen2.setIcon(new ImageIcon(getClass().getResource(expo2.getRutaImagen())));
         }
     }
 
@@ -666,7 +666,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     // ############################# CONEXIÓN BASE DE DATOS #############################

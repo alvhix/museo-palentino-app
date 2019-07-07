@@ -325,7 +325,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
     }
 
     public Image getIconImage() {
-        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/imagenes/iconos/iconoMuseoApp.png"));
+        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
