@@ -18,7 +18,6 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -1324,6 +1323,36 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }
 
+    private void restablecerCamposExpo() {
+        campoNombreExpo.setText(null);
+        campoDuracion.setText(null);
+        campoRuta.setText(null);
+    }
+
+    private void abrirSelectorImagenes() {
+        //Filtro para archivos con extension .png y .jpg
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
+        selectorArchivos.setFileFilter(filtro);
+        selectorArchivos.setDialogTitle("Selector de archivos");
+
+        selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "recursos/imagenes/exposiciones/"));
+
+        selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int result = selectorArchivos.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = selectorArchivos.getSelectedFile();
+            ImageIcon image = new ImageIcon(file.getPath());
+
+            if (image.getIconHeight() <= 114 && image.getIconWidth() <= 300) {
+                campoRuta.setText("recursos/imagenes/exposiciones/" + file.getName());
+                infoErrorExpo.setText(" ");
+            } else {
+                infoErrorExpo.setText("¡Tamaño de imagen demasiado grande!");
+            }
+        }
+    }
+
     private boolean validarDatosExposicion() {
         boolean correcto = false;
 
@@ -1332,9 +1361,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             String ruta = campoRuta.getText();
 
             if (!sm.comprobarSiExisteExposicion(nombre)) {
-                File file = new File(ruta);
+                File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + ruta);
 
-                if (!file.exists()) {
+                if (!file.exists()) { // Si el archivo no existe
                     infoErrorExpo.setText("¡La imagen seleccionada no existe!");
                 } else {
                     correcto = true;
@@ -1361,41 +1390,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
 
         return correcto;
-    }
-
-    private void restablecerCamposExpo() {
-        campoNombreExpo.setText(null);
-        campoDuracion.setText(null);
-        campoRuta.setText(null);
-    }
-
-    // ACTUALIZAR MÉTODO (EN PROCESO)
-    private void abrirSelectorImagenes() {
-        //Filtro para archivos con extension .png y .jpg
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
-        selectorArchivos.setFileFilter(filtro);
-        selectorArchivos.setDialogTitle("Selector de archivos");
-
-        try {
-            selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int result = selectorArchivos.showOpenDialog(this);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File file = selectorArchivos.getSelectedFile();
-            ImageIcon image = new ImageIcon(file.getPath());
-
-            if (image.getIconHeight() <= 114 && image.getIconWidth() <= 300) {
-                campoRuta.setText("/recursos/imagenes/exposiciones/" + file.getName());
-                infoErrorExpo.setText(" ");
-            } else {
-                infoErrorExpo.setText("¡Tamaño de imagen demasiado grande!");
-            }
-        }
     }
 
     // ####################### - Métodos Gestión Entradas - #######################

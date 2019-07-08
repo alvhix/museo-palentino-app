@@ -14,11 +14,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 import static java.awt.Frame.HAND_CURSOR;
 
@@ -508,11 +504,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
         selectorArchivos.setDialogTitle("Selector de archivos");
-        try {
-            selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()));
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
-        }
+        selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "recursos/imagenes/obras/"));
 
         selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = selectorArchivos.showOpenDialog(this);
@@ -522,7 +514,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             ImageIcon image = new ImageIcon(file.getPath());
 
             if (image.getIconHeight() <= 165 && image.getIconWidth() <= 230) {
-                campoRuta.setText("/recursos/imagenes/obras/" + file.getName());
+                campoRuta.setText("recursos/imagenes/obras/" + file.getName());
                 infoErrorObra.setText(" ");
             } else {
                 infoErrorObra.setText("¡Tamaño de imagen demasiado grande!");
@@ -542,25 +534,18 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             String ruta = campoRuta.getText();
 
             if (!sm.comprobarSiExisteObra(titulo, autor, anno, tipo)) {
-
-                try {
-                    JarFile file = new JarFile("MuseoPalentinoApp.jar");
-                    JarEntry entry = file.getJarEntry(ruta);
-                    if (entry == null) { // Si no existe la ruta
-                        infoErrorObra.setText("¡La imagen seleccionada no existe!");
-                    } else {
-                        correcto = true;
-                        oblig1.setText(" ");
-                        oblig2.setText(" ");
-                        oblig3.setText(" ");
-                        oblig4.setText(" ");
-                        oblig5.setText(" ");
-                        oblig6.setText(" ");
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + ruta);
+                if (!file.exists()) { // Si no existe la ruta
+                    infoErrorObra.setText("¡La imagen seleccionada no existe!");
+                } else {
+                    correcto = true;
+                    oblig1.setText(" ");
+                    oblig2.setText(" ");
+                    oblig3.setText(" ");
+                    oblig4.setText(" ");
+                    oblig5.setText(" ");
+                    oblig6.setText(" ");
                 }
-
 
             } else {
                 JOptionPane.showMessageDialog(this, "Ya existe una obra con \nesos datos en el Museo.", "Error al añadir obra",

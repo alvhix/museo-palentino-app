@@ -406,7 +406,7 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
     // ############################# MÉTODOS EXPOSICIÓN #############################
     // ***************************** Actualizar exposiciones *****************************
     private void actualizarCampos() {
-        imagen.setIcon(new ImageIcon(getClass().getResource(obras.get(posicion).getRutaImagen())));
+        imagen.setIcon(new ImageIcon(getClass().getResource("/" + obras.get(posicion).getRutaImagen())));
         campoTitulo.setText(obras.get(posicion).getTitulo());
         campoAutor.setText(obras.get(posicion).getAutor());
         campoEstilo.setText(obras.get(posicion).getEstilo());
