@@ -24,6 +24,10 @@ El proyecto incluye 3 librerías para poder funcionar correctamente que son desc
 
 El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local.
 
+Hay 2 archivos .JAR disponibles:
+* **Versión 52.0 (Java SE 8)** - se encuentra en la carpeta /dist/MuseoPalentinoApp.jar
+* **Versión 56.0 (Java SE 12)** - se encuentra en la carpeta /out/artifacts/MuseoPalentinoApp_jar/MuseoPalentinoApp.jar
+
 ## Autores
 
 * **Víctor** - [victorwongse](https://github.com/victorwongse)
@@ -43,6 +47,5 @@ Permissions of this strong copyleft license are conditioned on making available 
 * Ocultar los datos para la conexión con la base de datos
 * Mejorar la plataforma de pago de las entradas
 * Mejorar visualmente el menú del administrador
-* Asignar una licencia al proyecto
 * etc...
 
