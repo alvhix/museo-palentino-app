@@ -1329,6 +1329,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         campoRuta.setText(null);
     }
 
+    // ACTUALIZANDO
     private void abrirSelectorImagenes() {
         //Filtro para archivos con extension .png y .jpg
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
