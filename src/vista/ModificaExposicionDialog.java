@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -507,7 +508,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
         selectorArchivos.setDialogTitle("Selector de archivos");
-        selectorArchivos.setCurrentDirectory(new File("src/recursos/imagenes/obras"));
+        try {
+            selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()));
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
+        }
 
         selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = selectorArchivos.showOpenDialog(this);
@@ -517,7 +522,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             ImageIcon image = new ImageIcon(file.getPath());
 
             if (image.getIconHeight() <= 165 && image.getIconWidth() <= 230) {
-                campoRuta.setText("src/recursos/imagenes/obras/" + file.getName());
+                campoRuta.setText("/recursos/imagenes/obras/" + file.getName());
                 infoErrorObra.setText(" ");
             } else {
                 infoErrorObra.setText("¡Tamaño de imagen demasiado grande!");

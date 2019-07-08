@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -1323,7 +1324,6 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         }
     }
 
-    // ACTUALIZAR MÉTODO (EN PROCESO)
     private boolean validarDatosExposicion() {
         boolean correcto = false;
 
@@ -1375,7 +1375,12 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes(*.png) y (*.jpg)", "png", "jpg");
         selectorArchivos.setFileFilter(filtro);
         selectorArchivos.setDialogTitle("Selector de archivos");
-        selectorArchivos.setCurrentDirectory(new File("src/recursos/imagenes/exposiciones"));
+
+        try {
+            selectorArchivos.setCurrentDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = selectorArchivos.showOpenDialog(this);
@@ -1385,7 +1390,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             ImageIcon image = new ImageIcon(file.getPath());
 
             if (image.getIconHeight() <= 114 && image.getIconWidth() <= 300) {
-                campoRuta.setText("src/recursos/imagenes/exposiciones/" + file.getName());
+                campoRuta.setText("/recursos/imagenes/exposiciones/" + file.getName());
                 infoErrorExpo.setText(" ");
             } else {
                 infoErrorExpo.setText("¡Tamaño de imagen demasiado grande!");
