@@ -357,23 +357,23 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
 
     private void botonAbrirSelectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseClicked
         // TODO add your handling code here:
-        botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpetaph.png"));
+        botonAbrirSelector.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/carpetaph.png"))));
     }//GEN-LAST:event_botonAbrirSelectorMouseClicked
 
     private void botonAbrirSelectorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseEntered
         // TODO add your handling code here:
         botonAbrirSelector.setCursor(new Cursor(HAND_CURSOR));
-        botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpetahp.png"));
+        botonAbrirSelector.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/carpetahp.png"))));
     }//GEN-LAST:event_botonAbrirSelectorMouseEntered
 
     private void botonAbrirSelectorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMouseExited
         // TODO add your handling code here:
-        botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpeta.png"));
+        botonAbrirSelector.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/carpeta.png"))));
     }//GEN-LAST:event_botonAbrirSelectorMouseExited
 
     private void botonAbrirSelectorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirSelectorMousePressed
         // TODO add your handling code here:
-        botonAbrirSelector.setIcon(new ImageIcon("src/recursos/imagenes/iconos/carpetahp.png"));
+        botonAbrirSelector.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/carpetahp.png"))));
     }//GEN-LAST:event_botonAbrirSelectorMousePressed
 
     /**

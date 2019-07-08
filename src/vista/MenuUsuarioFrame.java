@@ -114,23 +114,23 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
         // TODO add your handling code here:
-        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderhover.png"));
+        botonSiguiente.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaderhover.png"))));
     }//GEN-LAST:event_botonSiguienteMouseClicked
 
     private void botonSiguienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseEntered
         // TODO add your handling code here:
         botonSiguiente.setCursor(new Cursor(HAND_CURSOR));
-        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderhover.png"));
+        botonSiguiente.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaderhover.png"))));
     }//GEN-LAST:event_botonSiguienteMouseEntered
 
     private void botonSiguienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseExited
         // TODO add your handling code here:
-        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechader.png"));
+        botonSiguiente.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechader.png"))));
     }//GEN-LAST:event_botonSiguienteMouseExited
 
     private void botonSiguienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMousePressed
         // TODO add your handling code here:
-        botonSiguiente.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaderpressed.png"));
+        botonSiguiente.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaderpressed.png"))));
     }//GEN-LAST:event_botonSiguienteMousePressed
 
     private void botonSiguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseReleased
@@ -140,23 +140,23 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void botonAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseClicked
         // TODO add your handling code here:
-        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqhover.png"));
+        botonAnterior.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaizqhover.png"))));
     }//GEN-LAST:event_botonAnteriorMouseClicked
 
     private void botonAnteriorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseEntered
         // TODO add your handling code here:
         botonAnterior.setCursor(new Cursor(HAND_CURSOR));
-        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqhover.png"));
+        botonAnterior.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaizqhover.png"))));
     }//GEN-LAST:event_botonAnteriorMouseEntered
 
     private void botonAnteriorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseExited
         // TODO add your handling code here:
-        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizq.png"));
+        botonAnterior.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaizq.png"))));
     }//GEN-LAST:event_botonAnteriorMouseExited
 
     private void botonAnteriorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMousePressed
         // TODO add your handling code here:
-        botonAnterior.setIcon(new ImageIcon("src/recursos/imagenes/iconos/flechaizqpressed.png"));
+        botonAnterior.setIcon(new ImageIcon(getClass().getResource(("/recursos/imagenes/iconos/flechaizqpressed.png"))));
     }//GEN-LAST:event_botonAnteriorMousePressed
 
     private void botonAnteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseReleased
