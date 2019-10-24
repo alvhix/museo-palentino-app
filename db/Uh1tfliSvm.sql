@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-06-2019 a las 07:04:04
+-- Tiempo de generación: 24-10-2019 a las 12:13:26
 -- Versión del servidor: 8.0.13-4
--- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.19-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `2CygLOTEPa`
+-- Base de datos: `Uh1tfliSvm`
 --
 
 -- --------------------------------------------------------
@@ -109,8 +109,8 @@ CREATE TABLE `exposicion` (
 --
 
 INSERT INTO `exposicion` (`idExposicion`, `nombre`, `tiempoRecorrido`, `imagen`) VALUES
-(1, 'Temporal', 30, 'src/recursos/imagenes/exposiciones/temporal.png'),
-(2, 'Permanente', 30, 'src/recursos/imagenes/exposiciones/permanente.png');
+(1, 'Temporal', 30, 'recursos/imagenes/exposiciones/temporal.png'),
+(2, 'Permanente', 30, 'recursos/imagenes/exposiciones/permanente.png');
 
 -- --------------------------------------------------------
 
@@ -175,29 +175,29 @@ CREATE TABLE `obra` (
 --
 
 INSERT INTO `obra` (`idObra`, `titulo`, `estilo`, `autor`, `año`, `tipo`, `imagen`, `idExposicion`) VALUES
-(24, 'El Grito', 'Expresionismo', 'Edvard Munch', '1893', 'Cuadro', 'src/recursos/imagenes/obras/elgrito.jpg', 1),
-(25, 'La Gioconda', 'Renacimiento', 'Leonardo da Vinci', '1503', 'Cuadro', 'src/recursos/imagenes/obras/gioconda.jpg', 1),
-(26, 'Guernica', 'Cubismo', 'Pablo Picasso', '1937', 'Cuadro', 'src/recursos/imagenes/obras/guernica.jpg', 2),
-(27, 'La ultima cena', 'Renacimiento', 'Leonardo da Vinci', '1495', 'Cuadro', 'src/recursos/imagenes/obras/ultimacena.jpg', 1),
-(28, 'La noche estrellada', 'Impresionismo', 'Vincent van Gogh', '1889', 'Cuadro', 'src/recursos/imagenes/obras/nocheestrellada.jpg', 1),
-(29, 'La persistencia de la memoria', 'Surrealismo', 'Salvador Dali', '1931', 'Cuadro', 'src/recursos/imagenes/obras/memoria.jpg', 2),
-(30, 'La ronda de noche', 'Barroco', 'Rembrandt', '1642', 'Cuadro', 'src/recursos/imagenes/obras/rondanoche.jpg', 1),
-(31, 'Las meninas', 'Barroco', 'Diego Velazquez', '1656', 'Cuadro', 'src/recursos/imagenes/obras/meninas.jpg', 2),
-(32, 'El jardin de las delicias', 'Pintura flamenca', 'El Bosco', '1505', 'Cuadro', 'src/recursos/imagenes/obras/jardindelicias.jpg', 2),
-(33, 'La joven de la perla', 'Barroco', 'Johannes Vermeer', '1667', 'Cuadro', 'src/recursos/imagenes/obras/jovenperla.jpg', 1),
-(34, 'El nacimiento de Venus', 'Renacimiento', 'Sandro Botticelli', '1486', 'Cuadro', 'src/recursos/imagenes/obras/nacimientovenus.jpg', 2),
-(35, 'El beso', 'Simbolismo', 'Gustav Klimt', '1908', 'Cuadro', 'src/recursos/imagenes/obras/elbesoKlimt.jpg', 1),
-(36, 'Discobolo', 'Griego Clasico', 'Miron', '460 a.C. - 450 a.C.', 'Escultura', 'src/recursos/imagenes/obras/discobolo.jpg', 2),
-(37, 'El pensador', 'Impresionismo', 'Auguste Rodin', '1904', 'Escultura', 'src/recursos/imagenes/obras/pensador.jpg', 2),
-(38, 'Venus de Milo', 'Helenista', 'Alejandro de Antioquia', '130 a.C. - 100 a.C.', 'Escultura', 'src/recursos/imagenes/obras/venusmilo.jpg', 2),
-(39, 'El David', 'Renacimiento italiano', 'Miguel Angel', '1504', 'Escultura', 'src/recursos/imagenes/obras/david.jpg', 2),
-(40, 'Extasis de la beata Ludovica', 'Barroco', 'Gian Lorenzo Bernini', '1674', 'Escultura', 'src/recursos/imagenes/obras/extasisludovica.jpg', 2),
-(41, 'Apolo y Dafne', 'Barroco', 'Gian Lorenzo Bernini', '1625', 'Escultura', 'src/recursos/imagenes/obras/apolodafne.jpg', 2),
-(42, 'El rapto de Proserpina', 'Barroco', 'Gian Lorenzo Bernini', '1622', 'Escultura', 'src/recursos/imagenes/obras/proserpina.jpg', 2),
-(43, 'Moises', 'Renacimiento', 'Miguel Angel', '1515', 'Escultura', 'src/recursos/imagenes/obras/moises.jpg', 2),
-(44, 'Cristo Velado', 'Barroco', 'Giuseppe Sanmartino', '1753', 'Escultura', 'src/recursos/imagenes/obras/cristovelado.jpg', 1),
-(45, 'El beso', 'Realismo', 'Auguste Rodin', '1889', 'Escultura', 'src/recursos/imagenes/obras/elbesoRodin.jpg', 2),
-(46, 'Perseo con la cabeza de Medusa', 'Manierismo', 'Benvenuto Cellini', '1554', 'Escultura', 'src/recursos/imagenes/obras/perseomedusa.jpg', 1);
+(24, 'El Grito', 'Expresionismo', 'Edvard Munch', '1893', 'Cuadro', 'recursos/imagenes/obras/elgrito.jpg', 1),
+(25, 'La Gioconda', 'Renacimiento', 'Leonardo da Vinci', '1503', 'Cuadro', 'recursos/imagenes/obras/gioconda.jpg', 1),
+(26, 'Guernica', 'Cubismo', 'Pablo Picasso', '1937', 'Cuadro', 'recursos/imagenes/obras/guernica.jpg', 2),
+(27, 'La ultima cena', 'Renacimiento', 'Leonardo da Vinci', '1495', 'Cuadro', 'recursos/imagenes/obras/ultimacena.jpg', 1),
+(28, 'La noche estrellada', 'Impresionismo', 'Vincent van Gogh', '1889', 'Cuadro', 'recursos/imagenes/obras/nocheestrellada.jpg', 1),
+(29, 'La persistencia de la memoria', 'Surrealismo', 'Salvador Dali', '1931', 'Cuadro', 'recursos/imagenes/obras/memoria.jpg', 2),
+(30, 'La ronda de noche', 'Barroco', 'Rembrandt', '1642', 'Cuadro', 'recursos/imagenes/obras/rondanoche.jpg', 1),
+(31, 'Las meninas', 'Barroco', 'Diego Velazquez', '1656', 'Cuadro', 'recursos/imagenes/obras/meninas.jpg', 2),
+(32, 'El jardin de las delicias', 'Pintura flamenca', 'El Bosco', '1505', 'Cuadro', 'recursos/imagenes/obras/jardindelicias.jpg', 2),
+(33, 'La joven de la perla', 'Barroco', 'Johannes Vermeer', '1667', 'Cuadro', 'recursos/imagenes/obras/jovenperla.jpg', 1),
+(34, 'El nacimiento de Venus', 'Renacimiento', 'Sandro Botticelli', '1486', 'Cuadro', 'recursos/imagenes/obras/nacimientovenus.jpg', 2),
+(35, 'El beso', 'Simbolismo', 'Gustav Klimt', '1908', 'Cuadro', 'recursos/imagenes/obras/elbesoKlimt.jpg', 1),
+(36, 'Discobolo', 'Griego Clasico', 'Miron', '460 a.C. - 450 a.C.', 'Escultura', 'recursos/imagenes/obras/discobolo.jpg', 2),
+(37, 'El pensador', 'Impresionismo', 'Auguste Rodin', '1904', 'Escultura', 'recursos/imagenes/obras/pensador.jpg', 2),
+(38, 'Venus de Milo', 'Helenista', 'Alejandro de Antioquia', '130 a.C. - 100 a.C.', 'Escultura', 'recursos/imagenes/obras/venusmilo.jpg', 2),
+(39, 'El David', 'Renacimiento italiano', 'Miguel Angel', '1504', 'Escultura', 'recursos/imagenes/obras/david.jpg', 2),
+(40, 'Extasis de la beata Ludovica', 'Barroco', 'Gian Lorenzo Bernini', '1674', 'Escultura', 'recursos/imagenes/obras/extasisludovica.jpg', 2),
+(41, 'Apolo y Dafne', 'Barroco', 'Gian Lorenzo Bernini', '1625', 'Escultura', 'recursos/imagenes/obras/apolodafne.jpg', 2),
+(42, 'El rapto de Proserpina', 'Barroco', 'Gian Lorenzo Bernini', '1622', 'Escultura', 'recursos/imagenes/obras/proserpina.jpg', 2),
+(43, 'Moises', 'Renacimiento', 'Miguel Angel', '1515', 'Escultura', 'recursos/imagenes/obras/moises.jpg', 2),
+(44, 'Cristo Velado', 'Barroco', 'Giuseppe Sanmartino', '1753', 'Escultura', 'recursos/imagenes/obras/cristovelado.jpg', 1),
+(45, 'El beso', 'Realismo', 'Auguste Rodin', '1889', 'Escultura', 'recursos/imagenes/obras/elbesoRodin.jpg', 2),
+(46, 'Perseo con la cabeza de Medusa', 'Manierismo', 'Benvenuto Cellini', '1554', 'Escultura', 'recursos/imagenes/obras/perseomedusa.jpg', 1);
 
 -- --------------------------------------------------------
 
