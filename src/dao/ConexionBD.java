@@ -23,10 +23,10 @@ public class ConexionBD {
     private ConexionBD() throws ConexionBDException {
         try {
             String host = "jdbc:mysql://remotemysql.com/";
-            String database = "2CygLOTEPa";
+            String database = "Uh1tfliSvm";
             String parameters = "?autoReconnect=true&useSSL=false";
-            String user = "2CygLOTEPa";
-            String pass = "lsVAMMqj7E";
+            String user = "Uh1tfliSvm";
+            String pass = "u8eg4yEzJS";
 
             cntn = DriverManager.getConnection(host + database + parameters, user, pass);
             stmt = cntn.createStatement();
