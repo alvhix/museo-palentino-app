@@ -202,7 +202,6 @@ public class DAOMuseo {
         ps1.executeUpdate();
         ps2.executeUpdate();
     }*/
-
     // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) throws SQLException {
         String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
@@ -337,7 +336,6 @@ public class DAOMuseo {
     }
 
     // ############################# EXPOSICIÓN #############################
-
     public List<Exposicion> cargarExposiciones() throws SQLException {
         List<Exposicion> exposiciones = new ArrayList<>();
         String query = "SELECT * FROM exposicion";
@@ -424,9 +422,7 @@ public class DAOMuseo {
 
         return e;
     }*/
-
     // ############################# OBRA #############################
-
     public List<Obra> cargarObrasExposicion(int idExpo) throws SQLException {
         List<Obra> obras = new ArrayList<>();
         String query = "SELECT obra.* FROM obra, exposicion WHERE obra.idExposicion = exposicion.idExposicion AND exposicion.idExposicion = ?";
@@ -526,7 +522,6 @@ public class DAOMuseo {
 
         return o;
     }*/
-
     // ############################# ENTRADAS #############################
     // Inserta los datos de la entrada reservada en la base de datos
     public void reservarEntradaNormal(Entrada e, Cliente c) throws SQLException {
@@ -613,8 +608,7 @@ public class DAOMuseo {
     public float devolverPrecioEntrada() throws SQLException {
         float precioEntrada = 0;
         String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS "
-                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada' "
-                + "AND COLUMN_NAME='precio'";
+                + "WHERE TABLE_NAME='entrada' AND COLUMN_NAME='precio'";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
@@ -630,8 +624,7 @@ public class DAOMuseo {
     public float devolverPrecioSuplemento() throws SQLException {
         float precioSuplemento = 0;
         String query = "SELECT COLUMN_DEFAULT from INFORMATION_SCHEMA.COLUMNS "
-                + "WHERE TABLE_SCHEMA='2CygLOTEPa' AND TABLE_NAME='entrada' "
-                + "AND COLUMN_NAME='suplementoGuia'";
+                + "WHERE TABLE_NAME='entrada' AND COLUMN_NAME='suplementoGuia'";
 
         PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
         ResultSet rs = ps.executeQuery();
