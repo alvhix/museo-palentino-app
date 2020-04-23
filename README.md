@@ -3,11 +3,11 @@
 Programa de un museo realizado como proyecto final de 1º DAW para el módulo de programación
 
 ## Empezando
-Este proyecto se trata de una aplicación de un museo al que tienen acceso los clientes, guías y administradores. La funcionalidad para los clientes es la de poder reservar entradas para poder acceder a una determinada exposición en nuestro supuesto museo ficticio. Por otro lado, los guías pordrán visualizar los datos de los clientes a los que guiará en la exposición. Por último, los administradores, podrán visualizar todas las reservas realizadas por los clientes y administrar las exposiciones y las obras.
+Este proyecto se trata de una aplicación de un museo al que tienen acceso los clientes, guías y administradores. La funcionalidad para los clientes es la de poder reservar entradas para poder acceder a una determinada exposición en nuestro supuesto museo ficticio. Por otro lado, los guías podrán visualizar los datos de los clientes a los que guiará en la exposición. Por último, los administradores, podrán visualizar todas las reservas realizadas por los clientes y administrar las exposiciones y las obras.
 
 ### Prerrequisitos
 
-Para poder ejecutar el programa debes usar el IDE NetBeans o el IntelliJ y como JDK el Java SE 8 o versiones superiores
+Para poder ejecutar el programa debe usar el IDE NetBeans o IntelliJ IDEA y como JDK el Java SE 8 o superiores
 ```
 NetBeans + JDK 8
 IntelliJ + JDK 12
@@ -15,12 +15,12 @@ IntelliJ + JDK 12
 
 ### Instalación
 
-1. Clonamos el repositorio desde GitHub a nuestro equipo local.
+1. Clone el repositorio desde GitHub a su equipo local.
 El proyecto incluye 3 librerías para poder funcionar correctamente que son descargadas al clonar el repositorio.
 * MYSQLDriver
 * JCalendar
 * AbsoluteLayout
-(El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local)
+(El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta /lib/ y añádelas a tu proyecto local)
 
 2. Importe la base de datos en su servidor local para que la aplicación funcione. La base de datos se encuentra en el directorio /db/museopalentinoapp.sql
 
