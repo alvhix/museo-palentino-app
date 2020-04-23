@@ -15,18 +15,20 @@ IntelliJ + JDK 12
 
 ### Instalación
 
-Clonamos el repositorio desde GitHub a nuestro equipo local.
+1. Clonamos el repositorio desde GitHub a nuestro equipo local.
 El proyecto incluye 3 librerías para poder funcionar correctamente que son descargadas al clonar el repositorio.
 * MYSQLDriver
 * JCalendar
 * AbsoluteLayout
+(El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local)
 
-El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local.
+2. Importe la base de datos en su servidor local para que la aplicación funcione. La base de datos se encuentra en el directorio /db/museopalentinoapp.sql
 
+3. Asegúrese de que dispone del JDK instalado en su equipo para poder ejecutar la aplicación:
 Hay 2 archivos .JAR disponibles:
 * **Versión 52.0 (Java SE 8)** - se encuentra en la carpeta /dist/MuseoPalentinoApp.jar
 * **Versión 56.0 (Java SE 12)** - se encuentra en la carpeta /out/artifacts/MuseoPalentinoApp_jar/MuseoPalentinoApp.jar
-Para poder arrancar la aplicación debe ejecutar uno de estos dos archivos. **Recuerde que para que la aplicación funcione debe contar con la versión JDK 8 o versiones superiores**
+Para poder arrancar la aplicación debe ejecutar uno de estos dos archivos. **Recuerde que para que la aplicación funcione debe tener instalado en su equipo la versión JDK 8 o superior**
 
 ## Autores
 
