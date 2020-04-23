@@ -1,3 +1,0 @@
-mysql -u Uh1tfliSvm -h remotemysql.com -pu8eg4yEzJS
-
-USE Uh1tfliSvm;
