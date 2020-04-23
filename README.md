@@ -1,10 +1,9 @@
 # MuseoPalentinoApp
 
-Programa de un museo realizado como proyecto final de 1º DAW
+Programa de un museo realizado como proyecto final de 1º DAW para el módulo de programación
 
 ## Empezando
-
-La descarga del proyecto está destinada únicamente a los desarrolladores y terceros autorizados por los mismos, ya que el proyecto contiene datos sensibles sin ocultar para poder acceder a la base de datos del programa
+Este proyecto se trata de una aplicación de un museo al que tienen acceso los clientes, guías y administradores. La funcionalidad para los clientes es la de poder reservar entradas para poder acceder a una determinada exposición en nuestro supuesto museo ficticio. Por otro lado, los guías pordrán visualizar los datos de los clientes a los que guiará en la exposición. Por último, los administradores, podrán visualizar todas las reservas realizadas por los clientes y administrar las exposiciones y las obras.
 
 ### Prerrequisitos
 
@@ -16,7 +15,7 @@ IntelliJ + JDK 12
 
 ### Instalación
 
-Clonamos el repositorio desde GitHub a nuestra carpeta local.
+Clonamos el repositorio desde GitHub a nuestro equipo local.
 El proyecto incluye 3 librerías para poder funcionar correctamente que son descargadas al clonar el repositorio.
 * MYSQLDriver
 * JCalendar
@@ -27,10 +26,11 @@ El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así,
 Hay 2 archivos .JAR disponibles:
 * **Versión 52.0 (Java SE 8)** - se encuentra en la carpeta /dist/MuseoPalentinoApp.jar
 * **Versión 56.0 (Java SE 12)** - se encuentra en la carpeta /out/artifacts/MuseoPalentinoApp_jar/MuseoPalentinoApp.jar
+Para poder arrancar la aplicación debe ejecutar uno de estos dos archivos. **Recuerde que para que la aplicación funcione debe contar con la versión JDK 8 o versiones superiores**
 
 ## Autores
 
-* **Víctor** - [victorwongse](https://github.com/victorwongse)
+* **Víctor** - [VicBoss11](https://github.com/VicBoss11)
 * **Álvaro** - [Alvhix](https://github.com/Alvhix)
 * **Guillermo** - [PonceDeNeon](https://github.com/PonceDeNeon)
 
@@ -44,8 +44,8 @@ Permissions of this strong copyleft license are conditioned on making available 
 
 ## Planes de ampliación
 
-* Ocultar los datos para la conexión con la base de datos
-* Mejorar la plataforma de pago de las entradas
-* Mejorar visualmente el menú del administrador
+* Optimización de la aplicación
+* Mejoras en la plataforma de pago de las entradas
+* Mejoras visuales en el menú de administrador
 * etc...
 
