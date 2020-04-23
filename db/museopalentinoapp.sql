@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 24-10-2019 a las 12:13:26
--- Versión del servidor: 8.0.13-4
--- Versión de PHP: 7.2.19-0ubuntu0.18.04.2
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-04-2020 a las 20:49:04
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `Uh1tfliSvm`
+-- Base de datos: `museopalentinoapp`
 --
+CREATE DATABASE IF NOT EXISTS `museopalentinoapp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `museopalentinoapp`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +35,7 @@ CREATE TABLE `administrador` (
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
   `tipo` char(14) DEFAULT 'Administrador',
   `dniAdministrador` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -51,7 +53,7 @@ INSERT INTO `administrador` (`numIdentificacion`, `numSeguridadSocial`, `tipo`, 
 CREATE TABLE `cliente` (
   `idCliente` int(10) UNSIGNED NOT NULL,
   `dniCliente` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cliente`
@@ -72,24 +74,24 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`) VALUES
 CREATE TABLE `entrada` (
   `numeroEntrada` int(10) UNSIGNED NOT NULL,
   `fechaReserva` date NOT NULL,
-  `hora` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `guiada` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `precio` float NOT NULL DEFAULT '6.85',
-  `suplementoGuia` float DEFAULT '4.95',
+  `hora` varchar(5) NOT NULL,
+  `guiada` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `precio` float NOT NULL DEFAULT 6.85,
+  `suplementoGuia` float DEFAULT 4.95,
   `idCliente` int(10) UNSIGNED NOT NULL,
-  `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fechaTransaccion` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `entrada`
 --
 
-INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`) VALUES
-(98, '2019-06-21', '12:00', 0, 6.85, 4.95, 7),
-(99, '2019-06-23', '8:00', 1, 11.8, 4.95, 8),
-(100, '2019-10-23', '8:00', 0, 6.85, 4.95, 8),
-(101, '2019-06-22', '18:00', 0, 6.85, 4.95, 7),
-(102, '2019-06-21', '12:00', 1, 11.8, 4.95, 7);
+INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `precio`, `suplementoGuia`, `idCliente`, `fechaTransaccion`) VALUES
+(98, '2019-06-21', '12:00', 0, 6.85, 4.95, 7, '2020-04-23 18:48:06'),
+(99, '2019-06-23', '8:00', 1, 11.8, 4.95, 8, '2020-04-23 18:48:06'),
+(100, '2019-10-23', '8:00', 0, 6.85, 4.95, 8, '2020-04-23 18:48:06'),
+(101, '2019-06-22', '18:00', 0, 6.85, 4.95, 7, '2020-04-23 18:48:06'),
+(102, '2019-06-21', '12:00', 1, 11.8, 4.95, 7, '2020-04-23 18:48:06');
 
 -- --------------------------------------------------------
 
@@ -99,10 +101,10 @@ INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `preci
 
 CREATE TABLE `exposicion` (
   `idExposicion` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `tiempoRecorrido` int(10) UNSIGNED NOT NULL,
   `imagen` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `exposicion`
@@ -124,7 +126,7 @@ CREATE TABLE `guia` (
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
   `tipo` char(14) DEFAULT 'Guía',
   `dniGuia` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `guia`
@@ -161,14 +163,14 @@ INSERT INTO `guia_entrada` (`numEntrada`, `numGuia`) VALUES
 
 CREATE TABLE `obra` (
   `idObra` int(10) UNSIGNED NOT NULL,
-  `titulo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `estilo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `autor` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `titulo` varchar(45) NOT NULL,
+  `estilo` varchar(45) DEFAULT NULL,
+  `autor` varchar(45) NOT NULL,
   `año` varchar(20) NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'cuadro',
+  `tipo` varchar(45) DEFAULT 'cuadro',
   `imagen` varchar(200) DEFAULT NULL,
   `idExposicion` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `obra`
@@ -211,7 +213,7 @@ CREATE TABLE `persona` (
   `nombre` char(50) NOT NULL,
   `telefono` int(10) UNSIGNED DEFAULT NULL,
   `rol` char(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -356,7 +358,7 @@ ALTER TABLE `cliente`
 -- Filtros para la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  ADD CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `idCliente_fk1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`);
 
 --
 -- Filtros para la tabla `guia`
@@ -368,14 +370,14 @@ ALTER TABLE `guia`
 -- Filtros para la tabla `guia_entrada`
 --
 ALTER TABLE `guia_entrada`
-  ADD CONSTRAINT `numEntrada_fk` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroentrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `numGuia_fk` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numguia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `numEntrada_fk` FOREIGN KEY (`numEntrada`) REFERENCES `entrada` (`numeroEntrada`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `numGuia_fk` FOREIGN KEY (`numGuia`) REFERENCES `guia` (`numGuia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `obra`
 --
 ALTER TABLE `obra`
-  ADD CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idexposicion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `idExposicion_fk2` FOREIGN KEY (`idExposicion`) REFERENCES `exposicion` (`idExposicion`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
