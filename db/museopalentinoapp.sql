@@ -33,7 +33,7 @@ CREATE TABLE `administrador` (
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
   `tipo` char(14) DEFAULT 'Administrador',
   `dniAdministrador` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -51,7 +51,7 @@ INSERT INTO `administrador` (`numIdentificacion`, `numSeguridadSocial`, `tipo`, 
 CREATE TABLE `cliente` (
   `idCliente` int(10) UNSIGNED NOT NULL,
   `dniCliente` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
@@ -72,13 +72,13 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`) VALUES
 CREATE TABLE `entrada` (
   `numeroEntrada` int(10) UNSIGNED NOT NULL,
   `fechaReserva` date NOT NULL,
-  `hora` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `hora` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `guiada` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `precio` float NOT NULL DEFAULT '6.85',
   `suplementoGuia` float DEFAULT '4.95',
   `idCliente` int(10) UNSIGNED NOT NULL,
   `fechaTransaccion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `entrada`
@@ -99,10 +99,10 @@ INSERT INTO `entrada` (`numeroEntrada`, `fechaReserva`, `hora`, `guiada`, `preci
 
 CREATE TABLE `exposicion` (
   `idExposicion` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tiempoRecorrido` int(10) UNSIGNED NOT NULL,
   `imagen` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `exposicion`
@@ -124,7 +124,7 @@ CREATE TABLE `guia` (
   `numSeguridadSocial` bigint(11) DEFAULT NULL,
   `tipo` char(14) DEFAULT 'Guía',
   `dniGuia` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `guia`
@@ -161,14 +161,14 @@ INSERT INTO `guia_entrada` (`numEntrada`, `numGuia`) VALUES
 
 CREATE TABLE `obra` (
   `idObra` int(10) UNSIGNED NOT NULL,
-  `titulo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `estilo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `autor` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `titulo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estilo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `autor` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `año` varchar(20) NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'cuadro',
+  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'cuadro',
   `imagen` varchar(200) DEFAULT NULL,
   `idExposicion` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `obra`
@@ -211,7 +211,7 @@ CREATE TABLE `persona` (
   `nombre` char(50) NOT NULL,
   `telefono` int(10) UNSIGNED DEFAULT NULL,
   `rol` char(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `persona`
