@@ -21,12 +21,13 @@ public class ConexionBD {
 
     // Constructor --------------------------------------------------
     private ConexionBD() throws ConexionBDException {
+        // Los datos necesarios para la conexión con la base de datos
         try {
-            String host = "jdbc:mysql://remotemysql.com/";
-            String database = "Uh1tfliSvm";
-            String parameters = "?autoReconnect=true&useSSL=false";
-            String user = "Uh1tfliSvm";
-            String pass = "u8eg4yEzJS";
+            String host = "jdbc:mysql://localhost:3306/";
+            String database = "museopalentinoapp";
+            String parameters = "";
+            String user = "root";
+            String pass = "";
 
             cntn = DriverManager.getConnection(host + database + parameters, user, pass);
             stmt = cntn.createStatement();
