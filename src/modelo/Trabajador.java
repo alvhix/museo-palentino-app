@@ -12,7 +12,7 @@ public abstract class Trabajador extends Persona {
 
     //Atributos -----------------------------------------------------
     private int id;
-    private long nSS;
+    private final long nSS;
 
     //Constructor ----------------------------------------------------------
     Trabajador(String nombre, String dni, int telefono, long nSS) {
@@ -29,9 +29,5 @@ public abstract class Trabajador extends Persona {
     //Getters ------------------------------------------------------
     public long getNSS() {
         return nSS;
-    }
-
-    public int getID() {
-        return id;
     }
 }

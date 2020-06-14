@@ -16,8 +16,8 @@ import java.util.List;
 public class Administrador extends Trabajador {
 
     // ####################### - ATRIBUTOS - #######################
-    private List<Guia> empleados;
-    private List<Exposicion> exposiciones;
+    private final List<Guia> empleados;
+    private final List<Exposicion> exposiciones;
     private List<Entrada> entradas;
 
     // ####################### - CONSTRUCTORES - #######################
@@ -44,12 +44,12 @@ public class Administrador extends Trabajador {
     }
 
     // ####################### - MÉTODOS - #######################
-    public void annadirEmpleado(Guia e) {
-        empleados.add(e);
+    public void annadirEmpleado(Guia guia) {
+        empleados.add(guia);
     }
 
-    public void eliminarEmpleado(Guia e) {
-        empleados.remove(e);
+    public void eliminarEmpleado(Guia guia) {
+        empleados.remove(guia);
     }
 
     public String[][] plantillaAString() {
@@ -59,16 +59,16 @@ public class Administrador extends Trabajador {
         if (!getEmpleados().isEmpty()) {
 
             datos = new String[getEmpleados().size()][4];
-            Guia g;
+            Guia guia;
 
             for (int i = 0; i < getEmpleados().size(); i++) {
 
-                g = getEmpleados().get(i);
+                guia = getEmpleados().get(i);
 
-                datos[i][0] = String.valueOf(g.getNGuia());
-                datos[i][1] = g.getNombre();
-                datos[i][2] = g.getDNI();
-                datos[i][3] = String.valueOf(g.getTelefono());
+                datos[i][0] = String.valueOf(guia.getNGuia());
+                datos[i][1] = guia.getNombre();
+                datos[i][2] = guia.getDNI();
+                datos[i][3] = String.valueOf(guia.getTelefono());
 
             }
         }
@@ -96,24 +96,24 @@ public class Administrador extends Trabajador {
         String[][] array = new String[entradas.size()][7];
         String esGuiada;
         // Formateadores de fecha
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         if (!entradas.isEmpty()) {
             for (int i = 0; i < entradas.size(); i++) {
-                Entrada e = entradas.get(i);
-                array[i][0] = e.getNombreCliente();
-                array[i][1] = e.getDniCliente();
-                array[i][2] = sdf1.format(e.getFecha());
-                array[i][3] = e.getHora();
-                if (e.getEsGuiada()) {
+                Entrada entrada = entradas.get(i);
+                array[i][0] = entrada.getNombreCliente();
+                array[i][1] = entrada.getDniCliente();
+                array[i][2] = date.format(entrada.getFecha());
+                array[i][3] = entrada.getHora();
+                if (entrada.getEsGuiada()) {
                     esGuiada = "Si";
                 } else {
                     esGuiada = "No";
                 }
                 array[i][4] = esGuiada;
-                array[i][5] = sdf2.format(e.getFechaTransaccion());
-                array[i][6] = String.format("%.2f €", e.getPrecio());
+                array[i][5] = dateTime.format(entrada.getFechaTransaccion());
+                array[i][6] = String.format("%.2f €", entrada.getPrecio());
             }
         }
 
@@ -125,10 +125,10 @@ public class Administrador extends Trabajador {
 class ComparatorNombre implements Comparator<Entrada> {
 
     @Override
-    public int compare(Entrada e1, Entrada e2) {
-        int resultado = e1.getNombreCliente().compareToIgnoreCase(e2.getNombreCliente());
+    public int compare(Entrada entrada1, Entrada entrada2) {
+        int resultado = entrada1.getNombreCliente().compareToIgnoreCase(entrada2.getNombreCliente());
         if (resultado == 0) {
-            resultado = e1.getDniCliente().compareToIgnoreCase(e2.getDniCliente());
+            resultado = entrada1.getDniCliente().compareToIgnoreCase(entrada2.getDniCliente());
         }
         return resultado;
     }
@@ -138,10 +138,10 @@ class ComparatorNombre implements Comparator<Entrada> {
 class ComparatorDni implements Comparator<Entrada> {
 
     @Override
-    public int compare(Entrada e1, Entrada e2) {
-        int resultado = e1.getDniCliente().compareToIgnoreCase(e2.getDniCliente());
+    public int compare(Entrada entrada1, Entrada entrada2) {
+        int resultado = entrada1.getDniCliente().compareToIgnoreCase(entrada2.getDniCliente());
         if (resultado == 0) {
-            resultado = e1.getNombreCliente().compareToIgnoreCase(e2.getNombreCliente());
+            resultado = entrada1.getNombreCliente().compareToIgnoreCase(entrada2.getNombreCliente());
         }
         return resultado;
     }
@@ -151,8 +151,8 @@ class ComparatorDni implements Comparator<Entrada> {
 class ComparatorFecha implements Comparator<Entrada> {
 
     @Override
-    public int compare(Entrada e1, Entrada e2) {
-        return e2.getFechaTransaccion().compareTo(e1.getFechaTransaccion());
+    public int compare(Entrada entrada1, Entrada entrada2) {
+        return entrada2.getFechaTransaccion().compareTo(entrada1.getFechaTransaccion());
     }
 
 }

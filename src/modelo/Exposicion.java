@@ -18,7 +18,7 @@ public class Exposicion {
     private int tiempoRecorrido;
     private String nombre;
     private String rutaImagen;
-    private List<Obra> obras;
+    private final List<Obra> obras;
 
     // ####################### - Constructores - #######################
     // Constructor para nueva exposicion
@@ -77,12 +77,12 @@ public class Exposicion {
     }
 
     // ####################### - Métodos - #######################
-    public void agregarObra(Obra o) {
-        obras.add(o);
+    public void agregarObra(Obra obra) {
+        obras.add(obra);
     }
 
-    public void borrarObra(Obra o) {
-        obras.remove(o);
+    public void borrarObra(Obra obra) {
+        obras.remove(obra);
     }
 
     public int numeroObrasDisponibles() {

@@ -54,17 +54,17 @@ public class Guia extends Trabajador {
     public String[][] tabla_EntradasGuia() {
         String[][] array = new String[entradasGuiadas.size()][5];
         // Formateadores de fecha
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         if (!entradasGuiadas.isEmpty()) {
             for (int i = 0; i < entradasGuiadas.size(); i++) {
-                Entrada e = entradasGuiadas.get(i);
-                array[i][0] = e.getDniCliente();
-                array[i][1] = sdf1.format(e.getFecha());
-                array[i][2] = e.getHora();
-                array[i][3] = sdf2.format(e.getFechaTransaccion());
-                array[i][4] = String.format("%.2f €", e.getPrecio());
+                Entrada entrada = entradasGuiadas.get(i);
+                array[i][0] = entrada.getDniCliente();
+                array[i][1] = date.format(entrada.getFecha());
+                array[i][2] = entrada.getHora();
+                array[i][3] = dateTime.format(entrada.getFechaTransaccion());
+                array[i][4] = String.format("%.2f €", entrada.getPrecio());
             }
         }
 
@@ -76,10 +76,10 @@ public class Guia extends Trabajador {
 class ComparatorFechaReserva implements Comparator<Entrada> {
 
     @Override
-    public int compare(Entrada e1, Entrada e2) {
-        int resultado = e2.getFecha().compareTo(e1.getFecha());
+    public int compare(Entrada entrada1, Entrada entrada2) {
+        int resultado = entrada2.getFecha().compareTo(entrada1.getFecha());
         if (resultado == 0) {
-            resultado = e1.getHora().compareToIgnoreCase(e2.getHora());
+            resultado = entrada1.getHora().compareToIgnoreCase(entrada2.getHora());
         }
         return resultado;
     }
@@ -89,8 +89,8 @@ class ComparatorFechaReserva implements Comparator<Entrada> {
 class ComparatorFechaTransaccion implements Comparator<Entrada> {
 
     @Override
-    public int compare(Entrada e1, Entrada e2) {
-        return e2.getFechaTransaccion().compareTo(e1.getFechaTransaccion());
+    public int compare(Entrada entrada1, Entrada entrada2) {
+        return entrada2.getFechaTransaccion().compareTo(entrada1.getFechaTransaccion());
     }
 
 }

@@ -32,8 +32,8 @@ public class Cliente extends Persona {
         return id;
     }
 
-    public void addEntrada(Entrada e) {
-        entradas.add(e);
+    public void addEntrada(Entrada entrada) {
+        entradas.add(entrada);
     }
 
     public void cargarEntradas(List<Entrada> entradas) {
@@ -44,15 +44,15 @@ public class Cliente extends Persona {
         String[][] array = new String[entradas.size()][4];
         String esGuiada;
         // Formateadores de fecha
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
         if (!entradas.isEmpty()) {
             for (int i = 0; i < entradas.size(); i++) {
-                Entrada e = entradas.get(i);
-                array[i][0] = sdf1.format(e.getFecha());
-                array[i][1] = e.getHora();
+                Entrada entrada = entradas.get(i);
+                array[i][0] = date.format(entrada.getFecha());
+                array[i][1] = entrada.getHora();
 
-                if (e.getEsGuiada()) {
+                if (entrada.getEsGuiada()) {
                     esGuiada = "Si";
 
                 } else {
@@ -60,7 +60,7 @@ public class Cliente extends Persona {
                 }
 
                 array[i][2] = esGuiada;
-                array[i][3] = String.format("%.2f €", e.getPrecio());
+                array[i][3] = String.format("%.2f €", entrada.getPrecio());
             }
         }
 
