@@ -20,19 +20,19 @@ import java.util.List;
  */
 public class MenuPrincipalFrame extends javax.swing.JFrame {
 
-    private List<Exposicion> exposiciones;
-    private Exposicion expo1;
-    private Exposicion expo2;
+    private final List<Exposicion> exposiciones;
+    private Exposicion exposicion1;
+    private Exposicion exposicion2;
     private int posicion1;
     private int posicion2;
-    private SistemaMuseo sm;
+    private SistemaMuseo sistemaMuseo;
 
     /**
      * Creates new form MenuPrincipal
      */
     MenuPrincipalFrame() {
         conexionBD();
-        exposiciones = sm.cargarExposiciones();
+        exposiciones = sistemaMuseo.cargarExposiciones();
         posicion1 = 0;
         posicion2 = posicion1 + 1;
         initComponents();
@@ -104,12 +104,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void panelExposicion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion1MouseClicked
         // TODO add your handling code here:
-        mostrarExposicion(expo1);
+        mostrarExposicion(exposicion1);
     }//GEN-LAST:event_panelExposicion1MouseClicked
 
     private void panelExposicion2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion2MouseClicked
         // TODO add your handling code here:
-        mostrarExposicion(expo2);
+        mostrarExposicion(exposicion2);
     }//GEN-LAST:event_panelExposicion2MouseClicked
 
     private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
@@ -166,7 +166,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        sm.desconectar();
+        sistemaMuseo.desconectar();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -564,13 +564,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     // ############################# MÉTODOS USUARIOS #############################
     private void iniciarSesion() {
-        InicioSesionDialog isd = new InicioSesionDialog(this, true);
-        isd.setVisible(true);
+        InicioSesionDialog inicioSesionDialog = new InicioSesionDialog(this, true);
+        inicioSesionDialog.setVisible(true);
     }
 
     private void registrarUsuario() {
-        RegistroUsuarioDialog rsd = new RegistroUsuarioDialog(this, true);
-        rsd.setVisible(true);
+        RegistroUsuarioDialog registroUsuarioDialog = new RegistroUsuarioDialog(this, true);
+        registroUsuarioDialog.setVisible(true);
     }
 
     // ############################# MÉTODOS EXPOSICIONES #############################
@@ -586,16 +586,16 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             botonSiguiente.setVisible(false);
             botonAnterior.setVisible(false);
             // Exposicion 1
-            expo1 = exposiciones.get(0);
-            labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + expo1.getRutaImagen())));
+            exposicion1 = exposiciones.get(0);
+            labelNombre1.setText("Exposición " + exposicion1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + exposicion1.getObras().size());
+            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + exposicion1.getRutaImagen())));
             if (exposiciones.size() == 2) {
                 // Exposicion 2
-                expo2 = exposiciones.get(1);
-                labelNombre2.setText("Exposición " + expo2.getNombre());
-                labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-                imagen2.setIcon(new ImageIcon(getClass().getResource("/" + expo2.getRutaImagen())));
+                exposicion2 = exposiciones.get(1);
+                labelNombre2.setText("Exposición " + exposicion2.getNombre());
+                labelNumeroObras2.setText("Nº Obras: " + exposicion2.getObras().size());
+                imagen2.setIcon(new ImageIcon(getClass().getResource("/" + exposicion2.getRutaImagen())));
             } else {
                 // Exposicion 2
                 panelExpo2.setVisible(false);
@@ -604,15 +604,15 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             botonSiguiente.setVisible(true);
             botonAnterior.setVisible(true);
             // Exposicion 1
-            expo1 = exposiciones.get(posicion1);
-            labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + expo1.getRutaImagen())));
+            exposicion1 = exposiciones.get(posicion1);
+            labelNombre1.setText("Exposición " + exposicion1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + exposicion1.getObras().size());
+            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + exposicion1.getRutaImagen())));
             // Exposicion 2
-            expo2 = exposiciones.get(posicion2);
-            labelNombre2.setText("Exposición " + expo2.getNombre());
-            labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-            imagen2.setIcon(new ImageIcon(getClass().getResource("/" + expo2.getRutaImagen())));
+            exposicion2 = exposiciones.get(posicion2);
+            labelNombre2.setText("Exposición " + exposicion2.getNombre());
+            labelNumeroObras2.setText("Nº Obras: " + exposicion2.getObras().size());
+            imagen2.setIcon(new ImageIcon(getClass().getResource("/" + exposicion2.getRutaImagen())));
         }
     }
 
@@ -646,10 +646,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         }
     }
 
-    private void mostrarExposicion(Exposicion e) {
-        if (!(e.getObras().isEmpty())) {
-            MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
-            mod.setVisible(true);
+    private void mostrarExposicion(Exposicion exposicion) {
+        if (!(exposicion.getObras().isEmpty())) {
+            MenuExposicionDialog menuExposicionDialog = new MenuExposicionDialog(this, true, exposicion);
+            menuExposicionDialog.setVisible(true);
         }
     }
 
@@ -671,6 +671,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 }

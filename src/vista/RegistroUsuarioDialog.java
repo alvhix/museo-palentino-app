@@ -22,8 +22,8 @@ import java.io.IOException;
  */
 public class RegistroUsuarioDialog extends javax.swing.JDialog {
 
-    private MenuPrincipalFrame mpf;
-    private SistemaMuseo sm;
+    private final MenuPrincipalFrame menuPrincipalFrame;
+    private SistemaMuseo sistemaMuseo;
 
     /**
      * Creates new form IniciarSesionDialog
@@ -33,7 +33,7 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
      */
     RegistroUsuarioDialog(MenuPrincipalFrame parent, boolean modal) {
         super(parent, modal);
-        mpf = parent;
+        menuPrincipalFrame = parent;
 
         initComponents();
         componentesIniciales();
@@ -332,17 +332,28 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         holder5.changeAlpha(0.5f);
     }
 
+    private static boolean validarTelefono(String telefono) {
+        boolean correcto = false;
+        int longitud = telefono.length();
+
+        if (longitud == 9) {
+            correcto = true;
+        }
+
+        return correcto;
+    }
+
     // ############################# MÉTODOS REGISTRO DE USUARIO #############################
     private void registrarUsuario() {
         if (validarDatos()) {
-            Cliente c = new Cliente(campoNombre.getText(), campoDNI.getText(), Integer.parseInt(campoTelefono.getText()));
-            sm.nuevoCliente(c, new String(campoPassword1.getPassword()));
+            Cliente cliente = new Cliente(campoNombre.getText(), campoDNI.getText(), Integer.parseInt(campoTelefono.getText()));
+            sistemaMuseo.nuevoCliente(cliente, new String(campoPassword1.getPassword()));
             // Se instancia el menú de usuario y se hace visible
-            MenuUsuarioFrame muf = new MenuUsuarioFrame(sm.cargarCliente(c.getDNI()));
-            muf.setVisible(true);
+            MenuUsuarioFrame menuUsuarioFrame = new MenuUsuarioFrame(sistemaMuseo.cargarCliente(cliente.getDNI()));
+            menuUsuarioFrame.setVisible(true);
             // Se cierra la vista actual y se hace invisible el menú principal
             dispose();
-            mpf.setVisible(false);
+            menuPrincipalFrame.setVisible(false);
         }
     }
 
@@ -363,7 +374,7 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         oblig5.setText(" ");
 
         if (!nombre.equals("") && validarTelefono(telefono) && validarPassword(password) && password.equals(passwordConfirmar)) {
-            if (sm.comprobarUsuariosRegistrados(dni)) {
+            if (sistemaMuseo.comprobarUsuariosRegistrados(dni)) {
                 texto = "¡Ya existe un usuario registrado con ese DNI!";
             } else {
                 correcto = true;
@@ -416,17 +427,6 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         return correcto;
     }
 
-    private static boolean validarTelefono(String tlf) {
-        boolean correcto = false;
-        int longitud = tlf.length();
-
-        if (longitud == 9) {
-            correcto = true;
-        }
-
-        return correcto;
-    }
-
     private static boolean validarPassword(String pw) {
         boolean correcto = false;
         int longitud = pw.length();
@@ -438,14 +438,14 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         return correcto;
     }
 
-    private void soloLetras(JTextField jtf) {
+    private void soloLetras(JTextField jTextField) {
         final int limite = 30;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
                             && !(c == KeyEvent.VK_BACK_SPACE)) {
                         getToolkit().beep();
@@ -458,20 +458,20 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         });
     }
 
-    private void limiteDNI(JTextField jtf) {
+    private void limiteDNI(JTextField jTextField) {
         final int limite = 8;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                             || (c == KeyEvent.VK_DELETE))) {
                         getToolkit().beep();
                         e.consume();
                     }
-                } else if (jtf.getText().length() == limite) {
+                } else if (jTextField.getText().length() == limite) {
                     if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
                             && !(c == KeyEvent.VK_BACK_SPACE)) {
                         getToolkit().beep();
@@ -484,14 +484,14 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
         });
     }
 
-    private void limiteTelefono(JTextField jtf) {
+    private void limiteTelefono(JTextField jTextField) {
         final int limite = 9;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                             || (c == KeyEvent.VK_DELETE))) {
                         getToolkit().beep();
@@ -514,13 +514,14 @@ public class RegistroUsuarioDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public Image getIconImage() {
         return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/imagenes/iconos/iconoMuseoApp.png"));
     }
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 
 }

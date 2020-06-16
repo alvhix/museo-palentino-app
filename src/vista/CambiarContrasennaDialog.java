@@ -22,12 +22,12 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
     /**
      * Creates new form CambiarContrasennaDialog
      */
-    private SistemaMuseo sm;
+    private SistemaMuseo sistemaMuseo;
     private Persona user;
 
-    CambiarContrasennaDialog(java.awt.Frame parent, boolean modal, Persona p) {
+    CambiarContrasennaDialog(java.awt.Frame parent, boolean modal, Persona persona) {
         super(parent, modal);
-        user = p;
+        user = persona;
         initComponents();
         componentesIniciales();
     }
@@ -232,7 +232,7 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
         String claveAntiguaString = new String(claveAntigua);
         String claveNuevaString = new String(claveNueva);
 
-        cambiada = sm.cambiarClave(claveAntiguaString, claveNuevaString, user.getDNI());
+        cambiada = sistemaMuseo.cambiarClave(claveAntiguaString, claveNuevaString, user.getDNI());
         if (cambiada) {
 
             JOptionPane.showMessageDialog(this, "Has cambiado tu contraseña", "Contraseña cambiada", JOptionPane.INFORMATION_MESSAGE);
@@ -266,7 +266,7 @@ public class CambiarContrasennaDialog extends javax.swing.JDialog {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 
 }

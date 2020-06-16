@@ -185,23 +185,6 @@ public class DAOMuseo {
         return entradas;
     }
 
-    /*public void nuevoAdministrador(Administrador a, String password) throws SQLException {
-        String insert1 = "INSERT INTO persona VALUES (?, SHA(?), ?, ?, 'administrador')";
-        String insert2 = "INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (?, ?)";
-        // INSERT INTO persona VALUES (dni, clave, nombre, telefono, 'administrador')
-        PreparedStatement ps1 = ConexionBD.instancia().getConnection().prepareStatement(insert1);
-        ps1.setString(1, a.getDNI());
-        ps1.setString(2, password);
-        ps1.setString(3, a.getNombre());
-        ps1.setInt(4, a.getTelefono());
-        // INSERT INTO administrador (numSeguridadSocial, dniGuia) VALUES (numeroSeguridadSocial, dni)
-        PreparedStatement ps2 = ConexionBD.instancia().getConnection().prepareStatement(insert2);
-        ps2.setLong(1, a.getNSS());
-        ps2.setString(2, a.getDNI());
-        // Se ejecutan las updates
-        ps1.executeUpdate();
-        ps2.executeUpdate();
-    }*/
     // ############################# GUÍA #############################
     public void nuevoGuia(Guia g, String password) throws SQLException {
         String insert1 = "INSERT INTO persona (dni, clave, nombre, telefono, rol) VALUES (?, SHA(?), ?, ?, 'guia')";
@@ -279,7 +262,6 @@ public class DAOMuseo {
         ResultSet rs = ps.executeQuery();
 
         int i = 0;
-
         while (rs.next()) {
             arrayGuias[i++] = rs.getInt("numGuia");
         }
@@ -390,38 +372,6 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    /*public Exposicion cargarExposicion(int id) throws SQLException {
-        Exposicion e = null;
-        String query = "SELECT nombre, tiempoRecorrido, imagen FROM exposicion WHERE idExposicion = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, id);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            e = new Exposicion(id, rs.getString("nombre"), rs.getInt("tiempoRecorrido"), rs.getString("imagen"), cargarObrasExposicion(id));
-        }
-
-        return e;
-    }
-
-    public Exposicion cargarExposicion(String nombre) throws SQLException {
-        Exposicion e = null;
-        String query = "SELECT * FROM exposicion WHERE nombre = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setString(1, nombre);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            e = new Exposicion(rs.getInt("idExposicion"), rs.getString("nombre"), rs.getInt("tiempoRecorrido"),
-                    rs.getString("imagen"), cargarObrasExposicion(rs.getInt("idExposicion")));
-        }
-
-        return e;
-    }*/
     // ############################# OBRA #############################
     public List<Obra> cargarObrasExposicion(int idExpo) throws SQLException {
         List<Obra> obras = new ArrayList<>();
@@ -484,44 +434,6 @@ public class DAOMuseo {
         ps.executeUpdate();
     }
 
-    /*public Obra cargarObra(int id) throws SQLException {
-        Obra o = null;
-        String query = "SELECT * FROM obra WHERE idObra = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setInt(1, id);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            o = new Obra(id, rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), rs.getInt("idExposicion"));
-        }
-
-        return o;
-    }
-
-    public Obra cargarObra(String titulo, String autor, String estilo, String anno, String tipo, int idExposicion) throws SQLException {
-        Obra o = null;
-        String query = "SELECT * FROM obra WHERE titulo = ? AND autor = ? AND estilo = ? AND año = ? AND tipo = ? AND idExposicion = ?";
-
-        PreparedStatement ps = ConexionBD.instancia().getConnection().prepareStatement(query);
-        ps.setString(1, titulo);
-        ps.setString(2, autor);
-        ps.setString(3, estilo);
-        ps.setString(4, anno);
-        ps.setString(5, tipo);
-        ps.setInt(6, idExposicion);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            o = new Obra(rs.getInt("idObra"), rs.getString("titulo"), rs.getString("autor"), rs.getString("estilo"),
-                    rs.getString("año"), rs.getString("tipo"), rs.getString("imagen"), rs.getInt("idExposicion"));
-        }
-
-        return o;
-    }*/
     // ############################# ENTRADAS #############################
     // Inserta los datos de la entrada reservada en la base de datos
     public void reservarEntradaNormal(Entrada e, Cliente c) throws SQLException {

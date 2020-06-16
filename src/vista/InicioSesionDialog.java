@@ -24,8 +24,8 @@ import java.io.IOException;
  */
 public class InicioSesionDialog extends javax.swing.JDialog {
 
-    private MenuPrincipalFrame mpf;
-    private SistemaMuseo sm;
+    private final MenuPrincipalFrame menuPrincipalFrame;
+    private SistemaMuseo sistemaMuseo;
 
     /**
      * Creates new form IniciarSesionDialog
@@ -35,7 +35,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
      */
     public InicioSesionDialog(MenuPrincipalFrame parent, boolean modal) {
         super(parent, modal);
-        mpf = parent;
+        menuPrincipalFrame = parent;
 
         initComponents();
         componentesIniciales();
@@ -232,38 +232,38 @@ public class InicioSesionDialog extends javax.swing.JDialog {
         String password = new String(campoPassword.getPassword());
 
         boolean camposRellenados = (!dni.equals("") || !password.equals(""));
-        boolean comprobarCredenciales = sm.comprobarCredenciales(dni, password);
+        boolean comprobarCredenciales = sistemaMuseo.comprobarCredenciales(dni, password);
         if (camposRellenados && comprobarCredenciales) {
-            String rol = sm.obtenerRol(dni);
+            String rol = sistemaMuseo.obtenerRol(dni);
 
             switch (rol) {
 
                 case "cliente": // Se comprueba si el dni es de un cliente
                     // Se instancia un cliente y se carga con los datos del cliente cuyo dni coincida con el pasado por parametro
-                    Cliente c = sm.cargarCliente(dni);
-                    if (c != null) {
+                    Cliente cliente = sistemaMuseo.cargarCliente(dni);
+                    if (cliente != null) {
                         // Se instancia el menú de usuario y se hace visible
-                        MenuUsuarioFrame muf = new MenuUsuarioFrame(c);
+                        MenuUsuarioFrame muf = new MenuUsuarioFrame(cliente);
                         muf.setVisible(true);
                     }
                     break;
 
                 case "guia": // Se comprueba si el dni es de un guia
                     // Se instancia un guia y se carga con los datos del guia cuyo dni coincida con el pasado por parametro
-                    Guia g = sm.cargarGuia(dni);
-                    if (g != null) {
+                    Guia guia = sistemaMuseo.cargarGuia(dni);
+                    if (guia != null) {
                         // Se instancia el menú de guia y se hace visible
-                        MenuGuiaFrame mgf = new MenuGuiaFrame(g);
+                        MenuGuiaFrame mgf = new MenuGuiaFrame(guia);
                         mgf.setVisible(true);
                     }
                     break;
 
                 case "administrador": // Se comprueba si el dni es de un administrador
                     // Se instancia un administrador y se carga con los datos del cliente cuyo dni coincida con el pasado por parametro
-                    Administrador a = sm.cargarAdministrador(dni);
-                    if (a != null) {
+                    Administrador administrador = sistemaMuseo.cargarAdministrador(dni);
+                    if (administrador != null) {
                         // Se instancia el menú de administrador y se hace visible
-                        MenuAdministradorFrame maf = new MenuAdministradorFrame(a);
+                        MenuAdministradorFrame maf = new MenuAdministradorFrame(administrador);
                         maf.setVisible(true);
                     }
                     break;
@@ -277,7 +277,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
 
             // Se cierra la vista actual y se hace invisible el menú principal
             dispose();
-            mpf.setVisible(false);
+            menuPrincipalFrame.setVisible(false);
         } else {
             infoErrorIniciar.setText("Usuario o contraseña incorrectos");
             infoErrorIniciar.setOpaque(true);
@@ -330,7 +330,7 @@ public class InicioSesionDialog extends javax.swing.JDialog {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 
 }

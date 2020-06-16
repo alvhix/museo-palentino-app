@@ -25,20 +25,20 @@ import java.util.List;
  */
 public class MenuAdministradorFrame extends javax.swing.JFrame {
 
-    private Administrador a;
+    private Administrador administrador;
     private List<Exposicion> exposiciones;
-    private SistemaMuseo sm;
-    private ExposicionesTableModel etm;
+    private SistemaMuseo sistemaMuseo;
+    private ExposicionesTableModel exposicionesTableModel;
 
     /**
      * Creates new form MenuAdministradorFrame
      *
-     * @param a
+     * @param administrador
      */
-    MenuAdministradorFrame(Administrador a) {
-        this.a = a;
-        exposiciones = a.getExposiciones();
-        etm = new ExposicionesTableModel(exposiciones);
+    MenuAdministradorFrame(Administrador administrador) {
+        this.administrador = administrador;
+        exposiciones = administrador.getExposiciones();
+        exposicionesTableModel = new ExposicionesTableModel(exposiciones);
 
         initComponents();
         componentesIniciales();
@@ -305,7 +305,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         jLayeredPane1.add(panelEmpleados, "card2");
 
-        tablaExposiciones.setModel(etm);
+        tablaExposiciones.setModel(exposicionesTableModel);
         jScrollPane2.setViewportView(tablaExposiciones);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Exposición  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -665,10 +665,10 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         "Nombre cliente", "DNI cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"
                 }
         ) {
-            Class[] types = new Class[]{
+            final Class[] types = new Class[]{
                     java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[]{
+            final boolean[] canEdit = new boolean[]{
                     false, false, false, false, false, false, false
             };
 
@@ -956,7 +956,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void menuCambiarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCambiarContraseñaActionPerformed
         // TODO add your handling code here:
-        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, true, a);
+        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, true, administrador);
         ccd.setVisible(true);
     }//GEN-LAST:event_menuCambiarContraseñaActionPerformed
 
@@ -964,15 +964,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (ordenarcb.getSelectedIndex()) {
             case 0:
-                a.ordenarNombre();
+                administrador.ordenarNombre();
                 mostrarTabla();
                 break;
             case 1:
-                a.ordenarDni();
+                administrador.ordenarDni();
                 mostrarTabla();
                 break;
             case 2:
-                a.ordenarFechaTransaccion();
+                administrador.ordenarFechaTransaccion();
                 mostrarTabla();
                 break;
             default:
@@ -987,7 +987,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        sm.desconectar();
+        sistemaMuseo.desconectar();
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1063,24 +1063,24 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // ####################### - Métodos Vista - #######################
-    private void verPanel(JPanel jp) {
+    private void verPanel(JPanel jPanel) {
         panelEmpleados.setVisible(false);
         panelExposiciones.setVisible(false);
         panelEntradas.setVisible(false);
         datosEnBlanco();
         restablecerCamposExpo();
 
-        jp.setVisible(true);
+        jPanel.setVisible(true);
     }
 
-    private void limiteTelefono(JTextField jtf) {
+    private void limiteTelefono(JTextField jTextField) {
         final int limite = 9;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                             || (c == KeyEvent.VK_DELETE))) {
                         getToolkit().beep();
@@ -1093,20 +1093,20 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         });
     }
 
-    private void limiteDNI(JTextField jtf) {
+    private void limiteDNI(JTextField jTextField) {
         final int limite = 8;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                             || (c == KeyEvent.VK_DELETE))) {
                         getToolkit().beep();
                         e.consume();
                     }
-                } else if (jtf.getText().length() == limite) {
+                } else if (jTextField.getText().length() == limite) {
                     if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
                             && !(c == KeyEvent.VK_BACK_SPACE)) {
                         getToolkit().beep();
@@ -1119,36 +1119,14 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         });
     }
 
-    /*private static boolean validarTelefono(String tlf) {
-        boolean correcto = false;
-        int longitud = tlf.length();
-
-        if (longitud == 9) {
-            correcto = true;
-        }
-
-        return correcto;
-    }
-
-    private static boolean validarPassword(String pw) {
-        boolean correcto = false;
-        int longitud = pw.length();
-
-        if (longitud >= 8) {
-            correcto = true;
-        }
-
-        return correcto;
-    }*/
-
-    private void soloLetras(JTextField jtf) {
+    private void soloLetras(JTextField jTextField) {
         final int limite = 30;
-        jtf.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                if (jtf.getText().length() < limite) {
+                if (jTextField.getText().length() < limite) {
                     if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE)
                             && !(c == KeyEvent.VK_BACK_SPACE)) {
                         getToolkit().beep();
@@ -1161,8 +1139,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         });
     }
 
-    private void soloNumeros(JTextField jtf) {
-        jtf.addKeyListener(new KeyAdapter() {
+    private void soloNumeros(JTextField jTextField) {
+        jTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
@@ -1181,7 +1159,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     }
 
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 
     private void componentesIniciales() {
@@ -1205,8 +1183,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     // ####################### - Métodos Sesion - #######################
     private void cerrarSesion() {
-        MenuPrincipalFrame mpf = new MenuPrincipalFrame();
-        mpf.setVisible(true);
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        menuPrincipalFrame.setVisible(true);
         dispose();
     }
 
@@ -1225,8 +1203,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                 int nGuia = Integer.parseInt(tfNGuia.getText());
 
                 Guia g = new Guia(nombre, dni, telefono, nss, nGuia);
-                a.annadirEmpleado(g);
-                sm.nuevoGuia(g, clave);
+                administrador.annadirEmpleado(g);
+                sistemaMuseo.nuevoGuia(g, clave);
 
                 actualizarPlantilla();
                 datosEnBlanco();
@@ -1248,9 +1226,9 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             final int NOSELECCIONADO = -1;
 
             if (seleccionado != NOSELECCIONADO) {
-                Guia aDespedir = a.getEmpleados().get(seleccionado);
-                a.eliminarEmpleado(aDespedir);
-                sm.despedirGuia(aDespedir);
+                Guia aDespedir = administrador.getEmpleados().get(seleccionado);
+                administrador.eliminarEmpleado(aDespedir);
+                sistemaMuseo.despedirGuia(aDespedir);
 
                 actualizarPlantilla();
             } else {
@@ -1262,7 +1240,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void actualizarPlantilla() {
         final String[] cabeceraPlantilla = {"ID", "Nombre", "DNI", "Teléfono"};
-        DefaultTableModel plantilla = new DefaultTableModel(a.plantillaAString(), cabeceraPlantilla);
+        DefaultTableModel plantilla = new DefaultTableModel(administrador.plantillaAString(), cabeceraPlantilla);
         tablaEmpleados.setModel(plantilla);
     }
 
@@ -1279,22 +1257,22 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private void abrirExposicion() {
         int selection = tablaExposiciones.getSelectedRow();
         if (selection != -1) {
-            Exposicion e = etm.obtenerExposicion(selection);
-            ModificaExposicionDialog med = new ModificaExposicionDialog(this, true, e);
-            med.setVisible(true);
-            exposiciones = sm.cargarExposiciones();
-            etm = new ExposicionesTableModel(exposiciones);
-            tablaExposiciones.setModel(etm);
+            Exposicion exposicion = exposicionesTableModel.obtenerExposicion(selection);
+            ModificaExposicionDialog modificaExposicionDialog = new ModificaExposicionDialog(this, true, exposicion);
+            modificaExposicionDialog.setVisible(true);
+            exposiciones = sistemaMuseo.cargarExposiciones();
+            exposicionesTableModel = new ExposicionesTableModel(exposiciones);
+            tablaExposiciones.setModel(exposicionesTableModel);
         }
     }
 
     private void annadirExposicion() {
         if (validarDatosExposicion()) {
-            Exposicion e = new Exposicion(campoNombreExpo.getText(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
-            sm.nuevaExposicion(e);
-            exposiciones = sm.cargarExposiciones();
-            etm = new ExposicionesTableModel(exposiciones);
-            tablaExposiciones.setModel(etm);
+            Exposicion exposicion = new Exposicion(campoNombreExpo.getText(), Integer.parseInt(campoDuracion.getText()), campoRuta.getText());
+            sistemaMuseo.nuevaExposicion(exposicion);
+            exposiciones = sistemaMuseo.cargarExposiciones();
+            exposicionesTableModel = new ExposicionesTableModel(exposiciones);
+            tablaExposiciones.setModel(exposicionesTableModel);
             restablecerCamposExpo();
         }
     }
@@ -1304,7 +1282,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
         if (selection != -1) {
             boolean salir = false;
-            Exposicion e = etm.obtenerExposicion(selection);
+            Exposicion e = exposicionesTableModel.obtenerExposicion(selection);
 
             do {
                 int opcion = JOptionPane.showConfirmDialog(this,
@@ -1313,8 +1291,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
                         "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
                 if (opcion == JOptionPane.YES_OPTION) {
-                    etm.eliminarExposicion(selection);
-                    sm.eliminarExposicion(e.getID());
+                    exposicionesTableModel.eliminarExposicion(selection);
+                    sistemaMuseo.eliminarExposicion(e.getID());
                     salir = true;
                 } else if (opcion == JOptionPane.NO_OPTION) {
                     salir = true;
@@ -1361,7 +1339,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
             String nombre = campoNombreExpo.getText();
             String ruta = campoRuta.getText();
 
-            if (!sm.comprobarSiExisteExposicion(nombre)) {
+            if (!sistemaMuseo.comprobarSiExisteExposicion(nombre)) {
                 File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + ruta);
 
                 if (!file.exists()) { // Si el archivo no existe
@@ -1396,13 +1374,13 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     // ####################### - Métodos Gestión Entradas - #######################
     // ***************************** Carga de todas las entradas *****************************
     private void cargarEntradas() { // Carga todas las entradas reservadas hasta el momento
-        a.cargarTodasEntradas(sm.cargarTodasEntradas());
+        administrador.cargarTodasEntradas(sistemaMuseo.cargarTodasEntradas());
     }
 
     // ***************************** Tabla *****************************
     private void mostrarTabla() { // Muestra la tabla de todas las entradas reservadas
         String[] cabecera = {"Nombre cliente", "Dni cliente", "Fecha reserva", "Hora reserva", "¿Guiada?", "Transacción", "Precio"};
-        DefaultTableModel modeloEntradas = new DefaultTableModel(a.tabla_todasEntradas(), cabecera);
+        DefaultTableModel modeloEntradas = new DefaultTableModel(administrador.tabla_todasEntradas(), cabecera);
         jTable1.setModel(modeloEntradas);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(60);
@@ -1418,8 +1396,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     // ***************************** Precios de la entrada y suplemento guía *****************************
     private void obtenerPrecios() { // Obtiene los precios de la entrada y el suplemento actuales
-        float precio = sm.devolverPrecioEntrada();
-        float suplemento = sm.devolverPrecioSuplemento();
+        float precio = sistemaMuseo.devolverPrecioEntrada();
+        float suplemento = sistemaMuseo.devolverPrecioSuplemento();
         // Obtiene el precio de la entrada actual
         precioActual.setText(String.valueOf(String.format("%.2f €", precio)));
         // Obtiene el suplemento actual
@@ -1428,15 +1406,15 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
 
     private void cambiarPrecioEntrada() { // Cambia el precio de la entrada
         if (!campoPrecioEntrada.getText().isEmpty()) {
-            float precio = Float.valueOf(campoPrecioEntrada.getText());
-            sm.cambiarPrecioEntrada(precio);
+            float precio = Float.parseFloat(campoPrecioEntrada.getText());
+            sistemaMuseo.cambiarPrecioEntrada(precio);
         }
     }
 
     private void cambiarPrecioSuplemento() { // Cambia el precio del suplemento
         if (!campoPrecioSuplemento.getText().isEmpty()) {
-            float precio = Float.valueOf(campoPrecioSuplemento.getText());
-            sm.cambiarPrecioSuplemento(precio);
+            float precio = Float.parseFloat(campoPrecioSuplemento.getText());
+            sistemaMuseo.cambiarPrecioSuplemento(precio);
         }
     }
 }

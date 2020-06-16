@@ -20,11 +20,11 @@ import java.io.IOException;
  */
 public class MenuGuiaFrame extends javax.swing.JFrame {
 
-    private Guia g;
-    private SistemaMuseo sm;
+    private Guia guia;
+    private SistemaMuseo sistemaMuseo;
 
-    MenuGuiaFrame(Guia g) {
-        this.g = g;
+    MenuGuiaFrame(Guia guia) {
+        this.guia = guia;
         initComponents();
         componentesIniciales();
     }
@@ -85,11 +85,11 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (jComboBox1.getSelectedIndex()) {
             case 0:
-                g.ordenarFechaReserva();
+                guia.ordenarFechaReserva();
                 muestraTabla();
                 break;
             case 1:
-                g.ordenarFechaTransaccion();
+                guia.ordenarFechaTransaccion();
                 muestraTabla();
                 break;
             default:
@@ -125,7 +125,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         menuCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Museo Palentino - Menú de Guía [¡Bienvenid@ " + g.getNombre() + "!]");
+        setTitle("Museo Palentino - Menú de Guía [¡Bienvenid@ " + guia.getNombre() + "!]");
         setIconImage(getIconImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -155,7 +155,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
                         "DNI cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"
                 }
         ) {
-            Class[] types = new Class[]{
+            final Class[] types = new Class[]{
                     java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
@@ -302,13 +302,13 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
     private void cambiarClaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveMenuActionPerformed
         // TODO add your handling code here:
-        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, g);
+        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, guia);
         ccd.setVisible(true);
     }//GEN-LAST:event_cambiarClaveMenuActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        sm.desconectar();
+        sistemaMuseo.desconectar();
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -349,13 +349,13 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
     // ***************************** Carga de entradas guiadas *****************************
     private void cargarEntradasGuia() {
-        g.cargarEntradasGuia(sm.cargarEntradasGuia(g.getNGuia()));
+        guia.cargarEntradasGuia(sistemaMuseo.cargarEntradasGuia(guia.getNGuia()));
     }
 
     private void datosGuia() {
-        jLabel3.setText(String.valueOf(g.getNGuia()));
-        jLabel5.setText(String.valueOf(g.getDNI()));
-        jLabel7.setText(String.valueOf(g.getNSS()));
+        jLabel3.setText(String.valueOf(guia.getNGuia()));
+        jLabel5.setText(String.valueOf(guia.getDNI()));
+        jLabel7.setText(String.valueOf(guia.getNSS()));
     }
 
     // ***************************** Tabla *****************************
@@ -363,7 +363,7 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
         DefaultTableModel modelo;
         String[] cabecera = {"Dni cliente", "Fecha reserva", "Hora", "Fecha Transacción", "Precio"};
 
-        modelo = new DefaultTableModel(g.tabla_EntradasGuia(), cabecera);
+        modelo = new DefaultTableModel(guia.tabla_EntradasGuia(), cabecera);
         jTable1.setModel(modelo);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
@@ -393,6 +393,6 @@ public class MenuGuiaFrame extends javax.swing.JFrame {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 }

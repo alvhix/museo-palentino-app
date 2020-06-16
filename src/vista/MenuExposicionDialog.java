@@ -22,7 +22,7 @@ import static java.awt.Frame.HAND_CURSOR;
  */
 public class MenuExposicionDialog extends javax.swing.JDialog {
 
-    private Exposicion e;
+    private Exposicion exposicion;
     private List<Obra> obras;
     private int posicion;
 
@@ -31,12 +31,12 @@ public class MenuExposicionDialog extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
-     * @param e
+     * @param exposicion
      */
-    MenuExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
+    MenuExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion exposicion) {
         super(parent, modal);
-        this.e = e;
-        obras = e.getObras();
+        this.exposicion = exposicion;
+        obras = exposicion.getObras();
         posicion = 0;
         initComponents();
         componentesIniciales();

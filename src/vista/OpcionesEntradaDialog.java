@@ -23,9 +23,9 @@ import java.io.IOException;
 public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     // ********* Atributos *********
-    private Cliente c;
-    private Entrada e;
-    private SistemaMuseo sm;
+    private Cliente cliente;
+    private Entrada entrada;
+    private SistemaMuseo sistemaMuseo;
 
 
     /**
@@ -33,11 +33,11 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
-     * @param c
+     * @param cliente
      */
-    OpcionesEntradaDialog(MenuUsuarioFrame parent, boolean modal, Cliente c) {
+    OpcionesEntradaDialog(MenuUsuarioFrame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
-        this.c = c;
+        this.cliente = cliente;
         initComponents();
         componentesIniciales();
     }
@@ -483,7 +483,7 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
     // ############################# MÉTODOS RESERVA ENTRADA #############################
     // ***************************** Carga de entradas del cliente *****************************
     private void cargarEntradas() {
-        c.cargarEntradas(sm.cargarEntradasCliente(c.getIdCliente()));
+        cliente.cargarEntradas(sistemaMuseo.cargarEntradasCliente(cliente.getIdCliente()));
     }
 
     // ***************************** Reserva de entrada *****************************
@@ -491,18 +491,18 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         final int DEFAULT = 0;
         if (jDateChooser1.getDate() != null) { // Si el calendario está sin rellenar
             // Crea nueva entrada
-            e = new Entrada();
+            entrada = new Entrada();
             // Setea la fecha de la reserva
-            e.setFecha(jDateChooser1.getDate());
+            entrada.setFecha(jDateChooser1.getDate());
             // Setea si la entrada es guiada
-            e.setEsGuiada(jCheckBox1.isSelected());
+            entrada.setEsGuiada(jCheckBox1.isSelected());
             // Setea la hora
             int comboBox = jComboBox1.getSelectedIndex();
             String[] horario = {"08:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
-            e.setHora(horario[comboBox]);
-            e.setPrecio(getPrecioEntrada());
+            entrada.setHora(horario[comboBox]);
+            entrada.setPrecio(getPrecioEntrada());
             // Reserva la entrada pasando como parámetros la entrada y el cliente
-            sm.reservarEntrada(e, c);
+            sistemaMuseo.reservarEntrada(entrada, cliente);
             // Muestra la tabla
             mostrarTabla();
         } else {
@@ -517,45 +517,45 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
         DefaultTableModel modelo;
         String[] cabecera = {"Fecha", "Hora", "¿Guiada?", "Precio"};
 
-        modelo = new DefaultTableModel(c.tablaEntradas(), cabecera);
+        modelo = new DefaultTableModel(cliente.tablaEntradas(), cabecera);
         jTable1.setModel(modelo);
     }
 
     // ############################# CARGA DE DATOS #############################
     // ***************************** Datos de la cabecera *****************************
     private void datosReserva() { // Obtiene los datos del cliente para mostrarlos en la cabecera
-        jLabel8.setText(c.getNombre());
-        jLabel9.setText(c.getDNI());
-        jLabel10.setText(String.valueOf(c.getTelefono()));
+        jLabel8.setText(cliente.getNombre());
+        jLabel9.setText(cliente.getDNI());
+        jLabel10.setText(String.valueOf(cliente.getTelefono()));
         setPrecioEntradaNormal();
     }
 
     // ***************************** Precio entrada y suplemento *****************************
     private void setPrecioEntradaNormal() {
-        float precio = sm.devolverPrecioEntrada();
+        float precio = sistemaMuseo.devolverPrecioEntrada();
         jLabel12.setText(String.valueOf(String.format("%.2f €", precio)));
     }
 
     private void setPrecioEntradaGuiada() {
-        float precio = sm.devolverPrecioEntrada();
-        float suplemento = sm.devolverPrecioSuplemento();
+        float precio = sistemaMuseo.devolverPrecioEntrada();
+        float suplemento = sistemaMuseo.devolverPrecioSuplemento();
         float total = precio + suplemento;
         jLabel12.setText(String.valueOf(String.format("%.2f €", total)));
     }
 
     private float getPrecioEntrada() {
         float precioEntrada;
-        if (e.getEsGuiada()) {
-            precioEntrada = sm.devolverPrecioEntrada() + sm.devolverPrecioSuplemento();
+        if (entrada.getEsGuiada()) {
+            precioEntrada = sistemaMuseo.devolverPrecioEntrada() + sistemaMuseo.devolverPrecioSuplemento();
         } else {
-            precioEntrada = sm.devolverPrecioEntrada();
+            precioEntrada = sistemaMuseo.devolverPrecioEntrada();
         }
         return precioEntrada;
     }
 
     // ***************************** Entrada normal o entrada guiada *****************************
     private void siGuiada() { // Si la entrada es marcada como guiada, muestra su precio correspondiente
-        float suplemento = sm.devolverPrecioSuplemento();
+        float suplemento = sistemaMuseo.devolverPrecioSuplemento();
         JOptionPane.showMessageDialog(null, "La entrada guiada lleva un suplemento "
                 + "de " + suplemento + "€", "Atención", JOptionPane.INFORMATION_MESSAGE);
         setPrecioEntradaGuiada();
@@ -582,6 +582,6 @@ public class OpcionesEntradaDialog extends javax.swing.JDialog {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 }

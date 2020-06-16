@@ -21,23 +21,23 @@ import java.util.List;
  */
 public class MenuUsuarioFrame extends javax.swing.JFrame {
 
-    private Cliente c;
+    private Cliente cliente;
     private List<Exposicion> exposiciones;
-    private Exposicion expo1;
-    private Exposicion expo2;
+    private Exposicion exposicion1;
+    private Exposicion exposicion2;
     private int posicion1;
     private int posicion2;
-    private SistemaMuseo sm;
+    private SistemaMuseo sistemaMuseo;
 
     /**
      * Creates new form MenuPrincipalFrame
      *
-     * @param c
+     * @param cliente
      */
-    MenuUsuarioFrame(Cliente c) {
+    MenuUsuarioFrame(Cliente cliente) {
         conexionBD();
-        this.c = c;
-        exposiciones = sm.cargarExposiciones();
+        this.cliente = cliente;
+        exposiciones = sistemaMuseo.cargarExposiciones();
         posicion1 = 0;
         posicion2 = posicion1 + 1;
         initComponents();
@@ -82,7 +82,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void panelExposicion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion1MouseClicked
         // TODO add your handling code here:
-        mostrarExposicion(expo1);
+        mostrarExposicion(exposicion1);
     }//GEN-LAST:event_panelExposicion1MouseClicked
 
     private void panelExposicion1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion1MouseEntered
@@ -98,7 +98,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void panelExposicion2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion2MouseClicked
         // TODO add your handling code here:
-        mostrarExposicion(expo2);
+        mostrarExposicion(exposicion2);
     }//GEN-LAST:event_panelExposicion2MouseClicked
 
     private void panelExposicion2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelExposicion2MouseEntered
@@ -165,7 +165,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAnteriorMouseReleased
 
     private void cambiarContraseñaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaMenuActionPerformed
-        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, c);
+        CambiarContrasennaDialog ccd = new CambiarContrasennaDialog(this, rootPaneCheckingEnabled, cliente);
         ccd.setVisible(true);
     }//GEN-LAST:event_cambiarContraseñaMenuActionPerformed
 
@@ -589,7 +589,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        sm.desconectar();
+        sistemaMuseo.desconectar();
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -625,21 +625,21 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
     // ############################# COMPONENTES INICIALES #############################
     private void componentesIniciales() {
         imagenFondo();
-        infoUsuario.setText("¡Bienvenid@ " + c.getNombre() + "!");
+        infoUsuario.setText("¡Bienvenid@ " + cliente.getNombre() + "!");
         cargarExposiciones();
     }
 
     // ############################# MÉTODOS USUARIO #############################
     private void cerrarSesion() {
-        MenuPrincipalFrame mpf = new MenuPrincipalFrame();
-        mpf.setVisible(true);
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        menuPrincipalFrame.setVisible(true);
         dispose();
     }
 
     // ***************************** Reserva de entrada *****************************
     private void opcionesCompra() {
-        OpcionesEntradaDialog oed = new OpcionesEntradaDialog(this, true, c);
-        oed.setVisible(true);
+        OpcionesEntradaDialog opcionesEntradaDialog = new OpcionesEntradaDialog(this, true, cliente);
+        opcionesEntradaDialog.setVisible(true);
     }
 
     // ############################# MÉTODOS EXPOSICIONES #############################
@@ -656,16 +656,16 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
             botonSiguiente.setVisible(false);
             botonAnterior.setVisible(false);
             // Exposicion 1
-            expo1 = exposiciones.get(0);
-            labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + expo1.getRutaImagen())));
+            exposicion1 = exposiciones.get(0);
+            labelNombre1.setText("Exposición " + exposicion1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + exposicion1.getObras().size());
+            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + exposicion1.getRutaImagen())));
             if (exposiciones.size() == 2) {
                 // Exposicion 2
-                expo2 = exposiciones.get(1);
-                labelNombre2.setText("Exposición " + expo2.getNombre());
-                labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-                imagen2.setIcon(new ImageIcon(getClass().getResource("/" + expo2.getRutaImagen())));
+                exposicion2 = exposiciones.get(1);
+                labelNombre2.setText("Exposición " + exposicion2.getNombre());
+                labelNumeroObras2.setText("Nº Obras: " + exposicion2.getObras().size());
+                imagen2.setIcon(new ImageIcon(getClass().getResource("/" + exposicion2.getRutaImagen())));
             } else {
                 // Exposicion 2
                 panelExpo2.setVisible(false);
@@ -674,15 +674,15 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
             botonSiguiente.setVisible(true);
             botonAnterior.setVisible(true);
             // Exposicion 1
-            expo1 = exposiciones.get(posicion1);
-            labelNombre1.setText("Exposición " + expo1.getNombre());
-            labelNumeroObras1.setText("Nº Obras: " + expo1.getObras().size());
-            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + expo1.getRutaImagen())));
+            exposicion1 = exposiciones.get(posicion1);
+            labelNombre1.setText("Exposición " + exposicion1.getNombre());
+            labelNumeroObras1.setText("Nº Obras: " + exposicion1.getObras().size());
+            imagen1.setIcon(new ImageIcon(getClass().getResource("/" + exposicion1.getRutaImagen())));
             // Exposicion 2
-            expo2 = exposiciones.get(posicion2);
-            labelNombre2.setText("Exposición " + expo2.getNombre());
-            labelNumeroObras2.setText("Nº Obras: " + expo2.getObras().size());
-            imagen2.setIcon(new ImageIcon(getClass().getResource("/" + expo2.getRutaImagen())));
+            exposicion2 = exposiciones.get(posicion2);
+            labelNombre2.setText("Exposición " + exposicion2.getNombre());
+            labelNumeroObras2.setText("Nº Obras: " + exposicion2.getObras().size());
+            imagen2.setIcon(new ImageIcon(getClass().getResource("/" + exposicion2.getRutaImagen())));
         }
     }
 
@@ -716,9 +716,9 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
         }
     }
 
-    private void mostrarExposicion(Exposicion e) {
-        if (!e.getObras().isEmpty()) {
-            MenuExposicionDialog mod = new MenuExposicionDialog(this, true, e);
+    private void mostrarExposicion(Exposicion exposicion) {
+        if (!exposicion.getObras().isEmpty()) {
+            MenuExposicionDialog mod = new MenuExposicionDialog(this, true, exposicion);
             mod.setVisible(true);
         }
     }
@@ -741,7 +741,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 
 }

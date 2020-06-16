@@ -23,23 +23,23 @@ import static java.awt.Frame.HAND_CURSOR;
  */
 public class ModificaExposicionDialog extends javax.swing.JDialog {
 
-    private Exposicion e;
+    private Exposicion exposicion;
     private List<Obra> obras;
-    private ExposicionTableModel etm;
-    private SistemaMuseo sm;
+    private ExposicionTableModel exposicionTableModel;
+    private SistemaMuseo sistemaMuseo;
 
     /**
      * Creates new form ModExposicionesJD
      *
      * @param parent
      * @param modal
-     * @param e
+     * @param exposicion
      */
-    ModificaExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion e) {
+    ModificaExposicionDialog(java.awt.Frame parent, boolean modal, Exposicion exposicion) {
         super(parent, modal);
-        this.e = e;
-        obras = e.getObras();
-        etm = new ExposicionTableModel(obras);
+        this.exposicion = exposicion;
+        obras = exposicion.getObras();
+        exposicionTableModel = new ExposicionTableModel(obras);
 
         initComponents();
         componentesIniciales();
@@ -87,11 +87,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
         oblig6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Museo Palentino - Menu de Administrador/Exposición " + e.getNombre());
+        setTitle("Museo Palentino - Menu de Administrador/Exposición " + exposicion.getNombre());
         setIconImage(getIconImage());
         setResizable(false);
 
-        tablaObras.setModel(etm);
+        tablaObras.setModel(exposicionTableModel);
         jScrollPane2.setViewportView(tablaObras);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "  Opciones de Obra  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -466,11 +466,11 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
     // ############################# MÉTODOS MODIFICAR EXPOSICIÓN #############################
     private void annadirObra() {
         if (validarDatosExposicion()) {
-            Obra o = new Obra(campoTitulo.getText(), campoAutor.getText(), campoEstilo.getText(), campoAnno.getText(), campoTipo.getText(), campoRuta.getText(), e.getID());
-            sm.nuevaObra(o);
-            obras = sm.cargarObrasExposicion(e.getID());
-            etm = new ExposicionTableModel(obras);
-            tablaObras.setModel(etm);
+            Obra obra = new Obra(campoTitulo.getText(), campoAutor.getText(), campoEstilo.getText(), campoAnno.getText(), campoTipo.getText(), campoRuta.getText(), exposicion.getID());
+            sistemaMuseo.nuevaObra(obra);
+            obras = sistemaMuseo.cargarObrasExposicion(exposicion.getID());
+            exposicionTableModel = new ExposicionTableModel(obras);
+            tablaObras.setModel(exposicionTableModel);
             restablecerCamposObra();
         }
     }
@@ -480,17 +480,17 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
 
         if (selection != -1) {
             boolean salir = false;
-            Obra o = etm.obtenerObra(selection);
+            Obra obra = exposicionTableModel.obtenerObra(selection);
 
             do {
                 int opcion = JOptionPane.showConfirmDialog(this,
                         "¿Está seguro de que quiere eliminar\nla obra cuyo ID es  \""
-                                + o.getId() + "\"?",
+                                + obra.getId() + "\"?",
                         "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
                 if (opcion == JOptionPane.YES_OPTION) {
-                    etm.eliminarObra(selection);
-                    sm.eliminarObra(o.getId());
+                    exposicionTableModel.eliminarObra(selection);
+                    sistemaMuseo.eliminarObra(obra.getId());
                     salir = true;
                 } else if (opcion == JOptionPane.NO_OPTION) {
                     salir = true;
@@ -533,7 +533,7 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
             String tipo = campoTipo.getText();
             String ruta = campoRuta.getText();
 
-            if (!sm.comprobarSiExisteObra(titulo, autor, anno, tipo)) {
+            if (!sistemaMuseo.comprobarSiExisteObra(titulo, autor, anno, tipo)) {
                 File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + ruta);
                 if (!file.exists()) { // Si no existe la ruta
                     infoErrorObra.setText("¡La imagen seleccionada no existe!");
@@ -595,6 +595,6 @@ public class ModificaExposicionDialog extends javax.swing.JDialog {
 
     // ############################# CONEXIÓN BASE DE DATOS #############################
     private void conexionBD() {
-        sm = new SistemaMuseo();
+        sistemaMuseo = new SistemaMuseo();
     }
 }
