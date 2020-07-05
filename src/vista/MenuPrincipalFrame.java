@@ -556,7 +556,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // ############################# COMPONENTES INCIALES #############################
-
     private void componentesIniciales() {
         imagenFondo();
         cargarExposiciones();

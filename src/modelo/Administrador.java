@@ -11,10 +11,9 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * @author Guillermo y Victor
+ * @author Guillermo, Victor y Álvaro
  */
 public class Administrador extends Trabajador {
-
     // ####################### - ATRIBUTOS - #######################
     private final List<Guia> empleados;
     private final List<Exposicion> exposiciones;
@@ -106,11 +105,7 @@ public class Administrador extends Trabajador {
                 array[i][1] = entrada.getDniCliente();
                 array[i][2] = date.format(entrada.getFecha());
                 array[i][3] = entrada.getHora();
-                if (entrada.getEsGuiada()) {
-                    esGuiada = "Si";
-                } else {
-                    esGuiada = "No";
-                }
+                esGuiada = entrada.getEsGuiada() ? "Si" : "No";
                 array[i][4] = esGuiada;
                 array[i][5] = dateTime.format(entrada.getFechaTransaccion());
                 array[i][6] = String.format("%.2f €", entrada.getPrecio());
@@ -119,40 +114,29 @@ public class Administrador extends Trabajador {
 
         return array;
     }
-
 }
 
 class ComparatorNombre implements Comparator<Entrada> {
-
     @Override
     public int compare(Entrada entrada1, Entrada entrada2) {
         int resultado = entrada1.getNombreCliente().compareToIgnoreCase(entrada2.getNombreCliente());
-        if (resultado == 0) {
-            resultado = entrada1.getDniCliente().compareToIgnoreCase(entrada2.getDniCliente());
-        }
+        if (resultado == 0) resultado = entrada1.getDniCliente().compareToIgnoreCase(entrada2.getDniCliente());
         return resultado;
     }
-
 }
 
 class ComparatorDni implements Comparator<Entrada> {
-
     @Override
     public int compare(Entrada entrada1, Entrada entrada2) {
         int resultado = entrada1.getDniCliente().compareToIgnoreCase(entrada2.getDniCliente());
-        if (resultado == 0) {
-            resultado = entrada1.getNombreCliente().compareToIgnoreCase(entrada2.getNombreCliente());
-        }
+        if (resultado == 0) resultado = entrada1.getNombreCliente().compareToIgnoreCase(entrada2.getNombreCliente());
         return resultado;
     }
-
 }
 
 class ComparatorFecha implements Comparator<Entrada> {
-
     @Override
     public int compare(Entrada entrada1, Entrada entrada2) {
         return entrada2.getFechaTransaccion().compareTo(entrada1.getFechaTransaccion());
     }
-
 }

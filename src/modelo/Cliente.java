@@ -12,7 +12,6 @@ import java.util.List;
  * @author Álvaro y Victor
  */
 public class Cliente extends Persona {
-
     private int id;
     private List<Entrada> entradas;
 
@@ -51,14 +50,7 @@ public class Cliente extends Persona {
                 Entrada entrada = entradas.get(i);
                 array[i][0] = date.format(entrada.getFecha());
                 array[i][1] = entrada.getHora();
-
-                if (entrada.getEsGuiada()) {
-                    esGuiada = "Si";
-
-                } else {
-                    esGuiada = "No";
-                }
-
+                esGuiada = entrada.getEsGuiada() ? "Si" : "No";
                 array[i][2] = esGuiada;
                 array[i][3] = String.format("%.2f €", entrada.getPrecio());
             }

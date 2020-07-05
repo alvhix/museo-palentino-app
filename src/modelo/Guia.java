@@ -13,11 +13,10 @@ import java.util.List;
  * @author Álvaro y Victor
  */
 public class Guia extends Trabajador {
-
     private int nGuia;
     private List<Entrada> entradasGuiadas;
 
-    // Constructor ----------------------------------
+    // Constructor
     public Guia(String nombre, String dni, int telefono, long nSS) {
         super(nombre, dni, telefono, nSS);
     }
@@ -28,13 +27,12 @@ public class Guia extends Trabajador {
         this.nGuia = nGuia;
     }
 
-    // Constructor necesario para cargar un guia desde la Base de Datos ----------
+    // Constructor necesario para cargar un guia desde la Base de Datos
     public Guia(String nombre, String dni, int telefono, long nSS, int id, int nGuia) {
         super(nombre, dni, telefono, nSS, id);
         this.nGuia = nGuia;
     }
 
-    // Getters ---------------------------------------
     public int getNGuia() {
         return nGuia;
     }
@@ -70,27 +68,20 @@ public class Guia extends Trabajador {
 
         return array;
     }
-
 }
 
 class ComparatorFechaReserva implements Comparator<Entrada> {
-
     @Override
     public int compare(Entrada entrada1, Entrada entrada2) {
         int resultado = entrada2.getFecha().compareTo(entrada1.getFecha());
-        if (resultado == 0) {
-            resultado = entrada1.getHora().compareToIgnoreCase(entrada2.getHora());
-        }
+        if (resultado == 0) resultado = entrada1.getHora().compareToIgnoreCase(entrada2.getHora());
         return resultado;
     }
-
 }
 
 class ComparatorFechaTransaccion implements Comparator<Entrada> {
-
     @Override
     public int compare(Entrada entrada1, Entrada entrada2) {
         return entrada2.getFechaTransaccion().compareTo(entrada1.getFechaTransaccion());
     }
-
 }

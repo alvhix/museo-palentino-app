@@ -11,13 +11,13 @@ package modelo;
 public class Obra {
 
     private int id;
-    private int idExposicion;
-    private String titulo;
-    private String estilo;
-    private String autor;
-    private String tipo;
-    private String anno;
-    private String rutaImagen;
+    private final int idExposicion;
+    private final String titulo;
+    private final String estilo;
+    private final String autor;
+    private final String tipo;
+    private final String anno;
+    private final String rutaImagen;
 
     // Constructor para nueva obra
     public Obra(String titulo, String autor, String estilo, String anno, String tipo, String rutaImagen, int idExposicion) {
@@ -72,29 +72,5 @@ public class Obra {
 
     public int getIdExposicion() {
         return idExposicion;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setEstilo(String estilo) {
-        this.estilo = estilo;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setAnno(String anno) {
-        this.anno = anno;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
     }
 }

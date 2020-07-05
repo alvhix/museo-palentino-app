@@ -7,8 +7,6 @@ import java.util.Date;
  * @author Álvaro
  */
 public class Entrada {
-
-    // Atributos ------------------------------------
     private boolean esGuiada;
     private int numEntrada;
     private int idCliente;
@@ -19,12 +17,10 @@ public class Entrada {
     private String hora;
     private Timestamp fechaTransaccion;
 
-    // Constructores -----------------------------------
     public Entrada() {
-
     }
 
-    //Constructor reserva de entradas (Cliente)
+    // Constructor reserva de entradas (Cliente)
     public Entrada(int numEntrada, Date fecha, String hora, boolean esGuiada, float precio, int idCliente) {
         this.numEntrada = numEntrada;
         this.fecha = fecha;
@@ -54,7 +50,6 @@ public class Entrada {
         this.precio = precio;
     }
 
-    // Getters -----------------------------------
     public boolean getEsGuiada() {
         return esGuiada;
     }
@@ -95,7 +90,6 @@ public class Entrada {
         return nombreCliente;
     }
 
-    // Setters -----------------------------------
     public void setEsGuiada(boolean esGuiada) {
         this.esGuiada = esGuiada;
     }
@@ -135,5 +129,4 @@ public class Entrada {
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
-
 }

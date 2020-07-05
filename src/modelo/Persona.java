@@ -10,9 +10,9 @@ package modelo;
  */
 public class Persona {
 
-    private String nombre;
-    private String dni;
-    private int telefono;
+    private final String nombre;
+    private final String dni;
+    private final int telefono;
 
     Persona(String nombre, String dni, int telefono) {
         this.nombre = nombre;

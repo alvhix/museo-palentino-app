@@ -12,15 +12,12 @@ import java.util.List;
  * @author Victor
  */
 public class Exposicion {
-
-    // ####################### - Atributos - #######################
     private int id;
     private int tiempoRecorrido;
     private String nombre;
     private String rutaImagen;
     private final List<Obra> obras;
 
-    // ####################### - Constructores - #######################
     // Constructor para nueva exposicion
     public Exposicion(String nombre, int tiempoRecorrido, String rutaImagen) {
         this.nombre = nombre;
@@ -38,7 +35,6 @@ public class Exposicion {
         this.obras = obras;
     }
 
-    // ####################### - Getters - #######################
     public String getNombre() {
         return nombre;
     }
@@ -59,7 +55,6 @@ public class Exposicion {
         return obras;
     }
 
-    // ####################### - Setters - #######################
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -76,7 +71,6 @@ public class Exposicion {
         this.rutaImagen = rutaImagen;
     }
 
-    // ####################### - Métodos - #######################
     public void agregarObra(Obra obra) {
         obras.add(obra);
     }
