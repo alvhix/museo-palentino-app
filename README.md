@@ -2,6 +2,8 @@
 
 Aplicación de un museo con funcionalidades diferentes para 3 roles: administrador, guía y cliente.
 
+![Página de inicio MuseoPalentino](docs/MuseoPalentinoHome.png)
+
 ## Empezando
 Este proyecto se trata de una aplicación de un museo al que tienen acceso los clientes, guías y administradores. La funcionalidad para los clientes es la de poder reservar entradas para poder acceder a una determinada exposición en nuestro supuesto museo ficticio. Por otro lado, los guías podrán visualizar los datos de los clientes a los que guiará en la exposición. Por último, los administradores, podrán visualizar todas las reservas realizadas por los clientes y administrar las exposiciones y las obras.
 
@@ -20,7 +22,8 @@ El proyecto incluye 3 librerías para poder funcionar correctamente que son desc
 * MYSQLDriver
 * JCalendar
 * AbsoluteLayout
-(El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local)
+
+El IDE debe reconocer automáticamente las 3 librerías, en caso de no ser así, importa manualmente las 3 librerías incluidas en la carpeta lib/ y añádelas a tu proyecto local
 
 2. Importe la base de datos en su servidor local o remoto para que la aplicación funcione. La base de datos se encuentra en el directorio db/museopalentinoapp.sql
 
