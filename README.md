@@ -37,7 +37,7 @@ Para poder arrancar la aplicación debe ejecutar uno de estos dos archivos. **Re
 ## Autores
 
 * **Víctor** - [VicBoss11](https://github.com/VicBoss11)
-* **Álvaro** - [Alvhix](https://github.com/Alvhix)
+* **Álvaro** - [Alvhix](https://github.com/alvhix)
 * **Guillermo** - [PonceDeNeon](https://github.com/PonceDeNeon)
 
 ## Licencia
